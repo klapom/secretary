@@ -1,5 +1,5 @@
 import crypto from "node:crypto";
-import type { NodeSession } from "../node-registry.js";
+import type { NodeSession } from "../shared/node-registry.js";
 import type { GatewayRequestHandlers } from "./types.js";
 import {
   createBrowserControlContext,
@@ -8,7 +8,7 @@ import {
 import { applyBrowserProxyPaths, persistBrowserProxyFiles } from "../../browser/proxy-files.js";
 import { createBrowserRouteDispatcher } from "../../browser/routes/dispatcher.js";
 import { loadConfig } from "../../config/config.js";
-import { isNodeCommandAllowed, resolveNodeCommandAllowlist } from "../node-command-policy.js";
+import { isNodeCommandAllowed, resolveNodeCommandAllowlist } from "../shared/node-command-policy.js";
 import { ErrorCodes, errorShape } from "../protocol/index.js";
 import { respondUnavailableOnNodeInvokeError, safeParseJson } from "./nodes.helpers.js";
 

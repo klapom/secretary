@@ -26,7 +26,7 @@ import {
   validateSessionsResetParams,
   validateSessionsResolveParams,
 } from "../protocol/index.js";
-import { resolveSessionKeyFromResolveParams } from "../sessions-resolve.js";
+import { resolveSessionKeyFromResolveParams } from "../sessions/sessions-resolve.js";
 import {
   archiveFileOnDisk,
   archiveSessionTranscripts,

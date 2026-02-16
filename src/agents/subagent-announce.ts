@@ -6,7 +6,7 @@ import {
   resolveMainSessionKey,
   resolveStorePath,
 } from "../config/sessions.js";
-import { callGateway } from "../gateway/call.js";
+import { callGateway } from "../gateway/core/call.js";
 import { normalizeMainKey } from "../routing/session-key.js";
 import { defaultRuntime } from "../runtime.js";
 import {

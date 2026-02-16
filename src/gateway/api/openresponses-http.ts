@@ -35,7 +35,7 @@ import {
   type InputImageSource,
 } from "../../media/input-files.js";
 import { defaultRuntime } from "../../runtime.js";
-import { resolveAssistantStreamDeltaText } from "../agent-event-assistant-text.js";
+import { resolveAssistantStreamDeltaText } from "../core/agent-event-assistant-text.js";
 import {
   buildAgentMessageFromConversationEntries,
   type ConversationEntry,

@@ -19,8 +19,8 @@ import {
   type ChatAbortOps,
   isChatStopCommandText,
   resolveChatRunExpiresAtMs,
-} from "../chat-abort.js";
-import { type ChatImageContent, parseMessageWithAttachments } from "../chat-attachments.js";
+} from "../core/chat-abort.js";
+import { type ChatImageContent, parseMessageWithAttachments } from "../core/chat-attachments.js";
 import { stripEnvelopeFromMessages } from "../core/chat-sanitize.js";
 import { GATEWAY_CLIENT_CAPS, hasGatewayClientCap } from "../protocol/client-info.js";
 import {
@@ -32,7 +32,7 @@ import {
   validateChatInjectParams,
   validateChatSendParams,
 } from "../protocol/index.js";
-import { getMaxChatHistoryMessagesBytes } from "../server-constants.js";
+import { getMaxChatHistoryMessagesBytes } from "../server/server-constants.js";
 import {
   capArrayByJsonBytes,
   loadSessionEntry,

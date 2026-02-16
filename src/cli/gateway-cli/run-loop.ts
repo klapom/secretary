@@ -1,4 +1,4 @@
-import type { startGatewayServer } from "../../gateway/server.js";
+import type { startGatewayServer } from "../../gateway/server/server.js";
 import type { defaultRuntime } from "../../runtime.js";
 import { acquireGatewayLock } from "../../infra/gateway-lock.js";
 import { restartGatewayProcessWithFreshPid } from "../../infra/process-respawn.js";

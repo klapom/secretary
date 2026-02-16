@@ -5,7 +5,7 @@ import type { AnyAgentTool } from "./common.js";
 import { clearSessionQueues } from "../../auto-reply/reply/queue.js";
 import { loadConfig } from "../../config/config.js";
 import { loadSessionStore, resolveStorePath, updateSessionStore } from "../../config/sessions.js";
-import { callGateway } from "../../gateway/call.js";
+import { callGateway } from "../../gateway/core/call.js";
 import { logVerbose } from "../../globals.js";
 import {
   isSubagentSessionKey,

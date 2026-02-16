@@ -1,7 +1,7 @@
 import type { GatewayRequestHandlers } from "./types.js";
 import { loadVoiceWakeConfig, setVoiceWakeTriggers } from "../../infra/voicewake.js";
 import { ErrorCodes, errorShape } from "../protocol/index.js";
-import { normalizeVoiceWakeTriggers } from "../server-utils.js";
+import { normalizeVoiceWakeTriggers } from "../server/server-utils.js";
 import { formatForLog } from "../shared/ws-log.js";
 
 export const voicewakeHandlers: GatewayRequestHandlers = {

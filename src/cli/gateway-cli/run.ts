@@ -11,7 +11,7 @@ import {
   resolveGatewayPort,
 } from "../../config/config.js";
 import { resolveGatewayAuth } from "../../gateway/auth.js";
-import { startGatewayServer } from "../../gateway/server.js";
+import { startGatewayServer } from "../../gateway/server/server.js";
 import { setGatewayWsLogStyle } from "../../gateway/ws-logging.js";
 import { setVerbose } from "../../globals.js";
 import { GatewayLockError } from "../../infra/gateway-lock.js";

@@ -20,7 +20,7 @@ import type {
 } from "@agentclientprotocol/sdk";
 import { PROTOCOL_VERSION } from "@agentclientprotocol/sdk";
 import { randomUUID } from "node:crypto";
-import type { GatewayClient } from "../gateway/client.js";
+import type { GatewayClient } from "../gateway/core/client.js";
 import type { EventFrame } from "../gateway/protocol/index.js";
 import type { SessionsListResult } from "../gateway/sessions/session-utils.js";
 import { getAvailableCommands } from "./commands.js";

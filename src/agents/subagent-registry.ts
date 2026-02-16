@@ -1,5 +1,5 @@
 import { loadConfig } from "../config/config.js";
-import { callGateway } from "../gateway/call.js";
+import { callGateway } from "../gateway/core/call.js";
 import { onAgentEvent } from "../infra/agent-events.js";
 import { type DeliveryContext, normalizeDeliveryContext } from "../utils/delivery-context.js";
 import { resetAnnounceQueuesForTests } from "./subagent-announce-queue.js";

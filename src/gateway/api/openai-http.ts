@@ -6,7 +6,7 @@ import { createDefaultDeps } from "../../cli/deps.js";
 import { agentCommand } from "../../commands/agent.js";
 import { emitAgentEvent, onAgentEvent } from "../../infra/agent-events.js";
 import { defaultRuntime } from "../../runtime.js";
-import { resolveAssistantStreamDeltaText } from "../agent-event-assistant-text.js";
+import { resolveAssistantStreamDeltaText } from "../core/agent-event-assistant-text.js";
 import {
   buildAgentMessageFromConversationEntries,
   type ConversationEntry,

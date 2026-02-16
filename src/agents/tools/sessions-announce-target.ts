@@ -1,6 +1,6 @@
 import type { AnnounceTarget } from "./sessions-send-helpers.js";
 import { getChannelPlugin, normalizeChannelId } from "../../channels/plugins/index.js";
-import { callGateway } from "../../gateway/call.js";
+import { callGateway } from "../../gateway/core/call.js";
 import { SessionListRow } from "./sessions-helpers.js";
 import { resolveAnnounceTargetFromKey } from "./sessions-send-helpers.js";
 

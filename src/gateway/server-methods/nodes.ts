@@ -9,8 +9,8 @@ import {
   requestNodePairing,
   verifyNodeToken,
 } from "../../infra/node-pairing.js";
-import { isNodeCommandAllowed, resolveNodeCommandAllowlist } from "../node-command-policy.js";
-import { sanitizeNodeInvokeParamsForForwarding } from "../node-invoke-sanitize.js";
+import { isNodeCommandAllowed, resolveNodeCommandAllowlist } from "../shared/node-command-policy.js";
+import { sanitizeNodeInvokeParamsForForwarding } from "../shared/node-invoke-sanitize.js";
 import {
   ErrorCodes,
   errorShape,

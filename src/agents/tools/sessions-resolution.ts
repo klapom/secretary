@@ -1,5 +1,5 @@
 import type { OpenClawConfig } from "../../config/config.js";
-import { callGateway } from "../../gateway/call.js";
+import { callGateway } from "../../gateway/core/call.js";
 import { isAcpSessionKey, normalizeMainKey } from "../../routing/session-key.js";
 
 function normalizeKey(value?: string) {

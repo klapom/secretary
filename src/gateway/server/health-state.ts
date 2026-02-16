@@ -1,4 +1,4 @@
-import type { Snapshot } from "../protocol/index.js";
+import type { Snapshot } from "../../protocol/index.js";
 import { resolveDefaultAgentId } from "../../agents/agent-scope.js";
 import { getHealthSnapshot, type HealthSummary } from "../../commands/health.js";
 import { CONFIG_PATH, STATE_DIR, loadConfig } from "../../config/config.js";

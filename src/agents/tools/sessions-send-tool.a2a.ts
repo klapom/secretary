@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 import type { GatewayMessageChannel } from "../../utils/message-channel.js";
-import { callGateway } from "../../gateway/call.js";
+import { callGateway } from "../../gateway/core/call.js";
 import { formatErrorMessage } from "../../infra/errors.js";
 import { createSubsystemLogger } from "../../logging/subsystem.js";
 import { AGENT_LANE_NESTED } from "../lanes.js";
