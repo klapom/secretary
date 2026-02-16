@@ -1,8 +1,8 @@
 # XTTS (Coqui TTS) Dependencies
 
 # Core TTS
+# Note: coqui-ai-tts doesn't exist, use TTS package
 TTS>=0.22.0
-coqui-ai-tts>=0.22.0
 
 # Audio processing
 librosa>=0.10.0
