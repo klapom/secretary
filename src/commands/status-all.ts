@@ -7,8 +7,8 @@ import { loadConfig, readConfigFileSnapshot, resolveGatewayPort } from "../confi
 import { readLastGatewayErrorLine } from "../daemon/diagnostics.js";
 import { resolveNodeService } from "../daemon/node-service.js";
 import { resolveGatewayService } from "../daemon/service.js";
+import { normalizeControlUiBasePath } from "../gateway/api/control-ui-shared.js";
 import { buildGatewayConnectionDetails, callGateway } from "../gateway/call.js";
-import { normalizeControlUiBasePath } from "../gateway/control-ui-shared.js";
 import { resolveGatewayProbeAuth } from "../gateway/probe-auth.js";
 import { probeGateway } from "../gateway/probe.js";
 import { collectChannelStatusIssues } from "../infra/channels-status-issues.js";

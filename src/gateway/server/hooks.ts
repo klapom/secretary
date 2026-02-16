@@ -8,7 +8,7 @@ import { resolveMainSessionKeyFromConfig } from "../../config/sessions.js";
 import { runCronIsolatedAgentTurn } from "../../cron/isolated-agent.js";
 import { requestHeartbeatNow } from "../../infra/heartbeat-wake.js";
 import { enqueueSystemEvent } from "../../infra/system-events.js";
-import { createHooksRequestHandler } from "../server-http.js";
+import { createHooksRequestHandler } from "../api/server-http.js";
 
 type SubsystemLogger = ReturnType<typeof createSubsystemLogger>;
 

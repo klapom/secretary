@@ -9,8 +9,8 @@ import type { NodeManagerChoice, OnboardMode, ResetScope } from "./onboard-types
 import { DEFAULT_AGENT_WORKSPACE_DIR, ensureAgentWorkspace } from "../agents/workspace.js";
 import { CONFIG_PATH } from "../config/config.js";
 import { resolveSessionTranscriptsDirForAgent } from "../config/sessions.js";
+import { normalizeControlUiBasePath } from "../gateway/api/control-ui-shared.js";
 import { callGateway } from "../gateway/call.js";
-import { normalizeControlUiBasePath } from "../gateway/control-ui-shared.js";
 import { pickPrimaryLanIPv4, isValidIPv4 } from "../gateway/net.js";
 import { isSafeExecutableValue } from "../infra/exec-safety.js";
 import { pickPrimaryTailnetIPv4 } from "../infra/tailnet.js";

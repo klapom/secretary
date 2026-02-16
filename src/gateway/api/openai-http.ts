@@ -5,7 +5,6 @@ import type { ResolvedGatewayAuth } from "../auth.js";
 import { createDefaultDeps } from "../../cli/deps.js";
 import { agentCommand } from "../../commands/agent.js";
 import { emitAgentEvent, onAgentEvent } from "../../infra/agent-events.js";
-import { logWarn } from "../../logging/logger.js";
 import { defaultRuntime } from "../../runtime.js";
 import { resolveAssistantStreamDeltaText } from "../agent-event-assistant-text.js";
 import {
@@ -220,8 +219,8 @@ export async function handleOpenAiHttpRequest(
         ],
         usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
       });
-    } catch (err) {
-      logWarn(`openai-compat: chat completion failed: ${String(err)}`);
+    } catch {
+      // TODO: restore logging - log.warn(`openai-compat: chat completion failed: ${String(err)}`);
       sendJson(res, 500, {
         error: { message: "internal error", type: "api_error" },
       });
@@ -349,8 +348,8 @@ export async function handleOpenAiHttpRequest(
           ],
         });
       }
-    } catch (err) {
-      logWarn(`openai-compat: streaming chat completion failed: ${String(err)}`);
+    } catch {
+      // TODO: restore logging - log.warn(`openai-compat: streaming chat completion failed: ${String(err)}`);
       if (closed) {
         return;
       }

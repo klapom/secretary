@@ -7,8 +7,8 @@ import type { CanvasHostHandler } from "../canvas-host/server.js";
 import type { ResolvedGatewayAuth } from "./auth.js";
 import type { GatewayWsClient } from "./server/ws-types.js";
 import { A2UI_PATH, CANVAS_HOST_PATH, CANVAS_WS_PATH } from "../canvas-host/a2ui.js";
+import { attachGatewayUpgradeHandler, createGatewayHttpServer } from "./api/server-http.js";
 import { createAuthRateLimiter } from "./auth-rate-limit.js";
-import { attachGatewayUpgradeHandler, createGatewayHttpServer } from "./server-http.js";
 
 async function withTempConfig(params: { cfg: unknown; run: () => Promise<void> }): Promise<void> {
   const prevConfigPath = process.env.OPENCLAW_CONFIG_PATH;

@@ -18,7 +18,6 @@ import {
 import { ToolInputError } from "../../agents/tools/common.js";
 import { loadConfig } from "../../config/config.js";
 import { resolveMainSessionKey } from "../../config/sessions.js";
-import { logWarn } from "../../logging/logger.js";
 import { isTestDefaultMemorySlotDisabled } from "../../plugins/config-state.js";
 import { getPluginToolMeta } from "../../plugins/tools.js";
 import { isSubagentSessionKey } from "../../routing/session-key.js";
@@ -257,7 +256,7 @@ export async function handleToolsInvokeHttpRequest(
     tools: allTools as any,
     // oxlint-disable-next-line typescript/no-explicit-any
     toolMeta: (tool) => getPluginToolMeta(tool as any),
-    warn: logWarn,
+    warn: () => {}, // TODO: restore logging
     steps: [
       ...buildDefaultToolPolicyPipelineSteps({
         profilePolicy: profilePolicyWithAlsoAllow,
@@ -313,7 +312,7 @@ export async function handleToolsInvokeHttpRequest(
       });
       return true;
     }
-    logWarn(`tools-invoke: tool execution failed: ${String(err)}`);
+    // TODO: restore logging - log.warn(`tools-invoke: tool execution failed: ${String(err)}`);
     sendJson(res, 500, {
       ok: false,
       error: { type: "tool_error", message: "tool execution failed" },

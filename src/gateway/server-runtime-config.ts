@@ -4,12 +4,12 @@ import type {
   GatewayTailscaleConfig,
   loadConfig,
 } from "../config/config.js";
+import { normalizeControlUiBasePath } from "./api/control-ui-shared.js";
 import {
   assertGatewayAuthConfigured,
   type ResolvedGatewayAuth,
   resolveGatewayAuth,
 } from "./auth.js";
-import { normalizeControlUiBasePath } from "./control-ui-shared.js";
 import { resolveHooksConfig } from "./hooks/hooks.js";
 import { isLoopbackHost, resolveGatewayBindHost } from "./net.js";
 
