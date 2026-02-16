@@ -1,8 +1,8 @@
-# LivePortrait Dockerfile for DGX Spark (ARM64 + CUDA 13.0)
+# LivePortrait Dockerfile for DGX Spark (ARM64 + CUDA 12.1)
 # Hardware: NVIDIA GB10 Blackwell (sm_121), 20 ARM Cortex Cores
-# CUDA: 13.0, PyTorch with cu130 support
+# CUDA: 12.1, PyTorch with cu121 support (Python 3.11 for compatibility)
 
-FROM nvcr.io/nvidia/pytorch:25.09-py3
+FROM nvcr.io/nvidia/pytorch:24.01-py3
 
 # Set working directory
 WORKDIR /app

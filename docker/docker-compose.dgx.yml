@@ -122,54 +122,54 @@ services:
     networks:
       - avatar-network
 
-  # WebRTC Signaling Server (already implemented in Sprint 03)
-  webrtc-signaling:
-    image: node:22-alpine
-    container_name: secretary-webrtc
-    working_dir: /app
-    volumes:
-      - ../:/app
-    command: node dist/avatar/streaming/webrtc-server.js
-    environment:
-      - NODE_ENV=production
-      - SIGNALING_PORT=8080
-    ports:
-      - "8080:8080"
-    depends_on:
-      - liveportrait
-      - xtts
-      - whisper
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-    restart: unless-stopped
-    networks:
-      - avatar-network
+  # WebRTC Signaling Server (Phase 3 - Not implemented yet)
+  # webrtc-signaling:
+  #   image: node:22-alpine
+  #   container_name: secretary-webrtc
+  #   working_dir: /app
+  #   volumes:
+  #     - ../:/app
+  #   command: node dist/avatar/streaming/webrtc-server.js
+  #   environment:
+  #     - NODE_ENV=production
+  #     - SIGNALING_PORT=8080
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - liveportrait
+  #     - xtts
+  #     - whisper
+  #   healthcheck:
+  #     test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #   restart: unless-stopped
+  #   networks:
+  #     - avatar-network
 
-  # Avatar Chat UI (React frontend)
-  avatar-ui:
-    build:
-      context: ../ui/avatar-chat
-      dockerfile: Dockerfile
-    container_name: secretary-avatar-ui
-    environment:
-      - NODE_ENV=production
-      - VITE_WEBRTC_URL=ws://localhost:8080
-      - VITE_API_URL=http://localhost:3001
-    ports:
-      - "3000:80"
-    depends_on:
-      - webrtc-signaling
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-    restart: unless-stopped
-    networks:
-      - avatar-network
+  # Avatar Chat UI (Run with Vite dev server instead)
+  # avatar-ui:
+  #   build:
+  #     context: ../ui/avatar-chat
+  #     dockerfile: Dockerfile
+  #   container_name: secretary-avatar-ui
+  #   environment:
+  #     - NODE_ENV=production
+  #     - VITE_WEBRTC_URL=ws://localhost:8080
+  #     - VITE_API_URL=http://localhost:3001
+  #   ports:
+  #     - "3000:80"
+  #   depends_on:
+  #     - webrtc-signaling
+  #   healthcheck:
+  #     test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #   restart: unless-stopped
+  #   networks:
+  #     - avatar-network
 
 volumes:
   liveportrait-models:
