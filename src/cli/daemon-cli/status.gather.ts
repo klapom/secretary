@@ -12,7 +12,7 @@ import { readLastGatewayErrorLine } from "../../daemon/diagnostics.js";
 import { findExtraGatewayServices } from "../../daemon/inspect.js";
 import { auditGatewayServiceConfig } from "../../daemon/service-audit.js";
 import { resolveGatewayService } from "../../daemon/service.js";
-import { resolveGatewayBindHost } from "../../gateway/net.js";
+import { resolveGatewayBindHost } from "../../gateway/shared/net.js";
 import {
   formatPortDiagnostics,
   inspectPortUsage,

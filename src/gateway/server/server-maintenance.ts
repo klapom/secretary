@@ -9,7 +9,7 @@ import {
   TICK_INTERVAL_MS,
 } from "./server-constants.js";
 import { formatError } from "./server-utils.js";
-import { setBroadcastHealthUpdate } from "./server/health-state.js";
+import { setBroadcastHealthUpdate } from "./health-state.js";
 
 export function startGatewayMaintenanceTimers(params: {
   broadcast: (

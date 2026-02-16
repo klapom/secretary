@@ -2,7 +2,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, test, vi 
 import { WebSocket } from "ws";
 import { GATEWAY_CLIENT_MODES, GATEWAY_CLIENT_NAMES } from "../../utils/message-channel.js";
 import { buildDeviceAuthPayload } from "../core/device-auth.js";
-import { PROTOCOL_VERSION } from "./protocol/index.js";
+import { PROTOCOL_VERSION } from "../protocol/index.js";
 import { getHandshakeTimeoutMs } from "./server-constants.js";
 import {
   connectReq,
@@ -15,7 +15,7 @@ import {
   testTailscaleWhois,
   testState,
   withGatewayServer,
-} from "./shared/test-helpers.js";
+} from "../shared/test-helpers.js";
 
 installGatewayTestHooks({ scope: "suite" });
 

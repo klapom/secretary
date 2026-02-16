@@ -45,7 +45,7 @@ import { startDiagnosticHeartbeat, stopDiagnosticHeartbeat } from "../../logging
 import { createSubsystemLogger, runtimeForLogger } from "../../logging/subsystem.js";
 import { getGlobalHookRunner, runGlobalGatewayStopSafely } from "../../plugins/hook-runner-global.js";
 import { createEmptyPluginRegistry } from "../../plugins/registry.js";
-import { getTotalQueueSize } from "../process/command-queue.js";
+import { getTotalQueueSize } from "../../process/command-queue.js";
 import { runOnboardingWizard } from "../../wizard/onboarding.js";
 import { createAuthRateLimiter, type AuthRateLimiter } from "../core/auth-rate-limit.js";
 import { startGatewayConfigReloader } from "../core/config-reload.js";
@@ -59,8 +59,8 @@ import { applyGatewayLaneConcurrency } from "./server-lanes.js";
 import { startGatewayMaintenanceTimers } from "./server-maintenance.js";
 import { GATEWAY_EVENTS, listGatewayMethods } from "./server-methods-list.js";
 import { coreGatewayHandlers } from "./server-methods.js";
-import { createExecApprovalHandlers } from "./server-methods/exec-approval.js";
-import { safeParseJson } from "./server-methods/nodes.helpers.js";
+import { createExecApprovalHandlers } from "../server-methods/exec-approval.js";
+import { safeParseJson } from "../server-methods/nodes.helpers.js";
 import { hasConnectedMobileNode } from "./server-mobile-nodes.js";
 import { loadGatewayModelCatalog } from "./server-model-catalog.js";
 import { createNodeSubscriptionManager } from "./server-node-subscriptions.js";
@@ -77,12 +77,12 @@ import {
   getPresenceVersion,
   incrementPresenceVersion,
   refreshGatewayHealthSnapshot,
-} from "./server/health-state.js";
-import { loadGatewayTlsRuntime } from "./server/tls.js";
+} from "./health-state.js";
+import { loadGatewayTlsRuntime } from "./tls.js";
 import { resolveSessionKeyForRun } from "../sessions/server-session-key.js";
 import { createWizardSessionTracker } from "../sessions/server-wizard-sessions.js";
-import { ExecApprovalManager } from "./shared/exec-approval-manager.js";
-import { NodeRegistry } from "./shared/node-registry.js";
+import { ExecApprovalManager } from "../shared/exec-approval-manager.js";
+import { NodeRegistry } from "../shared/node-registry.js";
 
 export { __resetModelCatalogCacheForTest } from "./server-model-catalog.js";
 
@@ -509,8 +509,8 @@ export async function startGatewayServer(
   // Recover pending outbound deliveries from previous crash/restart.
   if (!minimalTestGateway) {
     void (async () => {
-      const { recoverPendingDeliveries } = await import("../infra/outbound/delivery-queue.js");
-      const { deliverOutboundPayloads } = await import("../infra/outbound/deliver.js");
+      const { recoverPendingDeliveries } = await import("../../infra/outbound/delivery-queue.js");
+      const { deliverOutboundPayloads } = await import("../../infra/outbound/deliver.js");
       const logRecovery = log.child("delivery-recovery");
       await recoverPendingDeliveries({
         deliver: deliverOutboundPayloads,

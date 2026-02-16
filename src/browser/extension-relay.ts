@@ -4,7 +4,7 @@ import type { Duplex } from "node:stream";
 import { randomBytes } from "node:crypto";
 import { createServer } from "node:http";
 import WebSocket, { WebSocketServer } from "ws";
-import { isLoopbackAddress, isLoopbackHost } from "../gateway/net.js";
+import { isLoopbackAddress, isLoopbackHost } from "../gateway/shared/net.js";
 import { rawDataToString } from "../infra/ws.js";
 
 type CdpCommand = {

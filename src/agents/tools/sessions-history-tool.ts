@@ -2,7 +2,7 @@ import { Type } from "@sinclair/typebox";
 import type { AnyAgentTool } from "./common.js";
 import { loadConfig } from "../../config/config.js";
 import { callGateway } from "../../gateway/core/call.js";
-import { capArrayByJsonBytes } from "../../gateway/session-utils.fs.js";
+import { capArrayByJsonBytes } from "../../gateway/sessions/session-utils.fs.js";
 import { truncateUtf16Safe } from "../../utils.js";
 import { jsonResult, readStringParam } from "./common.js";
 import {

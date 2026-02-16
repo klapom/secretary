@@ -16,7 +16,7 @@ import {
   TAILSCALE_DOCS_LINES,
   TAILSCALE_EXPOSURE_OPTIONS,
   TAILSCALE_MISSING_BIN_NOTE_LINES,
-} from "../gateway/gateway-config-prompts.shared.js";
+} from "../gateway/shared/gateway-config-prompts.shared.js";
 import { findTailscaleBinary } from "../infra/tailscale.js";
 import { validateIPv4AddressInput } from "../shared/net/ipv4.js";
 

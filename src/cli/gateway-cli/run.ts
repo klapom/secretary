@@ -2,7 +2,7 @@ import type { Command } from "commander";
 import fs from "node:fs";
 import path from "node:path";
 import type { GatewayAuthMode } from "../../config/config.js";
-import type { GatewayWsLogStyle } from "../../gateway/ws-logging.js";
+import type { GatewayWsLogStyle } from "../../gateway/shared/ws-logging.js";
 import {
   CONFIG_PATH,
   loadConfig,
@@ -10,9 +10,9 @@ import {
   resolveStateDir,
   resolveGatewayPort,
 } from "../../config/config.js";
-import { resolveGatewayAuth } from "../../gateway/auth.js";
+import { resolveGatewayAuth } from "../../gateway/core/auth.js";
 import { startGatewayServer } from "../../gateway/server/server.js";
-import { setGatewayWsLogStyle } from "../../gateway/ws-logging.js";
+import { setGatewayWsLogStyle } from "../../gateway/shared/ws-logging.js";
 import { setVerbose } from "../../globals.js";
 import { GatewayLockError } from "../../infra/gateway-lock.js";
 import { formatPortDiagnostics, inspectPortUsage } from "../../infra/ports.js";

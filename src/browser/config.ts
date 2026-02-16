@@ -5,7 +5,7 @@ import {
   deriveDefaultBrowserControlPort,
   DEFAULT_BROWSER_CONTROL_PORT,
 } from "../config/port-defaults.js";
-import { isLoopbackHost } from "../gateway/net.js";
+import { isLoopbackHost } from "../gateway/shared/net.js";
 import {
   DEFAULT_OPENCLAW_BROWSER_COLOR,
   DEFAULT_OPENCLAW_BROWSER_ENABLED,

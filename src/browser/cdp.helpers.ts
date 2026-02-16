@@ -1,5 +1,5 @@
 import WebSocket from "ws";
-import { isLoopbackHost } from "../gateway/net.js";
+import { isLoopbackHost } from "../gateway/shared/net.js";
 import { rawDataToString } from "../infra/ws.js";
 import { getChromeExtensionRelayAuthHeaders } from "./extension-relay.js";
 

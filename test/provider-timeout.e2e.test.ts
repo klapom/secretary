@@ -89,7 +89,7 @@ async function connectClient(params: { url: string; token: string }) {
       if (err) {
         reject(err);
       } else {
-        resolve(client as InstanceType<typeof GatewayClient>);
+        resolve(client);
       }
     };
     const client = new GatewayClient({

@@ -10,7 +10,7 @@ import type { ResolvedGatewayAuth } from "../core/auth.js";
 import type { ChatAbortControllerEntry } from "../core/chat-abort.js";
 import type { HooksConfigResolved } from "../hooks/hooks.js";
 import type { DedupeEntry } from "./server-shared.js";
-import type { GatewayTlsRuntime } from "./server/tls.js";
+import type { GatewayTlsRuntime } from "./tls.js";
 import type { GatewayWsClient } from "./ws-types.js";
 import { CANVAS_HOST_PATH } from "../../canvas-host/a2ui.js";
 import { type CanvasHostHandler, createCanvasHostHandler } from "../../canvas-host/server.js";
@@ -26,10 +26,10 @@ import {
   createToolEventRecipientRegistry,
 } from "./server-chat.js";
 import { MAX_PAYLOAD_BYTES } from "./server-constants.js";
-import { createGatewayHooksRequestHandler } from "./server/hooks.js";
-import { listenGatewayHttpServer } from "./server/http-listen.js";
-import { createGatewayPluginRequestHandler } from "./server/plugins-http.js";
-import { resolveGatewayListenHosts } from "./shared/net.js";
+import { createGatewayHooksRequestHandler } from "./hooks.js";
+import { listenGatewayHttpServer } from "./http-listen.js";
+import { createGatewayPluginRequestHandler } from "./plugins-http.js";
+import { resolveGatewayListenHosts } from "../shared/net.js";
 
 export async function createGatewayRuntimeState(params: {
   cfg: import("../config/config.js").OpenClawConfig;

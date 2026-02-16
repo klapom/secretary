@@ -11,7 +11,7 @@ import { CONFIG_PATH } from "../config/config.js";
 import { resolveSessionTranscriptsDirForAgent } from "../config/sessions.js";
 import { normalizeControlUiBasePath } from "../gateway/api/control-ui-shared.js";
 import { callGateway } from "../gateway/core/call.js";
-import { pickPrimaryLanIPv4, isValidIPv4 } from "../gateway/net.js";
+import { pickPrimaryLanIPv4, isValidIPv4 } from "../gateway/shared/net.js";
 import { isSafeExecutableValue } from "../infra/exec-safety.js";
 import { pickPrimaryTailnetIPv4 } from "../infra/tailnet.js";
 import { isWSL } from "../infra/wsl.js";

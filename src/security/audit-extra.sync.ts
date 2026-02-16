@@ -15,8 +15,8 @@ import { getBlockedBindReason } from "../agents/sandbox/validate-sandbox-securit
 import { resolveToolProfilePolicy } from "../agents/tool-policy.js";
 import { resolveBrowserConfig } from "../browser/config.js";
 import { formatCliCommand } from "../cli/command-format.js";
-import { resolveGatewayAuth } from "../gateway/auth.js";
-import { resolveNodeCommandAllowlist } from "../gateway/node-command-policy.js";
+import { resolveGatewayAuth } from "../gateway/core/auth.js";
+import { resolveNodeCommandAllowlist } from "../gateway/shared/node-command-policy.js";
 import { inferParamBFromIdOrName } from "../shared/model-param-b.js";
 import { pickSandboxToolPolicy } from "./audit-tool-policy.js";
 

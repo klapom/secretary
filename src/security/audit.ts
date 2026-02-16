@@ -5,10 +5,10 @@ import { resolveBrowserControlAuth } from "../browser/control-auth.js";
 import { listChannelPlugins } from "../channels/plugins/index.js";
 import { formatCliCommand } from "../cli/command-format.js";
 import { resolveConfigPath, resolveStateDir } from "../config/paths.js";
-import { resolveGatewayAuth } from "../gateway/auth.js";
-import { buildGatewayConnectionDetails } from "../gateway/call.js";
-import { resolveGatewayProbeAuth } from "../gateway/probe-auth.js";
-import { probeGateway } from "../gateway/probe.js";
+import { resolveGatewayAuth } from "../gateway/core/auth.js";
+import { buildGatewayConnectionDetails } from "../gateway/core/call.js";
+import { resolveGatewayProbeAuth } from "../gateway/shared/probe-auth.js";
+import { probeGateway } from "../gateway/shared/probe.js";
 import { collectChannelSecurityFindings } from "./audit-channel.js";
 import {
   collectAttackSurfaceSummaryFindings,

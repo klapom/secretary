@@ -1,6 +1,6 @@
 import type { Command } from "commander";
 import type { NodeListNode, NodesRpcOpts } from "./types.js";
-import { callGateway, randomIdempotencyKey } from "../../gateway/call.js";
+import { callGateway, randomIdempotencyKey } from "../../gateway/core/call.js";
 import { resolveNodeIdFromCandidates } from "../../shared/node-match.js";
 import { GATEWAY_CLIENT_MODES, GATEWAY_CLIENT_NAMES } from "../../utils/message-channel.js";
 import { withProgress } from "../progress.js";

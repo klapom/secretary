@@ -25,7 +25,7 @@ import {
   onceMessage,
   rpcReq,
   startServerWithClient,
-} from "./shared/test-helpers.js";
+} from "../shared/test-helpers.js";
 
 installGatewayTestHooks({ scope: "suite" });
 

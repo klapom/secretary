@@ -14,8 +14,8 @@ import {
   startServerWithClient,
   testState,
   writeSessionStore,
-} from "./shared/test-helpers.js";
-import { agentCommand } from "./shared/test-helpers.mocks.js";
+} from "../shared/test-helpers.js";
+import { agentCommand } from "../shared/test-helpers.mocks.js";
 
 installGatewayTestHooks({ scope: "suite" });
 

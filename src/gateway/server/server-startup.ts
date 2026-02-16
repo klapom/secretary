@@ -13,8 +13,8 @@ import {
   clearInternalHooks,
   createInternalHookEvent,
   triggerInternalHook,
-} from "../hooks/internal-hooks.js";
-import { loadInternalHooks } from "../hooks/loader.js";
+} from "../../hooks/internal-hooks.js";
+import { loadInternalHooks } from "../../hooks/loader.js";
 import { isTruthyEnvValue } from "../../infra/env.js";
 import { type PluginServicesHandle, startPluginServices } from "../../plugins/services.js";
 import { startBrowserControlServerIfEnabled } from "./server-browser.js";

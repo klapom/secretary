@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { resolveAgentConfig } from "../agents/agent-scope.js";
 import { loadConfig } from "../config/config.js";
-import { GatewayClient } from "../gateway/client.js";
+import { GatewayClient } from "../gateway/core/client.js";
 import {
   addAllowlistEntry,
   analyzeArgvCommand,

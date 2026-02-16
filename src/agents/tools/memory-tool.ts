@@ -109,7 +109,7 @@ export function createMemoryGetTool(options: {
   const { cfg, agentId } = ctx;
 
   // SECURITY: Create path validator for memory directory
-  const workspaceDir = resolveAgentWorkspaceDir({ config: cfg, agentId });
+  const workspaceDir = resolveAgentWorkspaceDir(cfg, agentId);
   const pathValidator = new PathTraversalValidator({
     allowedBasePaths: [workspaceDir],
     resolveSymlinks: true,

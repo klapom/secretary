@@ -4,8 +4,8 @@ import {
   buildGatewayConnectionDetails,
   ensureExplicitGatewayAuth,
   resolveExplicitGatewayAuth,
-} from "../gateway/call.js";
-import { GatewayClient } from "../gateway/client.js";
+} from "../gateway/core/call.js";
+import { GatewayClient } from "../gateway/core/client.js";
 import { GATEWAY_CLIENT_CAPS } from "../gateway/protocol/client-info.js";
 import {
   type HelloOk,

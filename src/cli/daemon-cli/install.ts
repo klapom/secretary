@@ -13,7 +13,7 @@ import {
 } from "../../config/config.js";
 import { resolveIsNixMode } from "../../config/paths.js";
 import { resolveGatewayService } from "../../daemon/service.js";
-import { resolveGatewayAuth } from "../../gateway/auth.js";
+import { resolveGatewayAuth } from "../../gateway/core/auth.js";
 import { defaultRuntime } from "../../runtime.js";
 import { formatCliCommand } from "../command-format.js";
 import {

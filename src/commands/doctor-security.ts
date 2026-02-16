@@ -3,8 +3,8 @@ import type { OpenClawConfig, GatewayBindMode } from "../config/config.js";
 import { resolveChannelDefaultAccountId } from "../channels/plugins/helpers.js";
 import { listChannelPlugins } from "../channels/plugins/index.js";
 import { formatCliCommand } from "../cli/command-format.js";
-import { resolveGatewayAuth } from "../gateway/auth.js";
-import { isLoopbackHost, resolveGatewayBindHost } from "../gateway/net.js";
+import { resolveGatewayAuth } from "../gateway/core/auth.js";
+import { isLoopbackHost, resolveGatewayBindHost } from "../gateway/shared/net.js";
 import { readChannelAllowFromStore } from "../pairing/pairing-store.js";
 import { note } from "../terminal/note.js";
 

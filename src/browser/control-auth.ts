@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import type { OpenClawConfig } from "../config/config.js";
 import { loadConfig, writeConfigFile } from "../config/config.js";
-import { resolveGatewayAuth } from "../gateway/auth.js";
+import { resolveGatewayAuth } from "../gateway/core/auth.js";
 
 export type BrowserControlAuth = {
   token?: string;

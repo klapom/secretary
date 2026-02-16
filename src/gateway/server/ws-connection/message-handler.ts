@@ -2,7 +2,7 @@ import type { IncomingMessage } from "node:http";
 import type { WebSocket } from "ws";
 import os from "node:os";
 import type { createSubsystemLogger } from "../../../logging/subsystem.js";
-import type { GatewayAuthResult, ResolvedGatewayAuth } from "../../auth.js";
+import type { GatewayAuthResult, ResolvedGatewayAuth } from "../../core/auth.js";
 import type { GatewayRequestContext, GatewayRequestHandlers } from "../../server-methods/types.js";
 import type { GatewayWsClient } from "../ws-types.js";
 import { loadConfig } from "../../../config/config.js";
@@ -29,13 +29,13 @@ import {
   AUTH_RATE_LIMIT_SCOPE_DEVICE_TOKEN,
   AUTH_RATE_LIMIT_SCOPE_SHARED_SECRET,
   type AuthRateLimiter,
-} from "../../auth-rate-limit.js";
-import { authorizeGatewayConnect, isLocalDirectRequest } from "../../auth.js";
-import { buildDeviceAuthPayload } from "../../device-auth.js";
-import { isLoopbackAddress, isTrustedProxyAddress, resolveGatewayClientIp } from "../../net.js";
-import { resolveHostName } from "../../net.js";
-import { resolveNodeCommandAllowlist } from "../../node-command-policy.js";
-import { checkBrowserOrigin } from "../../origin-check.js";
+} from "../../core/auth-rate-limit.js";
+import { authorizeGatewayConnect, isLocalDirectRequest } from "../../core/auth.js";
+import { buildDeviceAuthPayload } from "../../core/device-auth.js";
+import { isLoopbackAddress, isTrustedProxyAddress, resolveGatewayClientIp } from "../../shared/net.js";
+import { resolveHostName } from "../../shared/net.js";
+import { resolveNodeCommandAllowlist } from "../../shared/node-command-policy.js";
+import { checkBrowserOrigin } from "../../shared/origin-check.js";
 import { GATEWAY_CLIENT_IDS } from "../../protocol/client-info.js";
 import {
   type ConnectParams,
@@ -47,10 +47,10 @@ import {
   validateConnectParams,
   validateRequestFrame,
 } from "../../protocol/index.js";
-import { MAX_BUFFERED_BYTES, MAX_PAYLOAD_BYTES, TICK_INTERVAL_MS } from "../../server-constants.js";
-import { handleGatewayRequest } from "../../server-methods.js";
-import { formatError } from "../../server-utils.js";
-import { formatForLog, logWs } from "../../ws-log.js";
+import { MAX_BUFFERED_BYTES, MAX_PAYLOAD_BYTES, TICK_INTERVAL_MS } from "../server-constants.js";
+import { handleGatewayRequest } from "../server-methods.js";
+import { formatError } from "../server-utils.js";
+import { formatForLog, logWs } from "../../shared/ws-log.js";
 import { truncateCloseReason } from "../close-reason.js";
 import {
   buildGatewaySnapshot,
