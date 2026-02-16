@@ -308,6 +308,14 @@ docker compose -f docker-compose.dgx.yml up --build
 
 ## 📚 Resources
 
+**Internal Documentation:**
+
+- [DEPLOYMENT_NOTES.md](DEPLOYMENT_NOTES.md) - Real-world deployment insights & troubleshooting ⭐
+- [DEPLOYMENT_DGX.md](DEPLOYMENT_DGX.md) - Complete DGX Spark deployment guide
+- [docs-secretary/guides/DGX_SPARK_REFERENCE.md](../docs-secretary/guides/DGX_SPARK_REFERENCE.md) - Hardware specs & configuration
+
+**External:**
+
 - [NVIDIA Docker Documentation](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/)
 - [LivePortrait GitHub](https://github.com/KwaiVGI/LivePortrait)
 - [Coqui TTS Documentation](https://docs.coqui.ai/)

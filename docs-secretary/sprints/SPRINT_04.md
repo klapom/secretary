@@ -144,7 +144,19 @@
 - 15 Docker files created (1497+ lines)
 - DGX Spark specs integrated from AEGIS_Rag production
 - Docker profiles for VRAM conservation
-- Ready for deployment (pending DGX hardware access)
+- ✅ Deployment tested on DGX Spark (192.168.178.10)
+
+**Phase 1 Deployment Issues (Fixed):**
+
+1. **Python 3.12 incompatibility** → Downgraded to pytorch:24.01-py3 (Python 3.11)
+   - TTS library requires Python <3.12
+   - Changed base images in liveportrait & xtts Dockerfiles
+
+2. **Unimplemented services** → Commented out in docker-compose.dgx.yml
+   - webrtc-signaling (Phase 3 work)
+   - avatar-ui (run with Vite instead)
+
+**Deployment Notes:** See [docker/DEPLOYMENT_NOTES.md](../../docker/DEPLOYMENT_NOTES.md) for detailed troubleshooting.
 
 ---
 
