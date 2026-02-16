@@ -5,11 +5,11 @@ import type { GatewayRequestContext, RespondFn } from "./server-methods/types.js
 import type { GatewayWsClient } from "./server/ws-types.js";
 import { defaultVoiceWakeTriggers } from "../infra/voicewake.js";
 import { GatewayClient } from "./core/client.js";
-import { createGatewayBroadcaster } from "./server-broadcast.js";
-import { createChatRunRegistry } from "./server-chat.js";
 import { handleNodeInvokeResult } from "./server-methods/nodes.handlers.invoke-result.js";
-import { createNodeSubscriptionManager } from "./server-node-subscriptions.js";
-import { formatError, normalizeVoiceWakeTriggers } from "./server-utils.js";
+import { createGatewayBroadcaster } from "./server/server-broadcast.js";
+import { createChatRunRegistry } from "./server/server-chat.js";
+import { createNodeSubscriptionManager } from "./server/server-node-subscriptions.js";
+import { formatError, normalizeVoiceWakeTriggers } from "./server/server-utils.js";
 import {
   DEFAULT_DANGEROUS_NODE_COMMANDS,
   resolveNodeCommandAllowlist,

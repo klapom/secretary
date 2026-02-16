@@ -9,9 +9,9 @@ vi.mock("../commands/agent.js", () => ({ agentCommand }));
 
 const { runBootOnce } = await import("./boot.js");
 const { resolveAgentIdFromSessionKey, resolveMainSessionKey } =
-  await import("../config/sessions/main-session.js");
-const { resolveStorePath } = await import("../config/sessions/paths.js");
-const { loadSessionStore, saveSessionStore } = await import("../config/sessions/store.js");
+  await import("../../config/sessions/main-session.js");
+const { resolveStorePath } = await import("../../config/sessions/paths.js");
+const { loadSessionStore, saveSessionStore } = await import("../../config/sessions/store.js");
 
 describe("runBootOnce", () => {
   const resolveMainStore = (cfg: { session?: { store?: string } } = {}) => {

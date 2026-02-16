@@ -2,9 +2,9 @@
  * Character database tests
  */
 
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { CharacterDatabase } from "./db.js";
 
 describe("CharacterDatabase", () => {
@@ -141,13 +141,17 @@ describe("CharacterDatabase", () => {
   });
 
   describe("updateCharacter", () => {
-    it("should update character fields", () => {
+    it("should update character fields", async () => {
       const input = {
         name: "test-character",
         displayName: "Test Character",
       };
 
       const created = db.createCharacter(input);
+
+      // Wait 2ms to ensure updatedAt timestamp is different
+      await new Promise((resolve) => setTimeout(resolve, 2));
+
       const update = {
         displayName: "Updated Character",
         description: "New description",
