@@ -57,16 +57,16 @@ echo "👥 Running Persona Reviews..."
 # For now, we'll create the structure
 
 echo "   🏗️  Senior Architekt Review..."
-node .hooks/persona-reviews/architect.js || true
+node .hooks/persona-reviews/architect.cjs || true
 
 echo "   🧪 Senior Tester Review..."
-node .hooks/persona-reviews/tester.js || true
+node .hooks/persona-reviews/tester.cjs || true
 
 echo "   💻 Senior Developer Review..."
-node .hooks/persona-reviews/developer.js || true
+node .hooks/persona-reviews/developer.cjs || true
 
 echo "   🔒 Senior Security Engineer Review..."
-node .hooks/persona-reviews/security.js || true
+node .hooks/persona-reviews/security.cjs || true
 
 # Reviews output to:
 # - .sprint-review/critical.json
@@ -84,7 +84,7 @@ if [ -f ".sprint-review/critical.json" ]; then
     echo "   Found $CRITICAL_COUNT critical issues. Auto-fixing..."
 
     # Run auto-fix script
-    node .hooks/auto-fix.js .sprint-review/critical.json
+    node .hooks/auto-fix.cjs .sprint-review/critical.json
 
     echo "   ✅ Critical issues fixed"
   fi
@@ -97,7 +97,7 @@ if [ -f ".sprint-review/important.json" ]; then
     echo "   Found $IMPORTANT_COUNT important issues. Auto-fixing..."
 
     # Run auto-fix script
-    node .hooks/auto-fix.js .sprint-review/important.json
+    node .hooks/auto-fix.cjs .sprint-review/important.json
 
     echo "   ✅ Important issues fixed"
   fi
@@ -115,7 +115,7 @@ if [ -f ".sprint-review/nice-to-have.json" ]; then
     echo "   Adding to Technical Debt Register..."
 
     # Add to TECHNICAL_DEBT.md
-    node .hooks/add-to-tech-debt.js .sprint-review/nice-to-have.json
+    node .hooks/add-to-tech-debt.cjs .sprint-review/nice-to-have.json
 
     echo "   ✅ Added to docs/TECHNICAL_DEBT.md"
     echo ""
@@ -133,10 +133,10 @@ if [ -f ".sprint-review/nice-to-have.json" ]; then
       if [ "$FIX" = "y" ]; then
         # Extract ID and fix
         ISSUE_ID=$(echo "$ISSUE" | grep -oP '\[\K[^\]]+')
-        node .hooks/auto-fix.js .sprint-review/nice-to-have.json "$ISSUE_ID"
+        node .hooks/auto-fix.cjs .sprint-review/nice-to-have.json "$ISSUE_ID"
 
         # Remove from tech debt
-        node .hooks/remove-from-tech-debt.js "$ISSUE_ID"
+        node .hooks/remove-from-tech-debt.cjs "$ISSUE_ID"
       fi
     done
   fi
