@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatar System Test UI - Secretary</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🤖 Avatar System Test UI</h1>
+      <p class="subtitle">Real-time avatar testing with LivePortrait + XTTS + Whisper</p>
+    </header>
+
+    <!-- Connection Status -->
+    <div class="status-panel">
+      <div class="status-item">
+        <span class="status-label">Character API:</span>
+        <span id="status-character" class="status-badge status-pending">Connecting...</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">LivePortrait:</span>
+        <span id="status-liveportrait" class="status-badge status-pending">Connecting...</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">Voice Pipeline:</span>
+        <span id="status-voice" class="status-badge status-pending">Connecting...</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">WebRTC:</span>
+        <span id="status-webrtc" class="status-badge status-pending">Not connected</span>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Left Panel: Character & Video -->
+      <div class="left-panel">
+        <!-- Character Selection -->
+        <div class="panel">
+          <h2>Character</h2>
+          <div class="character-selector">
+            <select id="character-select" disabled>
+              <option value="">Loading characters...</option>
+            </select>
+            <button id="refresh-characters" class="btn btn-secondary">🔄 Refresh</button>
+          </div>
+          <div id="character-info" class="character-info hidden">
+            <p><strong>Name:</strong> <span id="char-name"></span></p>
+            <p><strong>Description:</strong> <span id="char-desc"></span></p>
+            <p><strong>Personality:</strong> <span id="char-personality" class="personality-text"></span></p>
+          </div>
+        </div>
+
+        <!-- Avatar Video Display -->
+        <div class="panel">
+          <h2>Avatar Display</h2>
+          <div class="video-container">
+            <video id="avatar-video" autoplay playsinline muted></video>
+            <div id="video-placeholder" class="video-placeholder">
+              <div class="placeholder-content">
+                <p>📹 No video stream</p>
+                <p class="placeholder-hint">Select a character and emotion to start</p>
+              </div>
+            </div>
+            <canvas id="avatar-canvas" hidden></canvas>
+          </div>
+          <div class="video-controls">
+            <button id="start-video" class="btn btn-primary">▶️ Start Stream</button>
+            <button id="stop-video" class="btn btn-secondary" disabled>⏹️ Stop Stream</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Panel: Controls -->
+      <div class="right-panel">
+        <!-- Emotion Controls -->
+        <div class="panel">
+          <h2>Emotions</h2>
+          <div class="emotion-grid">
+            <button class="emotion-btn" data-emotion="neutral">😐 Neutral</button>
+            <button class="emotion-btn" data-emotion="happy">😊 Happy</button>
+            <button class="emotion-btn" data-emotion="sad">😢 Sad</button>
+            <button class="emotion-btn" data-emotion="surprised">😮 Surprised</button>
+            <button class="emotion-btn" data-emotion="angry">😠 Angry</button>
+            <button class="emotion-btn" data-emotion="disgusted">🤢 Disgusted</button>
+            <button class="emotion-btn" data-emotion="fearful">😨 Fearful</button>
+          </div>
+          <div class="emotion-intensity">
+            <label for="intensity-slider">Intensity: <span id="intensity-value">0.7</span></label>
+            <input type="range" id="intensity-slider" min="0" max="1" step="0.1" value="0.7">
+          </div>
+        </div>
+
+        <!-- Text-to-Speech -->
+        <div class="panel">
+          <h2>Text-to-Speech (TTS)</h2>
+          <div class="tts-controls">
+            <textarea id="tts-text" rows="3" placeholder="Type something for the avatar to say..."></textarea>
+            <div class="tts-actions">
+              <select id="tts-language">
+                <option value="en">English</option>
+                <option value="de">German</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+              </select>
+              <button id="speak-btn" class="btn btn-primary" disabled>🗣️ Speak</button>
+            </div>
+          </div>
+          <div id="tts-status" class="status-message hidden"></div>
+        </div>
+
+        <!-- Speech-to-Text -->
+        <div class="panel">
+          <h2>Speech-to-Text (STT)</h2>
+          <div class="stt-controls">
+            <button id="mic-btn" class="btn btn-primary mic-btn">
+              <span class="mic-icon">🎤</span>
+              <span class="mic-text">Start Microphone</span>
+            </button>
+            <select id="stt-language">
+              <option value="en">English</option>
+              <option value="de">German</option>
+              <option value="fr">French</option>
+              <option value="es">Spanish</option>
+            </select>
+          </div>
+          <div id="audio-visualizer" class="audio-visualizer hidden">
+            <canvas id="visualizer-canvas" width="300" height="60"></canvas>
+          </div>
+          <div id="transcription" class="transcription hidden">
+            <h3>Transcription:</h3>
+            <p id="transcription-text" class="transcription-text"></p>
+            <p id="transcription-confidence" class="transcription-confidence"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Log Panel -->
+    <div class="panel log-panel">
+      <div class="log-header">
+        <h2>Activity Log</h2>
+        <button id="clear-log" class="btn btn-secondary btn-sm">Clear</button>
+      </div>
+      <div id="log-container" class="log-container"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="logger.js"></script>
+  <script src="character.js"></script>
+  <script src="liveportrait.js"></script>
+  <script src="voice.js"></script>
+  <script src="webrtc.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
