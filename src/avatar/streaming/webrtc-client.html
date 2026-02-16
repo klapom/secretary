@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatar WebRTC Client</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 1200px;
+      width: 100%;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .video-container {
+      position: relative;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      margin-bottom: 20px;
+    }
+
+    #remoteVideo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #5568d3;
+    }
+
+    .btn-danger {
+      background: #f56565;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #e53e3e;
+    }
+
+    .btn-success {
+      background: #48bb78;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #38a169;
+    }
+
+    button:disabled {
+      background: #cbd5e0;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .status {
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .status.connecting {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .status.connected {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .status.disconnected {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .metric-card {
+      background: #f7fafc;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: #718096;
+      margin-bottom: 5px;
+    }
+
+    .metric-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #2d3748;
+    }
+
+    .logs {
+      background: #1a202c;
+      color: #48bb78;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 12px;
+      max-height: 200px;
+      overflow-y: auto;
+      line-height: 1.6;
+    }
+
+    .log-entry {
+      margin-bottom: 5px;
+    }
+
+    .log-time {
+      color: #718096;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎭 Avatar WebRTC Streaming</h1>
+
+    <div class="video-container">
+      <video id="remoteVideo" autoplay playsinline></video>
+    </div>
+
+    <div id="status" class="status disconnected">
+      ⚫ Disconnected
+    </div>
+
+    <div class="controls">
+      <button id="connectBtn" class="btn-primary">🔌 Connect</button>
+      <button id="disconnectBtn" class="btn-danger" disabled>❌ Disconnect</button>
+      <button id="muteBtn" class="btn-success" disabled>🔇 Mute Mic</button>
+    </div>
+
+    <div class="metrics">
+      <div class="metric-card">
+        <div class="metric-label">Latency</div>
+        <div class="metric-value" id="latency">--</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">FPS</div>
+        <div class="metric-value" id="fps">--</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Bitrate</div>
+        <div class="metric-value" id="bitrate">--</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Packet Loss</div>
+        <div class="metric-value" id="packetLoss">--</div>
+      </div>
+    </div>
+
+    <div class="logs" id="logs"></div>
+  </div>
+
+  <script src="webrtc-client.js"></script>
+</body>
+</html>
