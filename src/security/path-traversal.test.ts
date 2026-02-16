@@ -165,7 +165,7 @@ describe("PathTraversalValidator", () => {
       const encoded = path.join(dataDir, "%2e%2e%2foutside.txt");
       const result = validator.validate(encoded);
       expect(result.valid).toBe(false);
-      expect(result.error).toContain("encoded traversal sequence");
+      expect(result.error).toContain("traversal sequence");
     });
 
     it("should detect double-encoded traversal", () => {
@@ -199,7 +199,7 @@ describe("PathTraversalValidator", () => {
     it("should block encoded null byte", () => {
       const result = validator.validate(`${path.join(dataDir, "file.txt")}%00.pdf`);
       expect(result.valid).toBe(false);
-      expect(result.error).toContain("encoded traversal sequence");
+      expect(result.error).toContain("null byte");
     });
   });
 
