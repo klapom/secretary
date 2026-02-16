@@ -1,0 +1,976 @@
+openapi: 3.1.0
+info:
+  title: OpenClaw Gateway API
+  version: 1.0.0
+  description: |
+    OpenClaw Gateway API provides WebSocket and HTTP endpoints for AI agent orchestration,
+    session management, chat interactions, and agent configuration.
+
+    ## Protocol Version
+    The current protocol version is 3.
+
+    ## Authentication
+    The Gateway supports multiple authentication mechanisms:
+    - **Device Tokens**: For device pairing and trusted clients
+    - **Tailscale**: Automatic authentication via Tailscale network
+    - **Scopes**: Role-based access control with operator scopes
+      - `operator.admin`: Full administrative access
+      - `operator.read`: Read-only access
+      - `operator.write`: Write access for chat and agent operations
+      - `operator.approvals`: Execution approval management
+      - `operator.pairing`: Device and node pairing operations
+
+    ## Rate Limiting
+    Authentication attempts are rate-limited to prevent abuse.
+
+  contact:
+    name: OpenClaw API Support
+  license:
+    name: MIT
+    identifier: MIT
+
+servers:
+  - url: ws://localhost:18789
+    description: WebSocket Gateway (default local)
+  - url: wss://localhost:18789
+    description: WebSocket Gateway (TLS)
+  - url: http://localhost:18789
+    description: HTTP Gateway (default local)
+  - url: https://localhost:18789
+    description: HTTP Gateway (TLS)
+
+tags:
+  - name: chat
+    description: Chat and messaging operations
+  - name: sessions
+    description: Session lifecycle and management
+  - name: agents
+    description: Agent configuration and files
+  - name: models
+    description: Model catalog and selection
+  - name: health
+    description: System health and status
+  - name: websocket
+    description: WebSocket protocol methods
+  - name: config
+    description: Configuration management
+  - name: channels
+    description: Channel plugin management
+  - name: nodes
+    description: Node pairing and execution
+  - name: skills
+    description: Skills management
+  - name: logs
+    description: Log tailing and retrieval
+
+paths:
+  /ws:
+    get:
+      summary: WebSocket Connection
+      description: |
+        Establish a WebSocket connection for bidirectional Gateway communication.
+
+        ## Connection Flow
+        1. Client connects to `/ws`
+        2. Server sends `hello` frame with protocol version
+        3. Client sends `connect` request with authentication
+        4. Server validates and responds with connection confirmation
+        5. Bidirectional RPC communication begins
+
+        ## Frame Types
+        - **Request**: Client-initiated RPC calls
+        - **Response**: Server responses to requests
+        - **Event**: Server-initiated notifications (chat deltas, agent events, etc.)
+
+      tags:
+        - websocket
+      parameters:
+        - name: Upgrade
+          in: header
+          required: true
+          schema:
+            type: string
+            enum: [websocket]
+        - name: Connection
+          in: header
+          required: true
+          schema:
+            type: string
+            enum: [Upgrade]
+      responses:
+        '101':
+          description: Switching Protocols - WebSocket connection established
+          headers:
+            Upgrade:
+              schema:
+                type: string
+                enum: [websocket]
+            Connection:
+              schema:
+                type: string
+                enum: [Upgrade]
+        '400':
+          description: Bad Request - Invalid WebSocket handshake
+        '401':
+          description: Unauthorized - Authentication failed
+        '429':
+          description: Too Many Requests - Rate limit exceeded
+
+  /health:
+    get:
+      summary: Health Check
+      description: Get system health status including channels, models, and runtime metrics
+      tags:
+        - health
+      parameters:
+        - name: probe
+          in: query
+          description: Force fresh health check instead of using cache
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Health status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+        '503':
+          description: Service unavailable
+
+components:
+  schemas:
+    # ============================================================
+    # WebSocket Frame Schemas
+    # ============================================================
+
+    HelloFrame:
+      type: object
+      description: Initial greeting from server after WebSocket connection
+      required:
+        - type
+        - version
+      properties:
+        type:
+          type: string
+          enum: [hello]
+        version:
+          type: integer
+          description: Protocol version (currently 3)
+          example: 3
+
+    RequestFrame:
+      type: object
+      description: Client request frame for RPC method calls
+      required:
+        - id
+        - method
+      properties:
+        id:
+          type: string
+          description: Unique request identifier for correlation
+        method:
+          type: string
+          description: RPC method name
+          example: chat.send
+        params:
+          type: object
+          description: Method-specific parameters
+
+    ResponseFrame:
+      type: object
+      description: Server response to a client request
+      required:
+        - id
+        - ok
+      properties:
+        id:
+          type: string
+          description: Request ID this response correlates to
+        ok:
+          type: boolean
+          description: Whether the request succeeded
+        result:
+          type: object
+          description: Response payload (if ok=true)
+        error:
+          $ref: '#/components/schemas/ErrorShape'
+
+    EventFrame:
+      type: object
+      description: Server-initiated event notification
+      required:
+        - event
+      properties:
+        event:
+          type: string
+          description: Event type
+          enum:
+            - chat
+            - agent
+            - tick
+            - shutdown
+            - device.pair.requested
+            - device.pair.resolved
+            - node.invoke.request
+        payload:
+          type: object
+          description: Event-specific data
+
+    ErrorShape:
+      type: object
+      description: Standard error response structure
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          enum:
+            - INVALID_REQUEST
+            - UNAVAILABLE
+            - TIMEOUT
+            - UNAUTHORIZED
+            - RATE_LIMITED
+        message:
+          type: string
+          description: Human-readable error description
+
+    # ============================================================
+    # Connect Method (WebSocket Authentication)
+    # ============================================================
+
+    ConnectParams:
+      type: object
+      description: Authentication parameters for WebSocket connection
+      required:
+        - role
+      properties:
+        role:
+          type: string
+          enum: [operator, node]
+          description: Connection role
+        scopes:
+          type: array
+          items:
+            type: string
+            enum:
+              - operator.admin
+              - operator.read
+              - operator.write
+              - operator.approvals
+              - operator.pairing
+          description: Requested permission scopes
+        deviceToken:
+          type: string
+          description: Device authentication token
+        client:
+          type: object
+          description: Client identification metadata
+          properties:
+            id:
+              type: string
+            displayName:
+              type: string
+            userAgent:
+              type: string
+        caps:
+          type: array
+          items:
+            type: string
+          description: Client capabilities
+
+    # ============================================================
+    # Chat Methods
+    # ============================================================
+
+    ChatHistoryParams:
+      type: object
+      description: Retrieve chat history for a session
+      required:
+        - sessionKey
+      properties:
+        sessionKey:
+          type: string
+          description: Session identifier
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 1000
+          default: 200
+          description: Maximum number of messages to retrieve
+
+    ChatHistoryResult:
+      type: object
+      properties:
+        sessionKey:
+          type: string
+        sessionId:
+          type: string
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatMessage'
+        thinkingLevel:
+          type: string
+          description: Current thinking verbosity level
+        verboseLevel:
+          type: string
+          description: Current verbose logging level
+
+    ChatMessage:
+      type: object
+      description: A single chat message
+      required:
+        - role
+        - content
+        - timestamp
+      properties:
+        role:
+          type: string
+          enum: [user, assistant, system]
+        content:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/TextContent'
+              - $ref: '#/components/schemas/ImageContent'
+        timestamp:
+          type: integer
+          description: Unix timestamp in milliseconds
+        stopReason:
+          type: string
+          enum: [stop, length, tool_use, end_turn]
+        usage:
+          $ref: '#/components/schemas/TokenUsage'
+        model:
+          type: string
+          description: Model identifier used for this message
+
+    TextContent:
+      type: object
+      required:
+        - type
+        - text
+      properties:
+        type:
+          type: string
+          enum: [text]
+        text:
+          type: string
+
+    ImageContent:
+      type: object
+      required:
+        - type
+        - source
+      properties:
+        type:
+          type: string
+          enum: [image]
+        source:
+          type: object
+          required:
+            - type
+            - data
+          properties:
+            type:
+              type: string
+              enum: [base64]
+            data:
+              type: string
+              format: base64
+            media_type:
+              type: string
+              example: image/png
+
+    ChatSendParams:
+      type: object
+      description: Send a chat message
+      required:
+        - sessionKey
+        - message
+        - idempotencyKey
+      properties:
+        sessionKey:
+          type: string
+          description: Session identifier
+        message:
+          type: string
+          description: User message text
+        thinking:
+          type: string
+          description: Optional thinking instruction prefix
+        deliver:
+          type: boolean
+          default: true
+          description: Whether to deliver response via channels
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatAttachment'
+          description: Image or file attachments
+        timeoutMs:
+          type: integer
+          minimum: 0
+          description: Request timeout in milliseconds
+        idempotencyKey:
+          type: string
+          description: Unique key to prevent duplicate processing
+
+    ChatAttachment:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [image, file]
+        mimeType:
+          type: string
+          example: image/png
+        fileName:
+          type: string
+        content:
+          type: string
+          format: base64
+          description: Base64-encoded content
+
+    ChatSendResult:
+      type: object
+      required:
+        - runId
+        - status
+      properties:
+        runId:
+          type: string
+          description: Unique run identifier for tracking
+        status:
+          type: string
+          enum: [started, in_flight, ok, error]
+          description: Current run status
+        summary:
+          type: string
+          description: Error summary if status=error
+
+    ChatAbortParams:
+      type: object
+      description: Abort one or all chat runs for a session
+      required:
+        - sessionKey
+      properties:
+        sessionKey:
+          type: string
+        runId:
+          type: string
+          description: Specific run to abort (omit to abort all)
+
+    ChatAbortResult:
+      type: object
+      required:
+        - ok
+        - aborted
+        - runIds
+      properties:
+        ok:
+          type: boolean
+        aborted:
+          type: boolean
+          description: Whether any runs were aborted
+        runIds:
+          type: array
+          items:
+            type: string
+          description: IDs of aborted runs
+
+    ChatInjectParams:
+      type: object
+      description: Inject an assistant message into session transcript
+      required:
+        - sessionKey
+        - message
+      properties:
+        sessionKey:
+          type: string
+        message:
+          type: string
+          description: Message text to inject
+        label:
+          type: string
+          maxLength: 100
+          description: Optional label/prefix for the message
+
+    ChatEvent:
+      type: object
+      description: Real-time chat event (delta, final, error)
+      required:
+        - runId
+        - sessionKey
+        - seq
+        - state
+      properties:
+        runId:
+          type: string
+        sessionKey:
+          type: string
+        seq:
+          type: integer
+          description: Sequence number for ordering
+        state:
+          type: string
+          enum: [delta, final, aborted, error]
+        message:
+          $ref: '#/components/schemas/ChatMessage'
+        errorMessage:
+          type: string
+        usage:
+          $ref: '#/components/schemas/TokenUsage'
+        stopReason:
+          type: string
+
+    TokenUsage:
+      type: object
+      properties:
+        input:
+          type: integer
+        output:
+          type: integer
+        cacheRead:
+          type: integer
+        cacheWrite:
+          type: integer
+        totalTokens:
+          type: integer
+        cost:
+          type: object
+          properties:
+            input:
+              type: number
+            output:
+              type: number
+            cacheRead:
+              type: number
+            cacheWrite:
+              type: number
+            total:
+              type: number
+
+    # ============================================================
+    # Session Methods
+    # ============================================================
+
+    SessionsListParams:
+      type: object
+      properties:
+        limit:
+          type: integer
+          minimum: 1
+          description: Maximum sessions to return
+        activeMinutes:
+          type: integer
+          minimum: 1
+          description: Filter to sessions active in last N minutes
+        includeGlobal:
+          type: boolean
+          description: Include global/shared sessions
+        includeUnknown:
+          type: boolean
+          description: Include sessions without agent mapping
+        includeDerivedTitles:
+          type: boolean
+          description: Read transcripts to derive titles (expensive)
+        includeLastMessage:
+          type: boolean
+          description: Include last message preview (expensive)
+        label:
+          type: string
+          maxLength: 64
+          description: Filter by session label
+        spawnedBy:
+          type: string
+          description: Filter by parent session key
+        agentId:
+          type: string
+          description: Filter by agent ID
+        search:
+          type: string
+          description: Search sessions by title/content
+
+    SessionsListResult:
+      type: object
+      properties:
+        sessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SessionSummary'
+        total:
+          type: integer
+
+    SessionSummary:
+      type: object
+      properties:
+        key:
+          type: string
+        sessionId:
+          type: string
+        label:
+          type: string
+        agentId:
+          type: string
+        updatedAt:
+          type: integer
+          description: Unix timestamp in milliseconds
+        inputTokens:
+          type: integer
+        outputTokens:
+          type: integer
+        totalTokens:
+          type: integer
+        model:
+          type: string
+        title:
+          type: string
+          description: Derived from first user message if includeDerivedTitles=true
+        lastMessage:
+          type: string
+          description: Preview of last message if includeLastMessage=true
+
+    SessionsPatchParams:
+      type: object
+      description: Update session configuration
+      required:
+        - key
+      properties:
+        key:
+          type: string
+          description: Session key to update
+        label:
+          type: string
+          nullable: true
+          maxLength: 64
+        thinkingLevel:
+          type: string
+          nullable: true
+          description: Thinking verbosity (low, medium, high)
+        verboseLevel:
+          type: string
+          nullable: true
+        reasoningLevel:
+          type: string
+          nullable: true
+        responseUsage:
+          type: string
+          nullable: true
+          enum: [off, tokens, full, on]
+        model:
+          type: string
+          nullable: true
+          description: Model identifier
+        sendPolicy:
+          type: string
+          nullable: true
+          enum: [allow, deny]
+        groupActivation:
+          type: string
+          nullable: true
+          enum: [mention, always]
+
+    SessionsResetParams:
+      type: object
+      description: Reset session (clear transcript)
+      required:
+        - key
+      properties:
+        key:
+          type: string
+        reason:
+          type: string
+          enum: [new, reset]
+          default: reset
+
+    SessionsDeleteParams:
+      type: object
+      description: Delete a session
+      required:
+        - key
+      properties:
+        key:
+          type: string
+        deleteTranscript:
+          type: boolean
+          default: true
+          description: Whether to archive transcript file
+
+    SessionsResolveParams:
+      type: object
+      description: Resolve session key from various identifiers
+      properties:
+        key:
+          type: string
+        sessionId:
+          type: string
+        label:
+          type: string
+        agentId:
+          type: string
+        spawnedBy:
+          type: string
+        includeGlobal:
+          type: boolean
+        includeUnknown:
+          type: boolean
+
+    # ============================================================
+    # Agent Methods
+    # ============================================================
+
+    AgentsListResult:
+      type: object
+      required:
+        - defaultId
+        - mainKey
+        - scope
+        - agents
+      properties:
+        defaultId:
+          type: string
+          description: Default agent identifier
+        mainKey:
+          type: string
+          description: Main session key
+        scope:
+          type: string
+          enum: [per-sender, global]
+          description: Session scoping strategy
+        agents:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentSummary'
+
+    AgentSummary:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        identity:
+          $ref: '#/components/schemas/AgentIdentity'
+
+    AgentIdentity:
+      type: object
+      properties:
+        name:
+          type: string
+        theme:
+          type: string
+        emoji:
+          type: string
+        avatar:
+          type: string
+          description: Avatar file path
+        avatarUrl:
+          type: string
+          description: Avatar URL
+
+    AgentsCreateParams:
+      type: object
+      description: Create a new agent
+      required:
+        - name
+        - workspace
+      properties:
+        name:
+          type: string
+          description: Agent display name
+        workspace:
+          type: string
+          description: Workspace directory path
+        emoji:
+          type: string
+          description: Optional emoji identifier
+        avatar:
+          type: string
+          description: Optional avatar path
+
+    AgentsUpdateParams:
+      type: object
+      description: Update agent configuration
+      required:
+        - agentId
+      properties:
+        agentId:
+          type: string
+        name:
+          type: string
+        workspace:
+          type: string
+        model:
+          type: string
+        avatar:
+          type: string
+
+    AgentsDeleteParams:
+      type: object
+      description: Delete an agent
+      required:
+        - agentId
+      properties:
+        agentId:
+          type: string
+        deleteFiles:
+          type: boolean
+          default: true
+          description: Whether to move files to trash
+
+    AgentsFilesListParams:
+      type: object
+      description: List agent workspace files
+      required:
+        - agentId
+      properties:
+        agentId:
+          type: string
+
+    AgentsFilesGetParams:
+      type: object
+      description: Get agent workspace file content
+      required:
+        - agentId
+        - name
+      properties:
+        agentId:
+          type: string
+        name:
+          type: string
+          description: File name (e.g., SOUL.md, IDENTITY.md)
+
+    AgentsFilesSetParams:
+      type: object
+      description: Update agent workspace file
+      required:
+        - agentId
+        - name
+        - content
+      properties:
+        agentId:
+          type: string
+        name:
+          type: string
+        content:
+          type: string
+          description: File content
+
+    # ============================================================
+    # Model Methods
+    # ============================================================
+
+    ModelsListResult:
+      type: object
+      properties:
+        providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelProvider'
+
+    ModelProvider:
+      type: object
+      properties:
+        id:
+          type: string
+          example: anthropic
+        name:
+          type: string
+          example: Anthropic
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelChoice'
+
+    ModelChoice:
+      type: object
+      required:
+        - id
+        - name
+        - provider
+      properties:
+        id:
+          type: string
+          example: claude-sonnet-4-5
+        name:
+          type: string
+          example: Claude Sonnet 4.5
+        provider:
+          type: string
+          example: anthropic
+        contextWindow:
+          type: integer
+          example: 200000
+        reasoning:
+          type: boolean
+          description: Whether model supports extended thinking
+
+    # ============================================================
+    # Health & Status
+    # ============================================================
+
+    HealthStatus:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          description: Overall health status
+        ts:
+          type: integer
+          description: Snapshot timestamp
+        version:
+          type: string
+          description: OpenClaw version
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelStatus'
+        models:
+          type: object
+          description: Model provider availability
+        activeRuns:
+          type: integer
+          description: Number of active agent runs
+        queueSize:
+          type: integer
+          description: Pending message queue size
+        uptime:
+          type: integer
+          description: Server uptime in seconds
+
+    ChannelStatus:
+      type: object
+      properties:
+        id:
+          type: string
+          example: whatsapp
+        name:
+          type: string
+          example: WhatsApp
+        connected:
+          type: boolean
+        lastSeen:
+          type: integer
+          description: Last activity timestamp
+
+  securitySchemes:
+    DeviceToken:
+      type: apiKey
+      in: header
+      name: X-Device-Token
+      description: Device authentication token for paired devices
+
+    TailscaleAuth:
+      type: http
+      scheme: bearer
+      description: Automatic authentication via Tailscale network identity
+
+security:
+  - DeviceToken: []
+  - TailscaleAuth: []
