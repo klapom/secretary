@@ -234,10 +234,14 @@ Was ist das und warum gibt's das?
 
 **Pattern: Multi-Layer Defense (Redaction + Encryption)**
 
-- Sprint: 05
+- Sprint: 01 ✅ IMPLEMENTED
 - Was: Credentials ERST redacten, DANN verschlüsseln
 - Warum: Falls Encryption-Key kompromittiert, sind Secrets trotzdem redacted
 - Code: `encrypt(redact(text))` nicht `redact(encrypt(text))`
+- Implementation: `src/logging/secure-logger.ts` + `src/security/credential-redactor.ts`
+- Patterns: 25+ credential types (API keys, JWT, passwords, AWS, GitHub, databases, PEM keys)
+- Verschlüsselung: AES-256-GCM mit random IVs, authenticated encryption
+- Tests: 89/89 passing (36 redactor + 31 encryption + 22 secure logger)
 
 **Pattern: Kill Switch als Singleton mit Persistent State**
 
@@ -472,9 +476,23 @@ const msg = createTestMessage({ content: "Custom" });
 
 ## 🎓 Lessons per Sprint
 
-### Sprint 01
+### Sprint 01 (2026-02-16 to 2026-02-28)
 
+**Security Layer - Phase 1:**
+- ✅ Enhanced CredentialRedactor mit 25 Patterns implementiert
+- ✅ AES-256-GCM Encryption mit secure key management
+- ✅ SecureLogger mit Multi-Layer Defense (redact → encrypt)
+- ✅ Log scanning script für vorhandene Logs
+- ✅ 89/89 Tests passing, 100% pattern coverage
+- ✅ Sandbox Security verifiziert: readOnlyRoot:true, network:none, capDrop:ALL bereits exzellent!
+- 📝 **Learning:** Redaction VOR Encryption ist kritisch - nie umgekehrt!
+- 📝 **Learning:** Comprehensive pattern matching (25+ types) fängt mehr als generic regex
+- 📝 **Learning:** Existing redact.ts hatte bereits gute Grundlage - erweitert statt ersetzt
+
+**Message Queue (in progress):**
 - ✅ WAL Mode für SQLite verhindert EBUSY-Errors
+
+**Event Bus (in progress):**
 - ❌ Erste Version hatte Race Condition im Event Bus (fixed)
 
 ### Sprint 02

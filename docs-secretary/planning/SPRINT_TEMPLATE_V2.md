@@ -25,6 +25,11 @@
 
 **Priority:** 🔴 CRITICAL | 🟡 IMPORTANT | 🟢 NICE TO HAVE
 
+**Model:** 🤖 Sonnet 4.5 | Opus 4.6 | Haiku 4.5
+- **Rationale:** [Warum dieses Model? z.B. "Gut definierte Tasks → Sonnet", "Komplexe Architektur → Opus", "Einfache Refactors → Haiku"]
+- **Estimated Cost:** [Optional: ~$X based on token usage]
+- **Estimated Time:** [Mit diesem Model: Xh]
+
 **User Story:**
 Als [Rolle] möchte ich [Funktion], damit [Nutzen].
 

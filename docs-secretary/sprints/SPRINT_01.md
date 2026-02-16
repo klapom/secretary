@@ -26,6 +26,10 @@ Am Ende von Sprint 01 soll das Secretary-System keine Message-Loss-Probleme mehr
 
 **Priority:** 🔴 CRITICAL
 
+**Model:** 🤖 Sonnet 4.5
+- **Rationale:** Gut definierte Tasks, existierende Queue als Basis, klare ADR (Alternative B). Sonnet exzellent bei strukturierter Code-Implementierung.
+- **Estimated Time:** 32h → ~8-10h mit Agent Team (3-4 parallel)
+
 **User Story:**
 Als WhatsApp-Nutzer möchte ich, dass keine meiner Nachrichten verloren gehen, auch wenn ich mehrere Nachrichten schnell hintereinander sende, damit alle meine Anfragen verarbeitet werden.
 
@@ -131,6 +135,10 @@ class SQLiteMessageQueue implements MessageQueue {
 
 **Priority:** 🔴 CRITICAL
 
+**Model:** 🤖 Sonnet 4.5
+- **Rationale:** Pattern-Matching, Regex, Encryption - klare Implementierung. Sandbox bereits exzellent (Quick-Scan). Sonnet sehr gut bei systematischer Security-Implementierung.
+- **Estimated Time:** 29h → ~7-9h mit Agent Team
+
 **User Story:**
 Als System Administrator möchte ich, dass keine Credentials oder Secrets in Logs erscheinen, damit sensible Daten geschützt sind.
 
@@ -233,6 +241,10 @@ class SecureLogger {
 ### Feature 3: Event Bus Foundation
 
 **Priority:** 🟡 IMPORTANT
+
+**Model:** 🤖 Sonnet 4.5
+- **Rationale:** TypeScript Generics, EventEmitter Wrapper, Refactoring - Sonnet exzellent. Existierendes agent-events.ts als Pattern. Klare ADR-05.
+- **Estimated Time:** 26h → ~6-8h mit Agent Team
 
 **User Story:**
 Als Entwickler möchte ich, dass Module über einen Event Bus kommunizieren statt direkte Abhängigkeiten zu haben, damit das System modular und testbar ist.
