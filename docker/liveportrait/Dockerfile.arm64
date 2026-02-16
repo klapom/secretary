@@ -28,13 +28,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN git clone https://github.com/KwaiVGI/LivePortrait.git /app/liveportrait || \
     echo "Using local LivePortrait copy"
 
-# Download pre-trained models
-RUN mkdir -p /app/models && \
-    cd /app/models && \
-    wget -q https://huggingface.co/KwaiVGI/LivePortrait/resolve/main/appearance_feature_extractor.pth && \
-    wget -q https://huggingface.co/KwaiVGI/LivePortrait/resolve/main/motion_extractor.pth && \
-    wget -q https://huggingface.co/KwaiVGI/LivePortrait/resolve/main/spade_generator.pth && \
-    wget -q https://huggingface.co/KwaiVGI/LivePortrait/resolve/main/warping_module.pth
+# Create models directory (models will be downloaded at runtime)
+# Note: HuggingFace URLs changed, models are downloaded on first run by LivePortrait
+RUN mkdir -p /app/models
 
 # Copy service wrapper
 COPY liveportrait_service.py /app/
