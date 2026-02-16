@@ -46,12 +46,12 @@ fi
 echo ""
 echo "📄 Creating Sprint file..."
 
-SPRINT_FILE="docs/sprints/SPRINT_$(printf '%02d' $SPRINT_NUM).md"
+SPRINT_FILE="docs-secretary/sprints/SPRINT_$(printf '%02d' $SPRINT_NUM).md"
 
 if [ -f "$SPRINT_FILE" ]; then
   echo "⚠️  $SPRINT_FILE already exists. Skipping."
 else
-  cp docs/SPRINT_TEMPLATE_V2.md "$SPRINT_FILE"
+  cp docs-secretary/planning/SPRINT_TEMPLATE_V2.md "$SPRINT_FILE"
 
   # Replace placeholders
   sed -i.bak "s/Sprint XX/Sprint $SPRINT_NUM/g" "$SPRINT_FILE"
@@ -74,7 +74,7 @@ echo ""
 echo "📋 Checking previous sprint..."
 
 PREV_SPRINT=$((SPRINT_NUM - 1))
-PREV_FILE="docs/sprints/SPRINT_$(printf '%02d' $PREV_SPRINT).md"
+PREV_FILE="docs-secretary/sprints/SPRINT_$(printf '%02d' $PREV_SPRINT).md"
 
 if [ -f "$PREV_FILE" ]; then
   INCOMPLETE=$(grep -c "\- \[ \]" "$PREV_FILE" || true)
