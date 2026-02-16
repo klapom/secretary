@@ -4,10 +4,10 @@
  * Tests file-based queue operations, retry logic, and recovery.
  */
 
-import { describe, expect, it, beforeEach, afterEach } from "vitest";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { describe, expect, it, beforeEach, afterEach } from "vitest";
 import {
   enqueueInboundMessage,
   ackInboundMessage,
@@ -66,7 +66,7 @@ describe("Inbound Queue", () => {
 
   describe("enqueueInboundMessage", () => {
     it("should enqueue a basic message", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -81,7 +81,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should create JSON file with correct structure", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -108,7 +108,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should set file permissions to 0o600", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -123,7 +123,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should handle all optional fields", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "telegram",
           from: "user123",
@@ -157,7 +157,7 @@ describe("Inbound Queue", () => {
 
     it("should use atomic writes (temp file + rename)", async () => {
       // This is hard to test directly, but we can verify no .tmp files remain
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -175,7 +175,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should handle messages without body", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -194,7 +194,7 @@ describe("Inbound Queue", () => {
 
   describe("ackInboundMessage", () => {
     it("should remove message from queue", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -211,7 +211,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should be idempotent (no error on double ack)", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -231,7 +231,7 @@ describe("Inbound Queue", () => {
 
   describe("failInboundMessage", () => {
     it("should increment retry count", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -250,7 +250,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should preserve existing message data", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -272,7 +272,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should support multiple failures", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -293,7 +293,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should use atomic writes", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -319,7 +319,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should load single message", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -400,7 +400,7 @@ describe("Inbound Queue", () => {
       const queueDir = path.join(tempStateDir, "inbound-queue");
 
       // Create valid message
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         { channel: "whatsapp", from: "+1234567890", sessionId: "s1" },
         tempStateDir,
       );
@@ -440,7 +440,7 @@ describe("Inbound Queue", () => {
 
   describe("moveInboundToFailed", () => {
     it("should move message to failed directory", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         { channel: "whatsapp", from: "+1234567890", sessionId: "s1" },
         tempStateDir,
       );
@@ -459,7 +459,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should preserve message content", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         {
           channel: "whatsapp",
           from: "+1234567890",
@@ -486,7 +486,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should create failed directory if missing", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         { channel: "whatsapp", from: "+1234567890", sessionId: "s1" },
         tempStateDir,
       );
@@ -567,7 +567,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should recover single message", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         { channel: "whatsapp", from: "+1234567890", sessionId: "s1", body: "Test" },
         tempStateDir,
       );
@@ -671,7 +671,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should skip messages exceeding max retries", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         { channel: "whatsapp", from: "+1234567890", sessionId: "s1" },
         tempStateDir,
       );
@@ -700,7 +700,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should use exponential backoff with delay function", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         { channel: "whatsapp", from: "+1234567890", sessionId: "s1" },
         tempStateDir,
       );
@@ -822,7 +822,7 @@ describe("Inbound Queue", () => {
     });
 
     it("should handle move to failed errors gracefully", async () => {
-      await enqueueInboundMessage(
+      const id = await enqueueInboundMessage(
         { channel: "whatsapp", from: "+1234567890", sessionId: "s1" },
         tempStateDir,
       );
