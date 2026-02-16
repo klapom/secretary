@@ -8,7 +8,8 @@ pillow>=10.0.0
 scipy>=1.11.0
 
 # Deep learning
-onnxruntime-gpu>=1.16.0
+# onnxruntime-gpu not available for ARM64, use CPU version (works with GPU via PyTorch)
+onnxruntime>=1.16.0
 facexlib>=0.3.0
 insightface>=0.7.3
 
