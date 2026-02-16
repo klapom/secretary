@@ -8,8 +8,8 @@ import {
   connectDeviceAuthReq,
   connectGatewayClient,
   getFreeGatewayPort,
-} from "./test-helpers.e2e.js";
-import { installOpenAiResponsesMock } from "./test-helpers.openai-mock.js";
+} from "./shared/test-helpers.e2e.js";
+import { installOpenAiResponsesMock } from "./shared/test-helpers.openai-mock.js";
 
 function extractPayloadText(result: unknown): string {
   const record = result as Record<string, unknown>;

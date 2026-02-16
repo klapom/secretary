@@ -10,7 +10,7 @@ import {
   validateWizardStartParams,
   validateWizardStatusParams,
 } from "../protocol/index.js";
-import { formatForLog } from "../ws-log.js";
+import { formatForLog } from "../shared/ws-log.js";
 import { assertValidParams } from "./validation.js";
 
 function readWizardStatus(session: WizardSession) {

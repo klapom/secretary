@@ -3,18 +3,18 @@ import {
   loadOrCreateDeviceIdentity,
   publicKeyRawBase64UrlFromPem,
   signDevicePayload,
-} from "../infra/device-identity.js";
-import { rawDataToString } from "../infra/ws.js";
-import { getDeterministicFreePortBlock } from "../test-utils/ports.js";
+} from "../../infra/device-identity.js";
+import { rawDataToString } from "../../infra/ws.js";
+import { getDeterministicFreePortBlock } from "../../test-utils/ports.js";
 import {
   GATEWAY_CLIENT_MODES,
   GATEWAY_CLIENT_NAMES,
   type GatewayClientMode,
   type GatewayClientName,
-} from "../utils/message-channel.js";
-import { GatewayClient } from "./core/client.js";
-import { buildDeviceAuthPayload } from "./core/device-auth.js";
-import { PROTOCOL_VERSION } from "./protocol/index.js";
+} from "../../utils/message-channel.js";
+import { GatewayClient } from "../core/client.js";
+import { buildDeviceAuthPayload } from "../core/device-auth.js";
+import { PROTOCOL_VERSION } from "../protocol/index.js";
 
 export async function getFreeGatewayPort(): Promise<number> {
   return await getDeterministicFreePortBlock({ offsets: [0, 1, 2, 3, 4] });

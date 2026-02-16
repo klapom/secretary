@@ -15,8 +15,8 @@ import {
   type GatewayClientMode,
   type GatewayClientName,
 } from "../../utils/message-channel.js";
-import { pickPrimaryLanIPv4 } from "../net.js";
 import { PROTOCOL_VERSION } from "../protocol/index.js";
+import { pickPrimaryLanIPv4 } from "../shared/net.js";
 import { GatewayClient } from "./client.js";
 
 export type CallGatewayOptions = {

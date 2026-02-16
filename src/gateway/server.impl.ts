@@ -49,9 +49,7 @@ import { getTotalQueueSize } from "../process/command-queue.js";
 import { runOnboardingWizard } from "../wizard/onboarding.js";
 import { createAuthRateLimiter, type AuthRateLimiter } from "./core/auth-rate-limit.js";
 import { startGatewayConfigReloader } from "./core/config-reload.js";
-import { ExecApprovalManager } from "./exec-approval-manager.js";
 import { loadGatewayPlugins } from "./hooks/server-plugins.js";
-import { NodeRegistry } from "./node-registry.js";
 import { createChannelManager } from "./server-channels.js";
 import { createAgentEventHandler } from "./server-chat.js";
 import { createGatewayCloseHandler } from "./server-close.js";
@@ -83,6 +81,8 @@ import {
 import { loadGatewayTlsRuntime } from "./server/tls.js";
 import { resolveSessionKeyForRun } from "./sessions/server-session-key.js";
 import { createWizardSessionTracker } from "./sessions/server-wizard-sessions.js";
+import { ExecApprovalManager } from "./shared/exec-approval-manager.js";
+import { NodeRegistry } from "./shared/node-registry.js";
 
 export { __resetModelCatalogCacheForTest } from "./server-model-catalog.js";
 

@@ -45,7 +45,7 @@ import {
   pruneLegacyStoreKeys,
   resolveGatewaySessionStoreTarget,
 } from "../sessions/session-utils.js";
-import { formatForLog } from "../ws-log.js";
+import { formatForLog } from "../shared/ws-log.js";
 import { waitForAgentJob } from "./agent-job.js";
 import { injectTimestamp, timestampOptsFromConfig } from "./agent-timestamp.js";
 import { normalizeRpcAttachmentsToChatAttachments } from "./attachment-normalize.js";

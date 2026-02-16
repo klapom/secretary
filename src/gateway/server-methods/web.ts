@@ -7,7 +7,7 @@ import {
   validateWebLoginStartParams,
   validateWebLoginWaitParams,
 } from "../protocol/index.js";
-import { formatForLog } from "../ws-log.js";
+import { formatForLog } from "../shared/ws-log.js";
 
 const WEB_LOGIN_METHODS = new Set(["web.login.start", "web.login.wait"]);
 

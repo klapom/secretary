@@ -21,7 +21,7 @@ import {
   validateChannelsLogoutParams,
   validateChannelsStatusParams,
 } from "../protocol/index.js";
-import { formatForLog } from "../ws-log.js";
+import { formatForLog } from "../shared/ws-log.js";
 
 type ChannelLogoutPayload = {
   channel: ChannelId;

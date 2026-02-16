@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+import type { OpenClawConfig } from "../../config/config.js";
 import type { NodeSession } from "./node-registry.js";
 
 const CANVAS_COMMANDS = [

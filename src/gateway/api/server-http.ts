@@ -44,7 +44,7 @@ import {
   resolveHookChannel,
   resolveHookDeliver,
 } from "../hooks/hooks.js";
-import { isPrivateOrLoopbackAddress, resolveGatewayClientIp } from "../net.js";
+import { isPrivateOrLoopbackAddress, resolveGatewayClientIp } from "../shared/net.js";
 import {
   handleControlUiAvatarRequest,
   handleControlUiHttpRequest,

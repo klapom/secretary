@@ -4,7 +4,7 @@ import { loadConfig } from "../config/config.js";
 import { type AgentEventPayload, getAgentRunContext } from "../infra/agent-events.js";
 import { resolveHeartbeatVisibility } from "../infra/heartbeat-visibility.js";
 import { loadSessionEntry } from "./sessions/session-utils.js";
-import { formatForLog } from "./ws-log.js";
+import { formatForLog } from "./shared/ws-log.js";
 
 /**
  * Check if webchat broadcasts should be suppressed for heartbeat runs.

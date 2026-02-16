@@ -1,6 +1,6 @@
 import net from "node:net";
 import os from "node:os";
-import { pickPrimaryTailnetIPv4, pickPrimaryTailnetIPv6 } from "../infra/tailnet.js";
+import { pickPrimaryTailnetIPv4, pickPrimaryTailnetIPv6 } from "../../infra/tailnet.js";
 
 /**
  * Pick the primary non-internal IPv4 address (LAN IP).
@@ -267,7 +267,7 @@ export function isLocalGatewayAddress(ip: string | undefined): boolean {
  * @returns The bind address to use (never null)
  */
 export async function resolveGatewayBindHost(
-  bind: import("../config/config.js").GatewayBindMode | undefined,
+  bind: import("../../config/config.js").GatewayBindMode | undefined,
   customHost?: string,
 ): Promise<string> {
   const mode = bind ?? "loopback";

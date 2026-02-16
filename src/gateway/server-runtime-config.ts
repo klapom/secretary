@@ -11,7 +11,7 @@ import {
   resolveGatewayAuth,
 } from "./core/auth.js";
 import { resolveHooksConfig } from "./hooks/hooks.js";
-import { isLoopbackHost, resolveGatewayBindHost } from "./net.js";
+import { isLoopbackHost, resolveGatewayBindHost } from "./shared/net.js";
 
 export type GatewayRuntimeConfig = {
   bindHost: string;

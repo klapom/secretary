@@ -1,9 +1,9 @@
+import type { GatewayClient } from "../server-methods/types.js";
 import type { ExecApprovalManager, ExecApprovalRecord } from "./exec-approval-manager.js";
-import type { GatewayClient } from "./server-methods/types.js";
 import {
   formatExecCommand,
   validateSystemRunCommandConsistency,
-} from "../infra/system-run-command.js";
+} from "../../infra/system-run-command.js";
 
 type SystemRunParamsLike = {
   command?: unknown;

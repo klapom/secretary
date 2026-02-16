@@ -15,7 +15,7 @@ import {
   testTailscaleWhois,
   testState,
   withGatewayServer,
-} from "./test-helpers.js";
+} from "./shared/test-helpers.js";
 
 installGatewayTestHooks({ scope: "suite" });
 

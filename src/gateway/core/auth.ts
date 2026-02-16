@@ -12,7 +12,7 @@ import {
   resolveHostName,
   parseForwardedForClientIp,
   resolveGatewayClientIp,
-} from "../net.js";
+} from "../shared/net.js";
 import {
   AUTH_RATE_LIMIT_SCOPE_SHARED_SECRET,
   type AuthRateLimiter,

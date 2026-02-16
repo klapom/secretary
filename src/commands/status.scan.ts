@@ -4,7 +4,7 @@ import { withProgress } from "../cli/progress.js";
 import { loadConfig } from "../config/config.js";
 import { normalizeControlUiBasePath } from "../gateway/api/control-ui-shared.js";
 import { buildGatewayConnectionDetails, callGateway } from "../gateway/core/call.js";
-import { probeGateway } from "../gateway/probe.js";
+import { probeGateway } from "../gateway/shared/probe.js";
 import { collectChannelStatusIssues } from "../infra/channels-status-issues.js";
 import { resolveOsSummary } from "../infra/os-summary.js";
 import { getTailnetHostname } from "../infra/tailscale.js";

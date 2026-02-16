@@ -4,14 +4,14 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { Mock, vi } from "vitest";
-import type { ChannelPlugin, ChannelOutboundAdapter } from "../channels/plugins/types.js";
-import type { AgentBinding } from "../config/types.agents.js";
-import type { HooksConfig } from "../config/types.hooks.js";
-import type { TailscaleWhoisIdentity } from "../infra/tailscale.js";
-import type { PluginRegistry } from "../plugins/registry.js";
-import { applyPluginAutoEnable } from "../config/plugin-auto-enable.js";
-import { setActivePluginRegistry } from "../plugins/runtime.js";
-import { DEFAULT_ACCOUNT_ID } from "../routing/session-key.js";
+import type { ChannelPlugin, ChannelOutboundAdapter } from "../../channels/plugins/types.js";
+import type { AgentBinding } from "../../config/types.agents.js";
+import type { HooksConfig } from "../../config/types.hooks.js";
+import type { TailscaleWhoisIdentity } from "../../infra/tailscale.js";
+import type { PluginRegistry } from "../../plugins/registry.js";
+import { applyPluginAutoEnable } from "../../config/plugin-auto-enable.js";
+import { setActivePluginRegistry } from "../../plugins/runtime.js";
+import { DEFAULT_ACCOUNT_ID } from "../../routing/session-key.js";
 
 type StubChannelOptions = {
   id: ChannelPlugin["id"];
@@ -230,7 +230,7 @@ export const sessionStoreSaveDelayMs = hoisted.sessionStoreSaveDelayMs;
 export const embeddedRunMock = hoisted.embeddedRunMock;
 
 vi.mock("../agents/pi-model-discovery.js", async () => {
-  const actual = await vi.importActual<typeof import("../agents/pi-model-discovery.js")>(
+  const actual = await vi.importActual<typeof import("../../agents/pi-model-discovery.js")>(
     "../agents/pi-model-discovery.js",
   );
 
@@ -263,7 +263,7 @@ vi.mock("../infra/tailnet.js", () => ({
 
 vi.mock("../infra/tailscale.js", async () => {
   const actual =
-    await vi.importActual<typeof import("../infra/tailscale.js")>("../infra/tailscale.js");
+    await vi.importActual<typeof import("../../infra/tailscale.js")>("../infra/tailscale.js");
   return {
     ...actual,
     readTailscaleWhoisIdentity: async () => testTailscaleWhois.value,
@@ -272,7 +272,7 @@ vi.mock("../infra/tailscale.js", async () => {
 
 vi.mock("../config/sessions.js", async () => {
   const actual =
-    await vi.importActual<typeof import("../config/sessions.js")>("../config/sessions.js");
+    await vi.importActual<typeof import("../../config/sessions.js")>("../config/sessions.js");
   return {
     ...actual,
     saveSessionStore: vi.fn(async (storePath: string, store: unknown) => {
@@ -286,7 +286,8 @@ vi.mock("../config/sessions.js", async () => {
 });
 
 vi.mock("../config/config.js", async () => {
-  const actual = await vi.importActual<typeof import("../config/config.js")>("../config/config.js");
+  const actual =
+    await vi.importActual<typeof import("../../config/config.js")>("../config/config.js");
   const resolveConfigPath = () => path.join(testConfigRoot.value, "openclaw.json");
   const hashConfigRaw = (raw: string | null) =>
     crypto
@@ -532,7 +533,7 @@ vi.mock("../config/config.js", async () => {
 });
 
 vi.mock("../agents/pi-embedded.js", async () => {
-  const actual = await vi.importActual<typeof import("../agents/pi-embedded.js")>(
+  const actual = await vi.importActual<typeof import("../../agents/pi-embedded.js")>(
     "../agents/pi-embedded.js",
   );
   return {
@@ -562,7 +563,7 @@ vi.mock("../web/outbound.js", () => ({
     (hoisted.sendWhatsAppMock as (...args: unknown[]) => unknown)(...args),
 }));
 vi.mock("../channels/web/index.js", async () => {
-  const actual = await vi.importActual<typeof import("../channels/web/index.js")>(
+  const actual = await vi.importActual<typeof import("../../channels/web/index.js")>(
     "../channels/web/index.js",
   );
   return {
@@ -578,7 +579,7 @@ vi.mock("../auto-reply/reply.js", () => ({
   getReplyFromConfig,
 }));
 vi.mock("../cli/deps.js", async () => {
-  const actual = await vi.importActual<typeof import("../cli/deps.js")>("../cli/deps.js");
+  const actual = await vi.importActual<typeof import("../../cli/deps.js")>("../cli/deps.js");
   const base = actual.createDefaultDeps();
   return {
     ...actual,
@@ -592,7 +593,7 @@ vi.mock("../cli/deps.js", async () => {
 
 vi.mock("../plugins/loader.js", async () => {
   const actual =
-    await vi.importActual<typeof import("../plugins/loader.js")>("../plugins/loader.js");
+    await vi.importActual<typeof import("../../plugins/loader.js")>("../plugins/loader.js");
   return {
     ...actual,
     loadOpenClawPlugins: () => pluginRegistryState.registry,

@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import type { GatewayWsClient } from "./server/ws-types.js";
+import type { GatewayWsClient } from "../server/ws-types.js";
 
 export type NodeSession = {
   nodeId: string;

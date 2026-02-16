@@ -13,7 +13,7 @@ import {
   pruneLegacyStoreKeys,
   resolveGatewaySessionStoreTarget,
 } from "./sessions/session-utils.js";
-import { formatForLog } from "./ws-log.js";
+import { formatForLog } from "./shared/ws-log.js";
 
 const MAX_EXEC_EVENT_OUTPUT_CHARS = 180;
 
