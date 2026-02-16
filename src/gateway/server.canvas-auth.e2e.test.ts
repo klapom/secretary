@@ -4,11 +4,11 @@ import path from "node:path";
 import { describe, expect, test } from "vitest";
 import { WebSocket, WebSocketServer } from "ws";
 import type { CanvasHostHandler } from "../canvas-host/server.js";
-import type { ResolvedGatewayAuth } from "./auth.js";
+import type { ResolvedGatewayAuth } from "./core/auth.js";
 import type { GatewayWsClient } from "./server/ws-types.js";
 import { A2UI_PATH, CANVAS_HOST_PATH, CANVAS_WS_PATH } from "../canvas-host/a2ui.js";
 import { attachGatewayUpgradeHandler, createGatewayHttpServer } from "./api/server-http.js";
-import { createAuthRateLimiter } from "./auth-rate-limit.js";
+import { createAuthRateLimiter } from "./core/auth-rate-limit.js";
 
 async function withTempConfig(params: { cfg: unknown; run: () => Promise<void> }): Promise<void> {
   const prevConfigPath = process.env.OPENCLAW_CONFIG_PATH;

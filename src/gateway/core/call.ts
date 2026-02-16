@@ -1,23 +1,23 @@
 import { randomUUID } from "node:crypto";
-import type { OpenClawConfig } from "../config/config.js";
+import type { OpenClawConfig } from "../../config/config.js";
 import {
   loadConfig,
   resolveConfigPath,
   resolveGatewayPort,
   resolveStateDir,
-} from "../config/config.js";
-import { loadOrCreateDeviceIdentity } from "../infra/device-identity.js";
-import { pickPrimaryTailnetIPv4 } from "../infra/tailnet.js";
-import { loadGatewayTlsRuntime } from "../infra/tls/gateway.js";
+} from "../../config/config.js";
+import { loadOrCreateDeviceIdentity } from "../../infra/device-identity.js";
+import { pickPrimaryTailnetIPv4 } from "../../infra/tailnet.js";
+import { loadGatewayTlsRuntime } from "../../infra/tls/gateway.js";
 import {
   GATEWAY_CLIENT_MODES,
   GATEWAY_CLIENT_NAMES,
   type GatewayClientMode,
   type GatewayClientName,
-} from "../utils/message-channel.js";
+} from "../../utils/message-channel.js";
+import { pickPrimaryLanIPv4 } from "../net.js";
+import { PROTOCOL_VERSION } from "../protocol/index.js";
 import { GatewayClient } from "./client.js";
-import { pickPrimaryLanIPv4 } from "./net.js";
-import { PROTOCOL_VERSION } from "./protocol/index.js";
 
 export type CallGatewayOptions = {
   url?: string;

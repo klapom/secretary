@@ -8,8 +8,8 @@ import {
 } from "../infra/device-identity.js";
 import { sleep } from "../utils.js";
 import { GATEWAY_CLIENT_MODES, GATEWAY_CLIENT_NAMES } from "../utils/message-channel.js";
-import { GatewayClient } from "./client.js";
-import { buildDeviceAuthPayload } from "./device-auth.js";
+import { GatewayClient } from "./core/client.js";
+import { buildDeviceAuthPayload } from "./core/device-auth.js";
 import {
   connectReq,
   installGatewayTestHooks,

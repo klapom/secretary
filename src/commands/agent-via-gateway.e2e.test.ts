@@ -14,7 +14,7 @@ vi.mock("./agent.js", () => ({
 import type { OpenClawConfig } from "../config/config.js";
 import type { RuntimeEnv } from "../runtime.js";
 import * as configModule from "../config/config.js";
-import { callGateway } from "../gateway/call.js";
+import { callGateway } from "../gateway/core/call.js";
 import { agentCliCommand } from "./agent-via-gateway.js";
 import { agentCommand } from "./agent.js";
 

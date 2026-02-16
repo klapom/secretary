@@ -15,7 +15,7 @@ import { CONFIG_PATH, readConfigFileSnapshot, writeConfigFile } from "../config/
 import { logConfigUpdated } from "../config/logging.js";
 import { resolveGatewayService } from "../daemon/service.js";
 import { resolveGatewayAuth } from "../gateway/auth.js";
-import { buildGatewayConnectionDetails } from "../gateway/call.js";
+import { buildGatewayConnectionDetails } from "../gateway/core/call.js";
 import { resolveOpenClawPackageRoot } from "../infra/openclaw-root.js";
 import { defaultRuntime } from "../runtime.js";
 import { note } from "../terminal/note.js";

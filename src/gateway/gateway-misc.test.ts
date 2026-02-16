@@ -4,7 +4,7 @@ import type { GatewayClient as GatewayMethodClient } from "./server-methods/type
 import type { GatewayRequestContext, RespondFn } from "./server-methods/types.js";
 import type { GatewayWsClient } from "./server/ws-types.js";
 import { defaultVoiceWakeTriggers } from "../infra/voicewake.js";
-import { GatewayClient } from "./client.js";
+import { GatewayClient } from "./core/client.js";
 import {
   DEFAULT_DANGEROUS_NODE_COMMANDS,
   resolveNodeCommandAllowlist,

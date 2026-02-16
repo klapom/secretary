@@ -9,7 +9,7 @@ import {
   assertGatewayAuthConfigured,
   type ResolvedGatewayAuth,
   resolveGatewayAuth,
-} from "./auth.js";
+} from "./core/auth.js";
 import { resolveHooksConfig } from "./hooks/hooks.js";
 import { isLoopbackHost, resolveGatewayBindHost } from "./net.js";
 

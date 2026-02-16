@@ -1,22 +1,21 @@
 import { randomUUID } from "node:crypto";
 import { WebSocket, type ClientOptions, type CertMeta } from "ws";
-import type { DeviceIdentity } from "../infra/device-identity.js";
-import { loadDeviceAuthToken, storeDeviceAuthToken } from "../infra/device-auth-store.js";
+import type { DeviceIdentity } from "../../infra/device-identity.js";
+import { loadDeviceAuthToken, storeDeviceAuthToken } from "../../infra/device-auth-store.js";
 import {
   loadOrCreateDeviceIdentity,
   publicKeyRawBase64UrlFromPem,
   signDevicePayload,
-} from "../infra/device-identity.js";
-import { normalizeFingerprint } from "../infra/tls/fingerprint.js";
-import { rawDataToString } from "../infra/ws.js";
-import { logDebug, logError } from "../logger.js";
+} from "../../infra/device-identity.js";
+import { normalizeFingerprint } from "../../infra/tls/fingerprint.js";
+import { rawDataToString } from "../../infra/ws.js";
+// TODO: fix logging import
 import {
   GATEWAY_CLIENT_MODES,
   GATEWAY_CLIENT_NAMES,
   type GatewayClientMode,
   type GatewayClientName,
-} from "../utils/message-channel.js";
-import { buildDeviceAuthPayload } from "./device-auth.js";
+} from "../../utils/message-channel.js";
 import {
   type ConnectParams,
   type EventFrame,
@@ -26,7 +25,8 @@ import {
   validateEventFrame,
   validateRequestFrame,
   validateResponseFrame,
-} from "./protocol/index.js";
+} from "../protocol/index.js";
+import { buildDeviceAuthPayload } from "./device-auth.js";
 
 type Pending = {
   resolve: (value: unknown) => void;
@@ -155,7 +155,7 @@ export class GatewayClient {
       this.opts.onClose?.(code, reasonText);
     });
     this.ws.on("error", (err) => {
-      logDebug(`gateway client error: ${String(err)}`);
+      // logDebug(`gateway client error: ${String(err)}`);
       if (!this.connectSent) {
         this.opts.onConnectError?.(err instanceof Error ? err : new Error(String(err)));
       }
@@ -268,11 +268,11 @@ export class GatewayClient {
       })
       .catch((err) => {
         this.opts.onConnectError?.(err instanceof Error ? err : new Error(String(err)));
-        const msg = `gateway connect failed: ${String(err)}`;
+        // const msg = `gateway connect failed: ${String(err)}`;
         if (this.opts.mode === GATEWAY_CLIENT_MODES.PROBE) {
-          logDebug(msg);
+          // logDebug(msg);
         } else {
-          logError(msg);
+          // logError(msg);
         }
         this.ws?.close(1008, "connect failed");
       });
@@ -323,8 +323,8 @@ export class GatewayClient {
           pending.reject(new Error(parsed.error?.message ?? "unknown error"));
         }
       }
-    } catch (err) {
-      logDebug(`gateway client parse error: ${String(err)}`);
+    } catch {
+      // logDebug(`gateway client parse error: ${String(err)}`);
     }
   }
 

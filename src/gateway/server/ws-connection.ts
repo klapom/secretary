@@ -1,8 +1,8 @@
 import type { WebSocket, WebSocketServer } from "ws";
 import { randomUUID } from "node:crypto";
 import type { createSubsystemLogger } from "../../logging/subsystem.js";
-import type { AuthRateLimiter } from "../auth-rate-limit.js";
-import type { ResolvedGatewayAuth } from "../auth.js";
+import type { AuthRateLimiter } from "../core/auth-rate-limit.js";
+import type { ResolvedGatewayAuth } from "../core/auth.js";
 import type { GatewayRequestContext, GatewayRequestHandlers } from "../server-methods/types.js";
 import type { GatewayWsClient } from "./ws-types.js";
 import { resolveCanvasHostUrl } from "../../infra/canvas-host-url.js";

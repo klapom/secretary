@@ -5,7 +5,7 @@ import { CONFIG_PATH, STATE_DIR, loadConfig } from "../../config/config.js";
 import { resolveMainSessionKey } from "../../config/sessions.js";
 import { listSystemPresence } from "../../infra/system-presence.js";
 import { normalizeMainKey } from "../../routing/session-key.js";
-import { resolveGatewayAuth } from "../auth.js";
+import { resolveGatewayAuth } from "../core/auth.js";
 
 let presenceVersion = 1;
 let healthVersion = 1;

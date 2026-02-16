@@ -1,4 +1,4 @@
-import { stripEnvelope, stripMessageIdHints } from "../shared/chat-envelope.js";
+import { stripEnvelope, stripMessageIdHints } from "../../shared/chat-envelope.js";
 
 export { stripEnvelope };
 

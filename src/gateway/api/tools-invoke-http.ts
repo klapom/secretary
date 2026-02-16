@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
-import type { AuthRateLimiter } from "../auth-rate-limit.js";
+import type { AuthRateLimiter } from "../core/auth-rate-limit.js";
 import { createOpenClawTools } from "../../agents/openclaw-tools.js";
 import {
   resolveEffectiveToolPolicy,
@@ -23,7 +23,7 @@ import { getPluginToolMeta } from "../../plugins/tools.js";
 import { isSubagentSessionKey } from "../../routing/session-key.js";
 import { DEFAULT_GATEWAY_HTTP_TOOL_DENY } from "../../security/dangerous-tools.js";
 import { normalizeMessageChannel } from "../../utils/message-channel.js";
-import { authorizeGatewayConnect, type ResolvedGatewayAuth } from "../auth.js";
+import { authorizeGatewayConnect, type ResolvedGatewayAuth } from "../core/auth.js";
 import {
   readJsonBodyOrError,
   sendGatewayAuthFailure,

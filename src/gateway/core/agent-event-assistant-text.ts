@@ -1,4 +1,4 @@
-import type { AgentEventPayload } from "../infra/agent-events.js";
+import type { AgentEventPayload } from "../../infra/agent-events.js";
 
 export function resolveAssistantStreamDeltaText(evt: AgentEventPayload): string {
   const delta = evt.data.delta;

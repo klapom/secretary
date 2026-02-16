@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
-import type { GatewayAuthResult } from "../auth.js";
+import type { GatewayAuthResult } from "../core/auth.js";
 import { readJsonBody } from "../hooks/hooks.js";
 
 export function sendJson(res: ServerResponse, status: number, body: unknown) {

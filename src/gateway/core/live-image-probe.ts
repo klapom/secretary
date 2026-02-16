@@ -1,4 +1,4 @@
-import { encodePngRgba, fillPixel } from "../media/png-encode.js";
+import { encodePngRgba, fillPixel } from "../../media/png-encode.js";
 
 const GLYPH_ROWS_5X7: Record<string, number[]> = {
   "0": [0b01110, 0b10001, 0b10011, 0b10101, 0b11001, 0b10001, 0b01110],

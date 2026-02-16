@@ -10,7 +10,7 @@ import {
 import { resolveRequiredHomeDir } from "../../infra/home-dir.js";
 import { hasInterSessionUserProvenance } from "../../sessions/input-provenance.js";
 import { extractToolCallNames, hasToolCall } from "../../utils/transcript-tools.js";
-import { stripEnvelope } from "../chat-sanitize.js";
+import { stripEnvelope } from "../core/chat-sanitize.js";
 
 type SessionTitleFields = {
   firstUserMessage: string | null;

@@ -5,7 +5,7 @@ import { DEFAULT_CHAT_CHANNEL } from "../channels/registry.js";
 import { formatCliCommand } from "../cli/command-format.js";
 import { withProgress } from "../cli/progress.js";
 import { loadConfig } from "../config/config.js";
-import { callGateway, randomIdempotencyKey } from "../gateway/call.js";
+import { callGateway, randomIdempotencyKey } from "../gateway/core/call.js";
 import { normalizeAgentId } from "../routing/session-key.js";
 import {
   GATEWAY_CLIENT_MODES,

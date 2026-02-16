@@ -12,8 +12,8 @@ import {
   type GatewayClientMode,
   type GatewayClientName,
 } from "../utils/message-channel.js";
-import { GatewayClient } from "./client.js";
-import { buildDeviceAuthPayload } from "./device-auth.js";
+import { GatewayClient } from "./core/client.js";
+import { buildDeviceAuthPayload } from "./core/device-auth.js";
 import { PROTOCOL_VERSION } from "./protocol/index.js";
 
 export async function getFreeGatewayPort(): Promise<number> {

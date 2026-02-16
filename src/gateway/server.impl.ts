@@ -47,8 +47,8 @@ import { getGlobalHookRunner, runGlobalGatewayStopSafely } from "../plugins/hook
 import { createEmptyPluginRegistry } from "../plugins/registry.js";
 import { getTotalQueueSize } from "../process/command-queue.js";
 import { runOnboardingWizard } from "../wizard/onboarding.js";
-import { createAuthRateLimiter, type AuthRateLimiter } from "./auth-rate-limit.js";
-import { startGatewayConfigReloader } from "./config-reload.js";
+import { createAuthRateLimiter, type AuthRateLimiter } from "./core/auth-rate-limit.js";
+import { startGatewayConfigReloader } from "./core/config-reload.js";
 import { ExecApprovalManager } from "./exec-approval-manager.js";
 import { loadGatewayPlugins } from "./hooks/server-plugins.js";
 import { NodeRegistry } from "./node-registry.js";

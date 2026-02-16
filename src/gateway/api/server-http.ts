@@ -9,7 +9,7 @@ import {
 import { createServer as createHttpsServer } from "node:https";
 import type { CanvasHostHandler } from "../../canvas-host/server.js";
 import type { createSubsystemLogger } from "../../logging/subsystem.js";
-import type { AuthRateLimiter } from "../auth-rate-limit.js";
+import type { AuthRateLimiter } from "../core/auth-rate-limit.js";
 import type { GatewayWsClient } from "../server/ws-types.js";
 import { resolveAgentAvatar } from "../../agents/identity-avatar.js";
 import {
@@ -26,7 +26,7 @@ import {
   isLocalDirectRequest,
   type GatewayAuthResult,
   type ResolvedGatewayAuth,
-} from "../auth.js";
+} from "../core/auth.js";
 import { applyHookMappings } from "../hooks/hooks-mapping.js";
 import {
   extractHookToken,
