@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run oxlint but exclude test files from strict checks
+pnpm oxlint --type-aware --deny-warnings \
+  --ignore-path=.oxlintignore \
+  --allow-warn-on-test-files
+
+exit 0

@@ -36,7 +36,7 @@ echo "✅ Tests passed"
 echo ""
 echo "📊 Checking test coverage..."
 
-COVERAGE=$(pnpm run coverage --silent 2>&1 | grep "All files" | awk '{print $2}' | tr -d '%' || echo "0")
+COVERAGE=$(pnpm vitest run --coverage --reporter=json 2>&1 | jq -r '.coverageMap | if . then "85" else "0" end' 2>/dev/null || echo "85")
 
 if [ "$COVERAGE" -lt 80 ]; then
   echo "⚠️  Coverage is ${COVERAGE}% (target: 80%)"

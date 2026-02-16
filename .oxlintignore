@@ -1,0 +1,13 @@
+# Test files - allow 'any' types for mocking
+**/*.test.ts
+**/*.spec.ts
+
+# Examples - demonstration code
+examples/
+
+# Scripts - utility code
+scripts/
+.hooks/
+
+# Archive - deprecated code
+**/archive-sqlite/
