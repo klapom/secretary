@@ -1,30 +1,30 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
-import type { AuthRateLimiter } from "./auth-rate-limit.js";
-import { createOpenClawTools } from "../agents/openclaw-tools.js";
+import type { AuthRateLimiter } from "../auth-rate-limit.js";
+import { createOpenClawTools } from "../../agents/openclaw-tools.js";
 import {
   resolveEffectiveToolPolicy,
   resolveGroupToolPolicy,
   resolveSubagentToolPolicy,
-} from "../agents/pi-tools.policy.js";
+} from "../../agents/pi-tools.policy.js";
 import {
   applyToolPolicyPipeline,
   buildDefaultToolPolicyPipelineSteps,
-} from "../agents/tool-policy-pipeline.js";
+} from "../../agents/tool-policy-pipeline.js";
 import {
   collectExplicitAllowlist,
   mergeAlsoAllowPolicy,
   resolveToolProfilePolicy,
-} from "../agents/tool-policy.js";
-import { ToolInputError } from "../agents/tools/common.js";
-import { loadConfig } from "../config/config.js";
-import { resolveMainSessionKey } from "../config/sessions.js";
-import { logWarn } from "../logger.js";
-import { isTestDefaultMemorySlotDisabled } from "../plugins/config-state.js";
-import { getPluginToolMeta } from "../plugins/tools.js";
-import { isSubagentSessionKey } from "../routing/session-key.js";
-import { DEFAULT_GATEWAY_HTTP_TOOL_DENY } from "../security/dangerous-tools.js";
-import { normalizeMessageChannel } from "../utils/message-channel.js";
-import { authorizeGatewayConnect, type ResolvedGatewayAuth } from "./auth.js";
+} from "../../agents/tool-policy.js";
+import { ToolInputError } from "../../agents/tools/common.js";
+import { loadConfig } from "../../config/config.js";
+import { resolveMainSessionKey } from "../../config/sessions.js";
+import { logWarn } from "../../logging/logger.js";
+import { isTestDefaultMemorySlotDisabled } from "../../plugins/config-state.js";
+import { getPluginToolMeta } from "../../plugins/tools.js";
+import { isSubagentSessionKey } from "../../routing/session-key.js";
+import { DEFAULT_GATEWAY_HTTP_TOOL_DENY } from "../../security/dangerous-tools.js";
+import { normalizeMessageChannel } from "../../utils/message-channel.js";
+import { authorizeGatewayConnect, type ResolvedGatewayAuth } from "../auth.js";
 import {
   readJsonBodyOrError,
   sendGatewayAuthFailure,

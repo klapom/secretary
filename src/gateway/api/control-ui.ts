@@ -1,9 +1,9 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import fs from "node:fs";
 import path from "node:path";
-import type { OpenClawConfig } from "../config/config.js";
-import { resolveControlUiRootSync } from "../infra/control-ui-assets.js";
-import { DEFAULT_ASSISTANT_IDENTITY, resolveAssistantIdentity } from "./assistant-identity.js";
+import type { OpenClawConfig } from "../../config/config.js";
+import { resolveControlUiRootSync } from "../../infra/control-ui-assets.js";
+import { DEFAULT_ASSISTANT_IDENTITY, resolveAssistantIdentity } from "../assistant-identity.js";
 import {
   CONTROL_UI_BOOTSTRAP_CONFIG_PATH,
   type ControlUiBootstrapConfig,

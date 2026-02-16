@@ -1,17 +1,17 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { randomUUID } from "node:crypto";
-import type { AuthRateLimiter } from "./auth-rate-limit.js";
-import type { ResolvedGatewayAuth } from "./auth.js";
-import { createDefaultDeps } from "../cli/deps.js";
-import { agentCommand } from "../commands/agent.js";
-import { emitAgentEvent, onAgentEvent } from "../infra/agent-events.js";
-import { logWarn } from "../logger.js";
-import { defaultRuntime } from "../runtime.js";
-import { resolveAssistantStreamDeltaText } from "./agent-event-assistant-text.js";
+import type { AuthRateLimiter } from "../auth-rate-limit.js";
+import type { ResolvedGatewayAuth } from "../auth.js";
+import { createDefaultDeps } from "../../cli/deps.js";
+import { agentCommand } from "../../commands/agent.js";
+import { emitAgentEvent, onAgentEvent } from "../../infra/agent-events.js";
+import { logWarn } from "../../logging/logger.js";
+import { defaultRuntime } from "../../runtime.js";
+import { resolveAssistantStreamDeltaText } from "../agent-event-assistant-text.js";
 import {
   buildAgentMessageFromConversationEntries,
   type ConversationEntry,
-} from "./agent-prompt.js";
+} from "../agent-prompt.js";
 import { sendJson, setSseHeaders, writeDone } from "./http-common.js";
 import { handleGatewayPostJsonEndpoint } from "./http-endpoint-helpers.js";
 import { resolveAgentIdForRequest, resolveSessionKey } from "./http-utils.js";

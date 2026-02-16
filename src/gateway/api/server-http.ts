@@ -7,32 +7,27 @@ import {
   type ServerResponse,
 } from "node:http";
 import { createServer as createHttpsServer } from "node:https";
-import type { CanvasHostHandler } from "../canvas-host/server.js";
-import type { createSubsystemLogger } from "../logging/subsystem.js";
-import type { AuthRateLimiter } from "./auth-rate-limit.js";
-import type { GatewayWsClient } from "./server/ws-types.js";
-import { resolveAgentAvatar } from "../agents/identity-avatar.js";
+import type { CanvasHostHandler } from "../../canvas-host/server.js";
+import type { createSubsystemLogger } from "../../logging/subsystem.js";
+import type { AuthRateLimiter } from "../auth-rate-limit.js";
+import type { GatewayWsClient } from "../server/ws-types.js";
+import { resolveAgentAvatar } from "../../agents/identity-avatar.js";
 import {
   A2UI_PATH,
   CANVAS_HOST_PATH,
   CANVAS_WS_PATH,
   handleA2uiHttpRequest,
-} from "../canvas-host/a2ui.js";
-import { loadConfig } from "../config/config.js";
-import { safeEqualSecret } from "../security/secret-equal.js";
-import { handleSlackHttpRequest } from "../slack/http/index.js";
+} from "../../canvas-host/a2ui.js";
+import { loadConfig } from "../../config/config.js";
+import { safeEqualSecret } from "../../security/secret-equal.js";
+import { handleSlackHttpRequest } from "../../slack/http/index.js";
 import {
   authorizeGatewayConnect,
   isLocalDirectRequest,
   type GatewayAuthResult,
   type ResolvedGatewayAuth,
-} from "./auth.js";
-import {
-  handleControlUiAvatarRequest,
-  handleControlUiHttpRequest,
-  type ControlUiRootState,
-} from "./control-ui.js";
-import { applyHookMappings } from "./hooks/hooks-mapping.js";
+} from "../auth.js";
+import { applyHookMappings } from "../hooks/hooks-mapping.js";
 import {
   extractHookToken,
   getHookAgentPolicyError,
@@ -48,10 +43,15 @@ import {
   resolveHookTargetAgentId,
   resolveHookChannel,
   resolveHookDeliver,
-} from "./hooks/hooks.js";
+} from "../hooks/hooks.js";
+import { isPrivateOrLoopbackAddress, resolveGatewayClientIp } from "../net.js";
+import {
+  handleControlUiAvatarRequest,
+  handleControlUiHttpRequest,
+  type ControlUiRootState,
+} from "./control-ui.js";
 import { sendGatewayAuthFailure } from "./http-common.js";
 import { getBearerToken, getHeader } from "./http-utils.js";
-import { isPrivateOrLoopbackAddress, resolveGatewayClientIp } from "./net.js";
 import { handleOpenAiHttpRequest } from "./openai-http.js";
 import { handleOpenResponsesHttpRequest } from "./openresponses-http.js";
 import { handleToolsInvokeHttpRequest } from "./tools-invoke-http.js";
