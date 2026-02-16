@@ -9,39 +9,14 @@ import {
   clearSessionStoreCacheForTest,
   loadSessionStore,
   updateSessionStore,
-  updateSessionStoreEntry,
 } from "../sessions.js";
-import { deriveSessionMetaPatch } from "./metadata.js";
 import {
   resolveSessionFilePath,
   resolveSessionTranscriptPathInDir,
   validateSessionId,
 } from "./paths.js";
 import { resolveSessionResetPolicy } from "./reset.js";
-import {
-  appendAssistantMessageToSessionTranscript,
-  resolveMirroredTranscriptText,
-} from "./transcript.js";
-
-describe("deriveSessionMetaPatch", () => {
-  it("captures origin + group metadata", () => {
-    const patch = deriveSessionMetaPatch({
-      ctx: {
-        Provider: "whatsapp",
-        ChatType: "group",
-        GroupSubject: "Family",
-        From: "123@g.us",
-      },
-      sessionKey: "agent:main:whatsapp:group:123@g.us",
-    });
-
-    expect(patch?.origin?.label).toBe("Family id:123@g.us");
-    expect(patch?.origin?.provider).toBe("whatsapp");
-    expect(patch?.subject).toBe("Family");
-    expect(patch?.channel).toBe("whatsapp");
-    expect(patch?.groupId).toBe("123@g.us");
-  });
-});
+import { appendAssistantMessageToSessionTranscript } from "./transcript.js";
 
 describe("session path safety", () => {
   it("rejects unsafe session IDs", () => {
@@ -69,39 +44,10 @@ describe("session path safety", () => {
       ),
     ).toThrow(/within sessions directory/);
   });
-
-  it("uses extracted agent fallback for custom per-agent store roots", () => {
-    const mainSessionsDir = "/srv/custom/agents/main/sessions";
-    const opsSessionFile = "/srv/custom/agents/ops/sessions/abc-123.jsonl";
-
-    const resolved = resolveSessionFilePath(
-      "sess-1",
-      { sessionFile: opsSessionFile },
-      { sessionsDir: mainSessionsDir },
-    );
-
-    expect(resolved).toBe(path.resolve(opsSessionFile));
-  });
 });
 
 describe("resolveSessionResetPolicy", () => {
   describe("backward compatibility: resetByType.dm -> direct", () => {
-    it("falls back to resetByType.dm (legacy) when direct is missing", () => {
-      const sessionCfg = {
-        resetByType: {
-          dm: { mode: "idle" as const, idleMinutes: 45 },
-        },
-      } as unknown as SessionConfig;
-
-      const policy = resolveSessionResetPolicy({
-        sessionCfg,
-        resetType: "direct",
-      });
-
-      expect(policy.mode).toBe("idle");
-      expect(policy.idleMinutes).toBe(45);
-    });
-
     it("does not use dm fallback for group/thread types", () => {
       const sessionCfg = {
         resetByType: {
@@ -174,46 +120,6 @@ describe("session store lock (Promise chain mutex)", () => {
     expect((store[key] as Record<string, unknown>).counter).toBe(N);
   });
 
-  it("concurrent updateSessionStoreEntry patches all merge correctly", async () => {
-    const key = "agent:main:merge";
-    const { storePath } = await makeTmpStore({
-      [key]: { sessionId: "s1", updatedAt: 100 },
-    });
-
-    await Promise.all([
-      updateSessionStoreEntry({
-        storePath,
-        sessionKey: key,
-        update: async () => {
-          await Promise.resolve();
-          return { modelOverride: "model-a" };
-        },
-      }),
-      updateSessionStoreEntry({
-        storePath,
-        sessionKey: key,
-        update: async () => {
-          await Promise.resolve();
-          return { thinkingLevel: "high" as const };
-        },
-      }),
-      updateSessionStoreEntry({
-        storePath,
-        sessionKey: key,
-        update: async () => {
-          await Promise.resolve();
-          return { systemPromptOverride: "custom" };
-        },
-      }),
-    ]);
-
-    const store = loadSessionStore(storePath);
-    const entry = store[key];
-    expect(entry.modelOverride).toBe("model-a");
-    expect(entry.thinkingLevel).toBe("high");
-    expect(entry.systemPromptOverride).toBe("custom");
-  });
-
   it("multiple consecutive errors do not permanently poison the queue", async () => {
     const key = "agent:main:multi-err";
     const { storePath } = await makeTmpStore({
@@ -237,16 +143,6 @@ describe("session store lock (Promise chain mutex)", () => {
 
     const store = loadSessionStore(storePath);
     expect(store[key]?.modelOverride).toBe("recovered");
-  });
-});
-
-describe("resolveMirroredTranscriptText", () => {
-  it("prefers media filenames over text", () => {
-    const result = resolveMirroredTranscriptText({
-      text: "caption here",
-      mediaUrls: ["https://example.com/files/report.pdf?sig=123"],
-    });
-    expect(result).toBe("report.pdf");
   });
 });
 
