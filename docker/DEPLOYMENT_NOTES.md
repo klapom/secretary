@@ -58,7 +58,36 @@ FROM nvcr.io/nvidia/pytorch:24.01-py3  # Python 3.11
 
 ---
 
-### 2. WebRTC Signaling Server Not Implemented
+### 2. ONNX Runtime GPU Not Available for ARM64
+
+**Issue:** onnxruntime-gpu package not available for ARM64 architecture
+
+```
+ERROR: No matching distribution found for onnxruntime-gpu>=1.16.0
+```
+
+**Root Cause:**
+
+- LivePortrait requires `onnxruntime-gpu>=1.16.0`
+- Package only available for x86_64, not aarch64
+- DGX Spark uses ARM Cortex cores (aarch64)
+
+**Solution:**
+
+```python
+# requirements.txt
+# Use CPU version (works with GPU via PyTorch CUDA)
+onnxruntime>=1.16.0  # Instead of onnxruntime-gpu
+```
+
+**Impact:**
+
+- No performance degradation (PyTorch handles GPU operations)
+- ONNX models still run on GPU via PyTorch backend
+
+---
+
+### 3. WebRTC Signaling Server Not Implemented
 
 **Issue:** Backend WebRTC signaling server referenced in docker-compose but not implemented.
 
@@ -80,7 +109,7 @@ FROM nvcr.io/nvidia/pytorch:24.01-py3  # Python 3.11
 
 ---
 
-### 3. Avatar UI Dockerfile Missing
+### 4. Avatar UI Dockerfile Missing
 
 **Issue:** docker-compose.dgx.yml references `ui/avatar-chat/Dockerfile` which doesn't exist.
 
@@ -103,7 +132,7 @@ npm run dev
 
 ---
 
-### 4. Build Time
+### 5. Build Time
 
 **Expected:** 15-30 minutes first time
 
