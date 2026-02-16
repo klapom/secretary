@@ -1,0 +1,189 @@
+# Docker Compose for DGX Spark - Avatar System
+# Requires: NVIDIA GPU, CUDA 12.1+, Docker with GPU support
+
+version: '3.8'
+
+services:
+  # LivePortrait - Avatar rendering (primary GPU consumer)
+  liveportrait:
+    build:
+      context: ./liveportrait
+      dockerfile: Dockerfile.arm64
+    container_name: secretary-liveportrait
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=0  # Use first GPU
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+          memory: 16G
+        limits:
+          memory: 20G
+    shm_size: '4gb'  # Shared memory for PyTorch
+    volumes:
+      - liveportrait-models:/app/models
+      - liveportrait-cache:/root/.cache
+    ports:
+      - "8081:8081"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+    networks:
+      - avatar-network
+
+  # XTTS - Voice synthesis (GPU-accelerated)
+  xtts:
+    build:
+      context: ./xtts
+      dockerfile: Dockerfile
+    container_name: secretary-xtts
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=0
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTHONUNBUFFERED=1
+      - COQUI_TOS_AGREED=1  # Agree to Coqui TTS terms
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+          memory: 8G
+        limits:
+          memory: 12G
+    shm_size: '2gb'
+    volumes:
+      - xtts-models:/app/models
+      - xtts-cache:/root/.cache
+    ports:
+      - "8082:8082"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s  # XTTS model loading takes time
+    restart: unless-stopped
+    networks:
+      - avatar-network
+
+  # Whisper - Speech-to-text (GPU-accelerated)
+  whisper:
+    build:
+      context: ./whisper
+      dockerfile: Dockerfile
+    container_name: secretary-whisper
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=0
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+          memory: 4G
+        limits:
+          memory: 6G
+    shm_size: '1gb'
+    volumes:
+      - whisper-models:/app/models
+      - whisper-cache:/root/.cache
+    ports:
+      - "8083:8083"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8083/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+    networks:
+      - avatar-network
+
+  # WebRTC Signaling Server (already implemented in Sprint 03)
+  webrtc-signaling:
+    image: node:22-alpine
+    container_name: secretary-webrtc
+    working_dir: /app
+    volumes:
+      - ../:/app
+    command: node dist/avatar/streaming/webrtc-server.js
+    environment:
+      - NODE_ENV=production
+      - SIGNALING_PORT=8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      - liveportrait
+      - xtts
+      - whisper
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - avatar-network
+
+  # Avatar Chat UI (React frontend)
+  avatar-ui:
+    build:
+      context: ../ui/avatar-chat
+      dockerfile: Dockerfile
+    container_name: secretary-avatar-ui
+    environment:
+      - NODE_ENV=production
+      - VITE_WEBRTC_URL=ws://localhost:8080
+      - VITE_API_URL=http://localhost:3001
+    ports:
+      - "3000:80"
+    depends_on:
+      - webrtc-signaling
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - avatar-network
+
+volumes:
+  liveportrait-models:
+    driver: local
+  liveportrait-cache:
+    driver: local
+  xtts-models:
+    driver: local
+  xtts-cache:
+    driver: local
+  whisper-models:
+    driver: local
+  whisper-cache:
+    driver: local
+
+networks:
+  avatar-network:
+    driver: bridge
+
+# Usage:
+# docker compose -f docker-compose.dgx.yml up --build
+# docker compose -f docker-compose.dgx.yml down
+# docker compose -f docker-compose.dgx.yml logs -f liveportrait

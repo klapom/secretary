@@ -1,0 +1,29 @@
+# LivePortrait Python Dependencies
+# PyTorch is provided by base image (nvcr.io/nvidia/pytorch:24.01-py3)
+
+# Core dependencies
+numpy>=1.24.0
+opencv-python>=4.8.0
+pillow>=10.0.0
+scipy>=1.11.0
+
+# Deep learning
+onnxruntime-gpu>=1.16.0
+facexlib>=0.3.0
+insightface>=0.7.3
+
+# Image processing
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.9
+scikit-image>=0.21.0
+
+# API server
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+pydantic>=2.4.0
+
+# Utilities
+tqdm>=4.66.0
+einops>=0.7.0
+tyro>=0.5.0

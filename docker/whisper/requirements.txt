@@ -1,0 +1,18 @@
+# Whisper STT Dependencies
+
+# Core STT
+faster-whisper>=0.10.0
+openai-whisper>=20231117
+
+# Audio processing
+librosa>=0.10.0
+soundfile>=0.12.0
+pydub>=0.25.1
+
+# API server
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+
+# Utilities
+numpy>=1.24.0
