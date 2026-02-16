@@ -6,8 +6,9 @@ FROM nvidia/cuda:13.0.0-runtime-ubuntu24.04
 WORKDIR /app
 
 # Install Python and system dependencies
+# Note: Ubuntu 24.04 comes with Python 3.12 by default
 RUN apt-get update && apt-get install -y \
-    python3.11 \
+    python3 \
     python3-pip \
     ffmpeg \
     libsndfile1 \
