@@ -10,7 +10,7 @@ import {
   resolveGatewayAuth,
 } from "./auth.js";
 import { normalizeControlUiBasePath } from "./control-ui-shared.js";
-import { resolveHooksConfig } from "./hooks.js";
+import { resolveHooksConfig } from "./hooks/hooks.js";
 import { isLoopbackHost, resolveGatewayBindHost } from "./net.js";
 
 export type GatewayRuntimeConfig = {

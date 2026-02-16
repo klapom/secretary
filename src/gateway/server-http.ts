@@ -32,7 +32,7 @@ import {
   handleControlUiHttpRequest,
   type ControlUiRootState,
 } from "./control-ui.js";
-import { applyHookMappings } from "./hooks-mapping.js";
+import { applyHookMappings } from "./hooks/hooks-mapping.js";
 import {
   extractHookToken,
   getHookAgentPolicyError,
@@ -48,7 +48,7 @@ import {
   resolveHookTargetAgentId,
   resolveHookChannel,
   resolveHookDeliver,
-} from "./hooks.js";
+} from "./hooks/hooks.js";
 import { sendGatewayAuthFailure } from "./http-common.js";
 import { getBearerToken, getHeader } from "./http-utils.js";
 import { isPrivateOrLoopbackAddress, resolveGatewayClientIp } from "./net.js";

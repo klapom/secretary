@@ -1,6 +1,6 @@
 import { describe, expect, test, vi } from "vitest";
-import type { PluginRegistry } from "../plugins/registry.js";
-import type { PluginDiagnostic } from "../plugins/types.js";
+import type { PluginRegistry } from "../../plugins/registry.js";
+import type { PluginDiagnostic } from "../../plugins/types.js";
 import { loadGatewayPlugins } from "./server-plugins.js";
 
 const loadOpenClawPlugins = vi.hoisted(() => vi.fn());

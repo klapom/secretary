@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { resolveMainSessionKeyFromConfig } from "../config/sessions.js";
-import { drainSystemEvents, peekSystemEvents } from "../infra/system-events.js";
+import { resolveMainSessionKeyFromConfig } from "../../config/sessions.js";
+import { drainSystemEvents, peekSystemEvents } from "../../infra/system-events.js";
 import {
   cronIsolatedRun,
   installGatewayTestHooks,
