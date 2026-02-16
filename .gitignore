@@ -87,3 +87,4 @@ USER.md
 /local/
 package-lock.json
 services/voice-pipeline/venv/
+services/voice-pipeline/models/
