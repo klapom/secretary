@@ -26,10 +26,11 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1 \
 WORKDIR /app
 
 # Install PyTorch with CUDA 12.1 support
+# Using latest available version for ARM64
 RUN pip install --no-cache-dir \
-    torch==2.1.0 \
-    torchvision==0.16.0 \
-    torchaudio==2.1.0 \
+    torch \
+    torchvision \
+    torchaudio \
     --index-url https://download.pytorch.org/whl/cu121
 
 # Copy requirements first for better caching

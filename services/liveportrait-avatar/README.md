@@ -33,9 +33,12 @@ GPU-accelerated portrait animation microservice using LivePortrait with CUDA 12.
 
 ### Prerequisites
 
+- **Platform:** x86_64 (AMD64) - ARM64 not currently supported
 - Docker with nvidia-docker support
-- Nvidia GPU with CUDA 12.1 capability
+- Nvidia GPU with CUDA 12.1+ capability
 - 8GB+ GPU memory recommended
+
+**⚠️ Platform Note:** LivePortrait dependencies (PyTorch, onnxruntime-gpu) require x86_64 architecture. ARM64 support is limited. If deploying on ARM64 (e.g., Apple Silicon, ARM servers), consider using a mock renderer for development/testing.
 
 ### Build and Run
 
