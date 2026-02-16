@@ -21,7 +21,7 @@ vi.mock("../infra/tailnet.js", () => ({
   pickPrimaryTailnetIPv4,
 }));
 
-vi.mock("../gateway/net.js", () => ({
+vi.mock("../gateway/shared/net.js", () => ({
   pickPrimaryLanIPv4,
 }));
 

@@ -18,8 +18,8 @@ let startMode: StartMode = "hello";
 let closeCode = 1006;
 let closeReason = "";
 
-vi.mock("../config/config.js", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../config/config.js")>();
+vi.mock("../../config/config.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../config/config.js")>();
   return {
     ...actual,
     loadConfig,
@@ -27,11 +27,11 @@ vi.mock("../config/config.js", async (importOriginal) => {
   };
 });
 
-vi.mock("../infra/tailnet.js", () => ({
+vi.mock("../../infra/tailnet.js", () => ({
   pickPrimaryTailnetIPv4,
 }));
 
-vi.mock("./net.js", () => ({
+vi.mock("../shared/net.js", () => ({
   pickPrimaryLanIPv4,
 }));
 
