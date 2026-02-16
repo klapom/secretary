@@ -79,7 +79,7 @@ import {
   loadSessionLogs,
   loadSessionUsageTimeSeries,
 } from "../../infra/session-cost-usage.js";
-import { loadCombinedSessionStoreForGateway } from "../session-utils.js";
+import { loadCombinedSessionStoreForGateway } from "../sessions/session-utils.js";
 import { usageHandlers } from "./usage.js";
 
 describe("sessions.usage", () => {

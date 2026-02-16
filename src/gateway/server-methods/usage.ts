@@ -36,7 +36,7 @@ import {
   listAgentsForGateway,
   loadCombinedSessionStoreForGateway,
   loadSessionEntry,
-} from "../session-utils.js";
+} from "../sessions/session-utils.js";
 
 const COST_USAGE_CACHE_TTL_MS = 30_000;
 

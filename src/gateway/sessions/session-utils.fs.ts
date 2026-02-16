@@ -6,11 +6,11 @@ import {
   resolveSessionFilePath,
   resolveSessionTranscriptPath,
   resolveSessionTranscriptPathInDir,
-} from "../config/sessions.js";
-import { resolveRequiredHomeDir } from "../infra/home-dir.js";
-import { hasInterSessionUserProvenance } from "../sessions/input-provenance.js";
-import { extractToolCallNames, hasToolCall } from "../utils/transcript-tools.js";
-import { stripEnvelope } from "./chat-sanitize.js";
+} from "../../config/sessions.js";
+import { resolveRequiredHomeDir } from "../../infra/home-dir.js";
+import { hasInterSessionUserProvenance } from "../../sessions/input-provenance.js";
+import { extractToolCallNames, hasToolCall } from "../../utils/transcript-tools.js";
+import { stripEnvelope } from "../chat-sanitize.js";
 
 type SessionTitleFields = {
   firstUserMessage: string | null;

@@ -1,10 +1,13 @@
 import { randomUUID } from "node:crypto";
-import type { ModelCatalogEntry } from "../agents/model-catalog.js";
-import type { OpenClawConfig } from "../config/config.js";
-import type { SessionEntry } from "../config/sessions.js";
-import { resolveDefaultAgentId } from "../agents/agent-scope.js";
-import { resolveAllowedModelRef, resolveDefaultModelForAgent } from "../agents/model-selection.js";
-import { normalizeGroupActivation } from "../auto-reply/group-activation.js";
+import type { ModelCatalogEntry } from "../../agents/model-catalog.js";
+import type { OpenClawConfig } from "../../config/config.js";
+import type { SessionEntry } from "../../config/sessions.js";
+import { resolveDefaultAgentId } from "../../agents/agent-scope.js";
+import {
+  resolveAllowedModelRef,
+  resolveDefaultModelForAgent,
+} from "../../agents/model-selection.js";
+import { normalizeGroupActivation } from "../../auto-reply/group-activation.js";
 import {
   formatThinkingLevels,
   formatXHighModelHint,
@@ -13,22 +16,22 @@ import {
   normalizeThinkLevel,
   normalizeUsageDisplay,
   supportsXHighThinking,
-} from "../auto-reply/thinking.js";
+} from "../../auto-reply/thinking.js";
 import {
   isSubagentSessionKey,
   normalizeAgentId,
   parseAgentSessionKey,
-} from "../routing/session-key.js";
-import { applyVerboseOverride, parseVerboseOverride } from "../sessions/level-overrides.js";
-import { applyModelOverrideToSessionEntry } from "../sessions/model-overrides.js";
-import { normalizeSendPolicy } from "../sessions/send-policy.js";
-import { parseSessionLabel } from "../sessions/session-label.js";
+} from "../../routing/session-key.js";
+import { applyVerboseOverride, parseVerboseOverride } from "../../sessions/level-overrides.js";
+import { applyModelOverrideToSessionEntry } from "../../sessions/model-overrides.js";
+import { normalizeSendPolicy } from "../../sessions/send-policy.js";
+import { parseSessionLabel } from "../../sessions/session-label.js";
 import {
   ErrorCodes,
   type ErrorShape,
   errorShape,
   type SessionsPatchParams,
-} from "./protocol/index.js";
+} from "../protocol/index.js";
 
 function invalid(message: string): { ok: false; error: ErrorShape } {
   return { ok: false, error: errorShape(ErrorCodes.INVALID_REQUEST, message) };

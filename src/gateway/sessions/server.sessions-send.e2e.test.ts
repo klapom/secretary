@@ -1,9 +1,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
-import { resolveSessionTranscriptPath } from "../config/sessions.js";
-import { emitAgentEvent } from "../infra/agent-events.js";
-import { captureEnv } from "../test-utils/env.js";
+import { resolveSessionTranscriptPath } from "../../config/sessions.js";
+import { emitAgentEvent } from "../../infra/agent-events.js";
+import { captureEnv } from "../../test-utils/env.js";
 import {
   agentCommand,
   getFreePort,

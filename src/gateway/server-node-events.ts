@@ -12,7 +12,7 @@ import {
   loadSessionEntry,
   pruneLegacyStoreKeys,
   resolveGatewaySessionStoreTarget,
-} from "./session-utils.js";
+} from "./sessions/session-utils.js";
 import { formatForLog } from "./ws-log.js";
 
 const MAX_EXEC_EVENT_OUTPUT_CHARS = 180;

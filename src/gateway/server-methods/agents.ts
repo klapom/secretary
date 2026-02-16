@@ -42,7 +42,7 @@ import {
   validateAgentsListParams,
   validateAgentsUpdateParams,
 } from "../protocol/index.js";
-import { listAgentsForGateway } from "../session-utils.js";
+import { listAgentsForGateway } from "../sessions/session-utils.js";
 
 const BOOTSTRAP_FILE_NAMES = [
   DEFAULT_AGENTS_FILENAME,

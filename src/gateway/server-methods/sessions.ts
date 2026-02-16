@@ -26,6 +26,7 @@ import {
   validateSessionsResetParams,
   validateSessionsResolveParams,
 } from "../protocol/index.js";
+import { resolveSessionKeyFromResolveParams } from "../sessions-resolve.js";
 import {
   archiveFileOnDisk,
   archiveSessionTranscripts,
@@ -40,9 +41,8 @@ import {
   type SessionsPatchResult,
   type SessionsPreviewEntry,
   type SessionsPreviewResult,
-} from "../session-utils.js";
-import { applySessionsPatchToStore } from "../sessions-patch.js";
-import { resolveSessionKeyFromResolveParams } from "../sessions-resolve.js";
+} from "../sessions/session-utils.js";
+import { applySessionsPatchToStore } from "../sessions/sessions-patch.js";
 import { assertValidParams } from "./validation.js";
 
 function requireSessionKey(key: unknown, respond: RespondFn): string | null {

@@ -9,7 +9,7 @@ import {
   resolveStorePath,
   type SessionEntry,
 } from "../config/sessions.js";
-import { classifySessionKey } from "../gateway/session-utils.js";
+import { classifySessionKey } from "../gateway/sessions/session-utils.js";
 import { info } from "../globals.js";
 import { formatTimeAgo } from "../infra/format-time/format-relative.ts";
 import { isRich, theme } from "../terminal/theme.js";

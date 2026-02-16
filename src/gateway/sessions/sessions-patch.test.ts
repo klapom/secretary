@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
-import type { SessionEntry } from "../config/sessions.js";
+import type { OpenClawConfig } from "../../config/config.js";
+import type { SessionEntry } from "../../config/sessions.js";
 import { applySessionsPatchToStore } from "./sessions-patch.js";
 
 describe("gateway sessions patch", () => {

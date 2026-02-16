@@ -1,12 +1,12 @@
-import type { OpenClawConfig } from "../config/config.js";
-import { loadSessionStore, updateSessionStore } from "../config/sessions.js";
-import { parseSessionLabel } from "../sessions/session-label.js";
+import type { OpenClawConfig } from "../../config/config.js";
+import { loadSessionStore, updateSessionStore } from "../../config/sessions.js";
+import { parseSessionLabel } from "../../sessions/session-label.js";
 import {
   ErrorCodes,
   type ErrorShape,
   errorShape,
   type SessionsResolveParams,
-} from "./protocol/index.js";
+} from "../protocol/index.js";
 import {
   listSessionsFromStore,
   loadCombinedSessionStoreForGateway,

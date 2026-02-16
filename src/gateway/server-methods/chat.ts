@@ -38,7 +38,7 @@ import {
   loadSessionEntry,
   readSessionMessages,
   resolveSessionModelRef,
-} from "../session-utils.js";
+} from "../sessions/session-utils.js";
 import { formatForLog } from "../ws-log.js";
 import { injectTimestamp, timestampOptsFromConfig } from "./agent-timestamp.js";
 import { normalizeRpcAttachmentsToChatAttachments } from "./attachment-normalize.js";

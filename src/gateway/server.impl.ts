@@ -69,11 +69,9 @@ import { createNodeSubscriptionManager } from "./server-node-subscriptions.js";
 import { createGatewayReloadHandlers } from "./server-reload-handlers.js";
 import { resolveGatewayRuntimeConfig } from "./server-runtime-config.js";
 import { createGatewayRuntimeState } from "./server-runtime-state.js";
-import { resolveSessionKeyForRun } from "./server-session-key.js";
 import { logGatewayStartup } from "./server-startup-log.js";
 import { startGatewaySidecars } from "./server-startup.js";
 import { startGatewayTailscaleExposure } from "./server-tailscale.js";
-import { createWizardSessionTracker } from "./server-wizard-sessions.js";
 import { attachGatewayWsHandlers } from "./server-ws-runtime.js";
 import {
   getHealthCache,
@@ -83,6 +81,8 @@ import {
   refreshGatewayHealthSnapshot,
 } from "./server/health-state.js";
 import { loadGatewayTlsRuntime } from "./server/tls.js";
+import { resolveSessionKeyForRun } from "./sessions/server-session-key.js";
+import { createWizardSessionTracker } from "./sessions/server-wizard-sessions.js";
 
 export { __resetModelCatalogCacheForTest } from "./server-model-catalog.js";
 

@@ -6,15 +6,15 @@ import type {
   GatewaySessionsDefaults,
   SessionsListResult,
 } from "./session-utils.types.js";
-import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "../agents/agent-scope.js";
-import { lookupContextTokens } from "../agents/context.js";
-import { DEFAULT_CONTEXT_TOKENS, DEFAULT_MODEL, DEFAULT_PROVIDER } from "../agents/defaults.js";
+import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "../../agents/agent-scope.js";
+import { lookupContextTokens } from "../../agents/context.js";
+import { DEFAULT_CONTEXT_TOKENS, DEFAULT_MODEL, DEFAULT_PROVIDER } from "../../agents/defaults.js";
 import {
   resolveConfiguredModelRef,
   resolveDefaultModelForAgent,
-} from "../agents/model-selection.js";
-import { type OpenClawConfig, loadConfig } from "../config/config.js";
-import { resolveStateDir } from "../config/paths.js";
+} from "../../agents/model-selection.js";
+import { type OpenClawConfig, loadConfig } from "../../config/config.js";
+import { resolveStateDir } from "../../config/paths.js";
 import {
   buildGroupDisplayName,
   canonicalizeMainSessionAlias,
@@ -25,14 +25,14 @@ import {
   resolveStorePath,
   type SessionEntry,
   type SessionScope,
-} from "../config/sessions.js";
+} from "../../config/sessions.js";
 import {
   normalizeAgentId,
   normalizeMainKey,
   parseAgentSessionKey,
-} from "../routing/session-key.js";
-import { isCronRunSessionKey } from "../sessions/session-key-utils.js";
-import { normalizeSessionDeliveryFields } from "../utils/delivery-context.js";
+} from "../../routing/session-key.js";
+import { isCronRunSessionKey } from "../../sessions/session-key-utils.js";
+import { normalizeSessionDeliveryFields } from "../../utils/delivery-context.js";
 import { readSessionTitleFieldsFromTranscript } from "./session-utils.fs.js";
 
 export {
@@ -667,7 +667,7 @@ export function listSessionsFromStore(params: {
   cfg: OpenClawConfig;
   storePath: string;
   store: Record<string, SessionEntry>;
-  opts: import("./protocol/index.js").SessionsListParams;
+  opts: import("../protocol/index.js").SessionsListParams;
 }): SessionsListResult {
   const { cfg, storePath, store, opts } = params;
   const now = Date.now();
