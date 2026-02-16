@@ -6,6 +6,8 @@ import type { AnyAgentTool } from "./common.js";
 import { resolveMemoryBackendConfig } from "../../memory/backend-config.js";
 import { getMemorySearchManager } from "../../memory/index.js";
 import { parseAgentSessionKey } from "../../routing/session-key.js";
+import { PathTraversalValidator } from "../../security/path-traversal.js";
+import { resolveAgentWorkspaceDir } from "../agent-scope.js";
 import { resolveSessionAgentId } from "../agent-scope.js";
 import { resolveMemorySearchConfig } from "../memory-search.js";
 import { jsonResult, readNumberParam, readStringParam } from "./common.js";
@@ -105,6 +107,15 @@ export function createMemoryGetTool(options: {
     return null;
   }
   const { cfg, agentId } = ctx;
+
+  // SECURITY: Create path validator for memory directory
+  const workspaceDir = resolveAgentWorkspaceDir({ config: cfg, agentId });
+  const pathValidator = new PathTraversalValidator({
+    allowedBasePaths: [workspaceDir],
+    resolveSymlinks: true,
+    allowNonExistent: false,
+  });
+
   return {
     label: "Memory Get",
     name: "memory_get",
@@ -115,22 +126,47 @@ export function createMemoryGetTool(options: {
       const relPath = readStringParam(params, "path", { required: true });
       const from = readNumberParam(params, "from", { integer: true });
       const lines = readNumberParam(params, "lines", { integer: true });
-      const { manager, error } = await getMemorySearchManager({
+
+      // SECURITY: Validate path before access
+      const { manager, error: managerError } = await getMemorySearchManager({
         cfg,
         agentId,
       });
       if (!manager) {
-        return jsonResult({ path: relPath, text: "", disabled: true, error });
+        return jsonResult({ path: relPath, text: "", disabled: true, error: managerError });
       }
+
       try {
+        // Resolve path to absolute if needed
+        const absPath = relPath.startsWith("/") ? relPath : `${workspaceDir}/${relPath}`;
+
+        // Validate the absolute path
+        const safePath = pathValidator.validateOrThrow(absPath);
+
+        // Convert back to relative path for the manager
+        const validatedRelPath = safePath.replace(workspaceDir, "").replace(/^\//, "");
+
         const result = await manager.readFile({
-          relPath,
+          relPath: validatedRelPath,
           from: from ?? undefined,
           lines: lines ?? undefined,
         });
         return jsonResult(result);
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
+        // Log security violation
+        if (
+          message.includes("Path validation failed") ||
+          message.includes("outside allowed directories") ||
+          message.includes("null byte")
+        ) {
+          return jsonResult({
+            path: relPath,
+            text: "",
+            disabled: true,
+            error: `Security: Path access denied - ${message}`,
+          });
+        }
         return jsonResult({ path: relPath, text: "", disabled: true, error: message });
       }
     },
