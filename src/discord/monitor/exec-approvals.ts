@@ -20,8 +20,8 @@ import type {
 } from "../../infra/exec-approvals.js";
 import type { RuntimeEnv } from "../../runtime.js";
 import { loadSessionStore, resolveStorePath } from "../../config/sessions.js";
-import { buildGatewayConnectionDetails } from "../../gateway/call.js";
-import { GatewayClient } from "../../gateway/client.js";
+import { buildGatewayConnectionDetails } from "../../gateway/core/call.js";
+import { GatewayClient } from "../../gateway/core/client.js";
 import { logDebug, logError } from "../../logger.js";
 import { normalizeAccountId, resolveAgentIdFromSessionKey } from "../../routing/session-key.js";
 import {

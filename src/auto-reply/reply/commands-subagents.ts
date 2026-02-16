@@ -23,7 +23,7 @@ import {
   resolveStorePath,
   updateSessionStore,
 } from "../../config/sessions.js";
-import { callGateway } from "../../gateway/call.js";
+import { callGateway } from "../../gateway/core/call.js";
 import { logVerbose } from "../../globals.js";
 import { formatTimeAgo } from "../../infra/format-time/format-relative.ts";
 import { parseAgentSessionKey } from "../../routing/session-key.js";

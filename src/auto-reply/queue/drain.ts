@@ -1,12 +1,12 @@
 import type { FollowupRun } from "./types.js";
-import { defaultRuntime } from "../../../runtime.js";
+import { defaultRuntime } from "../../runtime.js";
 import {
   buildCollectPrompt,
   buildQueueSummaryPrompt,
   hasCrossChannelItems,
   waitForQueueDebounce,
-} from "../../../utils/queue-helpers.js";
-import { isRoutableChannel } from "../route-reply.js";
+} from "../../utils/queue-helpers.js";
+import { isRoutableChannel } from "../reply/route-reply.js";
 import { FOLLOWUP_QUEUES } from "./state.js";
 
 function previewQueueSummaryPrompt(queue: {

@@ -1,6 +1,6 @@
 import type { QueueDropPolicy, QueueMode } from "./types.js";
-import { parseDurationMs } from "../../../cli/parse-duration.js";
-import { skipDirectiveArgPrefix, takeDirectiveToken } from "../directive-parsing.js";
+import { parseDurationMs } from "../../cli/parse-duration.js";
+import { skipDirectiveArgPrefix, takeDirectiveToken } from "../reply/directive-parsing.js";
 import { normalizeQueueDropPolicy, normalizeQueueMode } from "./normalize.js";
 
 function parseQueueDebounce(raw?: string): number | undefined {

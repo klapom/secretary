@@ -1,6 +1,6 @@
 import type { OpenClawConfig } from "../../config/config.js";
 import type { CommandHandler } from "./commands-types.js";
-import { callGateway, randomIdempotencyKey } from "../../gateway/call.js";
+import { callGateway, randomIdempotencyKey } from "../../gateway/core/call.js";
 import { logVerbose } from "../../globals.js";
 
 type NodeSummary = {

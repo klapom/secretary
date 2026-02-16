@@ -1,5 +1,5 @@
 import type { FollowupRun, QueueDedupeMode, QueueSettings } from "./types.js";
-import { applyQueueDropPolicy, shouldSkipQueueItem } from "../../../utils/queue-helpers.js";
+import { applyQueueDropPolicy, shouldSkipQueueItem } from "../../utils/queue-helpers.js";
 import { FOLLOWUP_QUEUES, getFollowupQueue } from "./state.js";
 
 function isRunAlreadyQueued(
