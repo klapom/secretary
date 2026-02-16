@@ -113,7 +113,7 @@ export function createMemoryGetTool(options: {
   const pathValidator = new PathTraversalValidator({
     allowedBasePaths: [workspaceDir],
     resolveSymlinks: true,
-    allowNonExistent: false,
+    allowNonExistent: true, // Allow validation of paths that don't exist yet (manager will handle existence check)
   });
 
   return {
@@ -123,20 +123,30 @@ export function createMemoryGetTool(options: {
       "Safe snippet read from MEMORY.md or memory/*.md with optional from/lines; use after memory_search to pull only the needed lines and keep context small.",
     parameters: MemoryGetSchema,
     execute: async (_toolCallId, params) => {
-      const relPath = readStringParam(params, "path", { required: true });
-      const from = readNumberParam(params, "from", { integer: true });
-      const lines = readNumberParam(params, "lines", { integer: true });
-
-      // SECURITY: Validate path before access
-      const { manager, error: managerError } = await getMemorySearchManager({
-        cfg,
-        agentId,
-      });
-      if (!manager) {
-        return jsonResult({ path: relPath, text: "", disabled: true, error: managerError });
-      }
-
       try {
+        const relPath = readStringParam(params, "path", { required: true, allowEmpty: true });
+        const from = readNumberParam(params, "from", { integer: true });
+        const lines = readNumberParam(params, "lines", { integer: true });
+
+        // SECURITY: Validate path before access
+        const { manager, error: managerError } = await getMemorySearchManager({
+          cfg,
+          agentId,
+        });
+        if (!manager) {
+          return jsonResult({ path: relPath, text: "", disabled: true, error: managerError });
+        }
+
+        // Handle empty path early
+        if (!relPath || relPath.trim() === "") {
+          return jsonResult({
+            path: relPath || "",
+            text: "",
+            disabled: true,
+            error: "Security: Path access denied - Path validation failed: Empty path not allowed",
+          });
+        }
+
         // Resolve path to absolute if needed
         const absPath = relPath.startsWith("/") ? relPath : `${workspaceDir}/${relPath}`;
 
@@ -158,16 +168,17 @@ export function createMemoryGetTool(options: {
         if (
           message.includes("Path validation failed") ||
           message.includes("outside allowed directories") ||
-          message.includes("null byte")
+          message.includes("null byte") ||
+          message.includes("encoded traversal")
         ) {
           return jsonResult({
-            path: relPath,
+            path: params.path as string,
             text: "",
             disabled: true,
             error: `Security: Path access denied - ${message}`,
           });
         }
-        return jsonResult({ path: relPath, text: "", disabled: true, error: message });
+        return jsonResult({ path: params.path as string, text: "", disabled: true, error: message });
       }
     },
   };

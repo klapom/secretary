@@ -21,7 +21,7 @@ import { parseTimeoutMs } from "../nodes-run.js";
 
 const callGatewaySpy = vi.fn(async () => ({ decision: "allow-once" }));
 
-vi.mock("../../gateway/call.js", () => ({
+vi.mock("../../gateway/core/call.js", () => ({
   callGateway: (...args: unknown[]) => callGatewaySpy(...args),
   randomIdempotencyKey: () => "mock-key",
 }));

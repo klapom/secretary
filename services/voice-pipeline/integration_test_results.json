@@ -1,0 +1,96 @@
+{
+  "phase1": {
+    "Health Endpoint": {
+      "passed": true,
+      "status_code": 200,
+      "latency_ms": 5.120515823364258,
+      "whisper_loaded": true,
+      "response": {
+        "status": "healthy",
+        "models": {
+          "whisper": {
+            "loaded": true,
+            "model": "base",
+            "device": "cpu",
+            "compute_type": "int8"
+          },
+          "xtts": {
+            "loaded": false,
+            "status": "not_implemented"
+          }
+        },
+        "gpu": {
+          "available": false,
+          "device_count": 0,
+          "device_name": null
+        }
+      }
+    },
+    "API Response Format": {
+      "passed": true,
+      "response": {
+        "service": "Voice Pipeline",
+        "status": "running",
+        "device": "cpu",
+        "whisper_loaded": true,
+        "tts_loaded": false,
+        "supported_languages": [
+          "en",
+          "de",
+          "fr",
+          "es",
+          "it",
+          "pt",
+          "nl",
+          "pl",
+          "ru",
+          "ja",
+          "zh"
+        ]
+      },
+      "missing_fields": []
+    },
+    "Error Handling": {
+      "passed": true,
+      "status_code": 422,
+      "message": "Correctly rejects invalid requests"
+    },
+    "Timeout Handling": {
+      "passed": true,
+      "message": "Service responds within timeout"
+    }
+  },
+  "phase2": {
+    "Basic Transcription": {
+      "passed": true,
+      "metrics": {
+        "latency_ms": "46.2ms",
+        "confidence": "0.0%",
+        "language": "en"
+      },
+      "transcription": ""
+    },
+    "Multi-language Support": {
+      "passed": true,
+      "languages_tested": [
+        "en",
+        "de",
+        "fr"
+      ],
+      "results": {
+        "en": {
+          "success": true,
+          "detected_language": "en"
+        },
+        "de": {
+          "success": true,
+          "detected_language": "de"
+        },
+        "fr": {
+          "success": true,
+          "detected_language": "fr"
+        }
+      }
+    },
+    "Latency Measurement": {
+      "passed": 

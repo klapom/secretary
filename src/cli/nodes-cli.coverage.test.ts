@@ -61,7 +61,7 @@ const defaultRuntime = {
   },
 };
 
-vi.mock("../gateway/call.js", () => ({
+vi.mock("../gateway/core/call.js", () => ({
   callGateway: (opts: unknown) => callGateway(opts as { method?: string }),
   randomIdempotencyKey: () => randomIdempotencyKey(),
 }));

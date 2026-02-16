@@ -7,7 +7,7 @@ import { createSessionsSpawnTool } from "./tools/sessions-spawn-tool.js";
 
 const callGatewayMock = vi.fn();
 
-vi.mock("../gateway/call.js", () => ({
+vi.mock("../gateway/core/call.js", () => ({
   callGateway: (opts: unknown) => callGatewayMock(opts),
 }));
 

@@ -111,10 +111,16 @@ export class PathTraversalValidator {
 
     // 2. Check for URL-encoded path traversal attempts
     const decoded = this.decodePathSafely(inputPath);
-    if (decoded.includes("..") || decoded.includes("\0")) {
+    if (decoded.includes("..")) {
       return {
         valid: false,
-        error: "Path contains encoded traversal sequence",
+        error: "Path contains traversal sequence (..)",
+      };
+    }
+    if (decoded.includes("\0")) {
+      return {
+        valid: false,
+        error: "Path contains null byte after decoding",
       };
     }
 

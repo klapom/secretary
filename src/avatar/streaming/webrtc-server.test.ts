@@ -8,9 +8,11 @@ import WebSocket from "ws";
 
 describe("WebRTCStreamingServer", () => {
   let server: WebRTCStreamingServer;
-  const testPort = 8081;
+  let testPort: number;
 
   beforeEach(async () => {
+    // Use dynamic port allocation to avoid conflicts
+    testPort = 8081 + Math.floor(Math.random() * 1000);
     server = new WebRTCStreamingServer({
       signalingPort: testPort,
       debug: false,
@@ -20,7 +22,11 @@ describe("WebRTCStreamingServer", () => {
 
   afterEach(async () => {
     if (server) {
-      await server.stop();
+      try {
+        await server.stop();
+      } catch (error) {
+        // Ignore errors during cleanup
+      }
     }
   });
 
@@ -96,6 +102,9 @@ describe("WebRTCStreamingServer", () => {
     });
 
     it("should reject connections when server is full", async () => {
+      // Stop the existing server first
+      await server.stop();
+
       // Create server with max 1 client
       server = new WebRTCStreamingServer({
         signalingPort: testPort,
