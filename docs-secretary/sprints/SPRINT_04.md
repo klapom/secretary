@@ -92,41 +92,63 @@
 
 ## 🗂️ Tasks
 
-### Phase 1: DGX Container (Week 1)
+### Phase 1: DGX Container (Week 1) ✅ COMPLETED (2026-02-16)
 
-#### LivePortrait Container
+#### LivePortrait Container ✅
 
-- [ ] Create Dockerfile for LivePortrait (CUDA 12.1 + ARM64)
-- [ ] Test GPU acceleration (NVIDIA A100/H100)
-- [ ] Add health check endpoint
-- [ ] Configure shared memory limits (/dev/shm)
-- [ ] Document GPU memory requirements
+- [x] Create Dockerfile for LivePortrait (CUDA 13.0 + ARM64)
+- [x] NGC PyTorch 25.09-py3 base image
+- [x] Add health check endpoint
+- [x] Configure shared memory limits (/dev/shm: 4GB)
+- [x] Document GPU memory requirements (8GB VRAM)
+- [x] Flash Attention workaround for sm_121
+- [x] CUDA 13.0 environment variables
+- [ ] Test GPU acceleration on DGX Spark (pending hardware access)
 
-#### XTTS Container
+#### XTTS Container ✅
 
-- [ ] Create Dockerfile for XTTS (GPU)
-- [ ] Pre-download models (Coqui TTS v2)
-- [ ] Test voice synthesis latency (<500ms)
-- [ ] Add warm-up script for model loading
-- [ ] Configure GPU memory allocation
+- [x] Create Dockerfile for XTTS (GPU, CUDA 13.0)
+- [x] Pre-download models (Coqui TTS v2)
+- [x] Add warm-up script for model loading
+- [x] Configure GPU memory allocation (4GB VRAM)
+- [ ] Test voice synthesis latency (<500ms) (pending deployment)
 
-#### Whisper Container
+#### Whisper Container ✅
 
-- [ ] Create Dockerfile for Whisper (faster-whisper)
-- [ ] Test STT accuracy and latency
-- [ ] Add model caching (reduce startup time)
-- [ ] Configure batch processing
+- [x] Create Dockerfile for Whisper (faster-whisper, CUDA 13.0)
+- [x] Add model caching (reduce startup time)
+- [x] Configure batch processing
+- [ ] Test STT accuracy and latency (pending deployment)
 
-#### Docker Compose Orchestration
+#### Docker Compose Orchestration ✅
 
-- [ ] Create docker-compose.dgx.yml
-- [ ] Configure GPU resource limits
-- [ ] Add service dependencies
-- [ ] Configure networking (bridge + host)
-- [ ] Add volume mounts (models, data)
-- [ ] Test full stack startup
+- [x] Create docker-compose.dgx.yml
+- [x] Configure GPU resource limits (128GB unified memory budget)
+- [x] Add service dependencies
+- [x] Configure networking (bridge mode, internal APIs)
+- [x] Add volume mounts (models, data, cache)
+- [x] Docker profiles for on-demand GPU start (`profiles: [avatar]`)
+- [x] Health checks and restart policies
+- [ ] Test full stack startup on DGX (pending hardware access)
 
-### Phase 2: Avatar Chat UI (Week 2)
+#### Documentation ✅
+
+- [x] DGX Spark Reference Guide ([DGX_SPARK_REFERENCE.md](../guides/DGX_SPARK_REFERENCE.md))
+- [x] AEGIS_Rag best practices integrated
+- [x] Container README with troubleshooting
+- [x] Sprint 04 technical specifications
+- [x] Memory budgeting examples
+
+**Phase 1 Summary:**
+
+- 15 Docker files created (1497+ lines)
+- DGX Spark specs integrated from AEGIS_Rag production
+- Docker profiles for VRAM conservation
+- Ready for deployment (pending DGX hardware access)
+
+---
+
+### Phase 2: Avatar Chat UI (Week 2) 🚀 IN PROGRESS
 
 #### Core Components
 
