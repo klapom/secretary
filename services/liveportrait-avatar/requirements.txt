@@ -1,0 +1,26 @@
+# FastAPI and server
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Image processing
+Pillow==10.2.0
+opencv-python==4.9.0.80
+imageio==2.34.0
+imageio-ffmpeg==0.4.9
+
+# ML/DL utilities
+numpy==1.26.3
+scipy==1.12.0
+
+# API client utilities
+httpx==0.26.0
+python-multipart==0.0.6
+
+# Model downloads
+huggingface-hub==0.20.3
+
+# Logging and monitoring
+python-json-logger==2.0.7
+prometheus-client==0.19.0
