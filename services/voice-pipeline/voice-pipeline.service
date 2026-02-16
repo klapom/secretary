@@ -1,0 +1,18 @@
+[Unit]
+Description=Voice Pipeline Service (XTTS + Whisper)
+After=network.target
+
+[Service]
+Type=simple
+User=admin
+WorkingDirectory=/home/admin/projects/secretary/openclaw-source/services/voice-pipeline
+Environment="PATH=/home/admin/projects/secretary/openclaw-source/services/voice-pipeline/venv/bin:/usr/bin"
+ExecStart=/home/admin/projects/secretary/openclaw-source/services/voice-pipeline/venv/bin/python voice_service.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=voice-pipeline
+
+[Install]
+WantedBy=multi-user.target
