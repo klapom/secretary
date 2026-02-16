@@ -1,7 +1,7 @@
-# XTTS (Coqui TTS) Dockerfile with GPU support
-# Voice synthesis service
+# XTTS (Coqui TTS) Dockerfile for DGX Spark (CUDA 13.0)
+# Voice synthesis service with GPU acceleration
 
-FROM nvcr.io/nvidia/pytorch:24.01-py3
+FROM nvcr.io/nvidia/pytorch:25.09-py3
 
 WORKDIR /app
 

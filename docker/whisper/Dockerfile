@@ -1,7 +1,7 @@
-# Whisper STT Dockerfile with GPU support
+# Whisper STT Dockerfile for DGX Spark (CUDA 13.0)
 # Speech-to-text service using faster-whisper
 
-FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
+FROM nvidia/cuda:13.0.0-runtime-ubuntu24.04
 
 WORKDIR /app
 

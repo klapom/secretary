@@ -1,5 +1,8 @@
 # Docker Compose for DGX Spark - Avatar System
-# Requires: NVIDIA GPU, CUDA 12.1+, Docker with GPU support
+# Hardware: NVIDIA GB10 (Blackwell sm_121), 128GB Unified Memory, CUDA 13.0
+# Usage:
+#   Normal Mode:  docker compose up -d
+#   Avatar Mode:  docker compose --profile avatar up -d
 
 version: '3.8'
 
@@ -10,6 +13,7 @@ services:
       context: ./liveportrait
       dockerfile: Dockerfile.arm64
     container_name: secretary-liveportrait
+    profiles: [avatar]  # Only start when avatar is active
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=0  # Use first GPU
@@ -47,6 +51,7 @@ services:
       context: ./xtts
       dockerfile: Dockerfile
     container_name: secretary-xtts
+    profiles: [avatar]  # Only start when avatar is active
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=0
@@ -85,6 +90,7 @@ services:
       context: ./whisper
       dockerfile: Dockerfile
     container_name: secretary-whisper
+    profiles: [avatar]  # Only start when avatar is active
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=0

@@ -4,7 +4,15 @@ Docker containerization for GPU-accelerated Avatar System services.
 
 ## 🎯 Overview
 
-This setup provides Docker containers for the Secretary Avatar System, optimized for NVIDIA DGX systems with CUDA 12.1+ support.
+This setup provides Docker containers for the Secretary Avatar System, optimized for **NVIDIA DGX Spark** with Blackwell GB10 GPU.
+
+**Hardware:**
+
+- **GPU:** NVIDIA GB10 (Blackwell Architecture, sm_121)
+- **CUDA:** 13.0 (CUDA Capability 12.1+)
+- **Memory:** 128GB Unified (CPU + GPU shared)
+- **CPU:** 20 ARM Cortex Cores (aarch64)
+- **OS:** Ubuntu 24.04 LTS
 
 **Services:**
 
@@ -14,7 +22,14 @@ This setup provides Docker containers for the Secretary Avatar System, optimized
 - **WebRTC Signaling** - Real-time streaming
 - **Avatar UI** - React frontend
 
-**Total GPU Requirements:** 14GB VRAM minimum (DGX has 40GB/80GB)
+**GPU Budget:**
+
+```
+Normal Mode:  ~9GB OS overhead = 119GB available
+Avatar Mode:  +14GB (LivePortrait 8GB + XTTS 4GB + Whisper 2GB) = 105GB free
+```
+
+**Docker Profiles:** Services use `profiles: [avatar]` for on-demand GPU activation
 
 ---
 
@@ -36,19 +51,33 @@ docker compose version
 ### Build and Run
 
 ```bash
-# Build all services
 cd docker/
+
+# Build all services
 docker compose -f docker-compose.dgx.yml build
 
-# Start all services
+# Normal Mode: Start non-GPU services only
 docker compose -f docker-compose.dgx.yml up -d
 
+# Avatar Mode: Start GPU services (on-demand)
+docker compose -f docker-compose.dgx.yml --profile avatar up -d
+
 # View logs
-docker compose -f docker-compose.dgx.yml logs -f
+docker compose -f docker-compose.dgx.yml logs -f liveportrait
 
 # Stop all services
 docker compose -f docker-compose.dgx.yml down
+
+# Stop avatar services only (free 14GB VRAM)
+docker compose -f docker-compose.dgx.yml --profile avatar down
 ```
+
+**Docker Profile Benefits:**
+
+- GPU services only start when avatar is active
+- Frees 14GB VRAM when not needed
+- Faster startup (no GPU initialization delay)
+- Lower power consumption
 
 ---
 

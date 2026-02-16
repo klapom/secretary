@@ -205,20 +205,82 @@
 
 ## 📊 Technical Decisions
 
+### DGX Spark Hardware Specifications
+
+| Component           | Specification                        |
+| ------------------- | ------------------------------------ |
+| **GPU**             | NVIDIA GB10 (Blackwell Architecture) |
+| **CUDA Capability** | sm_121 / sm_121a (CUDA 12.1+)        |
+| **Memory**          | 128GB Unified (CPU + GPU shared)     |
+| **CPU**             | 20 ARM Cortex Cores (aarch64)        |
+| **CUDA Version**    | 13.0                                 |
+| **Driver**          | 580.95.05+                           |
+| **OS**              | Ubuntu 24.04 LTS                     |
+
+**Framework Compatibility:**
+
+| Framework         | Status            | Notes                                            |
+| ----------------- | ----------------- | ------------------------------------------------ |
+| **PyTorch cu130** | ✅ Works          | NGC Container `nvcr.io/nvidia/pytorch:25.09-py3` |
+| **llama.cpp**     | ✅ Works          | Native CUDA compilation                          |
+| **Triton**        | ⚠️ Build Required | Must build from source for sm_121a               |
+| **TensorFlow**    | ❌ Unsupported    | Not supported on DGX Spark                       |
+
+**Required Environment Variables:**
+
+```bash
+export TORCH_CUDA_ARCH_LIST="12.1a"
+export TRITON_PTXAS_PATH=/usr/local/cuda/bin/ptxas
+export CUDACXX=/usr/local/cuda-13.0/bin/nvcc
+export CUDA_HOME=/usr/local/cuda-13.0
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+```
+
+**Flash Attention Workaround:**
+
+```python
+import torch
+torch.backends.cuda.enable_flash_sdp(False)
+torch.backends.cuda.enable_mem_efficient_sdp(True)
+```
+
+_Reason:_ Flash Attention kernels not yet compiled for sm_121. Memory-Efficient SDP provides acceptable performance (~10-12 sec/iter).
+
 ### Container Strategy
 
-**Base Images:**
+**Base Images (Updated for DGX Spark):**
 
-- LivePortrait: `nvcr.io/nvidia/pytorch:24.01-py3` (CUDA 12.1)
-- XTTS: `nvcr.io/nvidia/pytorch:24.01-py3`
-- Whisper: `python:3.11-slim` + CUDA toolkit
+- LivePortrait: `nvcr.io/nvidia/pytorch:25.09-py3` (CUDA 13.0, sm_121)
+- XTTS: `nvcr.io/nvidia/pytorch:25.09-py3` (CUDA 13.0)
+- Whisper: `nvidia/cuda:13.0.0-runtime-ubuntu24.04`
 
-**GPU Allocation:**
+**GPU Allocation (128GB Unified Memory):**
 
-- LivePortrait: 8GB VRAM (primary)
-- XTTS: 4GB VRAM (voice synthesis)
-- Whisper: 2GB VRAM (STT)
-- Total: 14GB VRAM minimum (DGX has 40GB/80GB)
+```
+Normal Mode (Chat):
+  - OS Overhead: ~9GB
+  - Available: ~119GB
+
+Avatar Mode (Add to Normal):
+  - LivePortrait: 8GB VRAM
+  - XTTS: 4GB VRAM
+  - Whisper: 2GB VRAM
+  - Total: 14GB VRAM
+  - Remaining: ~105GB free
+```
+
+**Docker Profiles (On-Demand Start):**
+
+```bash
+# Normal mode: No GPU services
+docker compose up -d
+
+# Avatar mode: Start GPU services when needed
+docker compose --profile avatar up -d
+```
+
+_Benefit:_ GPU services only run when avatar is active, freeing VRAM for other tasks.
 
 **Networking:**
 
@@ -264,13 +326,59 @@ See [KNOWN_ISSUES.md](../../KNOWN_ISSUES.md):
 1. WebRTC signaling tests skipped (fix in Phase 4)
 2. Gateway API key test flakiness (investigate)
 
-### ARM64 Considerations
+### ARM64 Considerations (DGX Spark aarch64)
 
-LivePortrait requires ARM64-compatible PyTorch build:
+DGX Spark uses **ARM Cortex cores (aarch64)** - requires ARM-compatible containers:
 
-- Use `nvcr.io/nvidia/pytorch:24.01-py3-arm64sbsa` base image
-- Test on DGX Grace Hopper (ARM64 + NVIDIA GPU)
-- Fallback to x86_64 if ARM64 unavailable
+**NGC PyTorch Container (Recommended):**
+
+- `nvcr.io/nvidia/pytorch:25.09-py3` (multi-arch, includes aarch64)
+- Pre-compiled for ARM64 + CUDA 13.0 + sm_121
+- Saves 2-3 hours of manual compilation
+
+**Alternative (Manual Build):**
+
+- Build PyTorch from source with `CMAKE_CUDA_ARCHITECTURES=121`
+- Not recommended - NGC containers are production-ready
+
+**Common Issues:**
+
+- `/usr/bin/nvcc` (CUDA 12.0) → Wrong! Use `/usr/local/cuda-13.0/bin/nvcc`
+- `pip install` fails → Use `--break-system-packages` (PEP 668)
+- Flash Attention errors → Disable flash_sdp, enable mem_efficient_sdp (see above)
+
+### Nemotron Model Integration (Optional)
+
+**Nemotron-3-Nano-30B-A3B-NVFP4** could replace LivePortrait for text-driven avatars:
+
+| Spec           | Value                              |
+| -------------- | ---------------------------------- |
+| Total Params   | 30B                                |
+| Active Params  | 3.5B (MoE, 10% activation)         |
+| Architecture   | Mamba2 + MoE + Attention           |
+| Quantization   | NVFP4 (Blackwell FP4 tensor cores) |
+| VRAM           | ~18 GB                             |
+| Context        | 256K (up to 1M)                    |
+| Expected tok/s | 60-80 on DGX Spark                 |
+
+**Use Case:** Text-to-avatar generation instead of image-driven LivePortrait.
+
+**Deployment via vLLM:**
+
+```yaml
+nemotron:
+  image: vllm/vllm-openai:latest
+  profiles: [avatar-nemotron]
+  command: >
+    --model nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4
+    --max-model-len 32768
+    --max-num-seqs 8
+    --gpu-memory-utilization 0.4
+    --trust-remote-code
+    --kv-cache-dtype fp8
+```
+
+**Decision:** Deferred to Sprint 05 - Focus on LivePortrait first (Sprint 04).
 
 ### Performance Targets
 
