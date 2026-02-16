@@ -55,6 +55,7 @@ import { getBearerToken, getHeader } from "./http-utils.js";
 import { handleOpenAiHttpRequest } from "./openai-http.js";
 import { handleOpenResponsesHttpRequest } from "./openresponses-http.js";
 import { handleToolsInvokeHttpRequest } from "./tools-invoke-http.js";
+import { handleCharactersHttpRequest } from "./characters-http.js";
 
 type SubsystemLogger = ReturnType<typeof createSubsystemLogger>;
 type HookAuthFailure = { count: number; windowStartedAtMs: number };
@@ -497,6 +498,24 @@ export function createGatewayHttpServer(opts: {
       }
       if (await handleSlackHttpRequest(req, res)) {
         return;
+      }
+      // Character management API
+      if (requestPath.startsWith("/api/characters")) {
+        const token = getBearerToken(req);
+        const authResult = await authorizeGatewayConnect({
+          auth: resolvedAuth,
+          connectAuth: token ? { token, password: token } : null,
+          req,
+          trustedProxies,
+          rateLimiter,
+        });
+        if (!authResult.ok) {
+          sendGatewayAuthFailure(res, authResult);
+          return;
+        }
+        if (await handleCharactersHttpRequest(req, res, requestPath)) {
+          return;
+        }
       }
       if (handlePluginRequest) {
         // Channel HTTP endpoints are gateway-auth protected by default.
