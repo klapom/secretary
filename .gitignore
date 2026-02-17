@@ -88,3 +88,5 @@ USER.md
 package-lock.json
 services/voice-pipeline/venv/
 services/voice-pipeline/models/
+services/voice-pipeline/integration_test_results.json
+services/voice-pipeline/test_audio.wav

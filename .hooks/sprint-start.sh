@@ -15,34 +15,7 @@ fi
 
 echo "🚀 Starting Sprint $SPRINT_NUM: $SPRINT_NAME"
 
-# 1. Analyze last CI run
-echo ""
-echo "📊 Analyzing last CI run..."
-
-if [ -d ".github/workflows" ]; then
-  # Get last workflow run status (requires gh CLI)
-  if command -v gh &> /dev/null; then
-    LAST_RUN=$(gh run list --limit 1 --json conclusion,databaseId,displayTitle,createdAt,url)
-    echo "$LAST_RUN" | jq '.'
-
-    # Extract status
-    STATUS=$(echo "$LAST_RUN" | jq -r '.[0].conclusion')
-
-    if [ "$STATUS" = "failure" ]; then
-      echo "⚠️  Last CI run FAILED. Adding CI improvement to sprint backlog."
-      # This will be added to sprint template
-    elif [ "$STATUS" = "success" ]; then
-      echo "✅ Last CI run passed."
-    fi
-  else
-    echo "⚠️  gh CLI not found. Skipping CI analysis."
-    echo "Install: brew install gh (Mac) or apt install gh (Linux)"
-  fi
-else
-  echo "ℹ️  No CI configured yet."
-fi
-
-# 2. Create Sprint file from template
+# 1. Create Sprint file from template
 echo ""
 echo "📄 Creating Sprint file..."
 

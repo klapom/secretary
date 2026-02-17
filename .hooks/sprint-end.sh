@@ -21,7 +21,100 @@ fi
 
 echo "🏁 Ending Sprint $SPRINT_NUM"
 
-# 1. Run all tests
+# 1. CI Health Check — letzten GitHub-Run holen, lokal grün machen
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "🔍 CI Health Check"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# 1a. Letzten GitHub Actions Lauf holen
+if command -v gh &> /dev/null && [ -d ".github/workflows" ]; then
+  echo ""
+  echo "📡 Letzter GitHub CI Lauf:"
+  LAST_RUN=$(gh run list --limit 1 --json conclusion,databaseId,displayTitle,status,createdAt,url 2>/dev/null || echo "[]")
+  CONCLUSION=$(echo "$LAST_RUN" | jq -r '.[0].conclusion // "unknown"')
+  RUN_ID=$(echo "$LAST_RUN"    | jq -r '.[0].databaseId // ""')
+  RUN_TITLE=$(echo "$LAST_RUN" | jq -r '.[0].displayTitle // "(unbekannt)"')
+  RUN_URL=$(echo "$LAST_RUN"   | jq -r '.[0].url // ""')
+  RUN_DATE=$(echo "$LAST_RUN"  | jq -r '.[0].createdAt // ""')
+
+  echo "   Titel:  $RUN_TITLE"
+  echo "   Datum:  $RUN_DATE"
+  echo "   Status: $CONCLUSION"
+  [ -n "$RUN_URL" ] && echo "   URL:    $RUN_URL"
+
+  if [ "$CONCLUSION" = "failure" ] && [ -n "$RUN_ID" ]; then
+    echo ""
+    echo "   ❌ Letzter CI Lauf FEHLGESCHLAGEN. Fehlgeschlagene Jobs:"
+    gh run view "$RUN_ID" --json jobs 2>/dev/null \
+      | jq -r '.jobs[] | select(.conclusion == "failure") | "   ❌ Job: \(.name)" , (.steps[] | select(.conclusion == "failure") | "      → Step: \(.name)")' \
+      || echo "   (Job-Details nicht verfügbar)"
+  elif [ "$CONCLUSION" = "success" ]; then
+    echo "   ✅ Letzter CI Lauf erfolgreich."
+  else
+    echo "   ⚠️  Status unklar ($CONCLUSION) — lokale Checks laufen trotzdem."
+  fi
+else
+  echo "   ℹ️  gh CLI nicht verfügbar oder kein .github/workflows — überspringe Online-Check."
+fi
+
+# 1b. Lokale CI Checks — Format → Lint → Type-Check → Tests
+echo ""
+echo "🏗️  Lokale CI Checks..."
+
+# Format: auto-fixen falls nötig (kein exit — nur korrigieren)
+echo ""
+echo "   [1/4] Format Check..."
+if ! pnpm format:check --quiet 2>/dev/null; then
+  echo "   ⚠️  Format-Probleme gefunden — auto-fixing mit pnpm format..."
+  pnpm format 2>/dev/null
+  echo "   ✅ Format auto-fixed (Dateien werden committet)"
+else
+  echo "   ✅ Format OK"
+fi
+
+# Lint: exit bei Fehler
+echo ""
+echo "   [2/4] Lint..."
+pnpm lint 2>&1 || {
+  echo ""
+  echo "   ❌ Lint fehlgeschlagen. Bitte Fehler beheben und sprint-end.sh neu starten."
+  exit 1
+}
+echo "   ✅ Lint OK"
+
+# Type-Check: exit bei Fehler
+echo ""
+echo "   [3/4] TypeScript Type-Check..."
+pnpm tsgo 2>&1 || {
+  echo ""
+  echo "   ❌ TypeScript-Fehler gefunden. Bitte beheben und sprint-end.sh neu starten."
+  exit 1
+}
+echo "   ✅ Type-Check OK"
+
+# Security Audit (nur warnen, kein Exit — moderate sind oft transitiv)
+echo ""
+echo "   [4/4] Security Audit..."
+AUDIT_OUT=$(pnpm audit --audit-level=high 2>&1 || true)
+VULN_HIGH=$(echo "$AUDIT_OUT" | grep -c "high\|critical" || true)
+VULN_MOD=$(echo "$AUDIT_OUT"  | grep -c "moderate" || true)
+if [ "$VULN_HIGH" -gt 0 ]; then
+  echo "   ❌ HIGH/CRITICAL Vulnerabilities gefunden — bitte sofort beheben!"
+  echo "$AUDIT_OUT" | grep -A 4 "high\|critical"
+  exit 1
+elif [ "$VULN_MOD" -gt 0 ]; then
+  echo "   ⚠️  $VULN_MOD moderate Vulnerability/ies — Backlog-Eintrag erstellen."
+  echo "$AUDIT_OUT" | grep "moderate" | head -5
+else
+  echo "   ✅ Keine bekannten Vulnerabilities (high/critical)"
+fi
+
+echo ""
+echo "✅ CI Health Check abgeschlossen"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# 2. Run all tests
 echo ""
 echo "🧪 Running tests..."
 
@@ -32,7 +125,7 @@ pnpm test || {
 
 echo "✅ Tests passed"
 
-# 2. Check test coverage
+# 3. Check test coverage
 echo ""
 echo "📊 Checking test coverage..."
 
@@ -49,7 +142,7 @@ else
   echo "✅ Coverage: ${COVERAGE}%"
 fi
 
-# 3. Run Persona Reviews
+# 4. Run Persona Reviews
 echo ""
 echo "👥 Running Persona Reviews..."
 
@@ -73,7 +166,7 @@ node .hooks/persona-reviews/security.cjs || true
 # - .sprint-review/important.json
 # - .sprint-review/nice-to-have.json
 
-# 4. Auto-fix Critical & Important
+# 5. Auto-fix Critical & Important
 echo ""
 echo "🔧 Auto-fixing Critical & Important issues..."
 
@@ -103,7 +196,7 @@ if [ -f ".sprint-review/important.json" ]; then
   fi
 fi
 
-# 5. Move Nice-to-Have to Technical Debt
+# 6. Move Nice-to-Have to Technical Debt
 echo ""
 echo "📋 Processing Nice-to-Have issues..."
 
@@ -142,7 +235,7 @@ if [ -f ".sprint-review/nice-to-have.json" ]; then
   fi
 fi
 
-# 6. Update CHANGELOG
+# 7. Update CHANGELOG
 echo ""
 echo "📝 Updating CHANGELOG.md..."
 
@@ -192,7 +285,7 @@ rm CHANGELOG.md.bak
 
 echo "✅ CHANGELOG.md updated"
 
-# 7. Update UseCases.md
+# 8. Update UseCases.md
 echo ""
 echo "📚 Updating UseCases.md..."
 
@@ -202,14 +295,14 @@ echo "📚 Updating UseCases.md..."
 echo "   (Manual review recommended)"
 echo "   Add implemented use cases to docs/UseCases.md"
 
-# 8. Update BEST_PRACTICE.md
+# 9. Update BEST_PRACTICE.md
 echo ""
 echo "💡 Updating BEST_PRACTICE.md..."
 
 echo "   Review sprint retrospective and add learnings to BEST_PRACTICE.md"
 echo "   File: $SPRINT_FILE (## Sprint Retrospective section)"
 
-# 9. Git commit
+# 10. Git commit
 echo ""
 echo "📦 Creating Sprint summary commit..."
 
@@ -227,7 +320,7 @@ Reviews: ${CRITICAL_COUNT:-0} Critical, ${IMPORTANT_COUNT:-0} Important (auto-fi
 
 See: docs/sprints/SPRINT_$(printf '%02d' $SPRINT_NUM).md"
 
-# 10. Tag release
+# 11. Tag release
 echo ""
 echo "🏷️  Creating git tag..."
 
@@ -235,7 +328,7 @@ git tag "v${CURRENT_VERSION}" -m "Sprint ${SPRINT_NUM}: ${SPRINT_NAME}"
 
 echo "✅ Tagged as v${CURRENT_VERSION}"
 
-# 11. Push
+# 12. Push
 echo ""
 echo "🚀 Push to remote?"
 echo "   git push origin main && git push origin v${CURRENT_VERSION}"
@@ -249,10 +342,10 @@ if [ "$PUSH" = "y" ]; then
   echo "✅ Pushed to remote"
 fi
 
-# 12. Cleanup
+# 13. Cleanup
 rm -rf .sprint-review
 
-# 13. Summary
+# 14. Summary
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "✅ Sprint $SPRINT_NUM completed!"

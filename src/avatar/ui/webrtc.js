@@ -12,51 +12,51 @@ class WebRTCManager {
   }
 
   init() {
-    this.statusElement = document.getElementById('status-webrtc');
-    this.videoElement = document.getElementById('avatar-video');
+    this.statusElement = document.getElementById("status-webrtc");
+    this.videoElement = document.getElementById("avatar-video");
 
     // Video controls
-    document.getElementById('start-video').addEventListener('click', () => this.connect());
-    document.getElementById('stop-video').addEventListener('click', () => this.disconnect());
+    document.getElementById("start-video").addEventListener("click", () => this.connect());
+    document.getElementById("stop-video").addEventListener("click", () => this.disconnect());
 
     // Listen for character and emotion changes
-    window.addEventListener('character-activated', (e) => {
+    window.addEventListener("character-activated", (e) => {
       this.onCharacterChanged(e.detail.character);
     });
 
-    window.addEventListener('emotion-changed', (e) => {
+    window.addEventListener("emotion-changed", (e) => {
       this.onEmotionChanged(e.detail);
     });
   }
 
   async connect() {
     if (this.isConnected) {
-      logger.warning('Already connected');
+      logger.warning("Already connected");
       return;
     }
 
     try {
-      logger.info('Connecting to WebRTC stream...');
-      this.updateStatus('pending', 'Connecting...');
+      logger.info("Connecting to WebRTC stream...");
+      this.updateStatus("pending", "Connecting...");
 
       // Create peer connection
       this.peerConnection = new RTCPeerConnection({
-        iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
+        iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
       });
 
       // Handle incoming track
       this.peerConnection.ontrack = (event) => {
-        logger.info('Received video track');
+        logger.info("Received video track");
         this.videoElement.srcObject = event.streams[0];
         livePortraitManager.showVideo();
-      });
+      };
 
       // Handle ICE candidates
       this.peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
-          logger.debug('ICE candidate', event.candidate);
+          logger.debug("ICE candidate", event.candidate);
           // Send candidate to server
-          this.sendSignaling({ type: 'ice-candidate', candidate: event.candidate });
+          void this.sendSignaling({ type: "ice-candidate", candidate: event.candidate });
         }
       };
 
@@ -64,45 +64,45 @@ class WebRTCManager {
       this.peerConnection.onconnectionstatechange = () => {
         logger.info(`Connection state: ${this.peerConnection.connectionState}`);
 
-        if (this.peerConnection.connectionState === 'connected') {
+        if (this.peerConnection.connectionState === "connected") {
           this.isConnected = true;
-          this.updateStatus('connected', 'Connected');
-          logger.success('WebRTC connected');
+          this.updateStatus("connected", "Connected");
+          logger.success("WebRTC connected");
 
-          document.getElementById('start-video').disabled = true;
-          document.getElementById('stop-video').disabled = false;
+          document.getElementById("start-video").disabled = true;
+          document.getElementById("stop-video").disabled = false;
         } else if (
-          this.peerConnection.connectionState === 'disconnected' ||
-          this.peerConnection.connectionState === 'failed'
+          this.peerConnection.connectionState === "disconnected" ||
+          this.peerConnection.connectionState === "failed"
         ) {
           this.disconnect();
         }
       };
 
       // Create data channel for sending commands
-      this.dataChannel = this.peerConnection.createDataChannel('avatar-control');
+      this.dataChannel = this.peerConnection.createDataChannel("avatar-control");
 
-      this.dataChannel.onopen = () => {
-        logger.info('Data channel opened');
-      };
+      this.dataChannel.addEventListener("open", () => {
+        logger.info("Data channel opened");
+      });
 
-      this.dataChannel.onmessage = (event) => {
-        logger.debug('Data channel message', event.data);
-      };
+      this.dataChannel.addEventListener("message", (event) => {
+        logger.debug("Data channel message", event.data);
+      });
 
       // Create offer
       const offer = await this.peerConnection.createOffer();
       await this.peerConnection.setLocalDescription(offer);
 
       // Send offer to server
-      await this.sendSignaling({ type: 'offer', sdp: offer.sdp });
+      await this.sendSignaling({ type: "offer", sdp: offer.sdp });
 
       // For now, we'll simulate the connection since WebRTC server may not be ready
-      logger.warning('WebRTC not fully implemented - showing placeholder');
-      this.updateStatus('pending', 'Simulated');
+      logger.warning("WebRTC not fully implemented - showing placeholder");
+      this.updateStatus("pending", "Simulated");
     } catch (error) {
-      logger.error('WebRTC connection failed', error.message);
-      this.updateStatus('error', 'Failed');
+      logger.error("WebRTC connection failed", error.message);
+      this.updateStatus("error", "Failed");
       this.disconnect();
     }
   }
@@ -122,12 +122,12 @@ class WebRTCManager {
     this.videoElement.srcObject = null;
     livePortraitManager.hideVideo();
 
-    this.updateStatus('pending', 'Not connected');
+    this.updateStatus("pending", "Not connected");
 
-    document.getElementById('start-video').disabled = false;
-    document.getElementById('stop-video').disabled = true;
+    document.getElementById("start-video").disabled = false;
+    document.getElementById("stop-video").disabled = true;
 
-    logger.info('WebRTC disconnected');
+    logger.info("WebRTC disconnected");
   }
 
   async sendSignaling(message) {
@@ -135,7 +135,7 @@ class WebRTCManager {
       // In a real implementation, this would send signaling messages
       // to the WebRTC server for connection establishment
 
-      logger.debug('Signaling message', message.type);
+      logger.debug("Signaling message", message.type);
 
       // For now, just log it
       // In production:
@@ -145,18 +145,18 @@ class WebRTCManager {
       //   body: JSON.stringify(message)
       // });
     } catch (error) {
-      logger.error('Signaling failed', error.message);
+      logger.error("Signaling failed", error.message);
       throw error;
     }
   }
 
   sendCommand(command, data) {
-    if (this.dataChannel && this.dataChannel.readyState === 'open') {
+    if (this.dataChannel && this.dataChannel.readyState === "open") {
       const message = JSON.stringify({ command, data });
       this.dataChannel.send(message);
       logger.debug(`Sent command: ${command}`, data);
     } else {
-      logger.warning('Data channel not ready');
+      logger.warning("Data channel not ready");
     }
   }
 
@@ -164,7 +164,7 @@ class WebRTCManager {
     logger.info(`Character changed: ${character.displayName}`);
 
     // Send character change command
-    this.sendCommand('change-character', {
+    this.sendCommand("change-character", {
       characterId: character.id,
       avatarPath: character.avatarImagePath,
       voiceId: character.voiceId,
@@ -175,7 +175,7 @@ class WebRTCManager {
     logger.info(`Emotion changed: ${emotion} (${intensity})`);
 
     // Send emotion command
-    this.sendCommand('change-emotion', {
+    this.sendCommand("change-emotion", {
       emotion,
       intensity,
     });
