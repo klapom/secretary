@@ -2,6 +2,37 @@
 
 Docs: https://docs.openclaw.ai
 
+## 2026.2.17 — Sprint 03: Avatar System Foundation
+
+### Added
+
+- **Avatar System**: LivePortrait microservice (Docker, ARM64/DGX Spark) with CPU inference (ONNX) — 80ms/frame
+- **WebRTC Streaming Server**: Signaling server (port 8086) with SDP exchange, ICE candidates, ping/pong keep-alive, and per-peer state machine
+- **Character Manager**: Full CRUD REST API (`/api/characters`) with SQLite backend, WAL mode, Bearer token auth, file uploads (avatar/voice), and 26+ unit tests
+- **Avatar Pipeline Orchestrator**: `src/avatar/orchestrator.ts` — connects LivePortrait → WebRTC → XTTS/Whisper
+- **Avatar Chat UI** (`ui/avatar-chat/`): React/Vite frontend with WebRTC, voice controls, character selector
+- **Path Traversal Security Module** (`src/security/path-traversal.ts`): multi-layer validator (null bytes, URL encoding, symlinks, whitelist)
+- **Sprint Automation**: Real persona review scripts (architect/security/tester/developer) with actual code analysis instead of stubs
+
+### Fixed
+
+- **WebRTC Server**: pingInterval memory leak — clearInterval now called in both close AND error handlers
+- **WebRTC Server**: All ws.send() calls wrapped in safeSend() to prevent unhandled exceptions on closed connections
+- **Character DB**: Unguarded JSON.parse() for metadata wrapped in try-catch (crash prevention)
+- **Gateway Tests (24 failures)**: All vi.mock() relative paths corrected after Sprint 01/02 module reorganization
+- **Integration Test Port Conflict**: WebRTC signaling port changed from 8081 (LivePortrait) to 8086/18081 (test)
+- **Whisper STT**: Upgraded from Distil-Whisper (English-only) to Whisper Large V3 (float16, correct German)
+- **Docker/ARM64**: torch 2.10.0+cu130 pre-installed before TTS; ONNX CPU-only for ARM64 (no GPU wheels)
+- **Docker (various)**: Python 3.11 compat, onnxruntime vs onnxruntime-gpu, model download skip in build
+- **Security**: Memory tool path validation hardened; path-traversal test expectations updated
+
+### Sprint 03 Metrics
+
+- **Tests**: 6878/6878 passing (24 pre-existing gateway failures fixed)
+- **Coverage**: 71% (threshold 70% ✅); `src/characters` 94.6%
+- **Critical Issues Fixed by Reviews**: 2 (pingInterval leak, JSON.parse crash)
+- **Persona Reviews**: 4 real LLM reviews (Architect, Security, Tester, Developer)
+
 ## 2026.2.16 (Unreleased)
 
 ### Changes

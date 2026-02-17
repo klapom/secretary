@@ -1,30 +1,37 @@
-# LivePortrait Python Dependencies
-# PyTorch is provided by base image (nvcr.io/nvidia/pytorch:24.01-py3)
+# LivePortrait Dependencies for DGX Spark (ARM64)
+# Note: torch==2.10.0+cu130 is pre-installed in Dockerfile before these
 
-# Core dependencies
-numpy>=1.24.0
-opencv-python>=4.8.0
-pillow>=10.0.0
-scipy>=1.11.0
+# Core LivePortrait deps (from upstream requirements_base.txt)
+numpy==1.26.4
+pyyaml==6.0.1
+opencv-python==4.10.0.84
+scipy==1.13.1
+imageio==2.34.2
+lmdb==1.4.1
+tqdm==4.66.4
+rich==13.7.1
+onnx==1.16.1
+scikit-image==0.24.0
+albumentations==1.4.10
+imageio-ffmpeg==0.5.1
+tyro==0.8.5
+pykalman==0.9.7
+pillow>=10.2.0
 
-# Deep learning
-# onnxruntime-gpu not available for ARM64, use CPU version (works with GPU via PyTorch)
-onnxruntime>=1.16.0
-facexlib>=0.3.0
+# ONNX Runtime CPU-only (no ARM64 GPU wheels exist)
+# Used only for InsightFace face detection/landmarks
+onnxruntime==1.18.0
+
+# InsightFace for face detection + cropping
 insightface>=0.7.3
 
-# Image processing
-imageio>=2.31.0
-imageio-ffmpeg>=0.4.9
-scikit-image>=0.21.0
+# HuggingFace for model download
+huggingface-hub>=0.20.0
+
+# transformers pinned <4.43.0 (same as XTTS — safe default)
+transformers>=4.38.0,<4.43.0
 
 # API server
 fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
 python-multipart>=0.0.6
-pydantic>=2.4.0
-
-# Utilities
-tqdm>=4.66.0
-einops>=0.7.0
-tyro>=0.5.0

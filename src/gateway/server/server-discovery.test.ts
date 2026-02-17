@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 const getTailnetHostname = vi.hoisted(() => vi.fn());
 
-vi.mock("../infra/tailscale.js", () => ({ getTailnetHostname }));
+vi.mock("../../infra/tailscale.js", () => ({ getTailnetHostname }));
 
 import { resolveTailnetDnsHint } from "./server-discovery.js";
 

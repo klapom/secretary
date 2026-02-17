@@ -10,6 +10,7 @@ import { registerSkillsChangeListener } from "../../agents/skills/refresh.js";
 import { initSubagentRegistry } from "../../agents/subagent-registry.js";
 import { getTotalPendingReplies } from "../../auto-reply/reply/dispatcher-registry.js";
 import { type ChannelId, listChannelPlugins } from "../../channels/plugins/index.js";
+import { getCharacterDatabase, ensureDefaultCharacter } from "../../characters/index.js";
 import { formatCliCommand } from "../../cli/command-format.js";
 import { createDefaultDeps } from "../../cli/deps.js";
 import {
@@ -43,13 +44,29 @@ import {
 import { scheduleGatewayUpdateCheck } from "../../infra/update-startup.js";
 import { startDiagnosticHeartbeat, stopDiagnosticHeartbeat } from "../../logging/diagnostic.js";
 import { createSubsystemLogger, runtimeForLogger } from "../../logging/subsystem.js";
-import { getGlobalHookRunner, runGlobalGatewayStopSafely } from "../../plugins/hook-runner-global.js";
+import {
+  getGlobalHookRunner,
+  runGlobalGatewayStopSafely,
+} from "../../plugins/hook-runner-global.js";
 import { createEmptyPluginRegistry } from "../../plugins/registry.js";
 import { getTotalQueueSize } from "../../process/command-queue.js";
 import { runOnboardingWizard } from "../../wizard/onboarding.js";
 import { createAuthRateLimiter, type AuthRateLimiter } from "../core/auth-rate-limit.js";
 import { startGatewayConfigReloader } from "../core/config-reload.js";
 import { loadGatewayPlugins } from "../hooks/server-plugins.js";
+import { createExecApprovalHandlers } from "../server-methods/exec-approval.js";
+import { safeParseJson } from "../server-methods/nodes.helpers.js";
+import { resolveSessionKeyForRun } from "../sessions/server-session-key.js";
+import { createWizardSessionTracker } from "../sessions/server-wizard-sessions.js";
+import { ExecApprovalManager } from "../shared/exec-approval-manager.js";
+import { NodeRegistry } from "../shared/node-registry.js";
+import {
+  getHealthCache,
+  getHealthVersion,
+  getPresenceVersion,
+  incrementPresenceVersion,
+  refreshGatewayHealthSnapshot,
+} from "./health-state.js";
 import { createChannelManager } from "./server-channels.js";
 import { createAgentEventHandler } from "./server-chat.js";
 import { createGatewayCloseHandler } from "./server-close.js";
@@ -59,8 +76,6 @@ import { applyGatewayLaneConcurrency } from "./server-lanes.js";
 import { startGatewayMaintenanceTimers } from "./server-maintenance.js";
 import { GATEWAY_EVENTS, listGatewayMethods } from "./server-methods-list.js";
 import { coreGatewayHandlers } from "./server-methods.js";
-import { createExecApprovalHandlers } from "../server-methods/exec-approval.js";
-import { safeParseJson } from "../server-methods/nodes.helpers.js";
 import { hasConnectedMobileNode } from "./server-mobile-nodes.js";
 import { loadGatewayModelCatalog } from "./server-model-catalog.js";
 import { createNodeSubscriptionManager } from "./server-node-subscriptions.js";
@@ -71,18 +86,7 @@ import { logGatewayStartup } from "./server-startup-log.js";
 import { startGatewaySidecars } from "./server-startup.js";
 import { startGatewayTailscaleExposure } from "./server-tailscale.js";
 import { attachGatewayWsHandlers } from "./server-ws-runtime.js";
-import {
-  getHealthCache,
-  getHealthVersion,
-  getPresenceVersion,
-  incrementPresenceVersion,
-  refreshGatewayHealthSnapshot,
-} from "./health-state.js";
 import { loadGatewayTlsRuntime } from "./tls.js";
-import { resolveSessionKeyForRun } from "../sessions/server-session-key.js";
-import { createWizardSessionTracker } from "../sessions/server-wizard-sessions.js";
-import { ExecApprovalManager } from "../shared/exec-approval-manager.js";
-import { NodeRegistry } from "../shared/node-registry.js";
 
 export { __resetModelCatalogCacheForTest } from "./server-model-catalog.js";
 
@@ -227,6 +231,20 @@ export async function startGatewayServer(
   }
 
   const cfgAtStart = loadConfig();
+
+  // Initialize character system with default character
+  try {
+    const characterDb = getCharacterDatabase({
+      dbPath: "./data/characters/characters.db",
+      assetsDir: "./data/characters/assets",
+    });
+    ensureDefaultCharacter(characterDb);
+  } catch (err) {
+    log.warn(
+      `gateway: failed to initialize character system: ${err instanceof Error ? err.message : String(err)}`,
+    );
+  }
+
   const diagnosticsEnabled = isDiagnosticsEnabled(cfgAtStart);
   if (diagnosticsEnabled) {
     startDiagnosticHeartbeat();

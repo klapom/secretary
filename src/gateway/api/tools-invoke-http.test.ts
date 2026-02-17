@@ -7,11 +7,11 @@ const TEST_GATEWAY_TOKEN = "test-gateway-token-1234567890";
 let cfg: Record<string, unknown> = {};
 
 // Perf: keep this suite pure unit. Mock heavyweight config/session modules.
-vi.mock("../config/config.js", () => ({
+vi.mock("../../config/config.js", () => ({
   loadConfig: () => cfg,
 }));
 
-vi.mock("../config/sessions.js", () => ({
+vi.mock("../../config/sessions.js", () => ({
   resolveMainSessionKey: (params?: {
     session?: { scope?: string; mainKey?: string };
     agents?: { list?: Array<{ id?: string; default?: boolean }> };
@@ -33,25 +33,21 @@ vi.mock("../config/sessions.js", () => ({
   },
 }));
 
-vi.mock("./auth.js", () => ({
+vi.mock("../core/auth.js", () => ({
   authorizeGatewayConnect: async () => ({ ok: true }),
 }));
 
-vi.mock("../logger.js", () => ({
-  logWarn: () => {},
-}));
-
-vi.mock("../plugins/config-state.js", () => ({
+vi.mock("../../plugins/config-state.js", () => ({
   isTestDefaultMemorySlotDisabled: () => false,
 }));
 
-vi.mock("../plugins/tools.js", () => ({
+vi.mock("../../plugins/tools.js", () => ({
   getPluginToolMeta: () => undefined,
 }));
 
 // Perf: the real tool factory instantiates many tools per request; for these HTTP
 // routing/policy tests we only need a small set of tool names.
-vi.mock("../agents/openclaw-tools.js", () => {
+vi.mock("../../agents/openclaw-tools.js", () => {
   const toolInputError = (message: string) => {
     const err = new Error(message);
     err.name = "ToolInputError";

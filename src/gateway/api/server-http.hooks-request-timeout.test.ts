@@ -7,8 +7,8 @@ const { readJsonBodyMock } = vi.hoisted(() => ({
   readJsonBodyMock: vi.fn(),
 }));
 
-vi.mock("./hooks.js", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("./hooks.js")>();
+vi.mock("../hooks/hooks.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../hooks/hooks.js")>();
   return {
     ...actual,
     readJsonBody: readJsonBodyMock,

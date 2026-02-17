@@ -125,7 +125,9 @@ describe("memory-tool.ts Security Tests (P0 Fix)", () => {
 
       const resultText = JSON.stringify(result);
       expect(resultText).toContain("Security: Path access denied");
-      expect(resultText).toContain("traversal sequence");
+      // path.resolve() normalizes ../ before validation, so the validator
+      // correctly reports "outside allowed directories" rather than "traversal sequence"
+      expect(resultText).toMatch(/traversal sequence|outside allowed directories/);
       expect(stubManager.readFile).not.toHaveBeenCalled();
     });
 

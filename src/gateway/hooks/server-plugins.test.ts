@@ -5,7 +5,7 @@ import { loadGatewayPlugins } from "./server-plugins.js";
 
 const loadOpenClawPlugins = vi.hoisted(() => vi.fn());
 
-vi.mock("../plugins/loader.js", () => ({
+vi.mock("../../plugins/loader.js", () => ({
   loadOpenClawPlugins,
 }));
 

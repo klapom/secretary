@@ -1,13 +1,12 @@
-# LivePortrait Dockerfile for DGX Spark (ARM64 + CUDA 12.1)
-# Hardware: NVIDIA GB10 Blackwell (sm_121), 20 ARM Cortex Cores
-# CUDA: 12.1, PyTorch with cu121 support (Python 3.11 for compatibility)
+# LivePortrait Dockerfile for DGX Spark (ARM64 + GB10 GPU)
+# PyTorch models on GPU, InsightFace on CPU (no onnxruntime-gpu ARM64 wheels)
+# Models: ~500MB PyTorch + ~300MB InsightFace, cached in Docker volume
 
 FROM nvcr.io/nvidia/pytorch:24.01-py3
 
-# Set working directory
 WORKDIR /app
 
-# Install system dependencies
+# System dependencies
 RUN apt-get update && apt-get install -y \
     git \
     wget \
@@ -17,37 +16,44 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     libxrender-dev \
     libgomp1 \
+    libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
+
+# Install CUDA-enabled torch 2.10.0+cu130 FIRST (before any other pip installs).
+# NGC base has torch 2.2.0a0+81ea7a4 (no GB10/sm_121 support).
+RUN pip install --no-cache-dir \
+    "torch==2.10.0+cu130" \
+    "torchvision==0.25.0+cu130" \
+    "torchaudio==2.10.0+cu130" \
+    --index-url https://download.pytorch.org/whl/cu130
+
+# Remove NGC's broken cv2 before installing our pinned version
+RUN pip uninstall -y opencv-python opencv-python-headless opencv-contrib-python 2>/dev/null; \
+    rm -rf /usr/local/lib/python3.10/dist-packages/cv2* 2>/dev/null; true
 
 # Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Clone LivePortrait repository (or copy from local)
-# Note: Adjust this based on your LivePortrait setup
-RUN git clone https://github.com/KwaiVGI/LivePortrait.git /app/liveportrait || \
-    echo "Using local LivePortrait copy"
+# Clone LivePortrait repository
+RUN git clone --depth 1 https://github.com/KwaiVGI/LivePortrait.git /app/LivePortrait
 
-# Create models directory (models will be downloaded at runtime)
-# Note: HuggingFace URLs changed, models are downloaded on first run by LivePortrait
+# Create models directory (populated at runtime from HuggingFace, cached in volume)
 RUN mkdir -p /app/models
 
-# Copy service wrapper
+# Copy service files
 COPY liveportrait_service.py /app/
 COPY entrypoint.sh /app/
-
 RUN chmod +x /app/entrypoint.sh
 
-# Expose HTTP API port
 EXPOSE 8081
 
-# Health check endpoint
-HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=5 \
     CMD curl -f http://localhost:8081/health || exit 1
 
-# Set environment variables
-ENV PYTHONPATH=/app/liveportrait:$PYTHONPATH
+ENV PYTHONPATH=/app/LivePortrait:$PYTHONPATH
 ENV CUDA_VISIBLE_DEVICES=0
+# InsightFace uses ONNX on CPU (no ARM64 GPU support)
+ENV ONNXRUNTIME_PROVIDERS=CPUExecutionProvider
 
-# Run service
 CMD ["/app/entrypoint.sh"]

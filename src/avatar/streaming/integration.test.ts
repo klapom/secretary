@@ -15,7 +15,7 @@ import { createStreamingSystem } from "./index.js";
 
 describe("Avatar System Integration Tests", () => {
   let streamingSystem: StreamingSystem;
-  const TEST_PORT = 8081;
+  const TEST_PORT = 18081; // Use high port to avoid conflict with LivePortrait (8081)
 
   beforeAll(async () => {
     // Create streaming system for testing

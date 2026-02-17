@@ -17,8 +17,8 @@
  */
 
 import type { WebSocket, WebSocketServer } from "ws";
-import { EventEmitter } from "node:events";
 import { randomUUID } from "node:crypto";
+import { EventEmitter } from "node:events";
 
 export interface WebRTCConfig {
   /** WebSocket server port for signaling */
@@ -137,10 +137,13 @@ export class WebRTCStreamingServer extends EventEmitter {
     // Check max clients
     if (this.peers.size >= this.config.maxClients) {
       this.log("warn", `Max clients reached (${this.config.maxClients}), rejecting connection`);
-      ws.send(JSON.stringify({
-        type: "error",
-        error: "Server full",
-      } satisfies SignalingMessage));
+      this.safeSend(
+        ws,
+        JSON.stringify({
+          type: "error",
+          error: "Server full",
+        } satisfies SignalingMessage),
+      );
       ws.close();
       return;
     }
@@ -156,20 +159,28 @@ export class WebRTCStreamingServer extends EventEmitter {
     this.log("info", `New peer connected: ${peerId} (${this.peers.size} total)`);
 
     // Send initial config to client
-    ws.send(JSON.stringify({
-      type: "config",
-      peerId,
-      data: {
-        iceServers: this.config.iceServers,
-        videoCodec: this.config.videoCodec,
-        audioCodec: this.config.audioCodec,
-      },
-    }));
+    this.safeSend(
+      ws,
+      JSON.stringify({
+        type: "config",
+        peerId,
+        data: {
+          iceServers: this.config.iceServers,
+          videoCodec: this.config.videoCodec,
+          audioCodec: this.config.audioCodec,
+        },
+      }),
+    );
 
     // Handle messages
     ws.on("message", (data) => {
       try {
-        const message = JSON.parse(data.toString()) as SignalingMessage;
+        const raw = Array.isArray(data)
+          ? Buffer.concat(data).toString()
+          : Buffer.isBuffer(data)
+            ? data.toString()
+            : Buffer.from(data).toString();
+        const message = JSON.parse(raw) as SignalingMessage;
         this.handleSignalingMessage(peerId, message);
       } catch (error) {
         this.log("error", `Failed to parse message from ${peerId}:`, error);
@@ -184,13 +195,15 @@ export class WebRTCStreamingServer extends EventEmitter {
 
     ws.on("error", (error) => {
       this.log("error", `WebSocket error for peer ${peerId}:`, error);
+      clearInterval(pingInterval); // Clear before disconnect to prevent leak
       this.disconnectPeer(peerId, "WebSocket error");
     });
 
     // Ping/pong for keep-alive
     const pingInterval = setInterval(() => {
-      if (ws.readyState === 1) { // OPEN
-        ws.send(JSON.stringify({ type: "ping" } satisfies SignalingMessage));
+      if (ws.readyState === 1) {
+        // WebSocket.OPEN
+        this.safeSend(ws, JSON.stringify({ type: "ping" } satisfies SignalingMessage));
       }
     }, 30000); // 30 seconds
 
@@ -263,11 +276,14 @@ export class WebRTCStreamingServer extends EventEmitter {
       return;
     }
 
-    peer.ws.send(JSON.stringify({
-      type: "answer",
-      peerId,
-      data: answer,
-    } satisfies SignalingMessage));
+    this.safeSend(
+      peer.ws,
+      JSON.stringify({
+        type: "answer",
+        peerId,
+        data: answer,
+      } satisfies SignalingMessage),
+    );
 
     peer.state = "connected";
   }
@@ -282,11 +298,14 @@ export class WebRTCStreamingServer extends EventEmitter {
       return;
     }
 
-    peer.ws.send(JSON.stringify({
-      type: "ice-candidate",
-      peerId,
-      data: candidate,
-    } satisfies SignalingMessage));
+    this.safeSend(
+      peer.ws,
+      JSON.stringify({
+        type: "ice-candidate",
+        peerId,
+        data: candidate,
+      } satisfies SignalingMessage),
+    );
   }
 
   /**
@@ -298,10 +317,13 @@ export class WebRTCStreamingServer extends EventEmitter {
       return;
     }
 
-    peer.ws.send(JSON.stringify({
-      type: "error",
-      error,
-    } satisfies SignalingMessage));
+    this.safeSend(
+      peer.ws,
+      JSON.stringify({
+        type: "error",
+        error,
+      } satisfies SignalingMessage),
+    );
   }
 
   /**
@@ -341,9 +363,21 @@ export class WebRTCStreamingServer extends EventEmitter {
    */
   broadcast(message: Omit<SignalingMessage, "peerId">): void {
     for (const peer of this.peers.values()) {
-      if (peer.ws.readyState === 1) { // OPEN
-        peer.ws.send(JSON.stringify(message));
+      if (peer.ws.readyState === 1) {
+        // WebSocket.OPEN
+        this.safeSend(peer.ws, JSON.stringify(message));
       }
+    }
+  }
+
+  /**
+   * Safe WebSocket send — swallows errors if socket is closing/closed.
+   */
+  private safeSend(ws: WebSocket, data: string): void {
+    try {
+      ws.send(data);
+    } catch (err) {
+      this.log("error", "ws.send() failed:", err);
     }
   }
 

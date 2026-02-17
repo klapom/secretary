@@ -2,18 +2,18 @@
  * Character database connection and operations.
  */
 
-import fs from "node:fs";
-import path from "node:path";
 import type { DatabaseSync } from "node:sqlite";
 import crypto from "node:crypto";
-import { requireNodeSqlite } from "../memory/sqlite.js";
-import { initializeCharacterSchema } from "./schema.js";
+import fs from "node:fs";
+import path from "node:path";
 import type {
   CharacterProfile,
   CreateCharacterInput,
   UpdateCharacterInput,
   CharacterAssetUpload,
 } from "../config/types.characters.js";
+import { requireNodeSqlite } from "../memory/sqlite.js";
+import { initializeCharacterSchema } from "./schema.js";
 
 export interface CharacterDatabaseConfig {
   dbPath: string;
@@ -83,9 +83,11 @@ export class CharacterDatabase {
    */
   getCharacterById(id: string): CharacterProfile | null {
     const stmt = this.db.prepare("SELECT * FROM character_profiles WHERE id = ?");
-    const row = stmt.get(id) as any;
+    const row = stmt.get(id) as Record<string, unknown>;
 
-    if (!row) return null;
+    if (!row) {
+      return null;
+    }
 
     return this.rowToCharacter(row);
   }
@@ -95,9 +97,11 @@ export class CharacterDatabase {
    */
   getCharacterByName(name: string): CharacterProfile | null {
     const stmt = this.db.prepare("SELECT * FROM character_profiles WHERE name = ?");
-    const row = stmt.get(name) as any;
+    const row = stmt.get(name) as Record<string, unknown>;
 
-    if (!row) return null;
+    if (!row) {
+      return null;
+    }
 
     return this.rowToCharacter(row);
   }
@@ -107,7 +111,7 @@ export class CharacterDatabase {
    */
   getAllCharacters(): CharacterProfile[] {
     const stmt = this.db.prepare("SELECT * FROM character_profiles ORDER BY updated_at DESC");
-    const rows = stmt.all() as any[];
+    const rows = stmt.all() as Record<string, unknown>[];
 
     return rows.map((row) => this.rowToCharacter(row));
   }
@@ -117,9 +121,11 @@ export class CharacterDatabase {
    */
   getActiveCharacter(): CharacterProfile | null {
     const stmt = this.db.prepare("SELECT * FROM character_profiles WHERE is_active = 1 LIMIT 1");
-    const row = stmt.get() as any;
+    const row = stmt.get() as Record<string, unknown>;
 
-    if (!row) return null;
+    if (!row) {
+      return null;
+    }
 
     return this.rowToCharacter(row);
   }
@@ -129,11 +135,13 @@ export class CharacterDatabase {
    */
   updateCharacter(id: string, input: UpdateCharacterInput): CharacterProfile | null {
     const existing = this.getCharacterById(id);
-    if (!existing) return null;
+    if (!existing) {
+      return null;
+    }
 
     const now = Date.now();
     const fields: string[] = ["updated_at = ?"];
-    const values: any[] = [now];
+    const values: (string | number | null)[] = [now];
 
     if (input.displayName !== undefined) {
       fields.push("display_name = ?");
@@ -174,7 +182,9 @@ export class CharacterDatabase {
   deleteCharacter(id: string): boolean {
     // Check if character exists
     const existing = this.getCharacterById(id);
-    if (!existing) return false;
+    if (!existing) {
+      return false;
+    }
 
     // Delete associated assets
     const assets = this.getCharacterAssets(id);
@@ -200,16 +210,17 @@ export class CharacterDatabase {
    */
   activateCharacter(id: string): CharacterProfile | null {
     const existing = this.getCharacterById(id);
-    if (!existing) return null;
+    if (!existing) {
+      return null;
+    }
 
     // Deactivate all characters
     this.db.prepare("UPDATE character_profiles SET is_active = 0").run();
 
     // Activate target character
-    this.db.prepare("UPDATE character_profiles SET is_active = 1, updated_at = ? WHERE id = ?").run(
-      Date.now(),
-      id,
-    );
+    this.db
+      .prepare("UPDATE character_profiles SET is_active = 1, updated_at = ? WHERE id = ?")
+      .run(Date.now(), id);
 
     return this.getCharacterById(id);
   }
@@ -285,26 +296,41 @@ export class CharacterDatabase {
     uploaded_at: number;
   }> {
     const stmt = this.db.prepare("SELECT * FROM character_assets WHERE character_id = ?");
-    return stmt.all(characterId) as any[];
+    return stmt.all(characterId) as Array<{
+      id: string;
+      asset_type: string;
+      file_path: string;
+      mime_type: string;
+      file_size: number;
+      uploaded_at: number;
+    }>;
   }
 
   /**
    * Convert database row to CharacterProfile
    */
-  private rowToCharacter(row: any): CharacterProfile {
+  private rowToCharacter(row: Record<string, unknown>): CharacterProfile {
     return {
-      id: row.id,
-      name: row.name,
-      displayName: row.display_name,
-      description: row.description || undefined,
-      avatarImagePath: row.avatar_image_path || undefined,
-      voiceId: row.voice_id || undefined,
-      voiceSamplePath: row.voice_sample_path || undefined,
-      personality: row.personality || undefined,
+      id: row.id as string,
+      name: row.name as string,
+      displayName: row.display_name as string,
+      description: (row.description as string | null) || undefined,
+      avatarImagePath: (row.avatar_image_path as string | null) || undefined,
+      voiceId: (row.voice_id as string | null) || undefined,
+      voiceSamplePath: (row.voice_sample_path as string | null) || undefined,
+      personality: (row.personality as string | null) || undefined,
       isActive: row.is_active === 1,
-      createdAt: row.created_at,
-      updatedAt: row.updated_at,
-      metadata: row.metadata ? JSON.parse(row.metadata) : undefined,
+      createdAt: row.created_at as number,
+      updatedAt: row.updated_at as number,
+      metadata: row.metadata
+        ? (() => {
+            try {
+              return JSON.parse(row.metadata as string);
+            } catch {
+              return undefined;
+            }
+          })()
+        : undefined,
     };
   }
 

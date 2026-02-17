@@ -1,4 +1,5 @@
 import { Type } from "@sinclair/typebox";
+import path from "node:path";
 import type { OpenClawConfig } from "../../config/config.js";
 import type { MemoryCitationsMode } from "../../config/types.memory.js";
 import type { MemorySearchResult } from "../../memory/types.js";
@@ -147,14 +148,14 @@ export function createMemoryGetTool(options: {
           });
         }
 
-        // Resolve path to absolute if needed
-        const absPath = relPath.startsWith("/") ? relPath : `${workspaceDir}/${relPath}`;
+        // Resolve path to absolute (path.resolve handles leading slashes and ../  correctly)
+        const absPath = path.resolve(workspaceDir, relPath);
 
         // Validate the absolute path
         const safePath = pathValidator.validateOrThrow(absPath);
 
-        // Convert back to relative path for the manager
-        const validatedRelPath = safePath.replace(workspaceDir, "").replace(/^\//, "");
+        // Convert back to relative path for the manager (path.relative avoids boundary collision)
+        const validatedRelPath = path.relative(workspaceDir, safePath);
 
         const result = await manager.readFile({
           relPath: validatedRelPath,
@@ -178,7 +179,12 @@ export function createMemoryGetTool(options: {
             error: `Security: Path access denied - ${message}`,
           });
         }
-        return jsonResult({ path: params.path as string, text: "", disabled: true, error: message });
+        return jsonResult({
+          path: params.path as string,
+          text: "",
+          disabled: true,
+          error: message,
+        });
       }
     },
   };

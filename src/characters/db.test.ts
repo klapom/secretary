@@ -4,8 +4,10 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { DatabaseSync } from "node:sqlite";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
-import { CharacterDatabase } from "./db.js";
+import { CharacterDatabase, getCharacterDatabase, closeCharacterDatabase } from "./db.js";
+import { dropCharacterSchema, vacuumCharacterDatabase, getSchemaVersion } from "./schema.js";
 
 describe("CharacterDatabase", () => {
   const testDbPath = path.join(process.cwd(), "test-characters.db");
@@ -236,5 +238,238 @@ describe("CharacterDatabase", () => {
       const active = db.getActiveCharacter();
       expect(active).toBeNull();
     });
+  });
+
+  describe("updateCharacterAvatar", () => {
+    it("should update character avatar path", () => {
+      const input = { name: "test-char", displayName: "Test" };
+      const char = db.createCharacter(input);
+
+      const avatarPath = "/path/to/avatar.png";
+      const updated = db.updateCharacterAvatar(char.id, avatarPath);
+
+      expect(updated).toBeDefined();
+      expect(updated!.avatarImagePath).toBe(avatarPath);
+    });
+
+    it("should return null for non-existent character", () => {
+      const result = db.updateCharacterAvatar("non-existent", "/path/avatar.png");
+      expect(result).toBeNull();
+    });
+  });
+
+  describe("updateCharacterVoice", () => {
+    it("should update character voice sample and voice ID", () => {
+      const input = { name: "test-char", displayName: "Test" };
+      const char = db.createCharacter(input);
+
+      const voicePath = "/path/to/voice.mp3";
+      const voiceId = "voice-123";
+      const updated = db.updateCharacterVoice(char.id, voicePath, voiceId);
+
+      expect(updated).toBeDefined();
+      expect(updated!.voiceSamplePath).toBe(voicePath);
+      expect(updated!.voiceId).toBe(voiceId);
+    });
+
+    it("should update voice sample without voice ID", () => {
+      const input = { name: "test-char", displayName: "Test" };
+      const char = db.createCharacter(input);
+
+      const voicePath = "/path/to/voice.wav";
+      const updated = db.updateCharacterVoice(char.id, voicePath);
+
+      expect(updated).toBeDefined();
+      expect(updated!.voiceSamplePath).toBe(voicePath);
+      expect(updated!.voiceId).toBeUndefined();
+    });
+
+    it("should return null for non-existent character", () => {
+      const result = db.updateCharacterVoice("non-existent", "/path/voice.mp3");
+      expect(result).toBeNull();
+    });
+  });
+
+  describe("asset management", () => {
+    it("should record asset uploads", () => {
+      const input = { name: "test-char", displayName: "Test" };
+      const char = db.createCharacter(input);
+
+      db.recordAssetUpload({
+        characterId: char.id,
+        assetType: "avatar",
+        filePath: "/path/avatar.png",
+        mimeType: "image/png",
+        fileSize: 1024,
+      });
+
+      const assets = db.getCharacterAssets(char.id);
+      expect(assets).toHaveLength(1);
+      expect(assets[0].asset_type).toBe("avatar");
+      expect(assets[0].file_path).toBe("/path/avatar.png");
+      expect(assets[0].mime_type).toBe("image/png");
+      expect(assets[0].file_size).toBe(1024);
+    });
+
+    it("should retrieve multiple assets for a character", () => {
+      const input = { name: "test-char", displayName: "Test" };
+      const char = db.createCharacter(input);
+
+      db.recordAssetUpload({
+        characterId: char.id,
+        assetType: "avatar",
+        filePath: "/path/avatar.png",
+        mimeType: "image/png",
+        fileSize: 1024,
+      });
+
+      db.recordAssetUpload({
+        characterId: char.id,
+        assetType: "voice",
+        filePath: "/path/voice.mp3",
+        mimeType: "audio/mpeg",
+        fileSize: 5120,
+      });
+
+      const assets = db.getCharacterAssets(char.id);
+      expect(assets).toHaveLength(2);
+      expect(assets.map((a) => a.asset_type)).toContain("avatar");
+      expect(assets.map((a) => a.asset_type)).toContain("voice");
+    });
+
+    it("should return empty array for character with no assets", () => {
+      const input = { name: "test-char", displayName: "Test" };
+      const char = db.createCharacter(input);
+
+      const assets = db.getCharacterAssets(char.id);
+      expect(assets).toHaveLength(0);
+    });
+  });
+
+  describe("deleteCharacter with asset files", () => {
+    it("should delete asset files from disk on character deletion", () => {
+      const char = db.createCharacter({ name: "asset-char", displayName: "Asset Char" });
+
+      // Create a real temporary file to simulate an uploaded asset
+      const fakeAssetPath = path.join(testAssetsDir, "fake-avatar.png");
+      fs.mkdirSync(testAssetsDir, { recursive: true });
+      fs.writeFileSync(fakeAssetPath, "fake image data");
+
+      db.recordAssetUpload({
+        characterId: char.id,
+        assetType: "avatar",
+        filePath: fakeAssetPath,
+        mimeType: "image/png",
+        fileSize: 16,
+      });
+
+      expect(fs.existsSync(fakeAssetPath)).toBe(true);
+
+      const deleted = db.deleteCharacter(char.id);
+
+      expect(deleted).toBe(true);
+      expect(fs.existsSync(fakeAssetPath)).toBe(false);
+    });
+
+    it("should not fail if asset file does not exist on disk", () => {
+      const char = db.createCharacter({ name: "missing-asset-char", displayName: "Missing Asset" });
+
+      db.recordAssetUpload({
+        characterId: char.id,
+        assetType: "avatar",
+        filePath: "/tmp/non-existent-file-xyz.png",
+        mimeType: "image/png",
+        fileSize: 0,
+      });
+
+      // Should not throw even if file is missing
+      expect(() => db.deleteCharacter(char.id)).not.toThrow();
+    });
+  });
+
+  describe("ensureDefaultCharacter", () => {
+    it("should create default character if none exist", async () => {
+      const { ensureDefaultCharacter } = await import("./default-character.js");
+
+      const chars = db.getAllCharacters();
+      expect(chars).toHaveLength(0);
+
+      ensureDefaultCharacter(db);
+
+      const updated = db.getAllCharacters();
+      expect(updated).toHaveLength(1);
+      expect(updated[0].name).toBe("secretary");
+      expect(updated[0].isActive).toBe(true);
+    });
+
+    it("should not create default character if one exists", async () => {
+      const { ensureDefaultCharacter } = await import("./default-character.js");
+
+      db.createCharacter({
+        name: "existing-char",
+        displayName: "Existing",
+      });
+
+      ensureDefaultCharacter(db);
+
+      const chars = db.getAllCharacters();
+      expect(chars).toHaveLength(1);
+      expect(chars[0].name).toBe("existing-char");
+    });
+  });
+
+  describe("singleton (getCharacterDatabase / closeCharacterDatabase)", () => {
+    const singletonDbPath = path.join(process.cwd(), "test-singleton.db");
+    const singletonAssetsDir = path.join(process.cwd(), "test-singleton-assets");
+
+    afterEach(() => {
+      closeCharacterDatabase();
+      for (const f of [singletonDbPath, `${singletonDbPath}-shm`, `${singletonDbPath}-wal`]) {
+        if (fs.existsSync(f)) {
+          fs.unlinkSync(f);
+        }
+      }
+      if (fs.existsSync(singletonAssetsDir)) {
+        fs.rmSync(singletonAssetsDir, { recursive: true });
+      }
+    });
+
+    it("should return the same instance on repeated calls", () => {
+      const config = { dbPath: singletonDbPath, assetsDir: singletonAssetsDir };
+      const first = getCharacterDatabase(config);
+      const second = getCharacterDatabase(config);
+      expect(first).toBe(second);
+    });
+
+    it("should create a new instance after closeCharacterDatabase", () => {
+      const config = { dbPath: singletonDbPath, assetsDir: singletonAssetsDir };
+      getCharacterDatabase(config).createCharacter({ name: "before-close", displayName: "Before" });
+      closeCharacterDatabase();
+      // After close, a new instance is created — verify it's functional
+      const second = getCharacterDatabase(config);
+      expect(() => second.getAllCharacters()).not.toThrow();
+    });
+
+    it("closeCharacterDatabase should be safe to call when no instance exists", () => {
+      closeCharacterDatabase(); // ensure clean state
+      expect(() => closeCharacterDatabase()).not.toThrow();
+    });
+  });
+});
+
+describe("schema helpers", () => {
+  it("getSchemaVersion should return 1", () => {
+    expect(getSchemaVersion()).toBe(1);
+  });
+
+  it("dropCharacterSchema should drop tables without error", () => {
+    const memDb = new DatabaseSync(":memory:");
+    // Tables don't exist yet — DROP IF EXISTS should not throw
+    expect(() => dropCharacterSchema(memDb)).not.toThrow();
+  });
+
+  it("vacuumCharacterDatabase should run without error", () => {
+    const memDb = new DatabaseSync(":memory:");
+    expect(() => vacuumCharacterDatabase(memDb)).not.toThrow();
   });
 });

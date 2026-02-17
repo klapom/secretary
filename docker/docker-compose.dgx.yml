@@ -45,19 +45,20 @@ services:
     networks:
       - avatar-network
 
-  # XTTS - Voice synthesis (GPU-accelerated)
+  # XTTS v2 (Coqui TTS) - Voice synthesis (PRIMARY TTS)
+  # Supports: 17 languages incl. DE + EN, voice cloning
   xtts:
     build:
       context: ./xtts
       dockerfile: Dockerfile
     container_name: secretary-xtts
-    profiles: [avatar]  # Only start when avatar is active
+    profiles: [avatar]
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=0
       - CUDA_VISIBLE_DEVICES=0
       - PYTHONUNBUFFERED=1
-      - COQUI_TOS_AGREED=1  # Agree to Coqui TTS terms
+      - COQUI_TOS_AGREED=1
     deploy:
       resources:
         reservations:
@@ -70,7 +71,7 @@ services:
           memory: 12G
     shm_size: '2gb'
     volumes:
-      - xtts-models:/app/models
+      - xtts-models:/root/.local/share/tts
       - xtts-cache:/root/.cache
     ports:
       - "8082:8082"
@@ -78,18 +79,58 @@ services:
       test: ["CMD", "curl", "-f", "http://localhost:8082/health"]
       interval: 30s
       timeout: 10s
-      retries: 3
-      start_period: 120s  # XTTS model loading takes time
+      retries: 5
+      start_period: 120s
     restart: unless-stopped
     networks:
       - avatar-network
 
-  # Whisper - Speech-to-text (GPU-accelerated)
-  whisper:
+  # Parler-TTS Mini Multilingual v2 - Voice synthesis (EXPERIMENTAL - attempt 2)
+  # Strategy: --no-deps install to bypass torch version conflict
+  # Supports: EN, DE, FR, ES, PT, PL, IT, NL
+  parler-tts-v2:
     build:
-      context: ./whisper
+      context: ./parler-tts-v2
       dockerfile: Dockerfile
-    container_name: secretary-whisper
+    container_name: secretary-parler-tts-v2
+    profiles: [avatar-experimental]
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=0
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+          memory: 6G
+        limits:
+          memory: 8G
+    shm_size: '2gb'
+    volumes:
+      - parler-v2-models:/app/models
+    ports:
+      - "8085:8085"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085/health"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 90s
+    restart: unless-stopped
+    networks:
+      - avatar-network
+
+  # Distil-Whisper Large V3 - Speech-to-text (Option 1 - WORKING)
+  # Supports: 97 languages, 6x faster than Whisper
+  distil-whisper:
+    build:
+      context: ./distil-whisper
+      dockerfile: Dockerfile
+    container_name: secretary-distil-whisper
     profiles: [avatar]  # Only start when avatar is active
     runtime: nvidia
     environment:
@@ -106,10 +147,10 @@ services:
           memory: 4G
         limits:
           memory: 6G
-    shm_size: '1gb'
+    shm_size: '2gb'
     volumes:
-      - whisper-models:/app/models
-      - whisper-cache:/root/.cache
+      - distil-whisper-models:/app/models
+      - distil-whisper-cache:/root/.cache
     ports:
       - "8083:8083"
     healthcheck:
@@ -117,10 +158,136 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 60s
+      start_period: 90s
     restart: unless-stopped
     networks:
       - avatar-network
+
+  # NVIDIA Canary-1b-v2 with NeMo - Speech-to-text (Option 2 - EXPERIMENTAL)
+  # Supports: 25 languages including DE, EN + translation
+  canary-nemo:
+    build:
+      context: ./canary-nemo
+      dockerfile: Dockerfile
+    container_name: secretary-canary-nemo
+    profiles: [avatar-experimental]  # Experimental profile
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=0
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+          memory: 6G
+        limits:
+          memory: 10G
+    shm_size: '2gb'
+    volumes:
+      - canary-nemo-models:/app/models
+      - canary-nemo-cache:/root/.cache
+    ports:
+      - "8084:8084"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8084/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s  # NeMo + Canary loading takes longer
+    restart: unless-stopped
+    networks:
+      - avatar-network
+
+  # OLD NVIDIA Canary-1b-v2 - Speech-to-text (DEPRECATED - transformers incompatible)
+  # Use distil-whisper or canary-nemo instead
+  # canary-stt:
+  #   build:
+  #     context: ./canary-stt
+  #     dockerfile: Dockerfile
+  #   container_name: secretary-canary-stt
+  #   profiles: [avatar]
+  #   runtime: nvidia
+  #   environment:
+  #     - NVIDIA_VISIBLE_DEVICES=0
+  #     - CUDA_VISIBLE_DEVICES=0
+  #     - PYTHONUNBUFFERED=1
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
+  #         memory: 5G
+  #       limits:
+  #         memory: 8G
+  #   shm_size: '2gb'
+  #   volumes:
+  #     - canary-models:/app/models
+  #     - canary-cache:/root/.cache
+  #   ports:
+  #     - "8083:8083"
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8083/health"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #     start_period: 90s
+  #   restart: unless-stopped
+  #   networks:
+  #     - avatar-network
+
+  # OLD Parler-TTS - Voice synthesis (BROKEN - torch dependency conflicts)
+  # Replaced by xtts (primary) and parler-tts-v2 (experimental)
+  # parler-tts:
+  #   build:
+  #     context: ./parler-tts
+  #   container_name: secretary-parler-tts
+  #   ports:
+  #     - "8082:8082"  # Conflicts with xtts
+
+  # OLD Whisper - Speech-to-text (DEPRECATED)
+  # Use canary-stt instead (better accuracy, 25 languages, translation)
+  # whisper:
+  #   build:
+  #     context: ./whisper
+  #     dockerfile: Dockerfile
+  #   container_name: secretary-whisper
+  #   profiles: [avatar]
+  #   runtime: nvidia
+  #   environment:
+  #     - NVIDIA_VISIBLE_DEVICES=0
+  #     - CUDA_VISIBLE_DEVICES=0
+  #     - PYTHONUNBUFFERED=1
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
+  #         memory: 4G
+  #       limits:
+  #         memory: 6G
+  #   shm_size: '1gb'
+  #   volumes:
+  #     - whisper-models:/app/models
+  #     - whisper-cache:/root/.cache
+  #   ports:
+  #     - "8083:8083"
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8083/health"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #     start_period: 60s
+  #   restart: unless-stopped
+  #   networks:
+  #     - avatar-network
 
   # WebRTC Signaling Server (Phase 3 - Not implemented yet)
   # webrtc-signaling:
@@ -180,10 +347,30 @@ volumes:
     driver: local
   xtts-cache:
     driver: local
-  whisper-models:
+  parler-v2-models:
     driver: local
-  whisper-cache:
+  distil-whisper-models:
     driver: local
+  distil-whisper-cache:
+    driver: local
+  canary-nemo-models:
+    driver: local
+  canary-nemo-cache:
+    driver: local
+  # Old volumes (deprecated)
+  # canary-models:
+  #   driver: local
+  # canary-cache:
+  #   driver: local
+  # Old volumes (kept for rollback if needed)
+  # xtts-models:
+  #   driver: local
+  # xtts-cache:
+  #   driver: local
+  # whisper-models:
+  #   driver: local
+  # whisper-cache:
+  #   driver: local
 
 networks:
   avatar-network:

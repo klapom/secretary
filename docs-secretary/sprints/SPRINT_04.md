@@ -210,6 +210,149 @@
 - [ ] Load testing (concurrent users)
 - [ ] Documentation (deployment guide)
 
+### Phase 5: Test Coverage Sprint (71% → 90%)
+
+**Current Status:** 71.01% Lines Coverage (60.69% Statements)
+
+**Modules Under 70% Coverage (Prioritized by Effort/Impact):**
+
+#### 4.1 src/tts (47.42% → 75%+) — HIGH PRIORITY
+
+- **Status:** Critical for avatar feature
+- **Current:** 47.42% lines, 49.87% statements
+- **Target:** 75% (+27% gain)
+- **Files:**
+  - `tts-core.ts`: 42.1% → Need tests for GPU path, model loading, phoneme generation (lines 520-672)
+  - `tts.ts`: 52.15% → Need tests for synthesis pipeline, error handling (lines 800-926)
+- **Estimated Tests:** 15-18 test cases
+- **Estimated Effort:** 6-8 hours (requires GPU mocking)
+- **Key Scenarios:**
+  - [ ] Test synthesis with various language inputs (German, English, mixed)
+  - [ ] Test speaker switching (Claribel Dervla vs. Sofia Hellen)
+  - [ ] Test error handling (invalid text, GPU OOM, timeout)
+  - [ ] Test batch processing pipeline
+  - [ ] Mock XTTS API responses
+
+#### 4.2 src/plugin-sdk (23.22% → 60%+) — MEDIUM PRIORITY
+
+- **Status:** Used by 36+ channel plugins
+- **Current:** 23.22% lines, 3.41% statements
+- **Target:** 60% (+36% gain)
+- **Files:**
+  - `index.ts`: Central exports (missing)
+  - `config-paths.ts`, `webhook-path.ts`, `account-id.ts`, `file-lock.ts` (0%)
+  - `onboarding.ts`, `allow-from.ts`, `text-chunking.ts`, `status-helpers.ts` (low coverage)
+- **Estimated Tests:** 20-25 test cases
+- **Estimated Effort:** 8-10 hours (integration tests required)
+- **Key Scenarios:**
+  - [ ] Config path resolution (multi-os compatibility)
+  - [ ] Webhook path generation and validation
+  - [ ] Account ID parsing and encoding
+  - [ ] File locking behavior (concurrent access)
+  - [ ] Onboarding flow mocking
+  - [ ] Auth allow-from list validation
+  - [ ] Text chunking edge cases (unicode, very long text)
+
+#### 4.3 src/shared (62.83% → 80%+) — MEDIUM PRIORITY
+
+- **Status:** Core shared utilities, used everywhere
+- **Current:** 62.83% lines, 53.31% statements
+- **Target:** 80% (+17% gain)
+- **Key Files with Low Coverage:**
+  - `chat-envelope.ts`, `chat-content.ts`: Message structure tests
+  - `device-auth.ts`: Auth flow tests
+  - `config-eval.ts`, `requirements.ts`: Config evaluation tests
+  - `usage-aggregates.ts`, `entry-status.ts`: Data aggregation tests
+- **Estimated Tests:** 12-15 test cases
+- **Estimated Effort:** 4-6 hours
+
+#### 4.4 src/infra/tls (9.52% → 50%+) — CRITICAL
+
+- **Status:** Security critical
+- **Current:** 9.52% lines
+- **Target:** 50% (+40% gain)
+- **Files:**
+  - `gateway.ts`: TLS gateway implementation
+  - `fingerprint.ts`: Certificate fingerprint validation
+- **Estimated Tests:** 10-12 test cases
+- **Estimated Effort:** 5-7 hours (requires TLS mocking)
+- **Key Scenarios:**
+  - [ ] Certificate validation
+  - [ ] Fingerprint computation
+  - [ ] TLS handshake mocking
+  - [ ] Error handling (invalid cert, expired, etc.)
+
+#### 4.5 src/media (64.15% → 75%+) — MEDIUM PRIORITY
+
+- **Status:** Media file handling
+- **Current:** 64.15% lines, 55.75% statements
+- **Target:** 75% (+10% gain)
+- **Estimated Tests:** 8-10 test cases
+- **Estimated Effort:** 3-4 hours
+
+#### 4.6 src/infra (69.84% → 80%+) — MEDIUM PRIORITY
+
+- **Status:** Infrastructure, widely used
+- **Current:** 69.84% lines, 57.6% statements
+- **Target:** 80% (+10% gain)
+- **Estimated Tests:** 10-12 test cases
+- **Estimated Effort:** 4-5 hours
+
+#### 4.7 src/logging (67.18% → 75%+) — LOW PRIORITY
+
+- **Status:** Logging utilities (not critical path)
+- **Current:** 67.18% lines, 52.35% statements
+- **Target:** 75% (+8% gain)
+- **Estimated Tests:** 5-7 test cases
+- **Estimated Effort:** 2-3 hours
+
+#### 4.8 src/config (67.22% → 75%+) — LOW PRIORITY
+
+- **Status:** Configuration management
+- **Current:** 67.22% lines, 59.56% statements
+- **Target:** 75% (+8% gain)
+- **Estimated Tests:** 6-8 test cases
+- **Estimated Effort:** 2-3 hours
+
+#### 4.9 src/sessions (69.58% → 80%+) — MEDIUM PRIORITY
+
+- **Status:** Session management
+- **Current:** 69.58% lines, 63.82% statements
+- **Target:** 80% (+10% gain)
+- **Estimated Tests:** 8-10 test cases
+- **Estimated Effort:** 3-4 hours
+
+#### 4.10 src/memory (70.95% → 80%+) — LOW PRIORITY
+
+- **Status:** Just above 70% threshold
+- **Current:** 70.95% lines, 55.51% statements
+- **Target:** 80% (+9% gain)
+- **Estimated Tests:** 5-7 test cases
+- **Estimated Effort:** 2-3 hours
+
+**Execution Plan (Total: 40-50 hours across sprint):**
+
+**Week 1 (Priority order):**
+
+- [ ] 4.4 TLS (5-7h) — Security critical, block if not done
+- [ ] 4.1 TTS (6-8h) — Avatar feature enabler
+- [ ] 4.2 Plugin-SDK (4-5h initial) — Start with config-paths + webhook-path
+
+**Week 2:**
+
+- [ ] 4.2 Plugin-SDK (remaining 4-5h)
+- [ ] 4.3 Shared utilities (4-6h)
+- [ ] 4.5-4.10 Remaining modules (8-12h)
+
+**Success Criteria:**
+
+- [ ] Overall coverage: 71% → 80% minimum (target: 85%)
+- [ ] TLS module: 9.52% → 50%+
+- [ ] TTS module: 47.42% → 75%+
+- [ ] No module below 65% (except type definitions)
+- [ ] All new tests passing (CI green)
+- [ ] No performance regressions
+
 ---
 
 ## 🎯 Success Criteria
@@ -240,10 +383,11 @@
 
 ### Quality
 
-- ✅ 80%+ test coverage maintained
+- ✅ 80%+ test coverage maintained (current 71.01% → target 80%+ in Phase 5)
 - ✅ All Sprint 03 deferred issues resolved
 - ✅ Documentation complete
 - ✅ Performance benchmarks documented
+- 🟡 Test Coverage Sprint 05 planned (see Phase 5 tasks above)
 
 ---
 

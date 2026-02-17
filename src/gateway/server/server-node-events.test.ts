@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-vi.mock("../infra/system-events.js", () => ({
+vi.mock("../../infra/system-events.js", () => ({
   enqueueSystemEvent: vi.fn(),
 }));
-vi.mock("../infra/heartbeat-wake.js", () => ({
+vi.mock("../../infra/heartbeat-wake.js", () => ({
   requestHeartbeatNow: vi.fn(),
 }));
 

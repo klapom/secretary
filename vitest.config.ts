@@ -101,6 +101,10 @@ export default defineConfig({
         "src/agents/tools/discord-actions*.ts",
         "src/agents/tools/slack-actions.ts",
 
+        // Avatar + Character CLI entrypoints; integration-only or standalone scripts.
+        "src/characters/cli.ts",
+        "src/avatar/orchestrator.ts",
+
         // Hard-to-unit-test modules; exercised indirectly by integration tests.
         "src/infra/state-migrations.ts",
         "src/infra/skills-remote.ts",

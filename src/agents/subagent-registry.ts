@@ -42,8 +42,10 @@ const SUBAGENT_ANNOUNCE_TIMEOUT_MS = 120_000;
 function persistSubagentRuns() {
   try {
     saveSubagentRegistryToDisk(subagentRuns);
-  } catch {
-    // ignore persistence failures
+  } catch (err) {
+    // Log but do not crash — persistence is best-effort.
+    // If this keeps failing, orphaned subagent runs may accumulate after restart.
+    console.error("[subagent-registry] Failed to persist subagent registry:", err);
   }
 }
 

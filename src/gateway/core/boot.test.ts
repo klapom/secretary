@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const agentCommand = vi.fn();
 
-vi.mock("../commands/agent.js", () => ({ agentCommand }));
+vi.mock("../../commands/agent.js", () => ({ agentCommand }));
 
 const { runBootOnce } = await import("./boot.js");
 const { resolveAgentIdFromSessionKey, resolveMainSessionKey } =

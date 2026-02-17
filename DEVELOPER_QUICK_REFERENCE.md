@@ -47,21 +47,59 @@ How the existing system works (Mintlify documentation website):
 
 ## 🏗️ Codebase Structure
 
-```
-src/
-├── gateway/              # Gateway server (HTTP/WS API)
-├── web/                  # WhatsApp/Baileys integration
-├── agents/               # Agent runtime & tools
-│   ├── tools/           # 20+ built-in tools
-│   ├── sandbox/         # Docker sandbox
-│   └── tool-policy.ts   # Tool security
-├── auto-reply/          # Message handling & dispatch
-├── channels/            # Channel abstraction layer
-├── config/              # Configuration system
-└── sessions/            # Session management
+> **⚠️ CRITICAL für alle Agenten:** Erstelle NIEMALS neue Ordner im Top-Level-Verzeichnis (`/openclaw-source/`)!
+> Alle neuen Dateien gehören in die unten definierten Verzeichnisse. Lies "File Placement Rules" weiter unten!
 
-extensions/              # 36 channel plugins
-skills/                  # 52 pre-built skills
+```
+openclaw-source/                  ← TOP LEVEL (kein neues Verzeichnis hier anlegen!)
+├── src/                          ← TypeScript-Quellcode (alles Neue gehört hierhin)
+│   ├── avatar/                   # Avatar-System (Sprint 03)
+│   │   ├── streaming/            #   WebRTC + Media Bridge
+│   │   └── ui/                   #   Avatar-UI (HTML/JS)
+│   ├── characters/               # Character Manager (Sprint 03)
+│   ├── gateway/                  # Gateway server (HTTP/WS API)
+│   ├── web/                      # WhatsApp/Baileys integration
+│   ├── agents/                   # Agent runtime & tools
+│   │   ├── tools/               #   20+ built-in tools
+│   │   ├── sandbox/             #   Docker sandbox
+│   │   └── tool-policy.ts       #   Tool security
+│   ├── auto-reply/              # Message handling & dispatch
+│   ├── channels/                # Channel abstraction layer
+│   ├── config/                  # Configuration system
+│   └── sessions/                # Session management
+├── docker/                       ← Docker-Services (Python Microservices)
+│   ├── xtts/                     #   XTTS TTS-Service (port 8082)
+│   ├── distil-whisper/           #   Whisper STT-Service (port 8083)
+│   ├── liveportrait/             #   LivePortrait-Service (port 8081)
+│   └── docker-compose.dgx.yml   #   Compose-File (das einzige, das wir nutzen!)
+├── docs/                         ← System-Dokumentation (Mintlify)
+│   ├── avatar/                   #   Avatar-Docs (neu in Sprint 03)
+│   └── concepts/                 #   Technische Konzepte
+├── docs-secretary/               ← Planungsdokumentation
+│   ├── sprints/                  #   Sprint-Pläne (SPRINT_03.md etc.)
+│   ├── architecture/             #   ADRs
+│   └── development/             #   BEST_PRACTICE.md
+├── extensions/                   ← 36 Channel-Plugins
+├── skills/                       ← 52 Pre-built Skills
+└── test/                         ← Test-Dateien (wenn nicht neben der Quelle)
+```
+
+### 🚫 File Placement Rules — IMMER EINHALTEN
+
+**Neuer TypeScript-Code:** → `src/[feature]/`
+**Neuer Python-Service:** → `docker/[service-name]/`
+**Neue Planungs-Doku:** → `docs-secretary/[sprints|architecture|development]/`
+**Neue System-Doku:** → `docs/[avatar|concepts|...]/`
+**Tests:** → Neben der Quelldatei (z.B. `src/avatar/streaming/foo.test.ts`) ODER `test/`
+**Konfiguration:** → Existierende Config-Dateien ergänzen, keine neuen Top-Level-Configs
+
+**❌ VERBOTEN:**
+
+```
+openclaw-source/MyNewFolder/     ← NIEMALS neuen Ordner im Top-Level!
+openclaw-source/some-docs/       ← FALSCH
+openclaw-source/liveportrait/    ← FALSCH (gehört nach docker/liveportrait/)
+openclaw-source/avatar-ui/       ← FALSCH (gehört nach src/avatar/ui/)
 ```
 
 ---
@@ -86,30 +124,40 @@ secretary onboard                 # Setup wizard
 
 ---
 
-## 🔴 Sprint 01 Quick Reference
+## 🔴 Sprint 03 Quick Reference (CURRENT)
 
-**Goal:** Fix critical issues (Message Queue, Security, Event Bus)
+**Goal:** Avatar System — LivePortrait, WebRTC Streaming, Character Manager
 
-**Key Files to Know:**
+**Status (2026-02-17):**
 
-- `/src/web/inbound/monitor.ts` - WhatsApp message monitoring
-- `/src/auto-reply/` - Message handling (needs queue)
-- `/src/gateway/` - Gateway server (needs event bus)
-- `/src/agents/sandbox/` - Sandbox config
-- `/src/agents/tool-policy.ts` - Tool security
+- ✅ XTTS Voice Synthesis — Docker port 8082, GPU, 0.5-0.7s latency
+- ✅ Whisper STT — Docker port 8083, GPU, float16, Deutsch korrekt
+- ✅ WebRTC TypeScript-Code — `src/avatar/streaming/` (nicht integriert)
+- ✅ Character Manager Code — `src/characters/` (nicht in API integriert)
+- 🔲 **LivePortrait** — BLOCKER: `docker/liveportrait/liveportrait_service.py` ist Stub
 
-**Tasks (29 total, 87h):**
+**Key Files Sprint 03:**
 
-1. Message Queue (32h) - SQLite-backed, retry logic
-2. Security Layer (29h) - Credential redaction, encryption
-3. Event Bus (26h) - Decouple Gateway
+- `docker/liveportrait/liveportrait_service.py` — Python-Service (TODO implementieren)
+- `docker/liveportrait/Dockerfile.arm64` — Docker Build für ARM64/DGX
+- `src/avatar/streaming/` — WebRTC + Media Bridge (TypeScript)
+- `src/avatar/streaming/webrtc-server.ts` — WebRTC Signaling
+- `src/avatar/streaming/media-bridge.ts` — Media Streaming Bridge
+- `src/characters/` — Character Manager (TypeScript)
+- `docker/SETUP_A_STATUS.md` — Service-Status + API-Dokumentation
 
-**Acceptance Criteria:**
+**Running Services:**
 
-- ✅ No message loss (race condition fixed)
-- ✅ 0 credentials in logs
-- ✅ Event bus decouples ≥3 modules
-- ✅ 80%+ test coverage
+- `secretary-xtts` → http://localhost:8082
+- `secretary-distil-whisper` → http://localhost:8083
+- LivePortrait → http://localhost:8081 (NOCH NICHT GESTARTET)
+
+**Compose Command:**
+
+```bash
+cd /home/admin/projects/secretary/openclaw-source/docker/
+docker compose -f docker-compose.dgx.yml --profile avatar up -d
+```
 
 ---
 

@@ -5,7 +5,7 @@ const { getMemorySearchManagerMock } = vi.hoisted(() => ({
   getMemorySearchManagerMock: vi.fn(),
 }));
 
-vi.mock("../memory/index.js", () => ({
+vi.mock("../../memory/index.js", () => ({
   getMemorySearchManager: getMemorySearchManagerMock,
 }));
 
