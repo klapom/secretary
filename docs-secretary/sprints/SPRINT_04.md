@@ -599,7 +599,7 @@ npm run test:e2e
 
 ---
 
-## 📌 Vorgemerkt für Sprint 05
+## 📌 Vorgemerkt für Sprint 06
 
 ### Upstream-Rebase: Proper GitHub-Fork erstellen
 
