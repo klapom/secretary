@@ -1,0 +1,2846 @@
+[
+  {
+    "id": "arch-unbounded-cache-docker-liveportrait-liveportrait_service.py",
+    "description": "docker/liveportrait/liveportrait_service.py: unbounded in-memory cache (object/dict) — risk of memory exhaustion",
+    "fix": "Add cache size limit or use an LRU eviction strategy",
+    "persona": "architect",
+    "file": "docker/liveportrait/liveportrait_service.py"
+  },
+  {
+    "id": "arch-god-object-services-voice-pipeline-integration_tests.py",
+    "description": "services/voice-pipeline/integration_tests.py is 510 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "services/voice-pipeline/integration_tests.py"
+  },
+  {
+    "id": "arch-god-object-src-acp-translator.ts",
+    "description": "src/acp/translator.ts is 455 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/acp/translator.ts"
+  },
+  {
+    "id": "arch-god-object-src-agents-subagent-announce.ts",
+    "description": "src/agents/subagent-announce.ts is 642 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/agents/subagent-announce.ts"
+  },
+  {
+    "id": "arch-god-object-src-agents-subagent-registry.ts",
+    "description": "src/agents/subagent-registry.ts is 746 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/agents/subagent-registry.ts"
+  },
+  {
+    "id": "arch-god-object-src-agents-tools-session-status-tool.ts",
+    "description": "src/agents/tools/session-status-tool.ts is 475 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/agents/tools/session-status-tool.ts"
+  },
+  {
+    "id": "arch-god-object-src-agents-tools-subagents-tool.ts",
+    "description": "src/agents/tools/subagents-tool.ts is 728 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/agents/tools/subagents-tool.ts"
+  },
+  {
+    "id": "arch-god-object-src-auto-reply-reply-commands-subagents.ts",
+    "description": "src/auto-reply/reply/commands-subagents.ts is 649 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/auto-reply/reply/commands-subagents.ts"
+  },
+  {
+    "id": "arch-god-object-src-auto-reply-reply-session.ts",
+    "description": "src/auto-reply/reply/session.ts is 471 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/auto-reply/reply/session.ts"
+  },
+  {
+    "id": "arch-god-object-src-avatar-orchestrator.ts",
+    "description": "src/avatar/orchestrator.ts is 431 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/avatar/orchestrator.ts"
+  },
+  {
+    "id": "arch-god-object-src-avatar-streaming-webrtc-server.ts",
+    "description": "src/avatar/streaming/webrtc-server.ts is 404 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/avatar/streaming/webrtc-server.ts"
+  },
+  {
+    "id": "arch-god-object-src-browser-extension-relay.ts",
+    "description": "src/browser/extension-relay.ts is 760 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/browser/extension-relay.ts"
+  },
+  {
+    "id": "arch-god-object-src-commands-gateway-status.ts",
+    "description": "src/commands/gateway-status.ts is 409 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/commands/gateway-status.ts"
+  },
+  {
+    "id": "arch-god-object-src-commands-health.ts",
+    "description": "src/commands/health.ts is 752 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/commands/health.ts"
+  },
+  {
+    "id": "arch-unbounded-cache-src-commands-health.ts",
+    "description": "src/commands/health.ts: unbounded in-memory cache (object/dict) — risk of memory exhaustion",
+    "fix": "Add cache size limit or use an LRU eviction strategy",
+    "persona": "architect",
+    "file": "src/commands/health.ts"
+  },
+  {
+    "id": "arch-god-object-src-commands-onboard-helpers.ts",
+    "description": "src/commands/onboard-helpers.ts is 487 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/commands/onboard-helpers.ts"
+  },
+  {
+    "id": "arch-god-object-src-commands-status-all.ts",
+    "description": "src/commands/status-all.ts is 416 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/commands/status-all.ts"
+  },
+  {
+    "id": "arch-god-object-src-commands-status.command.ts",
+    "description": "src/commands/status.command.ts is 635 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/commands/status.command.ts"
+  },
+  {
+    "id": "arch-unbounded-cache-src-commands-status.summary.ts",
+    "description": "src/commands/status.summary.ts: unbounded in-memory cache (object/dict) — risk of memory exhaustion",
+    "fix": "Add cache size limit or use an LRU eviction strategy",
+    "persona": "architect",
+    "file": "src/commands/status.summary.ts"
+  },
+  {
+    "id": "arch-god-object-src-discord-monitor-exec-approvals.ts",
+    "description": "src/discord/monitor/exec-approvals.ts is 810 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/discord/monitor/exec-approvals.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-api-openresponses-http.ts",
+    "description": "src/gateway/api/openresponses-http.ts is 921 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/api/openresponses-http.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-api-server-http.ts",
+    "description": "src/gateway/api/server-http.ts is 661 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/api/server-http.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-core-client.ts",
+    "description": "src/gateway/core/client.ts is 445 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/core/client.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-hooks-hooks-mapping.ts",
+    "description": "src/gateway/hooks/hooks-mapping.ts is 474 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/hooks/hooks-mapping.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-protocol-index.ts",
+    "description": "src/gateway/protocol/index.ts is 604 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/protocol/index.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-server-methods-agent.ts",
+    "description": "src/gateway/server-methods/agent.ts is 692 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/agent.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-server-methods-agents.ts",
+    "description": "src/gateway/server-methods/agents.ts is 530 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/agents.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-server-methods-chat.ts",
+    "description": "src/gateway/server-methods/chat.ts is 880 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/chat.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-server-methods-nodes.ts",
+    "description": "src/gateway/server-methods/nodes.ts is 502 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/nodes.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-server-methods-send.ts",
+    "description": "src/gateway/server-methods/send.ts is 427 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/send.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-server-methods-sessions.ts",
+    "description": "src/gateway/server-methods/sessions.ts is 502 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/sessions.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-server-methods-usage.ts",
+    "description": "src/gateway/server-methods/usage.ts is 846 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/usage.ts"
+  },
+  {
+    "id": "arch-unbounded-cache-src-gateway-server-health-state.ts",
+    "description": "src/gateway/server/health-state.ts: unbounded in-memory cache (object/dict) — risk of memory exhaustion",
+    "fix": "Add cache size limit or use an LRU eviction strategy",
+    "persona": "architect",
+    "file": "src/gateway/server/health-state.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-server-server-chat.ts",
+    "description": "src/gateway/server/server-chat.ts is 427 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/server/server-chat.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-server-server.impl.ts",
+    "description": "src/gateway/server/server.impl.ts is 745 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/server/server.impl.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-server-ws-connection-message-handler.ts",
+    "description": "src/gateway/server/ws-connection/message-handler.ts is 983 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/server/ws-connection/message-handler.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-sessions-session-utils.fs.ts",
+    "description": "src/gateway/sessions/session-utils.fs.ts is 677 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.fs.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-sessions-session-utils.ts",
+    "description": "src/gateway/sessions/session-utils.ts is 847 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-shared-test-helpers.mocks.ts",
+    "description": "src/gateway/shared/test-helpers.mocks.ts is 607 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.mocks.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-shared-test-helpers.server.ts",
+    "description": "src/gateway/shared/test-helpers.server.ts is 605 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.server.ts"
+  },
+  {
+    "id": "arch-unbounded-cache-src-gateway-shared-test-helpers.server.ts",
+    "description": "src/gateway/shared/test-helpers.server.ts: unbounded in-memory cache (object/dict) — risk of memory exhaustion",
+    "fix": "Add cache size limit or use an LRU eviction strategy",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.server.ts"
+  },
+  {
+    "id": "arch-god-object-src-gateway-shared-ws-log.ts",
+    "description": "src/gateway/shared/ws-log.ts is 425 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/gateway/shared/ws-log.ts"
+  },
+  {
+    "id": "arch-god-object-src-node-host-invoke.ts",
+    "description": "src/node-host/invoke.ts is 919 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/node-host/invoke.ts"
+  },
+  {
+    "id": "arch-god-object-src-security-audit-extra.sync.ts",
+    "description": "src/security/audit-extra.sync.ts is 973 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/security/audit-extra.sync.ts"
+  },
+  {
+    "id": "arch-god-object-src-security-audit.ts",
+    "description": "src/security/audit.ts is 690 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/security/audit.ts"
+  },
+  {
+    "id": "arch-god-object-src-security-command-obfuscation.ts",
+    "description": "src/security/command-obfuscation.ts is 485 lines — consider splitting into smaller modules",
+    "fix": "Extract cohesive subsets of functionality into separate files",
+    "persona": "architect",
+    "file": "src/security/command-obfuscation.ts"
+  },
+  {
+    "id": "test-no-test-file-.claude-agents-verify-agent-status.ts",
+    "description": ".claude/agents/verify-agent-status.ts: no corresponding test file found",
+    "fix": "Create .claude/agents/verify-agent-status.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": ".claude/agents/verify-agent-status.ts"
+  },
+  {
+    "id": "test-no-test-file-examples-secure-logging-integration.ts",
+    "description": "examples/secure-logging-integration.ts: no corresponding test file found",
+    "fix": "Create examples/secure-logging-integration.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "examples/secure-logging-integration.ts"
+  },
+  {
+    "id": "test-no-test-file-scripts-scan-logs-for-credentials.ts",
+    "description": "scripts/scan-logs-for-credentials.ts: no corresponding test file found",
+    "fix": "Create scripts/scan-logs-for-credentials.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "scripts/scan-logs-for-credentials.ts"
+  },
+  {
+    "id": "test-no-test-file-services-liveportrait-avatar-client-IAvatarRenderer.ts",
+    "description": "services/liveportrait-avatar/client/IAvatarRenderer.ts: no corresponding test file found",
+    "fix": "Create services/liveportrait-avatar/client/IAvatarRenderer.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "services/liveportrait-avatar/client/IAvatarRenderer.ts"
+  },
+  {
+    "id": "test-no-test-file-services-liveportrait-avatar-client-LivePortraitClient.ts",
+    "description": "services/liveportrait-avatar/client/LivePortraitClient.ts: no corresponding test file found",
+    "fix": "Create services/liveportrait-avatar/client/LivePortraitClient.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "services/liveportrait-avatar/client/LivePortraitClient.ts"
+  },
+  {
+    "id": "test-no-test-file-services-liveportrait-avatar-client-LivePortraitRendererAdapter.ts",
+    "description": "services/liveportrait-avatar/client/LivePortraitRendererAdapter.ts: no corresponding test file found",
+    "fix": "Create services/liveportrait-avatar/client/LivePortraitRendererAdapter.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "services/liveportrait-avatar/client/LivePortraitRendererAdapter.ts"
+  },
+  {
+    "id": "test-no-test-file-src-acp-server.ts",
+    "description": "src/acp/server.ts: no corresponding test file found",
+    "fix": "Create src/acp/server.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/acp/server.ts"
+  },
+  {
+    "id": "test-no-test-file-src-acp-translator.ts",
+    "description": "src/acp/translator.ts: no corresponding test file found",
+    "fix": "Create src/acp/translator.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/acp/translator.ts"
+  },
+  {
+    "id": "test-no-test-file-src-agents-tools-session-status-tool.ts",
+    "description": "src/agents/tools/session-status-tool.ts: no corresponding test file found",
+    "fix": "Create src/agents/tools/session-status-tool.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/agents/tools/session-status-tool.ts"
+  },
+  {
+    "id": "test-no-test-file-src-agents-tools-sessions-history-tool.ts",
+    "description": "src/agents/tools/sessions-history-tool.ts: no corresponding test file found",
+    "fix": "Create src/agents/tools/sessions-history-tool.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/agents/tools/sessions-history-tool.ts"
+  },
+  {
+    "id": "test-no-test-file-src-agents-tools-sessions-send-tool.a2a.ts",
+    "description": "src/agents/tools/sessions-send-tool.a2a.ts: no corresponding test file found",
+    "fix": "Create src/agents/tools/sessions-send-tool.a2a.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/agents/tools/sessions-send-tool.a2a.ts"
+  },
+  {
+    "id": "test-no-test-file-src-agents-tools-sessions-spawn-tool.ts",
+    "description": "src/agents/tools/sessions-spawn-tool.ts: no corresponding test file found",
+    "fix": "Create src/agents/tools/sessions-spawn-tool.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/agents/tools/sessions-spawn-tool.ts"
+  },
+  {
+    "id": "test-no-test-file-src-agents-tools-subagents-tool.ts",
+    "description": "src/agents/tools/subagents-tool.ts: no corresponding test file found",
+    "fix": "Create src/agents/tools/subagents-tool.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/agents/tools/subagents-tool.ts"
+  },
+  {
+    "id": "test-no-test-file-src-auto-reply-exec-directive.ts",
+    "description": "src/auto-reply/exec/directive.ts: no corresponding test file found",
+    "fix": "Create src/auto-reply/exec/directive.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/auto-reply/exec/directive.ts"
+  },
+  {
+    "id": "test-no-test-file-src-auto-reply-queue-cleanup.ts",
+    "description": "src/auto-reply/queue/cleanup.ts: no corresponding test file found",
+    "fix": "Create src/auto-reply/queue/cleanup.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/auto-reply/queue/cleanup.ts"
+  },
+  {
+    "id": "test-no-test-file-src-auto-reply-queue-directive.ts",
+    "description": "src/auto-reply/queue/directive.ts: no corresponding test file found",
+    "fix": "Create src/auto-reply/queue/directive.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/auto-reply/queue/directive.ts"
+  },
+  {
+    "id": "test-no-test-file-src-auto-reply-queue-drain.ts",
+    "description": "src/auto-reply/queue/drain.ts: no corresponding test file found",
+    "fix": "Create src/auto-reply/queue/drain.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/auto-reply/queue/drain.ts"
+  },
+  {
+    "id": "test-no-test-file-src-auto-reply-queue-enqueue.ts",
+    "description": "src/auto-reply/queue/enqueue.ts: no corresponding test file found",
+    "fix": "Create src/auto-reply/queue/enqueue.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/auto-reply/queue/enqueue.ts"
+  },
+  {
+    "id": "test-no-test-file-src-auto-reply-queue-normalize.ts",
+    "description": "src/auto-reply/queue/normalize.ts: no corresponding test file found",
+    "fix": "Create src/auto-reply/queue/normalize.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/auto-reply/queue/normalize.ts"
+  },
+  {
+    "id": "test-no-test-file-src-auto-reply-queue-settings.ts",
+    "description": "src/auto-reply/queue/settings.ts: no corresponding test file found",
+    "fix": "Create src/auto-reply/queue/settings.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/auto-reply/queue/settings.ts"
+  },
+  {
+    "id": "test-no-test-file-src-auto-reply-queue-state.ts",
+    "description": "src/auto-reply/queue/state.ts: no corresponding test file found",
+    "fix": "Create src/auto-reply/queue/state.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/auto-reply/queue/state.ts"
+  },
+  {
+    "id": "test-no-test-file-src-auto-reply-reply-commands-approve.ts",
+    "description": "src/auto-reply/reply/commands-approve.ts: no corresponding test file found",
+    "fix": "Create src/auto-reply/reply/commands-approve.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/auto-reply/reply/commands-approve.ts"
+  },
+  {
+    "id": "test-no-test-file-src-auto-reply-reply-commands-ptt.ts",
+    "description": "src/auto-reply/reply/commands-ptt.ts: no corresponding test file found",
+    "fix": "Create src/auto-reply/reply/commands-ptt.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/auto-reply/reply/commands-ptt.ts"
+  },
+  {
+    "id": "test-no-test-file-src-avatar-orchestrator.ts",
+    "description": "src/avatar/orchestrator.ts: no corresponding test file found",
+    "fix": "Create src/avatar/orchestrator.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/avatar/orchestrator.ts"
+  },
+  {
+    "id": "test-no-test-file-src-avatar-streaming-example.ts",
+    "description": "src/avatar/streaming/example.ts: no corresponding test file found",
+    "fix": "Create src/avatar/streaming/example.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/avatar/streaming/example.ts"
+  },
+  {
+    "id": "test-no-test-file-src-cli-daemon-cli-install.ts",
+    "description": "src/cli/daemon-cli/install.ts: no corresponding test file found",
+    "fix": "Create src/cli/daemon-cli/install.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/cli/daemon-cli/install.ts"
+  },
+  {
+    "id": "test-no-test-file-src-cli-daemon-cli-probe.ts",
+    "description": "src/cli/daemon-cli/probe.ts: no corresponding test file found",
+    "fix": "Create src/cli/daemon-cli/probe.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/cli/daemon-cli/probe.ts"
+  },
+  {
+    "id": "test-no-test-file-src-cli-daemon-cli-shared.ts",
+    "description": "src/cli/daemon-cli/shared.ts: no corresponding test file found",
+    "fix": "Create src/cli/daemon-cli/shared.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/cli/daemon-cli/shared.ts"
+  },
+  {
+    "id": "test-no-test-file-src-cli-daemon-cli-status.gather.ts",
+    "description": "src/cli/daemon-cli/status.gather.ts: no corresponding test file found",
+    "fix": "Create src/cli/daemon-cli/status.gather.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/cli/daemon-cli/status.gather.ts"
+  },
+  {
+    "id": "test-no-test-file-src-cli-gateway-cli-call.ts",
+    "description": "src/cli/gateway-cli/call.ts: no corresponding test file found",
+    "fix": "Create src/cli/gateway-cli/call.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/cli/gateway-cli/call.ts"
+  },
+  {
+    "id": "test-no-test-file-src-cli-nodes-cli-register.invoke.ts",
+    "description": "src/cli/nodes-cli/register.invoke.ts: no corresponding test file found",
+    "fix": "Create src/cli/nodes-cli/register.invoke.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/cli/nodes-cli/register.invoke.ts"
+  },
+  {
+    "id": "test-no-test-file-src-cli-nodes-cli-register.location.ts",
+    "description": "src/cli/nodes-cli/register.location.ts: no corresponding test file found",
+    "fix": "Create src/cli/nodes-cli/register.location.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/cli/nodes-cli/register.location.ts"
+  },
+  {
+    "id": "test-no-test-file-src-cli-nodes-cli-register.notify.ts",
+    "description": "src/cli/nodes-cli/register.notify.ts: no corresponding test file found",
+    "fix": "Create src/cli/nodes-cli/register.notify.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/cli/nodes-cli/register.notify.ts"
+  },
+  {
+    "id": "test-no-test-file-src-commands-doctor-gateway-health.ts",
+    "description": "src/commands/doctor-gateway-health.ts: no corresponding test file found",
+    "fix": "Create src/commands/doctor-gateway-health.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/commands/doctor-gateway-health.ts"
+  },
+  {
+    "id": "test-no-test-file-src-commands-gateway-status-helpers.ts",
+    "description": "src/commands/gateway-status/helpers.ts: no corresponding test file found",
+    "fix": "Create src/commands/gateway-status/helpers.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/commands/gateway-status/helpers.ts"
+  },
+  {
+    "id": "test-no-test-file-src-commands-status-all.ts",
+    "description": "src/commands/status-all.ts: no corresponding test file found",
+    "fix": "Create src/commands/status-all.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/commands/status-all.ts"
+  },
+  {
+    "id": "test-no-test-file-src-commands-status-all-agents.ts",
+    "description": "src/commands/status-all/agents.ts: no corresponding test file found",
+    "fix": "Create src/commands/status-all/agents.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/commands/status-all/agents.ts"
+  },
+  {
+    "id": "test-no-test-file-src-commands-status.agent-local.ts",
+    "description": "src/commands/status.agent-local.ts: no corresponding test file found",
+    "fix": "Create src/commands/status.agent-local.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/commands/status.agent-local.ts"
+  },
+  {
+    "id": "test-no-test-file-src-commands-status.command.ts",
+    "description": "src/commands/status.command.ts: no corresponding test file found",
+    "fix": "Create src/commands/status.command.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/commands/status.command.ts"
+  },
+  {
+    "id": "test-no-test-file-src-commands-status.scan.ts",
+    "description": "src/commands/status.scan.ts: no corresponding test file found",
+    "fix": "Create src/commands/status.scan.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/commands/status.scan.ts"
+  },
+  {
+    "id": "test-no-test-file-src-config-zod-schema.characters.ts",
+    "description": "src/config/zod-schema.characters.ts: no corresponding test file found",
+    "fix": "Create src/config/zod-schema.characters.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/config/zod-schema.characters.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-api-characters-http.ts",
+    "description": "src/gateway/api/characters-http.ts: no corresponding test file found",
+    "fix": "Create src/gateway/api/characters-http.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/api/characters-http.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-api-control-ui-shared.ts",
+    "description": "src/gateway/api/control-ui-shared.ts: no corresponding test file found",
+    "fix": "Create src/gateway/api/control-ui-shared.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/api/control-ui-shared.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-api-http-utils.ts",
+    "description": "src/gateway/api/http-utils.ts: no corresponding test file found",
+    "fix": "Create src/gateway/api/http-utils.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/api/http-utils.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-api-openai-http.ts",
+    "description": "src/gateway/api/openai-http.ts: no corresponding test file found",
+    "fix": "Create src/gateway/api/openai-http.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/api/openai-http.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-core-agent-event-assistant-text.ts",
+    "description": "src/gateway/core/agent-event-assistant-text.ts: no corresponding test file found",
+    "fix": "Create src/gateway/core/agent-event-assistant-text.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/core/agent-event-assistant-text.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-core-device-auth.ts",
+    "description": "src/gateway/core/device-auth.ts: no corresponding test file found",
+    "fix": "Create src/gateway/core/device-auth.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/core/device-auth.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-core-live-image-probe.ts",
+    "description": "src/gateway/core/live-image-probe.ts: no corresponding test file found",
+    "fix": "Create src/gateway/core/live-image-probe.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/core/live-image-probe.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-methods-nodes.helpers.ts",
+    "description": "src/gateway/server-methods/nodes.helpers.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server-methods/nodes.helpers.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server-methods/nodes.helpers.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-methods-nodes.ts",
+    "description": "src/gateway/server-methods/nodes.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server-methods/nodes.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server-methods/nodes.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-methods-tts.ts",
+    "description": "src/gateway/server-methods/tts.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server-methods/tts.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server-methods/tts.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-methods-voicewake.ts",
+    "description": "src/gateway/server-methods/voicewake.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server-methods/voicewake.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server-methods/voicewake.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-methods-wizard.ts",
+    "description": "src/gateway/server-methods/wizard.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server-methods/wizard.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server-methods/wizard.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-health-state.ts",
+    "description": "src/gateway/server/health-state.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/health-state.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/health-state.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-broadcast.ts",
+    "description": "src/gateway/server/server-broadcast.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-broadcast.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-broadcast.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-close.ts",
+    "description": "src/gateway/server/server-close.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-close.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-close.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-cron.ts",
+    "description": "src/gateway/server/server-cron.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-cron.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-cron.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-discovery-runtime.ts",
+    "description": "src/gateway/server/server-discovery-runtime.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-discovery-runtime.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-discovery-runtime.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-lanes.ts",
+    "description": "src/gateway/server/server-lanes.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-lanes.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-lanes.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-maintenance.ts",
+    "description": "src/gateway/server/server-maintenance.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-maintenance.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-maintenance.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-methods-list.ts",
+    "description": "src/gateway/server/server-methods-list.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-methods-list.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-methods-list.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-methods.ts",
+    "description": "src/gateway/server/server-methods.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-methods.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-methods.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-mobile-nodes.ts",
+    "description": "src/gateway/server/server-mobile-nodes.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-mobile-nodes.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-mobile-nodes.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-model-catalog.ts",
+    "description": "src/gateway/server/server-model-catalog.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-model-catalog.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-model-catalog.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-node-subscriptions.ts",
+    "description": "src/gateway/server/server-node-subscriptions.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-node-subscriptions.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-node-subscriptions.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-reload-handlers.ts",
+    "description": "src/gateway/server/server-reload-handlers.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-reload-handlers.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-reload-handlers.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-restart-sentinel.ts",
+    "description": "src/gateway/server/server-restart-sentinel.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-restart-sentinel.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-restart-sentinel.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-runtime-state.ts",
+    "description": "src/gateway/server/server-runtime-state.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-runtime-state.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-runtime-state.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-shared.ts",
+    "description": "src/gateway/server/server-shared.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-shared.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-shared.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-startup-log.ts",
+    "description": "src/gateway/server/server-startup-log.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-startup-log.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-startup-log.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-tailscale.ts",
+    "description": "src/gateway/server/server-tailscale.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-tailscale.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-tailscale.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-utils.ts",
+    "description": "src/gateway/server/server-utils.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-utils.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-utils.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server-ws-runtime.ts",
+    "description": "src/gateway/server/server-ws-runtime.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server-ws-runtime.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server-ws-runtime.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-server.impl.ts",
+    "description": "src/gateway/server/server.impl.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/server.impl.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/server.impl.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-ws-connection.ts",
+    "description": "src/gateway/server/ws-connection.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/ws-connection.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/ws-connection.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-ws-connection-auth-messages.ts",
+    "description": "src/gateway/server/ws-connection/auth-messages.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/ws-connection/auth-messages.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/ws-connection/auth-messages.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-server-ws-connection-message-handler.ts",
+    "description": "src/gateway/server/ws-connection/message-handler.ts: no corresponding test file found",
+    "fix": "Create src/gateway/server/ws-connection/message-handler.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/server/ws-connection/message-handler.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-sessions-server-session-key.ts",
+    "description": "src/gateway/sessions/server-session-key.ts: no corresponding test file found",
+    "fix": "Create src/gateway/sessions/server-session-key.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/sessions/server-session-key.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-sessions-server-wizard-sessions.ts",
+    "description": "src/gateway/sessions/server-wizard-sessions.ts: no corresponding test file found",
+    "fix": "Create src/gateway/sessions/server-wizard-sessions.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/sessions/server-wizard-sessions.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-sessions-sessions-resolve.ts",
+    "description": "src/gateway/sessions/sessions-resolve.ts: no corresponding test file found",
+    "fix": "Create src/gateway/sessions/sessions-resolve.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/sessions/sessions-resolve.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-exec-approval-manager.ts",
+    "description": "src/gateway/shared/exec-approval-manager.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/exec-approval-manager.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/exec-approval-manager.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-gateway-config-prompts.shared.ts",
+    "description": "src/gateway/shared/gateway-config-prompts.shared.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/gateway-config-prompts.shared.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/gateway-config-prompts.shared.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-node-command-policy.ts",
+    "description": "src/gateway/shared/node-command-policy.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/node-command-policy.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/node-command-policy.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-node-invoke-sanitize.ts",
+    "description": "src/gateway/shared/node-invoke-sanitize.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/node-invoke-sanitize.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/node-invoke-sanitize.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-node-invoke-system-run-approval.ts",
+    "description": "src/gateway/shared/node-invoke-system-run-approval.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/node-invoke-system-run-approval.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/node-invoke-system-run-approval.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-node-registry.ts",
+    "description": "src/gateway/shared/node-registry.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/node-registry.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/node-registry.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-probe-auth.ts",
+    "description": "src/gateway/shared/probe-auth.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/probe-auth.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/probe-auth.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-probe.ts",
+    "description": "src/gateway/shared/probe.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/probe.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/probe.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-server.e2e-registry-helpers.ts",
+    "description": "src/gateway/shared/server.e2e-registry-helpers.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/server.e2e-registry-helpers.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/server.e2e-registry-helpers.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-server.e2e-ws-harness.ts",
+    "description": "src/gateway/shared/server.e2e-ws-harness.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/server.e2e-ws-harness.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/server.e2e-ws-harness.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-test-helpers.e2e.ts",
+    "description": "src/gateway/shared/test-helpers.e2e.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/test-helpers.e2e.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/test-helpers.e2e.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-test-helpers.mocks.ts",
+    "description": "src/gateway/shared/test-helpers.mocks.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/test-helpers.mocks.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/test-helpers.mocks.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-test-helpers.openai-mock.ts",
+    "description": "src/gateway/shared/test-helpers.openai-mock.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/test-helpers.openai-mock.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/test-helpers.openai-mock.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-test-helpers.server.ts",
+    "description": "src/gateway/shared/test-helpers.server.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/test-helpers.server.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/test-helpers.server.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-test-helpers.ts",
+    "description": "src/gateway/shared/test-helpers.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/test-helpers.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/test-helpers.ts"
+  },
+  {
+    "id": "test-no-test-file-src-gateway-shared-ws-logging.ts",
+    "description": "src/gateway/shared/ws-logging.ts: no corresponding test file found",
+    "fix": "Create src/gateway/shared/ws-logging.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/gateway/shared/ws-logging.ts"
+  },
+  {
+    "id": "test-no-test-file-src-hooks-bundled-boot-md-handler.ts",
+    "description": "src/hooks/bundled/boot-md/handler.ts: no corresponding test file found",
+    "fix": "Create src/hooks/bundled/boot-md/handler.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/hooks/bundled/boot-md/handler.ts"
+  },
+  {
+    "id": "test-no-test-file-src-infra-canvas-host-url.ts",
+    "description": "src/infra/canvas-host-url.ts: no corresponding test file found",
+    "fix": "Create src/infra/canvas-host-url.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/infra/canvas-host-url.ts"
+  },
+  {
+    "id": "test-no-test-file-src-services-voice-client.ts",
+    "description": "src/services/voice-client.ts: no corresponding test file found",
+    "fix": "Create src/services/voice-client.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "src/services/voice-client.ts"
+  },
+  {
+    "id": "test-no-test-file-ui-avatar-chat-src-hooks-useAudioStream.ts",
+    "description": "ui/avatar-chat/src/hooks/useAudioStream.ts: no corresponding test file found",
+    "fix": "Create ui/avatar-chat/src/hooks/useAudioStream.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "ui/avatar-chat/src/hooks/useAudioStream.ts"
+  },
+  {
+    "id": "test-no-test-file-ui-avatar-chat-src-hooks-useWebRTC.ts",
+    "description": "ui/avatar-chat/src/hooks/useWebRTC.ts: no corresponding test file found",
+    "fix": "Create ui/avatar-chat/src/hooks/useWebRTC.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "ui/avatar-chat/src/hooks/useWebRTC.ts"
+  },
+  {
+    "id": "test-no-test-file-ui-avatar-chat-vite.config.ts",
+    "description": "ui/avatar-chat/vite.config.ts: no corresponding test file found",
+    "fix": "Create ui/avatar-chat/vite.config.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "ui/avatar-chat/vite.config.ts"
+  },
+  {
+    "id": "test-no-test-file-vitest.config.ts",
+    "description": "vitest.config.ts: no corresponding test file found",
+    "fix": "Create vitest.config.test.ts with unit tests for all exported functions",
+    "persona": "tester",
+    "file": "vitest.config.ts"
+  },
+  {
+    "id": "test-skipped-src-avatar-streaming-webrtc-server.test.ts-114",
+    "description": "src/avatar/streaming/webrtc-server.test.ts:114: skipped test — functionality untested",
+    "fix": "Fix the underlying issue and unskip the test, or remove it",
+    "persona": "tester",
+    "file": "src/avatar/streaming/webrtc-server.test.ts",
+    "line": 114
+  },
+  {
+    "id": "test-skipped-src-avatar-streaming-webrtc-server.test.ts-157",
+    "description": "src/avatar/streaming/webrtc-server.test.ts:157: skipped test — functionality untested",
+    "fix": "Fix the underlying issue and unskip the test, or remove it",
+    "persona": "tester",
+    "file": "src/avatar/streaming/webrtc-server.test.ts",
+    "line": 157
+  },
+  {
+    "id": "test-skipped-src-avatar-streaming-webrtc-server.test.ts-193",
+    "description": "src/avatar/streaming/webrtc-server.test.ts:193: skipped test — functionality untested",
+    "fix": "Fix the underlying issue and unskip the test, or remove it",
+    "persona": "tester",
+    "file": "src/avatar/streaming/webrtc-server.test.ts",
+    "line": 193
+  },
+  {
+    "id": "test-skipped-src-avatar-streaming-webrtc-server.test.ts-238",
+    "description": "src/avatar/streaming/webrtc-server.test.ts:238: skipped test — functionality untested",
+    "fix": "Fix the underlying issue and unskip the test, or remove it",
+    "persona": "tester",
+    "file": "src/avatar/streaming/webrtc-server.test.ts",
+    "line": 238
+  },
+  {
+    "id": "test-skipped-src-gateway-gateway-cli-backend.live.test.ts-18",
+    "description": "src/gateway/gateway-cli-backend.live.test.ts:18: skipped test — functionality untested",
+    "fix": "Fix the underlying issue and unskip the test, or remove it",
+    "persona": "tester",
+    "file": "src/gateway/gateway-cli-backend.live.test.ts",
+    "line": 18
+  },
+  {
+    "id": "test-skipped-src-gateway-gateway-models.profiles.live.test.ts-42",
+    "description": "src/gateway/gateway-models.profiles.live.test.ts:42: skipped test — functionality untested",
+    "fix": "Fix the underlying issue and unskip the test, or remove it",
+    "persona": "tester",
+    "file": "src/gateway/gateway-models.profiles.live.test.ts",
+    "line": 42
+  },
+  {
+    "id": "test-flaky-delay-src-avatar-streaming-webrtc-server.test.ts-328",
+    "description": "src/avatar/streaming/webrtc-server.test.ts:328: setTimeout(1000ms) in test — flakiness risk on slow CI",
+    "fix": "Use vi.useFakeTimers() or reduce delay. If real timing required, add comment.",
+    "persona": "tester",
+    "file": "src/avatar/streaming/webrtc-server.test.ts",
+    "line": 328
+  },
+  {
+    "id": "test-no-error-path-src-acp-session-mapper.test.ts",
+    "description": "src/acp/session-mapper.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/acp/session-mapper.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-agents-openclaw-tools.subagents.steer-failure-clears-suppression.test.ts",
+    "description": "src/agents/openclaw-tools.subagents.steer-failure-clears-suppression.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/agents/openclaw-tools.subagents.steer-failure-clears-suppression.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-agents-subagent-announce.format.e2e.test.ts",
+    "description": "src/agents/subagent-announce.format.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/agents/subagent-announce.format.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-agents-tools-agent-step.test.ts",
+    "description": "src/agents/tools/agent-step.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/agents/tools/agent-step.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-auto-reply-reply-reply-utils.test.ts",
+    "description": "src/auto-reply/reply/reply-utils.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/auto-reply/reply/reply-utils.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-auto-reply-reply-session.test.ts",
+    "description": "src/auto-reply/reply/session.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/auto-reply/reply/session.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-avatar-streaming-integration.test.ts",
+    "description": "src/avatar/streaming/integration.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/avatar/streaming/integration.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-channels-ack-reactions.test.ts",
+    "description": "src/channels/ack-reactions.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/channels/ack-reactions.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-cli-nodes-cli.coverage.test.ts",
+    "description": "src/cli/nodes-cli.coverage.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/cli/nodes-cli.coverage.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-cli-nodes-cli-register.invoke.nodes-run-approval-timeout.test.ts",
+    "description": "src/cli/nodes-cli/register.invoke.nodes-run-approval-timeout.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/cli/nodes-cli/register.invoke.nodes-run-approval-timeout.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-commands-agent-via-gateway.e2e.test.ts",
+    "description": "src/commands/agent-via-gateway.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/commands/agent-via-gateway.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-config-config.agent-concurrency-defaults.test.ts",
+    "description": "src/config/config.agent-concurrency-defaults.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/config/config.agent-concurrency-defaults.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-config-config.identity-defaults.test.ts",
+    "description": "src/config/config.identity-defaults.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/config/config.identity-defaults.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-config-sessions-store.pruning.e2e.test.ts",
+    "description": "src/config/sessions/store.pruning.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/config/sessions/store.pruning.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-api-control-ui-csp.test.ts",
+    "description": "src/gateway/api/control-ui-csp.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/api/control-ui-csp.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-api-control-ui.http.test.ts",
+    "description": "src/gateway/api/control-ui.http.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/api/control-ui.http.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-api-http-endpoint-helpers.test.ts",
+    "description": "src/gateway/api/http-endpoint-helpers.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/api/http-endpoint-helpers.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-api-server-http.hooks-request-timeout.test.ts",
+    "description": "src/gateway/api/server-http.hooks-request-timeout.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/api/server-http.hooks-request-timeout.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-api-server.plugin-http-auth.test.ts",
+    "description": "src/gateway/api/server.plugin-http-auth.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/api/server.plugin-http-auth.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-api-tools-invoke-http.test.ts",
+    "description": "src/gateway/api/tools-invoke-http.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/api/tools-invoke-http.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-core-agent-prompt.e2e.test.ts",
+    "description": "src/gateway/core/agent-prompt.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/core/agent-prompt.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-core-assistant-identity.test.ts",
+    "description": "src/gateway/core/assistant-identity.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/core/assistant-identity.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-core-auth-rate-limit.test.ts",
+    "description": "src/gateway/core/auth-rate-limit.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/core/auth-rate-limit.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-core-boot.test.ts",
+    "description": "src/gateway/core/boot.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/core/boot.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-core-chat-abort.test.ts",
+    "description": "src/gateway/core/chat-abort.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/core/chat-abort.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-core-chat-sanitize.test.ts",
+    "description": "src/gateway/core/chat-sanitize.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/core/chat-sanitize.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-core-config-reload.test.ts",
+    "description": "src/gateway/core/config-reload.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/core/config-reload.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-gateway-cli-backend.live.test.ts",
+    "description": "src/gateway/gateway-cli-backend.live.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/gateway-cli-backend.live.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-gateway-misc.test.ts",
+    "description": "src/gateway/gateway-misc.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/gateway-misc.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-gateway-models.profiles.live.test.ts",
+    "description": "src/gateway/gateway-models.profiles.live.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/gateway-models.profiles.live.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-gateway.e2e.test.ts",
+    "description": "src/gateway/gateway.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/gateway.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-hooks-server-plugins.test.ts",
+    "description": "src/gateway/hooks/server-plugins.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/hooks/server-plugins.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-methods-chat.abort-persistence.test.ts",
+    "description": "src/gateway/server-methods/chat.abort-persistence.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server-methods/chat.abort-persistence.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server-chat.agent-events.test.ts",
+    "description": "src/gateway/server/server-chat.agent-events.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server-chat.agent-events.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server-discovery.test.ts",
+    "description": "src/gateway/server/server-discovery.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server-discovery.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server-node-events.test.ts",
+    "description": "src/gateway/server/server-node-events.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server-node-events.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server-restart-deferral.test.ts",
+    "description": "src/gateway/server/server-restart-deferral.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server-restart-deferral.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server-startup-memory.test.ts",
+    "description": "src/gateway/server/server-startup-memory.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server-startup-memory.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server.canvas-auth.e2e.test.ts",
+    "description": "src/gateway/server/server.canvas-auth.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server.canvas-auth.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server.channels.e2e.test.ts",
+    "description": "src/gateway/server/server.channels.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server.channels.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server.chat.gateway-server-chat-b.e2e.test.ts",
+    "description": "src/gateway/server/server.chat.gateway-server-chat-b.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server.chat.gateway-server-chat-b.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server.cron.e2e.test.ts",
+    "description": "src/gateway/server/server.cron.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server.cron.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server.health.e2e.test.ts",
+    "description": "src/gateway/server/server.health.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server.health.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server.ios-client-id.e2e.test.ts",
+    "description": "src/gateway/server/server.ios-client-id.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server.ios-client-id.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server.reload.e2e.test.ts",
+    "description": "src/gateway/server/server.reload.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server.reload.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server.roles-allowlist-update.e2e.test.ts",
+    "description": "src/gateway/server/server.roles-allowlist-update.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server.roles-allowlist-update.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server.skills-status.e2e.test.ts",
+    "description": "src/gateway/server/server.skills-status.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server.skills-status.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-server-server.talk-config.e2e.test.ts",
+    "description": "src/gateway/server/server.talk-config.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/server/server.talk-config.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-sessions-server.sessions-send.e2e.test.ts",
+    "description": "src/gateway/sessions/server.sessions-send.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/sessions/server.sessions-send.e2e.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-sessions-session-utils.fs.test.ts",
+    "description": "src/gateway/sessions/session-utils.fs.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/sessions/session-utils.fs.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-sessions-session-utils.test.ts",
+    "description": "src/gateway/sessions/session-utils.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/sessions/session-utils.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-gateway-shared-ws-log.test.ts",
+    "description": "src/gateway/shared/ws-log.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/gateway/shared/ws-log.test.ts"
+  },
+  {
+    "id": "test-no-error-path-src-security-command-obfuscation.test.ts",
+    "description": "src/security/command-obfuscation.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "src/security/command-obfuscation.test.ts"
+  },
+  {
+    "id": "test-no-error-path-test-provider-timeout.e2e.test.ts",
+    "description": "test/provider-timeout.e2e.test.ts: no error path tests (no toThrow/rejects/should fail patterns)",
+    "fix": "Add tests for invalid inputs, error conditions, and rejection cases",
+    "persona": "tester",
+    "file": "test/provider-timeout.e2e.test.ts"
+  },
+  {
+    "id": "dev-console-log-.claude-agents-verify-agent-status.ts-147",
+    "description": ".claude/agents/verify-agent-status.ts:147: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": ".claude/agents/verify-agent-status.ts",
+    "line": 147
+  },
+  {
+    "id": "dev-console-log-.claude-agents-verify-agent-status.ts-148",
+    "description": ".claude/agents/verify-agent-status.ts:148: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": ".claude/agents/verify-agent-status.ts",
+    "line": 148
+  },
+  {
+    "id": "dev-console-log-.claude-agents-verify-agent-status.ts-149",
+    "description": ".claude/agents/verify-agent-status.ts:149: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": ".claude/agents/verify-agent-status.ts",
+    "line": 149
+  },
+  {
+    "id": "dev-console-log-.claude-agents-verify-agent-status.ts-150",
+    "description": ".claude/agents/verify-agent-status.ts:150: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": ".claude/agents/verify-agent-status.ts",
+    "line": 150
+  },
+  {
+    "id": "dev-console-log-.claude-agents-verify-agent-status.ts-155",
+    "description": ".claude/agents/verify-agent-status.ts:155: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": ".claude/agents/verify-agent-status.ts",
+    "line": 155
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-15",
+    "description": "examples/secure-logging-integration.ts:15: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 15
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-21",
+    "description": "examples/secure-logging-integration.ts:21: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 21
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-22",
+    "description": "examples/secure-logging-integration.ts:22: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 22
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-34",
+    "description": "examples/secure-logging-integration.ts:34: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 34
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-40",
+    "description": "examples/secure-logging-integration.ts:40: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 40
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-41",
+    "description": "examples/secure-logging-integration.ts:41: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 41
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-54",
+    "description": "examples/secure-logging-integration.ts:54: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 54
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-60",
+    "description": "examples/secure-logging-integration.ts:60: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 60
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-61",
+    "description": "examples/secure-logging-integration.ts:61: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 61
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-84",
+    "description": "examples/secure-logging-integration.ts:84: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 84
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-90",
+    "description": "examples/secure-logging-integration.ts:90: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 90
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-91",
+    "description": "examples/secure-logging-integration.ts:91: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 91
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-99",
+    "description": "examples/secure-logging-integration.ts:99: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 99
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-100",
+    "description": "examples/secure-logging-integration.ts:100: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 100
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-109",
+    "description": "examples/secure-logging-integration.ts:109: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 109
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-110",
+    "description": "examples/secure-logging-integration.ts:110: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 110
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-118",
+    "description": "examples/secure-logging-integration.ts:118: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 118
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-119",
+    "description": "examples/secure-logging-integration.ts:119: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 119
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-132",
+    "description": "examples/secure-logging-integration.ts:132: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 132
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-133",
+    "description": "examples/secure-logging-integration.ts:133: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 133
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-134",
+    "description": "examples/secure-logging-integration.ts:134: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 134
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-135",
+    "description": "examples/secure-logging-integration.ts:135: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 135
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-137",
+    "description": "examples/secure-logging-integration.ts:137: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 137
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-143",
+    "description": "examples/secure-logging-integration.ts:143: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 143
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-144",
+    "description": "examples/secure-logging-integration.ts:144: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 144
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-156",
+    "description": "examples/secure-logging-integration.ts:156: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 156
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-157",
+    "description": "examples/secure-logging-integration.ts:157: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 157
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-161",
+    "description": "examples/secure-logging-integration.ts:161: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 161
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-163",
+    "description": "examples/secure-logging-integration.ts:163: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 163
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-169",
+    "description": "examples/secure-logging-integration.ts:169: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 169
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-170",
+    "description": "examples/secure-logging-integration.ts:170: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 170
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-181",
+    "description": "examples/secure-logging-integration.ts:181: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 181
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-187",
+    "description": "examples/secure-logging-integration.ts:187: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 187
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-188",
+    "description": "examples/secure-logging-integration.ts:188: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 188
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-197",
+    "description": "examples/secure-logging-integration.ts:197: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 197
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-198",
+    "description": "examples/secure-logging-integration.ts:198: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 198
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-199",
+    "description": "examples/secure-logging-integration.ts:199: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 199
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-200",
+    "description": "examples/secure-logging-integration.ts:200: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 200
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-202",
+    "description": "examples/secure-logging-integration.ts:202: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 202
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-208",
+    "description": "examples/secure-logging-integration.ts:208: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 208
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-209",
+    "description": "examples/secure-logging-integration.ts:209: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 209
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-224",
+    "description": "examples/secure-logging-integration.ts:224: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 224
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-230",
+    "description": "examples/secure-logging-integration.ts:230: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 230
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-231",
+    "description": "examples/secure-logging-integration.ts:231: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 231
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-251",
+    "description": "examples/secure-logging-integration.ts:251: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 251
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-252",
+    "description": "examples/secure-logging-integration.ts:252: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 252
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-258",
+    "description": "examples/secure-logging-integration.ts:258: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 258
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-259",
+    "description": "examples/secure-logging-integration.ts:259: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 259
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-260",
+    "description": "examples/secure-logging-integration.ts:260: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 260
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-262",
+    "description": "examples/secure-logging-integration.ts:262: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 262
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-263",
+    "description": "examples/secure-logging-integration.ts:263: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 263
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-264",
+    "description": "examples/secure-logging-integration.ts:264: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 264
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-265",
+    "description": "examples/secure-logging-integration.ts:265: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 265
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-266",
+    "description": "examples/secure-logging-integration.ts:266: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 266
+  },
+  {
+    "id": "dev-console-log-examples-secure-logging-integration.ts-267",
+    "description": "examples/secure-logging-integration.ts:267: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 267
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-111",
+    "description": "scripts/scan-logs-for-credentials.ts:111: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 111
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-167",
+    "description": "scripts/scan-logs-for-credentials.ts:167: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 167
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-168",
+    "description": "scripts/scan-logs-for-credentials.ts:168: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 168
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-169",
+    "description": "scripts/scan-logs-for-credentials.ts:169: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 169
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-175",
+    "description": "scripts/scan-logs-for-credentials.ts:175: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 175
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-179",
+    "description": "scripts/scan-logs-for-credentials.ts:179: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 179
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-185",
+    "description": "scripts/scan-logs-for-credentials.ts:185: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 185
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-191",
+    "description": "scripts/scan-logs-for-credentials.ts:191: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 191
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-195",
+    "description": "scripts/scan-logs-for-credentials.ts:195: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 195
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-205",
+    "description": "scripts/scan-logs-for-credentials.ts:205: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 205
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-207",
+    "description": "scripts/scan-logs-for-credentials.ts:207: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 207
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-211",
+    "description": "scripts/scan-logs-for-credentials.ts:211: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 211
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-219",
+    "description": "scripts/scan-logs-for-credentials.ts:219: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 219
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-226",
+    "description": "scripts/scan-logs-for-credentials.ts:226: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 226
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-252",
+    "description": "scripts/scan-logs-for-credentials.ts:252: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 252
+  },
+  {
+    "id": "dev-console-log-scripts-scan-logs-for-credentials.ts-275",
+    "description": "scripts/scan-logs-for-credentials.ts:275: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 275
+  },
+  {
+    "id": "dev-console-log-services-liveportrait-avatar-client-LivePortraitClient.ts-207",
+    "description": "services/liveportrait-avatar/client/LivePortraitClient.ts:207: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "services/liveportrait-avatar/client/LivePortraitClient.ts",
+    "line": 207
+  },
+  {
+    "id": "dev-console-log-src-acp-server.ts-150",
+    "description": "src/acp/server.ts:150: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/acp/server.ts",
+    "line": 150
+  },
+  {
+    "id": "dev-console-log-src-agents-subagent-registry.ts-48",
+    "description": "src/agents/subagent-registry.ts:48: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/agents/subagent-registry.ts",
+    "line": 48
+  },
+  {
+    "id": "dev-console-log-src-auto-reply-reply-session.ts-330",
+    "description": "src/auto-reply/reply/session.ts:330: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/auto-reply/reply/session.ts",
+    "line": 330
+  },
+  {
+    "id": "dev-console-log-src-auto-reply-reply-session.ts-343",
+    "description": "src/auto-reply/reply/session.ts:343: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/auto-reply/reply/session.ts",
+    "line": 343
+  },
+  {
+    "id": "dev-console-log-src-avatar-orchestrator.ts-322",
+    "description": "src/avatar/orchestrator.ts:322: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 322
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-15",
+    "description": "src/avatar/streaming/example.ts:15: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 15
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-43",
+    "description": "src/avatar/streaming/example.ts:43: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 43
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-47",
+    "description": "src/avatar/streaming/example.ts:47: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 47
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-52",
+    "description": "src/avatar/streaming/example.ts:52: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 52
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-63",
+    "description": "src/avatar/streaming/example.ts:63: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 63
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-64",
+    "description": "src/avatar/streaming/example.ts:64: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 64
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-65",
+    "description": "src/avatar/streaming/example.ts:65: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 65
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-66",
+    "description": "src/avatar/streaming/example.ts:66: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 66
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-67",
+    "description": "src/avatar/streaming/example.ts:67: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 67
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-68",
+    "description": "src/avatar/streaming/example.ts:68: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 68
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-69",
+    "description": "src/avatar/streaming/example.ts:69: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 69
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-72",
+    "description": "src/avatar/streaming/example.ts:72: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 72
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-73",
+    "description": "src/avatar/streaming/example.ts:73: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 73
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-84",
+    "description": "src/avatar/streaming/example.ts:84: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 84
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-112",
+    "description": "src/avatar/streaming/example.ts:112: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 112
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-121",
+    "description": "src/avatar/streaming/example.ts:121: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 121
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-147",
+    "description": "src/avatar/streaming/example.ts:147: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 147
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-156",
+    "description": "src/avatar/streaming/example.ts:156: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 156
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-170",
+    "description": "src/avatar/streaming/example.ts:170: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 170
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-177",
+    "description": "src/avatar/streaming/example.ts:177: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 177
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-193",
+    "description": "src/avatar/streaming/example.ts:193: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 193
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-194",
+    "description": "src/avatar/streaming/example.ts:194: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 194
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-195",
+    "description": "src/avatar/streaming/example.ts:195: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 195
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-196",
+    "description": "src/avatar/streaming/example.ts:196: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 196
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-197",
+    "description": "src/avatar/streaming/example.ts:197: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 197
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-198",
+    "description": "src/avatar/streaming/example.ts:198: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 198
+  },
+  {
+    "id": "dev-console-log-src-avatar-streaming-example.ts-202",
+    "description": "src/avatar/streaming/example.ts:202: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 202
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-13",
+    "description": "src/characters/cli.ts:13: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 13
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-43",
+    "description": "src/characters/cli.ts:43: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 43
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-46",
+    "description": "src/characters/cli.ts:46: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 46
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-47",
+    "description": "src/characters/cli.ts:47: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 47
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-49",
+    "description": "src/characters/cli.ts:49: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 49
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-51",
+    "description": "src/characters/cli.ts:51: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 51
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-59",
+    "description": "src/characters/cli.ts:59: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 59
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-62",
+    "description": "src/characters/cli.ts:62: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 62
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-63",
+    "description": "src/characters/cli.ts:63: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 63
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-64",
+    "description": "src/characters/cli.ts:64: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 64
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-66",
+    "description": "src/characters/cli.ts:66: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 66
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-69",
+    "description": "src/characters/cli.ts:69: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 69
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-79",
+    "description": "src/characters/cli.ts:79: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 79
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-90",
+    "description": "src/characters/cli.ts:90: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 90
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-91",
+    "description": "src/characters/cli.ts:91: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 91
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-99",
+    "description": "src/characters/cli.ts:99: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 99
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-107",
+    "description": "src/characters/cli.ts:107: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 107
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-111",
+    "description": "src/characters/cli.ts:111: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 111
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-119",
+    "description": "src/characters/cli.ts:119: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 119
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-127",
+    "description": "src/characters/cli.ts:127: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 127
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-131",
+    "description": "src/characters/cli.ts:131: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 131
+  },
+  {
+    "id": "dev-console-log-src-characters-cli.ts-137",
+    "description": "src/characters/cli.ts:137: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/cli.ts",
+    "line": 137
+  },
+  {
+    "id": "dev-console-log-src-characters-default-character.ts-43",
+    "description": "src/characters/default-character.ts:43: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/characters/default-character.ts",
+    "line": 43
+  },
+  {
+    "id": "dev-console-log-src-commands-health.ts-78",
+    "description": "src/commands/health.ts:78: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/commands/health.ts",
+    "line": 78
+  },
+  {
+    "id": "dev-as-any-src-gateway-api-tools-invoke-http.ts",
+    "description": "src/gateway/api/tools-invoke-http.ts: 4 uses of 'as any' — significant type safety gap",
+    "fix": "Replace with proper type assertions or typed interfaces. Start with the most critical data paths.",
+    "persona": "developer",
+    "file": "src/gateway/api/tools-invoke-http.ts"
+  },
+  {
+    "id": "dev-console-log-src-node-host-runner.ts-107",
+    "description": "src/node-host/runner.ts:107: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/node-host/runner.ts",
+    "line": 107
+  },
+  {
+    "id": "dev-console-log-src-node-host-runner.ts-146",
+    "description": "src/node-host/runner.ts:146: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/node-host/runner.ts",
+    "line": 146
+  },
+  {
+    "id": "dev-console-log-src-node-host-runner.ts-150",
+    "description": "src/node-host/runner.ts:150: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/node-host/runner.ts",
+    "line": 150
+  },
+  {
+    "id": "dev-console-log-src-security-command-obfuscation.ts-114",
+    "description": "src/security/command-obfuscation.ts:114: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "src/security/command-obfuscation.ts",
+    "line": 114
+  },
+  {
+    "id": "dev-console-log-ui-avatar-chat-src-hooks-useWebRTC.ts-56",
+    "description": "ui/avatar-chat/src/hooks/useWebRTC.ts:56: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "ui/avatar-chat/src/hooks/useWebRTC.ts",
+    "line": 56
+  },
+  {
+    "id": "dev-console-log-ui-avatar-chat-src-hooks-useWebRTC.ts-78",
+    "description": "ui/avatar-chat/src/hooks/useWebRTC.ts:78: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "ui/avatar-chat/src/hooks/useWebRTC.ts",
+    "line": 78
+  },
+  {
+    "id": "dev-console-log-ui-avatar-chat-src-hooks-useWebRTC.ts-84",
+    "description": "ui/avatar-chat/src/hooks/useWebRTC.ts:84: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "ui/avatar-chat/src/hooks/useWebRTC.ts",
+    "line": 84
+  },
+  {
+    "id": "dev-console-log-ui-avatar-chat-src-hooks-useWebRTC.ts-89",
+    "description": "ui/avatar-chat/src/hooks/useWebRTC.ts:89: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "ui/avatar-chat/src/hooks/useWebRTC.ts",
+    "line": 89
+  },
+  {
+    "id": "dev-console-log-ui-avatar-chat-src-hooks-useWebRTC.ts-98",
+    "description": "ui/avatar-chat/src/hooks/useWebRTC.ts:98: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "ui/avatar-chat/src/hooks/useWebRTC.ts",
+    "line": 98
+  },
+  {
+    "id": "dev-console-log-ui-avatar-chat-src-hooks-useWebRTC.ts-111",
+    "description": "ui/avatar-chat/src/hooks/useWebRTC.ts:111: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "ui/avatar-chat/src/hooks/useWebRTC.ts",
+    "line": 111
+  },
+  {
+    "id": "dev-console-log-ui-avatar-chat-src-hooks-useWebRTC.ts-116",
+    "description": "ui/avatar-chat/src/hooks/useWebRTC.ts:116: console.log() in production code — use structured logger",
+    "fix": "Replace with logger.info/warn/error from the project's logger module",
+    "persona": "developer",
+    "file": "ui/avatar-chat/src/hooks/useWebRTC.ts",
+    "line": 116
+  },
+  {
+    "id": "sec-unvalidated-cast-src-avatar-streaming-webrtc-server.ts-183",
+    "description": "src/avatar/streaming/webrtc-server.ts:183: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 183
+  },
+  {
+    "id": "sec-unvalidated-cast-src-browser-cdp.helpers.ts-89",
+    "description": "src/browser/cdp.helpers.ts:89: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/browser/cdp.helpers.ts",
+    "line": 89
+  },
+  {
+    "id": "sec-unvalidated-cast-src-browser-extension-relay.ts-513",
+    "description": "src/browser/extension-relay.ts:513: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/browser/extension-relay.ts",
+    "line": 513
+  },
+  {
+    "id": "sec-unvalidated-cast-src-browser-extension-relay.ts-637",
+    "description": "src/browser/extension-relay.ts:637: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/browser/extension-relay.ts",
+    "line": 637
+  },
+  {
+    "id": "sec-unvalidated-cast-src-cli-nodes-cli-register.invoke.ts-118",
+    "description": "src/cli/nodes-cli/register.invoke.ts:118: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/cli/nodes-cli/register.invoke.ts",
+    "line": 118
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-api-openai-http.e2e.test.ts-422",
+    "description": "src/gateway/api/openai-http.e2e.test.ts:422: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/api/openai-http.e2e.test.ts",
+    "line": 422
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-api-openai-http.e2e.test.ts-451",
+    "description": "src/gateway/api/openai-http.e2e.test.ts:451: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/api/openai-http.e2e.test.ts",
+    "line": 451
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-server-methods-chat.abort-persistence.test.ts-63",
+    "description": "src/gateway/server-methods/chat.abort-persistence.test.ts:63: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/server-methods/chat.abort-persistence.test.ts",
+    "line": 63
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-server-methods-nodes.helpers.ts-49",
+    "description": "src/gateway/server-methods/nodes.helpers.ts:49: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/server-methods/nodes.helpers.ts",
+    "line": 49
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-server-server-node-events.ts-75",
+    "description": "src/gateway/server/server-node-events.ts:75: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/server/server-node-events.ts",
+    "line": 75
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-server-server-node-events.ts-95",
+    "description": "src/gateway/server/server-node-events.ts:95: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/server/server-node-events.ts",
+    "line": 95
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-server-server-node-events.ts-156",
+    "description": "src/gateway/server/server-node-events.ts:156: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/server/server-node-events.ts",
+    "line": 156
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-server-server-node-events.ts-231",
+    "description": "src/gateway/server/server-node-events.ts:231: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/server/server-node-events.ts",
+    "line": 231
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-server-server.agent.gateway-server-agent-a.e2e.test.ts-210",
+    "description": "src/gateway/server/server.agent.gateway-server-agent-a.e2e.test.ts:210: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/server/server.agent.gateway-server-agent-a.e2e.test.ts",
+    "line": 210
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-server-server.chat.gateway-server-chat-b.e2e.test.ts-112",
+    "description": "src/gateway/server/server.chat.gateway-server-chat-b.e2e.test.ts:112: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/server/server.chat.gateway-server-chat-b.e2e.test.ts",
+    "line": 112
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-server-server.config-patch.e2e.test.ts-190",
+    "description": "src/gateway/server/server.config-patch.e2e.test.ts:190: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/server/server.config-patch.e2e.test.ts",
+    "line": 190
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-server-server.models-voicewake-misc.e2e.test.ts-383",
+    "description": "src/gateway/server/server.models-voicewake-misc.e2e.test.ts:383: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/server/server.models-voicewake-misc.e2e.test.ts",
+    "line": 383
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-server-server.node-invoke-approval-bypass.e2e.test.ts-241",
+    "description": "src/gateway/server/server.node-invoke-approval-bypass.e2e.test.ts:241: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/server/server.node-invoke-approval-bypass.e2e.test.ts",
+    "line": 241
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-sessions-server.sessions.gateway-server-sessions-a.e2e.test.ts-488",
+    "description": "src/gateway/sessions/server.sessions.gateway-server-sessions-a.e2e.test.ts:488: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/sessions/server.sessions.gateway-server-sessions-a.e2e.test.ts",
+    "line": 488
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-sessions-server.sessions.gateway-server-sessions-a.e2e.test.ts-719",
+    "description": "src/gateway/sessions/server.sessions.gateway-server-sessions-a.e2e.test.ts:719: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/sessions/server.sessions.gateway-server-sessions-a.e2e.test.ts",
+    "line": 719
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-sessions-server.sessions.gateway-server-sessions-a.e2e.test.ts-773",
+    "description": "src/gateway/sessions/server.sessions.gateway-server-sessions-a.e2e.test.ts:773: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/sessions/server.sessions.gateway-server-sessions-a.e2e.test.ts",
+    "line": 773
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-shared-test-helpers.mocks.ts-334",
+    "description": "src/gateway/shared/test-helpers.mocks.ts:334: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/shared/test-helpers.mocks.ts",
+    "line": 334
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-shared-test-helpers.mocks.ts-389",
+    "description": "src/gateway/shared/test-helpers.mocks.ts:389: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/shared/test-helpers.mocks.ts",
+    "line": 389
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-shared-test-helpers.mocks.ts-520",
+    "description": "src/gateway/shared/test-helpers.mocks.ts:520: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/shared/test-helpers.mocks.ts",
+    "line": 520
+  },
+  {
+    "id": "sec-unvalidated-cast-src-gateway-shared-test-helpers.openai-mock.ts-192",
+    "description": "src/gateway/shared/test-helpers.openai-mock.ts:192: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/gateway/shared/test-helpers.openai-mock.ts",
+    "line": 192
+  },
+  {
+    "id": "sec-unvalidated-cast-src-node-host-invoke.ts-820",
+    "description": "src/node-host/invoke.ts:820: JSON.parse() result cast to typed interface without validation",
+    "fix": "Validate with Zod schema before casting to avoid type confusion attacks",
+    "persona": "security",
+    "file": "src/node-host/invoke.ts",
+    "line": 820
+  }
+]

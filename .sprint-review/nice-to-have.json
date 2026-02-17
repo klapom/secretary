@@ -1,0 +1,3871 @@
+[
+  {
+    "id": "arch-todo-services-liveportrait-avatar-app-renderer.py-183",
+    "description": "services/liveportrait-avatar/app/renderer.py:183: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "services/liveportrait-avatar/app/renderer.py",
+    "line": 183
+  },
+  {
+    "id": "arch-todo-services-voice-pipeline-voice_service.py-101",
+    "description": "services/voice-pipeline/voice_service.py:101: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "services/voice-pipeline/voice_service.py",
+    "line": 101
+  },
+  {
+    "id": "arch-todo-services-voice-pipeline-voice_service.py-119",
+    "description": "services/voice-pipeline/voice_service.py:119: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "services/voice-pipeline/voice_service.py",
+    "line": 119
+  },
+  {
+    "id": "arch-no-return-type-src-acp-session-mapper.ts-27",
+    "description": "src/acp/session-mapper.ts:27: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/acp/session-mapper.ts",
+    "line": 27
+  },
+  {
+    "id": "arch-no-return-type-src-acp-session-mapper.ts-87",
+    "description": "src/acp/session-mapper.ts:87: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/acp/session-mapper.ts",
+    "line": 87
+  },
+  {
+    "id": "arch-no-return-type-src-agents-subagent-announce.ts-262",
+    "description": "src/agents/subagent-announce.ts:262: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/subagent-announce.ts",
+    "line": 262
+  },
+  {
+    "id": "arch-no-return-type-src-agents-subagent-announce.ts-372",
+    "description": "src/agents/subagent-announce.ts:372: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/subagent-announce.ts",
+    "line": 372
+  },
+  {
+    "id": "arch-no-return-type-src-agents-subagent-registry.ts-313",
+    "description": "src/agents/subagent-registry.ts:313: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/subagent-registry.ts",
+    "line": 313
+  },
+  {
+    "id": "arch-no-return-type-src-agents-subagent-registry.ts-330",
+    "description": "src/agents/subagent-registry.ts:330: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/subagent-registry.ts",
+    "line": 330
+  },
+  {
+    "id": "arch-no-return-type-src-agents-subagent-registry.ts-353",
+    "description": "src/agents/subagent-registry.ts:353: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/subagent-registry.ts",
+    "line": 353
+  },
+  {
+    "id": "arch-no-return-type-src-agents-subagent-registry.ts-406",
+    "description": "src/agents/subagent-registry.ts:406: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/subagent-registry.ts",
+    "line": 406
+  },
+  {
+    "id": "arch-no-return-type-src-agents-subagent-registry.ts-509",
+    "description": "src/agents/subagent-registry.ts:509: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/subagent-registry.ts",
+    "line": 509
+  },
+  {
+    "id": "arch-no-return-type-src-agents-subagent-registry.ts-525",
+    "description": "src/agents/subagent-registry.ts:525: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/subagent-registry.ts",
+    "line": 525
+  },
+  {
+    "id": "arch-no-return-type-src-agents-subagent-registry.ts-529",
+    "description": "src/agents/subagent-registry.ts:529: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/subagent-registry.ts",
+    "line": 529
+  },
+  {
+    "id": "arch-no-return-type-src-agents-subagent-registry.ts-613",
+    "description": "src/agents/subagent-registry.ts:613: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/subagent-registry.ts",
+    "line": 613
+  },
+  {
+    "id": "arch-no-return-type-src-agents-subagent-registry.ts-743",
+    "description": "src/agents/subagent-registry.ts:743: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/subagent-registry.ts",
+    "line": 743
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-agent-step.ts-7",
+    "description": "src/agents/tools/agent-step.ts:7: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/agent-step.ts",
+    "line": 7
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-agent-step.ts-33",
+    "description": "src/agents/tools/agent-step.ts:33: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/agent-step.ts",
+    "line": 33
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-gateway.ts-79",
+    "description": "src/agents/tools/gateway.ts:79: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/gateway.ts",
+    "line": 79
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-memory-tool.ts-43",
+    "description": "src/agents/tools/memory-tool.ts:43: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/memory-tool.ts",
+    "line": 43
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-memory-tool.ts-102",
+    "description": "src/agents/tools/memory-tool.ts:102: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/memory-tool.ts",
+    "line": 102
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-session-status-tool.ts-251",
+    "description": "src/agents/tools/session-status-tool.ts:251: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/session-status-tool.ts",
+    "line": 251
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-announce-target.ts-7",
+    "description": "src/agents/tools/sessions-announce-target.ts:7: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-announce-target.ts",
+    "line": 7
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-history-tool.ts-151",
+    "description": "src/agents/tools/sessions-history-tool.ts:151: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-history-tool.ts",
+    "line": 151
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-list-tool.ts-29",
+    "description": "src/agents/tools/sessions-list-tool.ts:29: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-list-tool.ts",
+    "line": 29
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-resolution.ts-10",
+    "description": "src/agents/tools/sessions-resolution.ts:10: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-resolution.ts",
+    "line": 10
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-resolution.ts-17",
+    "description": "src/agents/tools/sessions-resolution.ts:17: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-resolution.ts",
+    "line": 17
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-resolution.ts-27",
+    "description": "src/agents/tools/sessions-resolution.ts:27: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-resolution.ts",
+    "line": 27
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-resolution.ts-34",
+    "description": "src/agents/tools/sessions-resolution.ts:34: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-resolution.ts",
+    "line": 34
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-resolution.ts-63",
+    "description": "src/agents/tools/sessions-resolution.ts:63: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-resolution.ts",
+    "line": 63
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-resolution.ts-213",
+    "description": "src/agents/tools/sessions-resolution.ts:213: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-resolution.ts",
+    "line": 213
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-resolution.ts-255",
+    "description": "src/agents/tools/sessions-resolution.ts:255: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-resolution.ts",
+    "line": 255
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-send-tool.a2a.ts-18",
+    "description": "src/agents/tools/sessions-send-tool.a2a.ts:18: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-send-tool.a2a.ts",
+    "line": 18
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-send-tool.ts-35",
+    "description": "src/agents/tools/sessions-send-tool.ts:35: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-send-tool.ts",
+    "line": 35
+  },
+  {
+    "id": "arch-no-return-type-src-agents-tools-sessions-spawn-tool.ts-66",
+    "description": "src/agents/tools/sessions-spawn-tool.ts:66: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/agents/tools/sessions-spawn-tool.ts",
+    "line": 66
+  },
+  {
+    "id": "arch-no-return-type-src-auto-reply-queue-drain.ts-32",
+    "description": "src/auto-reply/queue/drain.ts:32: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/auto-reply/queue/drain.ts",
+    "line": 32
+  },
+  {
+    "id": "arch-no-return-type-src-auto-reply-queue-enqueue.ts-26",
+    "description": "src/auto-reply/queue/enqueue.ts:26: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/auto-reply/queue/enqueue.ts",
+    "line": 26
+  },
+  {
+    "id": "arch-no-return-type-src-auto-reply-reply-session.ts-99",
+    "description": "src/auto-reply/reply/session.ts:99: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/auto-reply/reply/session.ts",
+    "line": 99
+  },
+  {
+    "id": "arch-no-return-type-src-avatar-orchestrator.ts-424",
+    "description": "src/avatar/orchestrator.ts:424: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 424
+  },
+  {
+    "id": "arch-todo-src-avatar-streaming-example.ts-53",
+    "description": "src/avatar/streaming/example.ts:53: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 53
+  },
+  {
+    "id": "arch-todo-src-avatar-streaming-example.ts-171",
+    "description": "src/avatar/streaming/example.ts:171: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "src/avatar/streaming/example.ts",
+    "line": 171
+  },
+  {
+    "id": "arch-no-return-type-src-avatar-streaming-index.ts-97",
+    "description": "src/avatar/streaming/index.ts:97: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/avatar/streaming/index.ts",
+    "line": 97
+  },
+  {
+    "id": "arch-no-return-type-src-avatar-streaming-media-bridge.ts-232",
+    "description": "src/avatar/streaming/media-bridge.ts:232: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 232
+  },
+  {
+    "id": "arch-no-return-type-src-browser-bridge-server.ts-26",
+    "description": "src/browser/bridge-server.ts:26: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/browser/bridge-server.ts",
+    "line": 26
+  },
+  {
+    "id": "arch-no-return-type-src-browser-cdp.helpers.ts-25",
+    "description": "src/browser/cdp.helpers.ts:25: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/browser/cdp.helpers.ts",
+    "line": 25
+  },
+  {
+    "id": "arch-no-return-type-src-browser-config.ts-63",
+    "description": "src/browser/config.ts:63: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/browser/config.ts",
+    "line": 63
+  },
+  {
+    "id": "arch-no-return-type-src-browser-config.ts-138",
+    "description": "src/browser/config.ts:138: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/browser/config.ts",
+    "line": 138
+  },
+  {
+    "id": "arch-no-return-type-src-browser-config.ts-222",
+    "description": "src/browser/config.ts:222: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/browser/config.ts",
+    "line": 222
+  },
+  {
+    "id": "arch-no-return-type-src-browser-config.ts-259",
+    "description": "src/browser/config.ts:259: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/browser/config.ts",
+    "line": 259
+  },
+  {
+    "id": "arch-no-return-type-src-browser-control-auth.ts-11",
+    "description": "src/browser/control-auth.ts:11: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/browser/control-auth.ts",
+    "line": 11
+  },
+  {
+    "id": "arch-no-return-type-src-browser-control-auth.ts-40",
+    "description": "src/browser/control-auth.ts:40: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/browser/control-auth.ts",
+    "line": 40
+  },
+  {
+    "id": "arch-no-return-type-src-browser-csrf.ts-26",
+    "description": "src/browser/csrf.ts:26: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/browser/csrf.ts",
+    "line": 26
+  },
+  {
+    "id": "arch-no-return-type-src-browser-extension-relay.ts-177",
+    "description": "src/browser/extension-relay.ts:177: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/browser/extension-relay.ts",
+    "line": 177
+  },
+  {
+    "id": "arch-no-return-type-src-characters-default-character.ts-32",
+    "description": "src/characters/default-character.ts:32: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/characters/default-character.ts",
+    "line": 32
+  },
+  {
+    "id": "arch-no-return-type-src-cli-daemon-cli-install.ts-26",
+    "description": "src/cli/daemon-cli/install.ts:26: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/daemon-cli/install.ts",
+    "line": 26
+  },
+  {
+    "id": "arch-no-return-type-src-cli-daemon-cli-probe.ts-5",
+    "description": "src/cli/daemon-cli/probe.ts:5: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/daemon-cli/probe.ts",
+    "line": 5
+  },
+  {
+    "id": "arch-no-return-type-src-cli-daemon-cli-shared.ts-17",
+    "description": "src/cli/daemon-cli/shared.ts:17: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/daemon-cli/shared.ts",
+    "line": 17
+  },
+  {
+    "id": "arch-no-return-type-src-cli-daemon-cli-shared.ts-53",
+    "description": "src/cli/daemon-cli/shared.ts:53: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/daemon-cli/shared.ts",
+    "line": 53
+  },
+  {
+    "id": "arch-no-return-type-src-cli-daemon-cli-shared.ts-108",
+    "description": "src/cli/daemon-cli/shared.ts:108: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/daemon-cli/shared.ts",
+    "line": 108
+  },
+  {
+    "id": "arch-no-return-type-src-cli-daemon-cli-status.gather.ts-108",
+    "description": "src/cli/daemon-cli/status.gather.ts:108: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/daemon-cli/status.gather.ts",
+    "line": 108
+  },
+  {
+    "id": "arch-no-return-type-src-cli-devices-cli.ts-99",
+    "description": "src/cli/devices-cli.ts:99: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/devices-cli.ts",
+    "line": 99
+  },
+  {
+    "id": "arch-no-return-type-src-cli-gateway-cli-run-loop.ts-22",
+    "description": "src/cli/gateway-cli/run-loop.ts:22: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/gateway-cli/run-loop.ts",
+    "line": 22
+  },
+  {
+    "id": "arch-no-return-type-src-cli-gateway-rpc.ts-14",
+    "description": "src/cli/gateway-rpc.ts:14: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/gateway-rpc.ts",
+    "line": 14
+  },
+  {
+    "id": "arch-no-return-type-src-cli-gateway-rpc.ts-22",
+    "description": "src/cli/gateway-rpc.ts:22: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/gateway-rpc.ts",
+    "line": 22
+  },
+  {
+    "id": "arch-no-return-type-src-cli-logs-cli.ts-64",
+    "description": "src/cli/logs-cli.ts:64: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/logs-cli.ts",
+    "line": 64
+  },
+  {
+    "id": "arch-no-return-type-src-cli-logs-cli.ts-198",
+    "description": "src/cli/logs-cli.ts:198: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/logs-cli.ts",
+    "line": 198
+  },
+  {
+    "id": "arch-no-return-type-src-cli-nodes-cli-register.invoke.ts-98",
+    "description": "src/cli/nodes-cli/register.invoke.ts:98: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/nodes-cli/register.invoke.ts",
+    "line": 98
+  },
+  {
+    "id": "arch-no-return-type-src-cli-nodes-cli-register.location.ts-8",
+    "description": "src/cli/nodes-cli/register.location.ts:8: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/nodes-cli/register.location.ts",
+    "line": 8
+  },
+  {
+    "id": "arch-no-return-type-src-cli-nodes-cli-register.notify.ts-8",
+    "description": "src/cli/nodes-cli/register.notify.ts:8: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/nodes-cli/register.notify.ts",
+    "line": 8
+  },
+  {
+    "id": "arch-no-return-type-src-cli-nodes-cli-rpc.ts-40",
+    "description": "src/cli/nodes-cli/rpc.ts:40: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/nodes-cli/rpc.ts",
+    "line": 40
+  },
+  {
+    "id": "arch-no-return-type-src-cli-nodes-cli-rpc.ts-75",
+    "description": "src/cli/nodes-cli/rpc.ts:75: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/cli/nodes-cli/rpc.ts",
+    "line": 75
+  },
+  {
+    "id": "arch-no-return-type-src-commands-agent-via-gateway.ts-88",
+    "description": "src/commands/agent-via-gateway.ts:88: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/agent-via-gateway.ts",
+    "line": 88
+  },
+  {
+    "id": "arch-no-return-type-src-commands-agent-via-gateway.ts-180",
+    "description": "src/commands/agent-via-gateway.ts:180: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/agent-via-gateway.ts",
+    "line": 180
+  },
+  {
+    "id": "arch-no-return-type-src-commands-channels-status.ts-239",
+    "description": "src/commands/channels/status.ts:239: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/channels/status.ts",
+    "line": 239
+  },
+  {
+    "id": "arch-no-return-type-src-commands-chutes-oauth.ts-156",
+    "description": "src/commands/chutes-oauth.ts:156: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/chutes-oauth.ts",
+    "line": 156
+  },
+  {
+    "id": "arch-no-return-type-src-commands-configure.gateway.ts-23",
+    "description": "src/commands/configure.gateway.ts:23: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/configure.gateway.ts",
+    "line": 23
+  },
+  {
+    "id": "arch-no-return-type-src-commands-doctor-gateway-health.ts-9",
+    "description": "src/commands/doctor-gateway-health.ts:9: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/doctor-gateway-health.ts",
+    "line": 9
+  },
+  {
+    "id": "arch-no-return-type-src-commands-doctor-security.ts-11",
+    "description": "src/commands/doctor-security.ts:11: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/doctor-security.ts",
+    "line": 11
+  },
+  {
+    "id": "arch-no-return-type-src-commands-doctor.ts-66",
+    "description": "src/commands/doctor.ts:66: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/doctor.ts",
+    "line": 66
+  },
+  {
+    "id": "arch-no-return-type-src-commands-gateway-status.ts-24",
+    "description": "src/commands/gateway-status.ts:24: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/gateway-status.ts",
+    "line": 24
+  },
+  {
+    "id": "arch-no-return-type-src-commands-gateway-status-helpers.ts-147",
+    "description": "src/commands/gateway-status/helpers.ts:147: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/gateway-status/helpers.ts",
+    "line": 147
+  },
+  {
+    "id": "arch-no-return-type-src-commands-gateway-status-helpers.ts-247",
+    "description": "src/commands/gateway-status/helpers.ts:247: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/gateway-status/helpers.ts",
+    "line": 247
+  },
+  {
+    "id": "arch-no-return-type-src-commands-gateway-status-helpers.ts-257",
+    "description": "src/commands/gateway-status/helpers.ts:257: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/gateway-status/helpers.ts",
+    "line": 257
+  },
+  {
+    "id": "arch-no-return-type-src-commands-gateway-status-helpers.ts-271",
+    "description": "src/commands/gateway-status/helpers.ts:271: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/gateway-status/helpers.ts",
+    "line": 271
+  },
+  {
+    "id": "arch-no-return-type-src-commands-health.ts-348",
+    "description": "src/commands/health.ts:348: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/health.ts",
+    "line": 348
+  },
+  {
+    "id": "arch-no-return-type-src-commands-health.ts-525",
+    "description": "src/commands/health.ts:525: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/health.ts",
+    "line": 525
+  },
+  {
+    "id": "arch-no-return-type-src-commands-onboard-helpers.ts-99",
+    "description": "src/commands/onboard-helpers.ts:99: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/onboard-helpers.ts",
+    "line": 99
+  },
+  {
+    "id": "arch-no-return-type-src-commands-onboard-helpers.ts-112",
+    "description": "src/commands/onboard-helpers.ts:112: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/onboard-helpers.ts",
+    "line": 112
+  },
+  {
+    "id": "arch-no-return-type-src-commands-onboard-helpers.ts-203",
+    "description": "src/commands/onboard-helpers.ts:203: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/onboard-helpers.ts",
+    "line": 203
+  },
+  {
+    "id": "arch-no-return-type-src-commands-onboard-helpers.ts-287",
+    "description": "src/commands/onboard-helpers.ts:287: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/onboard-helpers.ts",
+    "line": 287
+  },
+  {
+    "id": "arch-no-return-type-src-commands-onboard-helpers.ts-330",
+    "description": "src/commands/onboard-helpers.ts:330: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/onboard-helpers.ts",
+    "line": 330
+  },
+  {
+    "id": "arch-no-return-type-src-commands-onboard-helpers.ts-380",
+    "description": "src/commands/onboard-helpers.ts:380: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/onboard-helpers.ts",
+    "line": 380
+  },
+  {
+    "id": "arch-no-return-type-src-commands-onboard-helpers.ts-404",
+    "description": "src/commands/onboard-helpers.ts:404: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/onboard-helpers.ts",
+    "line": 404
+  },
+  {
+    "id": "arch-no-return-type-src-commands-onboard-helpers.ts-457",
+    "description": "src/commands/onboard-helpers.ts:457: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/onboard-helpers.ts",
+    "line": 457
+  },
+  {
+    "id": "arch-no-return-type-src-commands-sessions.ts-162",
+    "description": "src/commands/sessions.ts:162: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/sessions.ts",
+    "line": 162
+  },
+  {
+    "id": "arch-no-return-type-src-commands-status-all.ts-40",
+    "description": "src/commands/status-all.ts:40: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/status-all.ts",
+    "line": 40
+  },
+  {
+    "id": "arch-no-return-type-src-commands-status-all-agents.ts-17",
+    "description": "src/commands/status-all/agents.ts:17: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/status-all/agents.ts",
+    "line": 17
+  },
+  {
+    "id": "arch-no-return-type-src-commands-status.command.ts-44",
+    "description": "src/commands/status.command.ts:44: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/status.command.ts",
+    "line": 44
+  },
+  {
+    "id": "arch-no-return-type-src-commands-status.scan.ts-62",
+    "description": "src/commands/status.scan.ts:62: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/status.scan.ts",
+    "line": 62
+  },
+  {
+    "id": "arch-no-return-type-src-commands-status.summary.ts-90",
+    "description": "src/commands/status.summary.ts:90: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/commands/status.summary.ts",
+    "line": 90
+  },
+  {
+    "id": "arch-no-return-type-src-discord-monitor-exec-approvals.ts-67",
+    "description": "src/discord/monitor/exec-approvals.ts:67: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 67
+  },
+  {
+    "id": "arch-no-return-type-src-discord-monitor-exec-approvals.ts-76",
+    "description": "src/discord/monitor/exec-approvals.ts:76: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 76
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-characters-http.ts-127",
+    "description": "src/gateway/api/characters-http.ts:127: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/characters-http.ts",
+    "line": 127
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-control-ui-shared.ts-36",
+    "description": "src/gateway/api/control-ui-shared.ts:36: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/control-ui-shared.ts",
+    "line": 36
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-control-ui.ts-95",
+    "description": "src/gateway/api/control-ui.ts:95: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/control-ui.ts",
+    "line": 95
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-control-ui.ts-192",
+    "description": "src/gateway/api/control-ui.ts:192: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/control-ui.ts",
+    "line": 192
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-auth-helpers.ts-7",
+    "description": "src/gateway/api/http-auth-helpers.ts:7: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-auth-helpers.ts",
+    "line": 7
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-common.ts-5",
+    "description": "src/gateway/api/http-common.ts:5: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-common.ts",
+    "line": 5
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-common.ts-11",
+    "description": "src/gateway/api/http-common.ts:11: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-common.ts",
+    "line": 11
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-common.ts-17",
+    "description": "src/gateway/api/http-common.ts:17: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-common.ts",
+    "line": 17
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-common.ts-22",
+    "description": "src/gateway/api/http-common.ts:22: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-common.ts",
+    "line": 22
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-common.ts-28",
+    "description": "src/gateway/api/http-common.ts:28: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-common.ts",
+    "line": 28
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-common.ts-40",
+    "description": "src/gateway/api/http-common.ts:40: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-common.ts",
+    "line": 40
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-common.ts-48",
+    "description": "src/gateway/api/http-common.ts:48: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-common.ts",
+    "line": 48
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-common.ts-54",
+    "description": "src/gateway/api/http-common.ts:54: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-common.ts",
+    "line": 54
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-common.ts-79",
+    "description": "src/gateway/api/http-common.ts:79: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-common.ts",
+    "line": 79
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-common.ts-83",
+    "description": "src/gateway/api/http-common.ts:83: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-common.ts",
+    "line": 83
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-endpoint-helpers.ts-7",
+    "description": "src/gateway/api/http-endpoint-helpers.ts:7: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-endpoint-helpers.ts",
+    "line": 7
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-utils.ts-52",
+    "description": "src/gateway/api/http-utils.ts:52: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-utils.ts",
+    "line": 52
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-http-utils.ts-65",
+    "description": "src/gateway/api/http-utils.ts:65: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/http-utils.ts",
+    "line": 65
+  },
+  {
+    "id": "arch-todo-src-gateway-api-openai-http.ts-223",
+    "description": "src/gateway/api/openai-http.ts:223: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "src/gateway/api/openai-http.ts",
+    "line": 223
+  },
+  {
+    "id": "arch-todo-src-gateway-api-openai-http.ts-352",
+    "description": "src/gateway/api/openai-http.ts:352: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "src/gateway/api/openai-http.ts",
+    "line": 352
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-openai-http.ts-143",
+    "description": "src/gateway/api/openai-http.ts:143: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/openai-http.ts",
+    "line": 143
+  },
+  {
+    "id": "arch-todo-src-gateway-api-openresponses-http.ts-470",
+    "description": "src/gateway/api/openresponses-http.ts:470: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "src/gateway/api/openresponses-http.ts",
+    "line": 470
+  },
+  {
+    "id": "arch-todo-src-gateway-api-openresponses-http.ts-488",
+    "description": "src/gateway/api/openresponses-http.ts:488: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "src/gateway/api/openresponses-http.ts",
+    "line": 488
+  },
+  {
+    "id": "arch-todo-src-gateway-api-openresponses-http.ts-598",
+    "description": "src/gateway/api/openresponses-http.ts:598: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "src/gateway/api/openresponses-http.ts",
+    "line": 598
+  },
+  {
+    "id": "arch-todo-src-gateway-api-openresponses-http.ts-886",
+    "description": "src/gateway/api/openresponses-http.ts:886: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "src/gateway/api/openresponses-http.ts",
+    "line": 886
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-openresponses-http.ts-344",
+    "description": "src/gateway/api/openresponses-http.ts:344: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/openresponses-http.ts",
+    "line": 344
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-server-http.ts-191",
+    "description": "src/gateway/api/server-http.ts:191: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/server-http.ts",
+    "line": 191
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-server-http.ts-439",
+    "description": "src/gateway/api/server-http.ts:439: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/server-http.ts",
+    "line": 439
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-server-http.ts-619",
+    "description": "src/gateway/api/server-http.ts:619: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/server-http.ts",
+    "line": 619
+  },
+  {
+    "id": "arch-todo-src-gateway-api-tools-invoke-http.ts-259",
+    "description": "src/gateway/api/tools-invoke-http.ts:259: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "src/gateway/api/tools-invoke-http.ts",
+    "line": 259
+  },
+  {
+    "id": "arch-todo-src-gateway-api-tools-invoke-http.ts-315",
+    "description": "src/gateway/api/tools-invoke-http.ts:315: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "src/gateway/api/tools-invoke-http.ts",
+    "line": 315
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-api-tools-invoke-http.ts-126",
+    "description": "src/gateway/api/tools-invoke-http.ts:126: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/api/tools-invoke-http.ts",
+    "line": 126
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-assistant-identity.ts-96",
+    "description": "src/gateway/core/assistant-identity.ts:96: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/assistant-identity.ts",
+    "line": 96
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-auth.ts-179",
+    "description": "src/gateway/core/auth.ts:179: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/auth.ts",
+    "line": 179
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-auth.ts-283",
+    "description": "src/gateway/core/auth.ts:283: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/auth.ts",
+    "line": 283
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-boot.ts-137",
+    "description": "src/gateway/core/boot.ts:137: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/boot.ts",
+    "line": 137
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-call.ts-70",
+    "description": "src/gateway/core/call.ts:70: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/call.ts",
+    "line": 70
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-call.ts-92",
+    "description": "src/gateway/core/call.ts:92: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/call.ts",
+    "line": 92
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-call.ts-310",
+    "description": "src/gateway/core/call.ts:310: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/call.ts",
+    "line": 310
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-chat-abort.ts-19",
+    "description": "src/gateway/core/chat-abort.ts:19: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/chat-abort.ts",
+    "line": 19
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-chat-abort.ts-77",
+    "description": "src/gateway/core/chat-abort.ts:77: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/chat-abort.ts",
+    "line": 77
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-chat-abort.ts-110",
+    "description": "src/gateway/core/chat-abort.ts:110: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/chat-abort.ts",
+    "line": 110
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-chat-attachments.ts-48",
+    "description": "src/gateway/core/chat-attachments.ts:48: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/chat-attachments.ts",
+    "line": 48
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-chat-attachments.ts-118",
+    "description": "src/gateway/core/chat-attachments.ts:118: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/chat-attachments.ts",
+    "line": 118
+  },
+  {
+    "id": "arch-todo-src-gateway-core-client.ts-12",
+    "description": "src/gateway/core/client.ts:12: unresolved TODO/FIXME comment",
+    "fix": "Resolve or move to tech debt register",
+    "persona": "architect",
+    "file": "src/gateway/core/client.ts",
+    "line": 12
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-core-config-reload.ts-249",
+    "description": "src/gateway/core/config-reload.ts:249: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/core/config-reload.ts",
+    "line": 249
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-hooks-hooks-mapping.ts-105",
+    "description": "src/gateway/hooks/hooks-mapping.ts:105: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/hooks/hooks-mapping.ts",
+    "line": 105
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-hooks-hooks-mapping.ts-146",
+    "description": "src/gateway/hooks/hooks-mapping.ts:146: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/hooks/hooks-mapping.ts",
+    "line": 146
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-hooks-hooks.ts-177",
+    "description": "src/gateway/hooks/hooks.ts:177: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/hooks/hooks.ts",
+    "line": 177
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-hooks-hooks.ts-197",
+    "description": "src/gateway/hooks/hooks.ts:197: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/hooks/hooks.ts",
+    "line": 197
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-hooks-hooks.ts-209",
+    "description": "src/gateway/hooks/hooks.ts:209: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/hooks/hooks.ts",
+    "line": 209
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-hooks-hooks.ts-261",
+    "description": "src/gateway/hooks/hooks.ts:261: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/hooks/hooks.ts",
+    "line": 261
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-hooks-hooks.ts-276",
+    "description": "src/gateway/hooks/hooks.ts:276: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/hooks/hooks.ts",
+    "line": 276
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-hooks-hooks.ts-299",
+    "description": "src/gateway/hooks/hooks.ts:299: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/hooks/hooks.ts",
+    "line": 299
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-hooks-server-plugins.ts-5",
+    "description": "src/gateway/hooks/server-plugins.ts:5: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/hooks/server-plugins.ts",
+    "line": 5
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-protocol-index.ts-371",
+    "description": "src/gateway/protocol/index.ts:371: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/protocol/index.ts",
+    "line": 371
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-methods-attachment-normalize.ts-10",
+    "description": "src/gateway/server-methods/attachment-normalize.ts:10: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/attachment-normalize.ts",
+    "line": 10
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-methods-channels.ts-33",
+    "description": "src/gateway/server-methods/channels.ts:33: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/channels.ts",
+    "line": 33
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-methods-chat.ts-74",
+    "description": "src/gateway/server-methods/chat.ts:74: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/chat.ts",
+    "line": 74
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-methods-exec-approval.ts-16",
+    "description": "src/gateway/server-methods/exec-approval.ts:16: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/exec-approval.ts",
+    "line": 16
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-methods-nodes.helpers.ts-10",
+    "description": "src/gateway/server-methods/nodes.helpers.ts:10: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/nodes.helpers.ts",
+    "line": 10
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-methods-nodes.helpers.ts-25",
+    "description": "src/gateway/server-methods/nodes.helpers.ts:25: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/nodes.helpers.ts",
+    "line": 25
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-methods-nodes.helpers.ts-33",
+    "description": "src/gateway/server-methods/nodes.helpers.ts:33: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/nodes.helpers.ts",
+    "line": 33
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-health-state.ts-62",
+    "description": "src/gateway/server/health-state.ts:62: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/health-state.ts",
+    "line": 62
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-health-state.ts-66",
+    "description": "src/gateway/server/health-state.ts:66: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/health-state.ts",
+    "line": 66
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-hooks.ts-15",
+    "description": "src/gateway/server/hooks.ts:15: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/hooks.ts",
+    "line": 15
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-broadcast.ts-57",
+    "description": "src/gateway/server/server-broadcast.ts:57: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-broadcast.ts",
+    "line": 57
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-chat.ts-221",
+    "description": "src/gateway/server/server-chat.ts:221: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-chat.ts",
+    "line": 221
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-close.ts-9",
+    "description": "src/gateway/server/server-close.ts:9: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-close.ts",
+    "line": 9
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-cron.ts-34",
+    "description": "src/gateway/server/server-cron.ts:34: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-cron.ts",
+    "line": 34
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-discovery-runtime.ts-10",
+    "description": "src/gateway/server/server-discovery-runtime.ts:10: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-discovery-runtime.ts",
+    "line": 10
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-discovery.ts-14",
+    "description": "src/gateway/server/server-discovery.ts:14: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-discovery.ts",
+    "line": 14
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-discovery.ts-67",
+    "description": "src/gateway/server/server-discovery.ts:67: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-discovery.ts",
+    "line": 67
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-lanes.ts-6",
+    "description": "src/gateway/server/server-lanes.ts:6: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-lanes.ts",
+    "line": 6
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-maintenance.ts-14",
+    "description": "src/gateway/server/server-maintenance.ts:14: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-maintenance.ts",
+    "line": 14
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-methods.ts-199",
+    "description": "src/gateway/server/server-methods.ts:199: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-methods.ts",
+    "line": 199
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-model-catalog.ts-13",
+    "description": "src/gateway/server/server-model-catalog.ts:13: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-model-catalog.ts",
+    "line": 13
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-reload-handlers.ts-29",
+    "description": "src/gateway/server/server-reload-handlers.ts:29: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-reload-handlers.ts",
+    "line": 29
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-restart-sentinel.ts-17",
+    "description": "src/gateway/server/server-restart-sentinel.ts:17: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-restart-sentinel.ts",
+    "line": 17
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-restart-sentinel.ts-104",
+    "description": "src/gateway/server/server-restart-sentinel.ts:104: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-restart-sentinel.ts",
+    "line": 104
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-runtime-config.ts-32",
+    "description": "src/gateway/server/server-runtime-config.ts:32: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-runtime-config.ts",
+    "line": 32
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-runtime-state.ts-34",
+    "description": "src/gateway/server/server-runtime-state.ts:34: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-runtime-state.ts",
+    "line": 34
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-startup-log.ts-7",
+    "description": "src/gateway/server/server-startup-log.ts:7: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-startup-log.ts",
+    "line": 7
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-startup-memory.ts-6",
+    "description": "src/gateway/server/server-startup-memory.ts:6: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-startup-memory.ts",
+    "line": 6
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-startup.ts-27",
+    "description": "src/gateway/server/server-startup.ts:27: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-startup.ts",
+    "line": 27
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-tailscale.ts-9",
+    "description": "src/gateway/server/server-tailscale.ts:9: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-tailscale.ts",
+    "line": 9
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server-ws-runtime.ts-9",
+    "description": "src/gateway/server/server-ws-runtime.ts:9: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server-ws-runtime.ts",
+    "line": 9
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server.agent.gateway-server-agent.mocks.ts-23",
+    "description": "src/gateway/server/server.agent.gateway-server-agent.mocks.ts:23: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server.agent.gateway-server-agent.mocks.ts",
+    "line": 23
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-server.impl.ts-165",
+    "description": "src/gateway/server/server.impl.ts:165: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/server.impl.ts",
+    "line": 165
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-ws-connection.ts-57",
+    "description": "src/gateway/server/ws-connection.ts:57: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/ws-connection.ts",
+    "line": 57
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-ws-connection-auth-messages.ts-7",
+    "description": "src/gateway/server/ws-connection/auth-messages.ts:7: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/ws-connection/auth-messages.ts",
+    "line": 7
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-server-ws-connection-message-handler.ts-68",
+    "description": "src/gateway/server/ws-connection/message-handler.ts:68: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/server/ws-connection/message-handler.ts",
+    "line": 68
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-server-session-key.ts-6",
+    "description": "src/gateway/sessions/server-session-key.ts:6: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/server-session-key.ts",
+    "line": 6
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-server-wizard-sessions.ts-3",
+    "description": "src/gateway/sessions/server-wizard-sessions.ts:3: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/server-wizard-sessions.ts",
+    "line": 3
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.fs.ts-69",
+    "description": "src/gateway/sessions/session-utils.fs.ts:69: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 69
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.fs.ts-116",
+    "description": "src/gateway/sessions/session-utils.fs.ts:116: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 116
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.fs.ts-174",
+    "description": "src/gateway/sessions/session-utils.fs.ts:174: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 174
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.fs.ts-234",
+    "description": "src/gateway/sessions/session-utils.fs.ts:234: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 234
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.fs.ts-351",
+    "description": "src/gateway/sessions/session-utils.fs.ts:351: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 351
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.fs.ts-440",
+    "description": "src/gateway/sessions/session-utils.fs.ts:440: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 440
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.fs.ts-651",
+    "description": "src/gateway/sessions/session-utils.fs.ts:651: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 651
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.ts-157",
+    "description": "src/gateway/sessions/session-utils.ts:157: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.ts",
+    "line": 157
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.ts-185",
+    "description": "src/gateway/sessions/session-utils.ts:185: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.ts",
+    "line": 185
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.ts-226",
+    "description": "src/gateway/sessions/session-utils.ts:226: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.ts",
+    "line": 226
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.ts-244",
+    "description": "src/gateway/sessions/session-utils.ts:244: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.ts",
+    "line": 244
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.ts-285",
+    "description": "src/gateway/sessions/session-utils.ts:285: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.ts",
+    "line": 285
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.ts-424",
+    "description": "src/gateway/sessions/session-utils.ts:424: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.ts",
+    "line": 424
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.ts-472",
+    "description": "src/gateway/sessions/session-utils.ts:472: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.ts",
+    "line": 472
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.ts-497",
+    "description": "src/gateway/sessions/session-utils.ts:497: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.ts",
+    "line": 497
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.ts-644",
+    "description": "src/gateway/sessions/session-utils.ts:644: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.ts",
+    "line": 644
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-session-utils.ts-666",
+    "description": "src/gateway/sessions/session-utils.ts:666: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/session-utils.ts",
+    "line": 666
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-sessions-patch.ts-64",
+    "description": "src/gateway/sessions/sessions-patch.ts:64: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/sessions-patch.ts",
+    "line": 64
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-sessions-sessions-resolve.ts-19",
+    "description": "src/gateway/sessions/sessions-resolve.ts:19: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/sessions/sessions-resolve.ts",
+    "line": 19
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-net.ts-222",
+    "description": "src/gateway/shared/net.ts:222: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/net.ts",
+    "line": 222
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-net.ts-269",
+    "description": "src/gateway/shared/net.ts:269: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/net.ts",
+    "line": 269
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-net.ts-343",
+    "description": "src/gateway/shared/net.ts:343: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/net.ts",
+    "line": 343
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-node-command-policy.ts-135",
+    "description": "src/gateway/shared/node-command-policy.ts:135: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/node-command-policy.ts",
+    "line": 135
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-node-command-policy.ts-153",
+    "description": "src/gateway/shared/node-command-policy.ts:153: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/node-command-policy.ts",
+    "line": 153
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-node-invoke-sanitize.ts-5",
+    "description": "src/gateway/shared/node-invoke-sanitize.ts:5: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/node-invoke-sanitize.ts",
+    "line": 5
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-node-invoke-system-run-approval.ts-119",
+    "description": "src/gateway/shared/node-invoke-system-run-approval.ts:119: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/node-invoke-system-run-approval.ts",
+    "line": 119
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-origin-check.ts-24",
+    "description": "src/gateway/shared/origin-check.ts:24: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/origin-check.ts",
+    "line": 24
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-probe-auth.ts-3",
+    "description": "src/gateway/shared/probe-auth.ts:3: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/probe-auth.ts",
+    "line": 3
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-probe.ts-30",
+    "description": "src/gateway/shared/probe.ts:30: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/probe.ts",
+    "line": 30
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-test-helpers.e2e.ts-23",
+    "description": "src/gateway/shared/test-helpers.e2e.ts:23: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.e2e.ts",
+    "line": 23
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-test-helpers.e2e.ts-63",
+    "description": "src/gateway/shared/test-helpers.e2e.ts:63: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.e2e.ts",
+    "line": 63
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-test-helpers.openai-mock.ts-172",
+    "description": "src/gateway/shared/test-helpers.openai-mock.ts:172: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.openai-mock.ts",
+    "line": 172
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-test-helpers.server.ts-61",
+    "description": "src/gateway/shared/test-helpers.server.ts:61: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.server.ts",
+    "line": 61
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-test-helpers.server.ts-252",
+    "description": "src/gateway/shared/test-helpers.server.ts:252: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.server.ts",
+    "line": 252
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-test-helpers.server.ts-328",
+    "description": "src/gateway/shared/test-helpers.server.ts:328: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.server.ts",
+    "line": 328
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-test-helpers.server.ts-372",
+    "description": "src/gateway/shared/test-helpers.server.ts:372: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.server.ts",
+    "line": 372
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-test-helpers.server.ts-437",
+    "description": "src/gateway/shared/test-helpers.server.ts:437: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.server.ts",
+    "line": 437
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-test-helpers.server.ts-558",
+    "description": "src/gateway/shared/test-helpers.server.ts:558: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.server.ts",
+    "line": 558
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-test-helpers.server.ts-593",
+    "description": "src/gateway/shared/test-helpers.server.ts:593: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.server.ts",
+    "line": 593
+  },
+  {
+    "id": "arch-no-return-type-src-gateway-shared-ws-log.ts-216",
+    "description": "src/gateway/shared/ws-log.ts:216: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/gateway/shared/ws-log.ts",
+    "line": 216
+  },
+  {
+    "id": "arch-no-return-type-src-infra-canvas-host-url.ts-46",
+    "description": "src/infra/canvas-host-url.ts:46: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/infra/canvas-host-url.ts",
+    "line": 46
+  },
+  {
+    "id": "arch-no-return-type-src-infra-skills-remote.ts-126",
+    "description": "src/infra/skills-remote.ts:126: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/infra/skills-remote.ts",
+    "line": 126
+  },
+  {
+    "id": "arch-no-return-type-src-infra-skills-remote.ts-130",
+    "description": "src/infra/skills-remote.ts:130: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/infra/skills-remote.ts",
+    "line": 130
+  },
+  {
+    "id": "arch-no-return-type-src-infra-skills-remote.ts-156",
+    "description": "src/infra/skills-remote.ts:156: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/infra/skills-remote.ts",
+    "line": 156
+  },
+  {
+    "id": "arch-no-return-type-src-infra-skills-remote.ts-167",
+    "description": "src/infra/skills-remote.ts:167: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/infra/skills-remote.ts",
+    "line": 167
+  },
+  {
+    "id": "arch-no-return-type-src-infra-skills-remote.ts-171",
+    "description": "src/infra/skills-remote.ts:171: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/infra/skills-remote.ts",
+    "line": 171
+  },
+  {
+    "id": "arch-no-return-type-src-infra-skills-remote.ts-241",
+    "description": "src/infra/skills-remote.ts:241: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/infra/skills-remote.ts",
+    "line": 241
+  },
+  {
+    "id": "arch-no-return-type-src-infra-skills-remote.ts-337",
+    "description": "src/infra/skills-remote.ts:337: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/infra/skills-remote.ts",
+    "line": 337
+  },
+  {
+    "id": "arch-no-return-type-src-infra-system-presence.ts-247",
+    "description": "src/infra/system-presence.ts:247: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/infra/system-presence.ts",
+    "line": 247
+  },
+  {
+    "id": "arch-no-return-type-src-node-host-invoke.ts-138",
+    "description": "src/node-host/invoke.ts:138: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/node-host/invoke.ts",
+    "line": 138
+  },
+  {
+    "id": "arch-no-return-type-src-node-host-invoke.ts-384",
+    "description": "src/node-host/invoke.ts:384: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/node-host/invoke.ts",
+    "line": 384
+  },
+  {
+    "id": "arch-no-return-type-src-node-host-invoke.ts-869",
+    "description": "src/node-host/invoke.ts:869: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/node-host/invoke.ts",
+    "line": 869
+  },
+  {
+    "id": "arch-no-return-type-src-security-audit-extra.sync.ts-358",
+    "description": "src/security/audit-extra.sync.ts:358: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/security/audit-extra.sync.ts",
+    "line": 358
+  },
+  {
+    "id": "arch-no-return-type-src-security-audit-extra.sync.ts-405",
+    "description": "src/security/audit-extra.sync.ts:405: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/security/audit-extra.sync.ts",
+    "line": 405
+  },
+  {
+    "id": "arch-no-return-type-src-security-audit-extra.sync.ts-511",
+    "description": "src/security/audit-extra.sync.ts:511: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/security/audit-extra.sync.ts",
+    "line": 511
+  },
+  {
+    "id": "arch-no-return-type-src-security-audit-extra.sync.ts-856",
+    "description": "src/security/audit-extra.sync.ts:856: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/security/audit-extra.sync.ts",
+    "line": 856
+  },
+  {
+    "id": "arch-no-return-type-src-security-path-traversal.ts-272",
+    "description": "src/security/path-traversal.ts:272: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/security/path-traversal.ts",
+    "line": 272
+  },
+  {
+    "id": "arch-no-return-type-src-services-voice-client.ts-234",
+    "description": "src/services/voice-client.ts:234: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/services/voice-client.ts",
+    "line": 234
+  },
+  {
+    "id": "arch-no-return-type-src-tui-gateway-chat.ts-228",
+    "description": "src/tui/gateway-chat.ts:228: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/tui/gateway-chat.ts",
+    "line": 228
+  },
+  {
+    "id": "arch-no-return-type-src-wizard-onboarding.gateway-config.ts-52",
+    "description": "src/wizard/onboarding.gateway-config.ts:52: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "src/wizard/onboarding.gateway-config.ts",
+    "line": 52
+  },
+  {
+    "id": "arch-no-return-type-ui-avatar-chat-src-hooks-useAudioStream.ts-3",
+    "description": "ui/avatar-chat/src/hooks/useAudioStream.ts:3: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "ui/avatar-chat/src/hooks/useAudioStream.ts",
+    "line": 3
+  },
+  {
+    "id": "arch-no-return-type-ui-avatar-chat-src-hooks-useWebRTC.ts-7",
+    "description": "ui/avatar-chat/src/hooks/useWebRTC.ts:7: exported function missing explicit return type",
+    "fix": "Add explicit return type annotation for better API contract clarity",
+    "persona": "architect",
+    "file": "ui/avatar-chat/src/hooks/useWebRTC.ts",
+    "line": 7
+  },
+  {
+    "id": "test-console-log-src-gateway-gateway-models.profiles.live.test.ts-57",
+    "description": "src/gateway/gateway-models.profiles.live.test.ts:57: console.log in test — remove for clean output",
+    "fix": "Remove console.log or use vi.spyOn to suppress",
+    "persona": "tester",
+    "file": "src/gateway/gateway-models.profiles.live.test.ts",
+    "line": 57
+  },
+  {
+    "id": "test-console-log-src-security-integration.test.ts-239",
+    "description": "src/security/integration.test.ts:239: console.log in test — remove for clean output",
+    "fix": "Remove console.log or use vi.spyOn to suppress",
+    "persona": "tester",
+    "file": "src/security/integration.test.ts",
+    "line": 239
+  },
+  {
+    "id": "test-console-log-src-security-path-traversal.test.ts-223",
+    "description": "src/security/path-traversal.test.ts:223: console.log in test — remove for clean output",
+    "fix": "Remove console.log or use vi.spyOn to suppress",
+    "persona": "tester",
+    "file": "src/security/path-traversal.test.ts",
+    "line": 223
+  },
+  {
+    "id": "test-console-log-src-security-path-traversal.test.ts-234",
+    "description": "src/security/path-traversal.test.ts:234: console.log in test — remove for clean output",
+    "fix": "Remove console.log or use vi.spyOn to suppress",
+    "persona": "tester",
+    "file": "src/security/path-traversal.test.ts",
+    "line": 234
+  },
+  {
+    "id": "test-console-log-src-security-path-traversal.test.ts-256",
+    "description": "src/security/path-traversal.test.ts:256: console.log in test — remove for clean output",
+    "fix": "Remove console.log or use vi.spyOn to suppress",
+    "persona": "tester",
+    "file": "src/security/path-traversal.test.ts",
+    "line": 256
+  },
+  {
+    "id": "test-console-log-src-security-path-traversal.test.ts-267",
+    "description": "src/security/path-traversal.test.ts:267: console.log in test — remove for clean output",
+    "fix": "Remove console.log or use vi.spyOn to suppress",
+    "persona": "tester",
+    "file": "src/security/path-traversal.test.ts",
+    "line": 267
+  },
+  {
+    "id": "test-low-coverage-proxy-src-agents-tools-sessions-resolution.ts",
+    "description": "src/agents/tools/sessions-resolution.ts: 10 exports but only 7 test cases — possible coverage gaps",
+    "fix": "Review uncovered exports and add tests for critical paths",
+    "persona": "tester",
+    "file": "src/agents/tools/sessions-resolution.ts"
+  },
+  {
+    "id": "test-low-coverage-proxy-src-gateway-core-chat-abort.ts",
+    "description": "src/gateway/core/chat-abort.ts: 4 exports but only 3 test cases — possible coverage gaps",
+    "fix": "Review uncovered exports and add tests for critical paths",
+    "persona": "tester",
+    "file": "src/gateway/core/chat-abort.ts"
+  },
+  {
+    "id": "test-low-coverage-proxy-src-gateway-protocol-index.ts",
+    "description": "src/gateway/protocol/index.ts: 82 exports but only 6 test cases — possible coverage gaps",
+    "fix": "Review uncovered exports and add tests for critical paths",
+    "persona": "tester",
+    "file": "src/gateway/protocol/index.ts"
+  },
+  {
+    "id": "test-low-coverage-proxy-src-gateway-shared-ws-log.ts",
+    "description": "src/gateway/shared/ws-log.ts: 5 exports but only 4 test cases — possible coverage gaps",
+    "fix": "Review uncovered exports and add tests for critical paths",
+    "persona": "tester",
+    "file": "src/gateway/shared/ws-log.ts"
+  },
+  {
+    "id": "test-low-coverage-proxy-src-infra-skills-remote.ts",
+    "description": "src/infra/skills-remote.ts: 8 exports but only 2 test cases — possible coverage gaps",
+    "fix": "Review uncovered exports and add tests for critical paths",
+    "persona": "tester",
+    "file": "src/infra/skills-remote.ts"
+  },
+  {
+    "id": "test-low-coverage-proxy-src-security-audit-extra.sync.ts",
+    "description": "src/security/audit-extra.sync.ts: 12 exports but only 7 test cases — possible coverage gaps",
+    "fix": "Review uncovered exports and add tests for critical paths",
+    "persona": "tester",
+    "file": "src/security/audit-extra.sync.ts"
+  },
+  {
+    "id": "dev-floating-promise-scripts-scan-logs-for-credentials.ts-89",
+    "description": "scripts/scan-logs-for-credentials.ts:89: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 89
+  },
+  {
+    "id": "dev-floating-promise-scripts-scan-logs-for-credentials.ts-92",
+    "description": "scripts/scan-logs-for-credentials.ts:92: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "scripts/scan-logs-for-credentials.ts",
+    "line": 92
+  },
+  {
+    "id": "dev-magic-number-services-voice-pipeline-integration_tests.py-97",
+    "description": "services/voice-pipeline/integration_tests.py:97: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "services/voice-pipeline/integration_tests.py",
+    "line": 97
+  },
+  {
+    "id": "dev-magic-number-services-voice-pipeline-integration_tests.py-118",
+    "description": "services/voice-pipeline/integration_tests.py:118: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "services/voice-pipeline/integration_tests.py",
+    "line": 118
+  },
+  {
+    "id": "dev-magic-number-services-voice-pipeline-integration_tests.py-144",
+    "description": "services/voice-pipeline/integration_tests.py:144: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "services/voice-pipeline/integration_tests.py",
+    "line": 144
+  },
+  {
+    "id": "dev-magic-number-services-voice-pipeline-integration_tests.py-237",
+    "description": "services/voice-pipeline/integration_tests.py:237: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "services/voice-pipeline/integration_tests.py",
+    "line": 237
+  },
+  {
+    "id": "dev-magic-number-services-voice-pipeline-integration_tests.py-276",
+    "description": "services/voice-pipeline/integration_tests.py:276: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "services/voice-pipeline/integration_tests.py",
+    "line": 276
+  },
+  {
+    "id": "dev-magic-number-services-voice-pipeline-integration_tests.py-317",
+    "description": "services/voice-pipeline/integration_tests.py:317: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "services/voice-pipeline/integration_tests.py",
+    "line": 317
+  },
+  {
+    "id": "dev-magic-number-services-voice-pipeline-integration_tests.py-396",
+    "description": "services/voice-pipeline/integration_tests.py:396: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "services/voice-pipeline/integration_tests.py",
+    "line": 396
+  },
+  {
+    "id": "dev-magic-number-services-voice-pipeline-integration_tests.py-443",
+    "description": "services/voice-pipeline/integration_tests.py:443: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "services/voice-pipeline/integration_tests.py",
+    "line": 443
+  },
+  {
+    "id": "dev-magic-number-services-voice-pipeline-test_voice.py-61",
+    "description": "services/voice-pipeline/test_voice.py:61: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "services/voice-pipeline/test_voice.py",
+    "line": 61
+  },
+  {
+    "id": "dev-magic-number-services-voice-pipeline-test_voice.py-96",
+    "description": "services/voice-pipeline/test_voice.py:96: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "services/voice-pipeline/test_voice.py",
+    "line": 96
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-74",
+    "description": "src/acp/translator.ts:74: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 74
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-78",
+    "description": "src/acp/translator.ts:78: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 78
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-82",
+    "description": "src/acp/translator.ts:82: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 82
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-85",
+    "description": "src/acp/translator.ts:85: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 85
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-87",
+    "description": "src/acp/translator.ts:87: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 87
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-125",
+    "description": "src/acp/translator.ts:125: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 125
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-148",
+    "description": "src/acp/translator.ts:148: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 148
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-155",
+    "description": "src/acp/translator.ts:155: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 155
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-177",
+    "description": "src/acp/translator.ts:177: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 177
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-219",
+    "description": "src/acp/translator.ts:219: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 219
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-221",
+    "description": "src/acp/translator.ts:221: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 221
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-233",
+    "description": "src/acp/translator.ts:233: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 233
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-238",
+    "description": "src/acp/translator.ts:238: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 238
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-247",
+    "description": "src/acp/translator.ts:247: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 247
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-270",
+    "description": "src/acp/translator.ts:270: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 270
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-271",
+    "description": "src/acp/translator.ts:271: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 271
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-283",
+    "description": "src/acp/translator.ts:283: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 283
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-287",
+    "description": "src/acp/translator.ts:287: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 287
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-292",
+    "description": "src/acp/translator.ts:292: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 292
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-389",
+    "description": "src/acp/translator.ts:389: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 389
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-393",
+    "description": "src/acp/translator.ts:393: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 393
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-397",
+    "description": "src/acp/translator.ts:397: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 397
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-431",
+    "description": "src/acp/translator.ts:431: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 431
+  },
+  {
+    "id": "dev-floating-promise-src-acp-translator.ts-432",
+    "description": "src/acp/translator.ts:432: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/acp/translator.ts",
+    "line": 432
+  },
+  {
+    "id": "dev-floating-promise-src-auto-reply-reply-session.ts-92",
+    "description": "src/auto-reply/reply/session.ts:92: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/auto-reply/reply/session.ts",
+    "line": 92
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-57",
+    "description": "src/avatar/orchestrator.ts:57: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 57
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-85",
+    "description": "src/avatar/orchestrator.ts:85: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 85
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-90",
+    "description": "src/avatar/orchestrator.ts:90: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 90
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-93",
+    "description": "src/avatar/orchestrator.ts:93: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 93
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-101",
+    "description": "src/avatar/orchestrator.ts:101: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 101
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-114",
+    "description": "src/avatar/orchestrator.ts:114: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 114
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-122",
+    "description": "src/avatar/orchestrator.ts:122: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 122
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-137",
+    "description": "src/avatar/orchestrator.ts:137: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 137
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-159",
+    "description": "src/avatar/orchestrator.ts:159: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 159
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-164",
+    "description": "src/avatar/orchestrator.ts:164: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 164
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-230",
+    "description": "src/avatar/orchestrator.ts:230: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 230
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-232",
+    "description": "src/avatar/orchestrator.ts:232: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 232
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-245",
+    "description": "src/avatar/orchestrator.ts:245: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 245
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-254",
+    "description": "src/avatar/orchestrator.ts:254: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 254
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-256",
+    "description": "src/avatar/orchestrator.ts:256: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 256
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-orchestrator.ts-260",
+    "description": "src/avatar/orchestrator.ts:260: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/orchestrator.ts",
+    "line": 260
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-84",
+    "description": "src/avatar/streaming/media-bridge.ts:84: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 84
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-92",
+    "description": "src/avatar/streaming/media-bridge.ts:92: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 92
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-93",
+    "description": "src/avatar/streaming/media-bridge.ts:93: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 93
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-111",
+    "description": "src/avatar/streaming/media-bridge.ts:111: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 111
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-112",
+    "description": "src/avatar/streaming/media-bridge.ts:112: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 112
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-122",
+    "description": "src/avatar/streaming/media-bridge.ts:122: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 122
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-138",
+    "description": "src/avatar/streaming/media-bridge.ts:138: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 138
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-144",
+    "description": "src/avatar/streaming/media-bridge.ts:144: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 144
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-146",
+    "description": "src/avatar/streaming/media-bridge.ts:146: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 146
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-156",
+    "description": "src/avatar/streaming/media-bridge.ts:156: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 156
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-164",
+    "description": "src/avatar/streaming/media-bridge.ts:164: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 164
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-166",
+    "description": "src/avatar/streaming/media-bridge.ts:166: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 166
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-173",
+    "description": "src/avatar/streaming/media-bridge.ts:173: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 173
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-174",
+    "description": "src/avatar/streaming/media-bridge.ts:174: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 174
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-240",
+    "description": "src/avatar/streaming/media-bridge.ts:240: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 240
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-media-bridge.ts-246",
+    "description": "src/avatar/streaming/media-bridge.ts:246: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/media-bridge.ts",
+    "line": 246
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-94",
+    "description": "src/avatar/streaming/webrtc-server.ts:94: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 94
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-98",
+    "description": "src/avatar/streaming/webrtc-server.ts:98: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 98
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-99",
+    "description": "src/avatar/streaming/webrtc-server.ts:99: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 99
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-102",
+    "description": "src/avatar/streaming/webrtc-server.ts:102: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 102
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-103",
+    "description": "src/avatar/streaming/webrtc-server.ts:103: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 103
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-116",
+    "description": "src/avatar/streaming/webrtc-server.ts:116: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 116
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-122",
+    "description": "src/avatar/streaming/webrtc-server.ts:122: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 122
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-128",
+    "description": "src/avatar/streaming/webrtc-server.ts:128: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 128
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-139",
+    "description": "src/avatar/streaming/webrtc-server.ts:139: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 139
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-140",
+    "description": "src/avatar/streaming/webrtc-server.ts:140: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 140
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-158",
+    "description": "src/avatar/streaming/webrtc-server.ts:158: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 158
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-159",
+    "description": "src/avatar/streaming/webrtc-server.ts:159: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 159
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-162",
+    "description": "src/avatar/streaming/webrtc-server.ts:162: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 162
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-184",
+    "description": "src/avatar/streaming/webrtc-server.ts:184: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 184
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-186",
+    "description": "src/avatar/streaming/webrtc-server.ts:186: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 186
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-187",
+    "description": "src/avatar/streaming/webrtc-server.ts:187: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 187
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-193",
+    "description": "src/avatar/streaming/webrtc-server.ts:193: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 193
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-197",
+    "description": "src/avatar/streaming/webrtc-server.ts:197: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 197
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-199",
+    "description": "src/avatar/streaming/webrtc-server.ts:199: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 199
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-206",
+    "description": "src/avatar/streaming/webrtc-server.ts:206: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 206
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-212",
+    "description": "src/avatar/streaming/webrtc-server.ts:212: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 212
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-221",
+    "description": "src/avatar/streaming/webrtc-server.ts:221: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 221
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-225",
+    "description": "src/avatar/streaming/webrtc-server.ts:225: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 225
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-229",
+    "description": "src/avatar/streaming/webrtc-server.ts:229: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 229
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-232",
+    "description": "src/avatar/streaming/webrtc-server.ts:232: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 232
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-235",
+    "description": "src/avatar/streaming/webrtc-server.ts:235: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 235
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-241",
+    "description": "src/avatar/streaming/webrtc-server.ts:241: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 241
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-249",
+    "description": "src/avatar/streaming/webrtc-server.ts:249: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 249
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-250",
+    "description": "src/avatar/streaming/webrtc-server.ts:250: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 250
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-257",
+    "description": "src/avatar/streaming/webrtc-server.ts:257: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 257
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-258",
+    "description": "src/avatar/streaming/webrtc-server.ts:258: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 258
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-265",
+    "description": "src/avatar/streaming/webrtc-server.ts:265: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 265
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-266",
+    "description": "src/avatar/streaming/webrtc-server.ts:266: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 266
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-275",
+    "description": "src/avatar/streaming/webrtc-server.ts:275: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 275
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-279",
+    "description": "src/avatar/streaming/webrtc-server.ts:279: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 279
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-297",
+    "description": "src/avatar/streaming/webrtc-server.ts:297: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 297
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-301",
+    "description": "src/avatar/streaming/webrtc-server.ts:301: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 301
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-320",
+    "description": "src/avatar/streaming/webrtc-server.ts:320: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 320
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-338",
+    "description": "src/avatar/streaming/webrtc-server.ts:338: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 338
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-342",
+    "description": "src/avatar/streaming/webrtc-server.ts:342: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 342
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-344",
+    "description": "src/avatar/streaming/webrtc-server.ts:344: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 344
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-368",
+    "description": "src/avatar/streaming/webrtc-server.ts:368: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 368
+  },
+  {
+    "id": "dev-floating-promise-src-avatar-streaming-webrtc-server.ts-380",
+    "description": "src/avatar/streaming/webrtc-server.ts:380: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 380
+  },
+  {
+    "id": "dev-magic-number-src-browser-config.ts-77",
+    "description": "src/browser/config.ts:77: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "src/browser/config.ts",
+    "line": 77
+  },
+  {
+    "id": "dev-magic-number-src-browser-config.ts-123",
+    "description": "src/browser/config.ts:123: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "src/browser/config.ts",
+    "line": 123
+  },
+  {
+    "id": "dev-magic-number-src-browser-config.ts-167",
+    "description": "src/browser/config.ts:167: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "src/browser/config.ts",
+    "line": 167
+  },
+  {
+    "id": "dev-floating-promise-src-browser-extension-relay.ts-708",
+    "description": "src/browser/extension-relay.ts:708: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/browser/extension-relay.ts",
+    "line": 708
+  },
+  {
+    "id": "dev-magic-number-src-browser-extension-relay.ts-117",
+    "description": "src/browser/extension-relay.ts:117: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "src/browser/extension-relay.ts",
+    "line": 117
+  },
+  {
+    "id": "dev-floating-promise-src-characters-db.ts-33",
+    "description": "src/characters/db.ts:33: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/db.ts",
+    "line": 33
+  },
+  {
+    "id": "dev-floating-promise-src-characters-db.ts-38",
+    "description": "src/characters/db.ts:38: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/db.ts",
+    "line": 38
+  },
+  {
+    "id": "dev-floating-promise-src-characters-db.ts-194",
+    "description": "src/characters/db.ts:194: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/db.ts",
+    "line": 194
+  },
+  {
+    "id": "dev-floating-promise-src-characters-db.ts-341",
+    "description": "src/characters/db.ts:341: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/db.ts",
+    "line": 341
+  },
+  {
+    "id": "dev-floating-promise-src-characters-default-character.ts-42",
+    "description": "src/characters/default-character.ts:42: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/default-character.ts",
+    "line": 42
+  },
+  {
+    "id": "dev-floating-promise-src-characters-schema.ts-29",
+    "description": "src/characters/schema.ts:29: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/schema.ts",
+    "line": 29
+  },
+  {
+    "id": "dev-floating-promise-src-characters-schema.ts-47",
+    "description": "src/characters/schema.ts:47: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/schema.ts",
+    "line": 47
+  },
+  {
+    "id": "dev-floating-promise-src-characters-schema.ts-52",
+    "description": "src/characters/schema.ts:52: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/schema.ts",
+    "line": 52
+  },
+  {
+    "id": "dev-floating-promise-src-characters-schema.ts-58",
+    "description": "src/characters/schema.ts:58: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/schema.ts",
+    "line": 58
+  },
+  {
+    "id": "dev-floating-promise-src-characters-schema.ts-64",
+    "description": "src/characters/schema.ts:64: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/schema.ts",
+    "line": 64
+  },
+  {
+    "id": "dev-floating-promise-src-characters-schema.ts-77",
+    "description": "src/characters/schema.ts:77: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/schema.ts",
+    "line": 77
+  },
+  {
+    "id": "dev-floating-promise-src-characters-schema.ts-91",
+    "description": "src/characters/schema.ts:91: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/schema.ts",
+    "line": 91
+  },
+  {
+    "id": "dev-floating-promise-src-characters-schema.ts-92",
+    "description": "src/characters/schema.ts:92: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/schema.ts",
+    "line": 92
+  },
+  {
+    "id": "dev-floating-promise-src-characters-schema.ts-103",
+    "description": "src/characters/schema.ts:103: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/characters/schema.ts",
+    "line": 103
+  },
+  {
+    "id": "dev-floating-promise-src-commands-chutes-oauth.ts-125",
+    "description": "src/commands/chutes-oauth.ts:125: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/commands/chutes-oauth.ts",
+    "line": 125
+  },
+  {
+    "id": "dev-floating-promise-src-commands-chutes-oauth.ts-131",
+    "description": "src/commands/chutes-oauth.ts:131: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/commands/chutes-oauth.ts",
+    "line": 131
+  },
+  {
+    "id": "dev-floating-promise-src-commands-chutes-oauth.ts-140",
+    "description": "src/commands/chutes-oauth.ts:140: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/commands/chutes-oauth.ts",
+    "line": 140
+  },
+  {
+    "id": "dev-floating-promise-src-commands-chutes-oauth.ts-149",
+    "description": "src/commands/chutes-oauth.ts:149: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/commands/chutes-oauth.ts",
+    "line": 149
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-418",
+    "description": "src/discord/monitor/exec-approvals.ts:418: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 418
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-431",
+    "description": "src/discord/monitor/exec-approvals.ts:431: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 431
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-432",
+    "description": "src/discord/monitor/exec-approvals.ts:432: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 432
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-434",
+    "description": "src/discord/monitor/exec-approvals.ts:434: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 434
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-457",
+    "description": "src/discord/monitor/exec-approvals.ts:457: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 457
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-498",
+    "description": "src/discord/monitor/exec-approvals.ts:498: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 498
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-568",
+    "description": "src/discord/monitor/exec-approvals.ts:568: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 568
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-585",
+    "description": "src/discord/monitor/exec-approvals.ts:585: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 585
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-609",
+    "description": "src/discord/monitor/exec-approvals.ts:609: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 609
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-625",
+    "description": "src/discord/monitor/exec-approvals.ts:625: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 625
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-631",
+    "description": "src/discord/monitor/exec-approvals.ts:631: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 631
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-632",
+    "description": "src/discord/monitor/exec-approvals.ts:632: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 632
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-633",
+    "description": "src/discord/monitor/exec-approvals.ts:633: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 633
+  },
+  {
+    "id": "dev-floating-promise-src-discord-monitor-exec-approvals.ts-635",
+    "description": "src/discord/monitor/exec-approvals.ts:635: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/discord/monitor/exec-approvals.ts",
+    "line": 635
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-api-characters-http.ts-284",
+    "description": "src/gateway/api/characters-http.ts:284: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/api/characters-http.ts",
+    "line": 284
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-api-characters-http.ts-290",
+    "description": "src/gateway/api/characters-http.ts:290: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/api/characters-http.ts",
+    "line": 290
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-api-characters-http.ts-296",
+    "description": "src/gateway/api/characters-http.ts:296: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/api/characters-http.ts",
+    "line": 296
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-api-characters-http.ts-346",
+    "description": "src/gateway/api/characters-http.ts:346: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/api/characters-http.ts",
+    "line": 346
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-api-characters-http.ts-352",
+    "description": "src/gateway/api/characters-http.ts:352: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/api/characters-http.ts",
+    "line": 352
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-api-characters-http.ts-361",
+    "description": "src/gateway/api/characters-http.ts:361: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/api/characters-http.ts",
+    "line": 361
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-105",
+    "description": "src/gateway/core/client.ts:105: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 105
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-142",
+    "description": "src/gateway/core/client.ts:142: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 142
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-143",
+    "description": "src/gateway/core/client.ts:143: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 143
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-147",
+    "description": "src/gateway/core/client.ts:147: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 147
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-153",
+    "description": "src/gateway/core/client.ts:153: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 153
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-154",
+    "description": "src/gateway/core/client.ts:154: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 154
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-155",
+    "description": "src/gateway/core/client.ts:155: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 155
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-160",
+    "description": "src/gateway/core/client.ts:160: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 160
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-171",
+    "description": "src/gateway/core/client.ts:171: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 171
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-173",
+    "description": "src/gateway/core/client.ts:173: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 173
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-266",
+    "description": "src/gateway/core/client.ts:266: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 266
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-267",
+    "description": "src/gateway/core/client.ts:267: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 267
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-270",
+    "description": "src/gateway/core/client.ts:270: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 270
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-277",
+    "description": "src/gateway/core/client.ts:277: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 277
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-291",
+    "description": "src/gateway/core/client.ts:291: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 291
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-298",
+    "description": "src/gateway/core/client.ts:298: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 298
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-305",
+    "description": "src/gateway/core/client.ts:305: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 305
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-319",
+    "description": "src/gateway/core/client.ts:319: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 319
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-343",
+    "description": "src/gateway/core/client.ts:343: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 343
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-364",
+    "description": "src/gateway/core/client.ts:364: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 364
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-386",
+    "description": "src/gateway/core/client.ts:386: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 386
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-435",
+    "description": "src/gateway/core/client.ts:435: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 435
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-core-client.ts-441",
+    "description": "src/gateway/core/client.ts:441: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/core/client.ts",
+    "line": 441
+  },
+  {
+    "id": "dev-magic-number-src-gateway-server-methods-browser.ts-233",
+    "description": "src/gateway/server-methods/browser.ts:233: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "src/gateway/server-methods/browser.ts",
+    "line": 233
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-server-methods-chat.ts-114",
+    "description": "src/gateway/server-methods/chat.ts:114: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/server-methods/chat.ts",
+    "line": 114
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-server-methods-chat.ts-122",
+    "description": "src/gateway/server-methods/chat.ts:122: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/server-methods/chat.ts",
+    "line": 122
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-server-methods-sessions.ts-474",
+    "description": "src/gateway/server-methods/sessions.ts:474: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/server-methods/sessions.ts",
+    "line": 474
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-sessions-session-utils.fs.ts-166",
+    "description": "src/gateway/sessions/session-utils.fs.ts:166: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 166
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-sessions-session-utils.fs.ts-322",
+    "description": "src/gateway/sessions/session-utils.fs.ts:322: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 322
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-sessions-session-utils.fs.ts-399",
+    "description": "src/gateway/sessions/session-utils.fs.ts:399: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 399
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-sessions-session-utils.fs.ts-415",
+    "description": "src/gateway/sessions/session-utils.fs.ts:415: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 415
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-sessions-session-utils.fs.ts-465",
+    "description": "src/gateway/sessions/session-utils.fs.ts:465: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 465
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-sessions-session-utils.fs.ts-619",
+    "description": "src/gateway/sessions/session-utils.fs.ts:619: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 619
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-sessions-session-utils.fs.ts-646",
+    "description": "src/gateway/sessions/session-utils.fs.ts:646: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/sessions/session-utils.fs.ts",
+    "line": 646
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-shared-exec-approval-manager.ts-98",
+    "description": "src/gateway/shared/exec-approval-manager.ts:98: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/shared/exec-approval-manager.ts",
+    "line": 98
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-shared-exec-approval-manager.ts-102",
+    "description": "src/gateway/shared/exec-approval-manager.ts:102: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/shared/exec-approval-manager.ts",
+    "line": 102
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-shared-exec-approval-manager.ts-135",
+    "description": "src/gateway/shared/exec-approval-manager.ts:135: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/shared/exec-approval-manager.ts",
+    "line": 135
+  },
+  {
+    "id": "dev-magic-number-src-gateway-shared-net.ts-94",
+    "description": "src/gateway/shared/net.ts:94: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "src/gateway/shared/net.ts",
+    "line": 94
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-shared-node-registry.ts-76",
+    "description": "src/gateway/shared/node-registry.ts:76: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/shared/node-registry.ts",
+    "line": 76
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-shared-node-registry.ts-77",
+    "description": "src/gateway/shared/node-registry.ts:77: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/shared/node-registry.ts",
+    "line": 77
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-shared-node-registry.ts-86",
+    "description": "src/gateway/shared/node-registry.ts:86: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/shared/node-registry.ts",
+    "line": 86
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-shared-node-registry.ts-87",
+    "description": "src/gateway/shared/node-registry.ts:87: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/shared/node-registry.ts",
+    "line": 87
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-shared-node-registry.ts-94",
+    "description": "src/gateway/shared/node-registry.ts:94: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/shared/node-registry.ts",
+    "line": 94
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-shared-node-registry.ts-141",
+    "description": "src/gateway/shared/node-registry.ts:141: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/shared/node-registry.ts",
+    "line": 141
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-shared-node-registry.ts-147",
+    "description": "src/gateway/shared/node-registry.ts:147: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/shared/node-registry.ts",
+    "line": 147
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-shared-node-registry.ts-173",
+    "description": "src/gateway/shared/node-registry.ts:173: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/shared/node-registry.ts",
+    "line": 173
+  },
+  {
+    "id": "dev-floating-promise-src-gateway-shared-test-helpers.server.ts-291",
+    "description": "src/gateway/shared/test-helpers.server.ts:291: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/gateway/shared/test-helpers.server.ts",
+    "line": 291
+  },
+  {
+    "id": "dev-magic-number-src-gateway-shared-ws-log.ts-301",
+    "description": "src/gateway/shared/ws-log.ts:301: magic number in condition — should be a named constant",
+    "fix": "Extract to a named constant: const MAX_RETRY_DELAY_MS = 30000",
+    "persona": "developer",
+    "file": "src/gateway/shared/ws-log.ts",
+    "line": 301
+  },
+  {
+    "id": "dev-floating-promise-src-tui-gateway-chat.ts-133",
+    "description": "src/tui/gateway-chat.ts:133: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/tui/gateway-chat.ts",
+    "line": 133
+  },
+  {
+    "id": "dev-floating-promise-src-tui-gateway-chat.ts-134",
+    "description": "src/tui/gateway-chat.ts:134: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/tui/gateway-chat.ts",
+    "line": 134
+  },
+  {
+    "id": "dev-floating-promise-src-tui-gateway-chat.ts-137",
+    "description": "src/tui/gateway-chat.ts:137: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/tui/gateway-chat.ts",
+    "line": 137
+  },
+  {
+    "id": "dev-floating-promise-src-tui-gateway-chat.ts-144",
+    "description": "src/tui/gateway-chat.ts:144: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/tui/gateway-chat.ts",
+    "line": 144
+  },
+  {
+    "id": "dev-floating-promise-src-tui-gateway-chat.ts-147",
+    "description": "src/tui/gateway-chat.ts:147: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/tui/gateway-chat.ts",
+    "line": 147
+  },
+  {
+    "id": "dev-floating-promise-src-tui-gateway-chat.ts-153",
+    "description": "src/tui/gateway-chat.ts:153: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/tui/gateway-chat.ts",
+    "line": 153
+  },
+  {
+    "id": "dev-floating-promise-src-tui-gateway-chat.ts-157",
+    "description": "src/tui/gateway-chat.ts:157: possible floating promise (async call without await or .catch)",
+    "fix": "Add await or .catch() to handle promise rejection",
+    "persona": "developer",
+    "file": "src/tui/gateway-chat.ts",
+    "line": 157
+  },
+  {
+    "id": "sec-ws-no-auth-src-avatar-streaming-webrtc-server.ts",
+    "description": "src/avatar/streaming/webrtc-server.ts: WebSocket server accepts all connections without authentication check",
+    "fix": "Add token validation on WebSocket upgrade (check query param or first message)",
+    "persona": "security",
+    "file": "src/avatar/streaming/webrtc-server.ts"
+  },
+  {
+    "id": "sec-ws-no-auth-src-gateway-server-server-close.ts",
+    "description": "src/gateway/server/server-close.ts: WebSocket server accepts all connections without authentication check",
+    "fix": "Add token validation on WebSocket upgrade (check query param or first message)",
+    "persona": "security",
+    "file": "src/gateway/server/server-close.ts"
+  },
+  {
+    "id": "sec-ws-no-auth-src-gateway-server-server-runtime-state.ts",
+    "description": "src/gateway/server/server-runtime-state.ts: WebSocket server accepts all connections without authentication check",
+    "fix": "Add token validation on WebSocket upgrade (check query param or first message)",
+    "persona": "security",
+    "file": "src/gateway/server/server-runtime-state.ts"
+  },
+  {
+    "id": "sec-ws-no-auth-src-gateway-server-server-ws-runtime.ts",
+    "description": "src/gateway/server/server-ws-runtime.ts: WebSocket server accepts all connections without authentication check",
+    "fix": "Add token validation on WebSocket upgrade (check query param or first message)",
+    "persona": "security",
+    "file": "src/gateway/server/server-ws-runtime.ts"
+  },
+  {
+    "id": "sec-ws-no-auth-src-gateway-server-ws-connection.ts",
+    "description": "src/gateway/server/ws-connection.ts: WebSocket server accepts all connections without authentication check",
+    "fix": "Add token validation on WebSocket upgrade (check query param or first message)",
+    "persona": "security",
+    "file": "src/gateway/server/ws-connection.ts"
+  }
+]

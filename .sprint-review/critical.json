@@ -1,0 +1,255 @@
+[
+  {
+    "id": "arch-interval-leak-src-agents-subagent-registry.ts",
+    "description": "src/agents/subagent-registry.ts: setInterval() created but not cleared in error handler — memory leak",
+    "fix": "Add clearInterval() call in the WebSocket/connection error handler",
+    "persona": "architect",
+    "file": "src/agents/subagent-registry.ts"
+  },
+  {
+    "id": "arch-interval-leak-src-avatar-orchestrator.ts",
+    "description": "src/avatar/orchestrator.ts: setInterval() created but not cleared in error handler — memory leak",
+    "fix": "Add clearInterval() call in the WebSocket/connection error handler",
+    "persona": "architect",
+    "file": "src/avatar/orchestrator.ts"
+  },
+  {
+    "id": "arch-interval-leak-src-avatar-streaming-example.ts",
+    "description": "src/avatar/streaming/example.ts: setInterval() created but not cleared in error handler — memory leak",
+    "fix": "Add clearInterval() call in the WebSocket/connection error handler",
+    "persona": "architect",
+    "file": "src/avatar/streaming/example.ts"
+  },
+  {
+    "id": "arch-json-parse-src-avatar-streaming-webrtc-server.ts-183",
+    "description": "Unguarded JSON.parse() at src/avatar/streaming/webrtc-server.ts:183 — can throw and crash the service",
+    "fix": "Wrap JSON.parse() in try-catch: try { JSON.parse(...) } catch { /* fallback */ }",
+    "persona": "architect",
+    "file": "src/avatar/streaming/webrtc-server.ts",
+    "line": 183
+  },
+  {
+    "id": "arch-interval-leak-src-browser-extension-relay.ts",
+    "description": "src/browser/extension-relay.ts: setInterval() created but not cleared in error handler — memory leak",
+    "fix": "Add clearInterval() call in the WebSocket/connection error handler",
+    "persona": "architect",
+    "file": "src/browser/extension-relay.ts"
+  },
+  {
+    "id": "arch-json-parse-src-cli-nodes-cli-register.invoke.ts-118",
+    "description": "Unguarded JSON.parse() at src/cli/nodes-cli/register.invoke.ts:118 — can throw and crash the service",
+    "fix": "Wrap JSON.parse() in try-catch: try { JSON.parse(...) } catch { /* fallback */ }",
+    "persona": "architect",
+    "file": "src/cli/nodes-cli/register.invoke.ts",
+    "line": 118
+  },
+  {
+    "id": "arch-interval-leak-src-gateway-core-auth-rate-limit.ts",
+    "description": "src/gateway/core/auth-rate-limit.ts: setInterval() created but not cleared in error handler — memory leak",
+    "fix": "Add clearInterval() call in the WebSocket/connection error handler",
+    "persona": "architect",
+    "file": "src/gateway/core/auth-rate-limit.ts"
+  },
+  {
+    "id": "arch-json-parse-src-gateway-server-methods-chat.ts-136",
+    "description": "Unguarded JSON.parse() at src/gateway/server-methods/chat.ts:136 — can throw and crash the service",
+    "fix": "Wrap JSON.parse() in try-catch: try { JSON.parse(...) } catch { /* fallback */ }",
+    "persona": "architect",
+    "file": "src/gateway/server-methods/chat.ts",
+    "line": 136
+  },
+  {
+    "id": "arch-interval-leak-src-gateway-server-server-maintenance.ts",
+    "description": "src/gateway/server/server-maintenance.ts: setInterval() created but not cleared in error handler — memory leak",
+    "fix": "Add clearInterval() call in the WebSocket/connection error handler",
+    "persona": "architect",
+    "file": "src/gateway/server/server-maintenance.ts"
+  },
+  {
+    "id": "arch-interval-leak-src-gateway-server-server.impl.ts",
+    "description": "src/gateway/server/server.impl.ts: setInterval() created but not cleared in error handler — memory leak",
+    "fix": "Add clearInterval() call in the WebSocket/connection error handler",
+    "persona": "architect",
+    "file": "src/gateway/server/server.impl.ts"
+  },
+  {
+    "id": "arch-json-parse-src-gateway-shared-test-helpers.e2e.ts-117",
+    "description": "Unguarded JSON.parse() at src/gateway/shared/test-helpers.e2e.ts:117 — can throw and crash the service",
+    "fix": "Wrap JSON.parse() in try-catch: try { JSON.parse(...) } catch { /* fallback */ }",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.e2e.ts",
+    "line": 117
+  },
+  {
+    "id": "arch-json-parse-src-gateway-shared-test-helpers.openai-mock.ts-192",
+    "description": "Unguarded JSON.parse() at src/gateway/shared/test-helpers.openai-mock.ts:192 — can throw and crash the service",
+    "fix": "Wrap JSON.parse() in try-catch: try { JSON.parse(...) } catch { /* fallback */ }",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.openai-mock.ts",
+    "line": 192
+  },
+  {
+    "id": "arch-json-parse-src-gateway-shared-test-helpers.server.ts-315",
+    "description": "Unguarded JSON.parse() at src/gateway/shared/test-helpers.server.ts:315 — can throw and crash the service",
+    "fix": "Wrap JSON.parse() in try-catch: try { JSON.parse(...) } catch { /* fallback */ }",
+    "persona": "architect",
+    "file": "src/gateway/shared/test-helpers.server.ts",
+    "line": 315
+  },
+  {
+    "id": "arch-json-parse-src-node-host-invoke.ts-820",
+    "description": "Unguarded JSON.parse() at src/node-host/invoke.ts:820 — can throw and crash the service",
+    "fix": "Wrap JSON.parse() in try-catch: try { JSON.parse(...) } catch { /* fallback */ }",
+    "persona": "architect",
+    "file": "src/node-host/invoke.ts",
+    "line": 820
+  },
+  {
+    "id": "arch-json-parse-ui-avatar-chat-src-hooks-useWebRTC.ts-103",
+    "description": "Unguarded JSON.parse() at ui/avatar-chat/src/hooks/useWebRTC.ts:103 — can throw and crash the service",
+    "fix": "Wrap JSON.parse() in try-catch: try { JSON.parse(...) } catch { /* fallback */ }",
+    "persona": "architect",
+    "file": "ui/avatar-chat/src/hooks/useWebRTC.ts",
+    "line": 103
+  },
+  {
+    "id": "sec-hardcoded-secret-examples-secure-logging-integration.ts-30",
+    "description": "examples/secure-logging-integration.ts:30: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 30
+  },
+  {
+    "id": "sec-hardcoded-secret-examples-secure-logging-integration.ts-32",
+    "description": "examples/secure-logging-integration.ts:32: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 32
+  },
+  {
+    "id": "sec-hardcoded-secret-examples-secure-logging-integration.ts-124",
+    "description": "examples/secure-logging-integration.ts:124: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 124
+  },
+  {
+    "id": "sec-hardcoded-secret-examples-secure-logging-integration.ts-126",
+    "description": "examples/secure-logging-integration.ts:126: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 126
+  },
+  {
+    "id": "sec-hardcoded-secret-examples-secure-logging-integration.ts-179",
+    "description": "examples/secure-logging-integration.ts:179: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 179
+  },
+  {
+    "id": "sec-hardcoded-secret-examples-secure-logging-integration.ts-215",
+    "description": "examples/secure-logging-integration.ts:215: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "examples/secure-logging-integration.ts",
+    "line": 215
+  },
+  {
+    "id": "sec-mime-no-magic-src-avatar-orchestrator.ts",
+    "description": "src/avatar/orchestrator.ts: file upload validates Content-Type header only — attacker can bypass with fake MIME",
+    "fix": "Use 'file-type' npm package to verify actual file signature bytes",
+    "persona": "security",
+    "file": "src/avatar/orchestrator.ts"
+  },
+  {
+    "id": "sec-mime-no-magic-src-characters-db.ts",
+    "description": "src/characters/db.ts: file upload validates Content-Type header only — attacker can bypass with fake MIME",
+    "fix": "Use 'file-type' npm package to verify actual file signature bytes",
+    "persona": "security",
+    "file": "src/characters/db.ts"
+  },
+  {
+    "id": "sec-mime-no-magic-src-config-types.characters.ts",
+    "description": "src/config/types.characters.ts: file upload validates Content-Type header only — attacker can bypass with fake MIME",
+    "fix": "Use 'file-type' npm package to verify actual file signature bytes",
+    "persona": "security",
+    "file": "src/config/types.characters.ts"
+  },
+  {
+    "id": "sec-mime-no-magic-src-gateway-api-characters-http.ts",
+    "description": "src/gateway/api/characters-http.ts: file upload validates Content-Type header only — attacker can bypass with fake MIME",
+    "fix": "Use 'file-type' npm package to verify actual file signature bytes",
+    "persona": "security",
+    "file": "src/gateway/api/characters-http.ts"
+  },
+  {
+    "id": "sec-hardcoded-secret-src-gateway-core-auth-rate-limit.ts-37",
+    "description": "src/gateway/core/auth-rate-limit.ts:37: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "src/gateway/core/auth-rate-limit.ts",
+    "line": 37
+  },
+  {
+    "id": "sec-hardcoded-secret-src-gateway-core-call.test.ts-357",
+    "description": "src/gateway/core/call.test.ts:357: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "src/gateway/core/call.test.ts",
+    "line": 357
+  },
+  {
+    "id": "sec-hardcoded-secret-src-gateway-core-call.test.ts-408",
+    "description": "src/gateway/core/call.test.ts:408: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "src/gateway/core/call.test.ts",
+    "line": 408
+  },
+  {
+    "id": "sec-hardcoded-secret-src-gateway-core-call.test.ts-437",
+    "description": "src/gateway/core/call.test.ts:437: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "src/gateway/core/call.test.ts",
+    "line": 437
+  },
+  {
+    "id": "sec-hardcoded-secret-src-gateway-core-call.test.ts-452",
+    "description": "src/gateway/core/call.test.ts:452: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "src/gateway/core/call.test.ts",
+    "line": 452
+  },
+  {
+    "id": "sec-hardcoded-secret-src-gateway-server-server.skills-status.e2e.test.ts-30",
+    "description": "src/gateway/server/server.skills-status.e2e.test.ts:30: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "src/gateway/server/server.skills-status.e2e.test.ts",
+    "line": 30
+  },
+  {
+    "id": "sec-hardcoded-secret-src-gateway-shared-ws-log.test.ts-22",
+    "description": "src/gateway/shared/ws-log.test.ts:22: possible hardcoded secret/credential",
+    "fix": "Move to environment variable or secrets manager",
+    "persona": "security",
+    "file": "src/gateway/shared/ws-log.test.ts",
+    "line": 22
+  },
+  {
+    "id": "sec-eval-src-security-command-obfuscation.test.ts-221",
+    "description": "src/security/command-obfuscation.test.ts:221: eval() or new Function() — code injection risk",
+    "fix": "Eliminate dynamic code execution",
+    "persona": "security",
+    "file": "src/security/command-obfuscation.test.ts",
+    "line": 221
+  }
+]
