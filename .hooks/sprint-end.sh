@@ -124,8 +124,8 @@ if [ -f ".sprint-review/nice-to-have.json" ]; then
     echo "   - Keep as debt (n)"
     echo ""
 
-    # Interactive review
-    jq -r '.[] | "- [\(.id)] \(.description)"' .sprint-review/nice-to-have.json | while read -r ISSUE; do
+    # Interactive review (use process substitution to keep stdin available for read -r FIX)
+    while IFS= read -r ISSUE <&3; do
       echo "$ISSUE"
       echo -n "Fix now? (y/n): "
       read -r FIX
@@ -138,7 +138,7 @@ if [ -f ".sprint-review/nice-to-have.json" ]; then
         # Remove from tech debt
         node .hooks/remove-from-tech-debt.cjs "$ISSUE_ID"
       fi
-    done
+    done 3< <(jq -r '.[] | "- [\(.id)] \(.description)"' .sprint-review/nice-to-have.json)
   fi
 fi
 
