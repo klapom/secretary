@@ -165,6 +165,25 @@ Betroffene Dateien:
 - [ ] Avatar-Services in CI-Pipeline aufnehmen (health-check)
 - [ ] Performance-Benchmark in CI (LivePortrait Latenz)
 
+### 3.5 CI-Pipeline Ausbau (aus ci-minimal.yml TODOs)
+
+> Herkunft: `.github/workflows/ci-minimal.yml` — geplante Sprint-Meilensteine die nie implementiert wurden.
+> Die vollständige upstream CI (`ci.yml`) hat viele Features die wir noch nicht nutzen.
+
+**Sprint 05 Ziel:** ci-minimal.yml auf Stand bringen
+
+- [ ] **Coverage Gate:** `pnpm vitest run --coverage` mit Schwellwert 80% (CI schlägt fehl wenn darunter)
+- [ ] **Security Audit:** `npm audit --audit-level=high` in CI (Sprint 05 war geplant)
+- [ ] **Secret Scanning:** `detect-secrets scan --baseline .secrets.baseline` (wie upstream ci.yml)
+- [ ] **`pnpm check`:** Type-Check + Lint zusammen als Gate (aktuell getrennt und optional)
+- [ ] **Scope Detection:** Docs-only Changes → schwere Jobs überspringen (spart CI-Zeit)
+
+**Sprint 06+ Ziel (vormerken):**
+
+- Docker Build + Push in CI (Sprint 06 geplant)
+- Vitest JSON Reports + slowest-test Zusammenfassung hochladen (wie upstream)
+- Performance Benchmarks (Sprint 07 geplant)
+
 ---
 
 ## 📋 Phase 4: Test Coverage Sprint (71% → 80%)
