@@ -597,6 +597,34 @@ npm run test:e2e
 
 ---
 
+---
+
+## 📌 Vorgemerkt für Sprint 05
+
+### Upstream-Rebase: Proper GitHub-Fork erstellen
+
+**Hintergrund:**
+Das Repo wurde durch manuelle Kopie (nicht GitHub-Fork) gestartet → kein gemeinsamer git-Ancestor mit `openclaw/openclaw`.
+Dadurch ist `git merge upstream/main` nicht möglich; upstream-Fixes müssen manuell portiert werden.
+
+**Ziel:**
+Sauberer Fork mit echtem Common Ancestor, damit ab Sprint 06 upstream-Sync via `git merge` funktioniert.
+
+**Vorgehen:**
+
+1. Proper GitHub-Fork von `openclaw/openclaw` erstellen
+2. Unsere neuen Dateien (docker/, docs-secretary/, src/avatar/, .hooks/) als Branch drauflegen
+   → ~854 Dateien, die upstream nicht anfasste → weitgehend konfliktfrei
+3. Unsere Änderungen an bestehenden Dateien (Security, Queue, Config) als gezielte Commits portieren
+   → ~5.490 potentielle Konflikte, nur Kern-Änderungen relevant
+4. Upstream-Sync verifizieren: `git fetch upstream && git merge upstream/main`
+
+**Aufwand:** ~1 Sprint (parallel zu anderen Tasks möglich)
+
+**Voraussetzung:** Sprint 04 + 05 abgeschlossen (stabile Codebasis als Grundlage)
+
+---
+
 **Sprint Start:** 2026-02-17
 **Sprint End:** 2026-02-28
 **Review:** 2026-02-28 (Persona Reviews via sprint-end.sh)
