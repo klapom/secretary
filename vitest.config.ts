@@ -57,10 +57,10 @@ export default defineConfig({
       // only count files actually exercised by the test suite.
       all: false,
       thresholds: {
-        lines: 70,
+        lines: 80,
         functions: 70,
         branches: 55,
-        statements: 70,
+        statements: 80,
       },
       // Anchor to repo-root `src/` only. Without this, coverage globs can
       // unintentionally match nested `*/src/**` folders (extensions, apps, etc).
