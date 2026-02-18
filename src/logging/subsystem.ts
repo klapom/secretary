@@ -321,8 +321,8 @@ export function runtimeForLogger(
   exit: RuntimeEnv["exit"] = defaultRuntime.exit,
 ): RuntimeEnv {
   return {
-    log: (message: string) => logger.info(message),
-    error: (message: string) => logger.error(message),
+    log: (...args: unknown[]) => logger.info(String(args[0])),
+    error: (...args: unknown[]) => logger.error(String(args[0])),
     exit,
   };
 }
