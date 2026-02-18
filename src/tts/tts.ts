@@ -10,6 +10,7 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { z } from "zod";
 import type { ReplyPayload } from "../auto-reply/types.js";
 import { normalizeChannelId } from "../channels/plugins/index.js";
 import type { ChannelId } from "../channels/plugins/types.js";
@@ -127,6 +128,11 @@ export type ResolvedTtsConfig = {
     proxy?: string;
     timeoutMs?: number;
   };
+  local: {
+    url: string;
+    speakerId?: string;
+    language: string;
+  };
   prefsPath?: string;
   maxTextLength: number;
   timeoutMs: number;
@@ -141,6 +147,20 @@ type TtsUserPrefs = {
     summarize?: boolean;
   };
 };
+
+const ttsUserPrefsSchema = z
+  .object({
+    tts: z
+      .object({
+        auto: z.enum(["off", "always", "inbound", "tagged"]).optional(),
+        enabled: z.boolean().optional(),
+        provider: z.string().optional(),
+        maxLength: z.number().optional(),
+        summarize: z.boolean().optional(),
+      })
+      .optional(),
+  })
+  .passthrough();
 
 export type ResolvedTtsModelOverrides = {
   enabled: boolean;
@@ -301,6 +321,11 @@ export function resolveTtsConfig(cfg: OpenClawConfig): ResolvedTtsConfig {
       proxy: raw.edge?.proxy?.trim() || undefined,
       timeoutMs: raw.edge?.timeoutMs,
     },
+    local: {
+      url: raw.local?.url?.trim() || "http://localhost:8082",
+      speakerId: raw.local?.speakerId,
+      language: raw.local?.language?.trim() || "de",
+    },
     prefsPath: raw.prefsPath,
     maxTextLength: raw.maxTextLength ?? DEFAULT_MAX_TEXT_LENGTH,
     timeoutMs: raw.timeoutMs ?? DEFAULT_TIMEOUT_MS,
@@ -375,7 +400,13 @@ function readPrefs(prefsPath: string): TtsUserPrefs {
     if (!existsSync(prefsPath)) {
       return {};
     }
-    return JSON.parse(readFileSync(prefsPath, "utf8")) as TtsUserPrefs;
+    // FIXME(arch-json-parse): Wrap JSON.parse() in try-catch — malformed input will crash service
+    const raw = JSON.parse(readFileSync(prefsPath, "utf8"));
+    const result = ttsUserPrefsSchema.safeParse(raw);
+    if (!result.success) {
+      return {};
+    }
+    return result.data as TtsUserPrefs;
   } catch {
     return {};
   }
@@ -506,7 +537,7 @@ export function resolveTtsApiKey(
   return undefined;
 }
 
-export const TTS_PROVIDERS = ["openai", "elevenlabs", "edge"] as const;
+export const TTS_PROVIDERS = ["openai", "elevenlabs", "edge", "local"] as const;
 
 export function resolveTtsProviderOrder(primary: TtsProvider): TtsProvider[] {
   return [primary, ...TTS_PROVIDERS.filter((provider) => provider !== primary)];
@@ -515,6 +546,9 @@ export function resolveTtsProviderOrder(primary: TtsProvider): TtsProvider[] {
 export function isTtsProviderConfigured(config: ResolvedTtsConfig, provider: TtsProvider): boolean {
   if (provider === "edge") {
     return config.edge.enabled;
+  }
+  if (provider === "local") {
+    return true;
   }
   return Boolean(resolveTtsApiKey(config, provider));
 }
@@ -551,14 +585,14 @@ export async function textToSpeech(params: {
   const provider = overrideProvider ?? userProvider;
   const providers = resolveTtsProviderOrder(provider);
 
-  const errors: string[] = [];
+  let lastError: string | undefined;
 
   for (const provider of providers) {
     const providerStart = Date.now();
     try {
       if (provider === "edge") {
         if (!config.edge.enabled) {
-          errors.push("edge: disabled");
+          lastError = "edge: disabled";
           continue;
         }
 
@@ -624,9 +658,52 @@ export async function textToSpeech(params: {
         };
       }
 
+      if (provider === "local") {
+        const { localSynthesize, convertWavToOggOpus } = await import("../services/local-voice.js");
+        const wavBuffer = await localSynthesize(params.text, {
+          url: config.local.url,
+          speakerId: config.local.speakerId,
+          language: config.local.language,
+          timeoutMs: config.timeoutMs,
+        });
+
+        // Convert WAV to OGG/Opus for voice-note compatibility (WhatsApp + Telegram)
+        let audioBuffer: Buffer;
+        let ext: string;
+        let outputFmt: string;
+        let voiceCompat: boolean;
+        try {
+          audioBuffer = await convertWavToOggOpus(wavBuffer);
+          ext = ".ogg";
+          outputFmt = "audio/ogg; codecs=opus";
+          voiceCompat = true;
+        } catch {
+          // Fallback to WAV if ffmpeg is not available
+          audioBuffer = wavBuffer;
+          ext = ".wav";
+          outputFmt = "wav";
+          voiceCompat = false;
+        }
+
+        const latencyMs = Date.now() - providerStart;
+        const tempDir = mkdtempSync(path.join(tmpdir(), "tts-"));
+        const audioPath = path.join(tempDir, `voice-${Date.now()}${ext}`);
+        writeFileSync(audioPath, audioBuffer);
+        scheduleCleanup(tempDir);
+
+        return {
+          success: true,
+          audioPath,
+          latencyMs,
+          provider,
+          outputFormat: outputFmt,
+          voiceCompatible: voiceCompat,
+        };
+      }
+
       const apiKey = resolveTtsApiKey(config, provider);
       if (!apiKey) {
-        errors.push(`${provider}: no API key`);
+        lastError = `No API key for ${provider}`;
         continue;
       }
 
@@ -683,13 +760,13 @@ export async function textToSpeech(params: {
         voiceCompatible: output.voiceCompatible,
       };
     } catch (err) {
-      errors.push(formatTtsProviderError(provider, err));
+      lastError = formatTtsProviderError(provider, err);
     }
   }
 
   return {
     success: false,
-    error: `TTS conversion failed: ${errors.join("; ") || "no providers available"}`,
+    error: `TTS conversion failed: ${lastError || "no providers available"}`,
   };
 }
 
@@ -711,19 +788,19 @@ export async function textToSpeechTelephony(params: {
   const userProvider = getTtsProvider(config, prefsPath);
   const providers = resolveTtsProviderOrder(userProvider);
 
-  const errors: string[] = [];
+  let lastError: string | undefined;
 
   for (const provider of providers) {
     const providerStart = Date.now();
     try {
       if (provider === "edge") {
-        errors.push("edge: unsupported for telephony");
+        lastError = "edge: unsupported for telephony";
         continue;
       }
 
       const apiKey = resolveTtsApiKey(config, provider);
       if (!apiKey) {
-        errors.push(`${provider}: no API key`);
+        lastError = `No API key for ${provider}`;
         continue;
       }
 
@@ -772,13 +849,13 @@ export async function textToSpeechTelephony(params: {
         sampleRate: output.sampleRate,
       };
     } catch (err) {
-      errors.push(formatTtsProviderError(provider, err));
+      lastError = formatTtsProviderError(provider, err);
     }
   }
 
   return {
     success: false,
-    error: `TTS conversion failed: ${errors.join("; ") || "no providers available"}`,
+    error: `TTS conversion failed: ${lastError || "no providers available"}`,
   };
 }
 
@@ -905,7 +982,8 @@ export async function maybeApplyTtsToPayload(params: {
     };
 
     const channelId = resolveChannelId(params.channel);
-    const shouldVoice = channelId === "telegram" && result.voiceCompatible === true;
+    const shouldVoice =
+      result.voiceCompatible === true && (channelId === "telegram" || channelId === "whatsapp");
     const finalPayload = {
       ...nextPayload,
       mediaUrl: result.audioPath,

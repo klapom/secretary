@@ -1,4 +1,4 @@
-export type TtsProvider = "elevenlabs" | "openai" | "edge";
+export type TtsProvider = "elevenlabs" | "openai" | "edge" | "local";
 
 export type TtsMode = "final" | "all";
 
@@ -72,6 +72,15 @@ export type TtsConfig = {
     saveSubtitles?: boolean;
     proxy?: string;
     timeoutMs?: number;
+  };
+  /** Local XTTS service configuration (DGX Spark). */
+  local?: {
+    /** URL for XTTS service. Default: http://localhost:8082 */
+    url?: string;
+    /** Speaker ID for XTTS. */
+    speakerId?: string;
+    /** Language code. Default: de */
+    language?: string;
   };
   /** Optional path for local TTS user preferences JSON. */
   prefsPath?: string;
