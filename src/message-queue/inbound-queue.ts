@@ -219,7 +219,6 @@ export async function loadPendingInboundMessages(
         continue;
       }
       const raw = await fs.promises.readFile(filePath, "utf-8");
-      // FIXME(arch-json-parse): Wrap JSON.parse() in try-catch — malformed input will crash service
       entries.push(JSON.parse(raw));
     } catch {
       // Skip malformed or inaccessible entries.
@@ -283,10 +282,9 @@ export interface InboundRecoveryLogger {
  * ```typescript
  * const result = await recoverPendingInboundMessages({
  *   process: async (msg) => { await handleMessage(msg); },
- *   log: console,
- // FIXME(dev-console-log): Replace with structured logger (logger.info/warn/error)
+ *   log: logger,
  * });
- * console.log(`Recovered: ${result.recovered}, Failed: ${result.failed}`);
+ * logger.info(`Recovered: ${result.recovered}, Failed: ${result.failed}`);
  * ```
  */
 export async function recoverPendingInboundMessages(opts: {

@@ -400,7 +400,6 @@ function readPrefs(prefsPath: string): TtsUserPrefs {
     if (!existsSync(prefsPath)) {
       return {};
     }
-    // FIXME(arch-json-parse): Wrap JSON.parse() in try-catch — malformed input will crash service
     const raw = JSON.parse(readFileSync(prefsPath, "utf8"));
     const result = ttsUserPrefsSchema.safeParse(raw);
     if (!result.success) {

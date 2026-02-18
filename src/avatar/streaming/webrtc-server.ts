@@ -200,7 +200,6 @@ export class WebRTCStreamingServer extends EventEmitter {
           : Buffer.isBuffer(data)
             ? data.toString()
             : Buffer.from(data).toString();
-        // FIXME(arch-json-parse): Wrap JSON.parse() in try-catch — malformed input will crash service
         const parsed = signalingMessageSchema.safeParse(JSON.parse(raw));
         if (!parsed.success) {
           this.sendError(peerId, "Invalid message format");

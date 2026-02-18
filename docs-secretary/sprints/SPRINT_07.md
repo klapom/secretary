@@ -389,3 +389,26 @@ Noch nicht erledigte FIXMEs aus Sprint 06 Phase 2:
 - `// FIXME(arch-json-parse)` — restliche Stellen prüfen
 - `// FIXME(sec-*)` — restliche Security-FIXMEs
 - `// FIXME(dev-console-log)` — restliche console.log-Stellen
+
+---
+
+## 📋 Aus Sprint 06 übernommen
+
+> Automatisch übernommen von SPRINT_06.md
+
+### Voice Commands & Conversation Sync
+
+- Conversation sync (Web ↔ WhatsApp ↔ Telegram)
+- Voice commands erkennen und weiterleiten
+
+### Avatar Integration Tests
+
+- Integration Test: LivePortrait render pipeline (end-to-end)
+- Integration Test: TTS + STT pipeline
+- E2E Test: Voice interaction flow (Browser → STT → Agent → TTS → Avatar)
+
+### CI/CD Erweiterungen
+
+- Docker Build + Push in CI
+- Vitest JSON Reports + slowest-test Zusammenfassung
+- Performance Benchmarks

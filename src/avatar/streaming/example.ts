@@ -53,7 +53,7 @@ export async function startAvatarStreaming(): Promise<StreamingSystem> {
     log.info(`Client disconnected: ${peerId} (${reason || "unknown"})`);
   });
 
-  // Handle incoming audio (from browser microphone -> Whisper)
+  // Handle incoming audio (from browser microphone → Whisper)
   system.bridge.on("incoming-audio", async (chunk) => {
     log.info(`Incoming audio: ${chunk.data.length} bytes`);
     // TODO: Send to Whisper service for transcription
@@ -66,7 +66,7 @@ export async function startAvatarStreaming(): Promise<StreamingSystem> {
     const status = system.getStatus();
     const metrics = status.metrics;
 
-    log.info("Performance Metrics:");
+    log.info("\nPerformance Metrics:");
     log.info(`  Clients: ${status.peerCount}`);
     log.info(`  Video Frames: ${metrics.videoFrames}`);
     log.info(`  Audio Chunks: ${metrics.audioChunks}`);
@@ -201,8 +201,8 @@ export async function main(): Promise<void> {
     integrateWithXTTS(system);
     integrateWithWhisper(system);
 
-    log.info("Avatar streaming system fully operational!");
-    log.info("Next steps:");
+    log.info("\nAvatar streaming system fully operational!");
+    log.info("\nNext steps:");
     log.info("  1. Open http://localhost:8080/webrtc-client.html in browser");
     log.info("  2. Click 'Connect' button");
     log.info("  3. Allow microphone access (for bidirectional audio)");
@@ -210,7 +210,7 @@ export async function main(): Promise<void> {
 
     // Graceful shutdown
     process.on("SIGINT", async () => {
-      log.info("Shutting down...");
+      log.info("\n\nShutting down...");
       await system.stop();
       process.exit(0);
     });

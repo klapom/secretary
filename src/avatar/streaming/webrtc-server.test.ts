@@ -412,6 +412,7 @@ describe("WebRTCStreamingServer", () => {
         delete process.env.GATEWAY_API_KEY;
       }
     });
+
     it("should accept connections with valid token when GATEWAY_API_KEY is set", async () => {
       process.env.GATEWAY_API_KEY = TEST_GATEWAY_KEY;
       try {

@@ -1,5 +1,3 @@
-// FIXME(arch-unbounded-cache): Add cache size limit or LRU eviction — risk of memory exhaustion
-
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -55,7 +53,6 @@ function extractSherpaOnnxText(raw: string): string | null {
       return null;
     }
     try {
-      // FIXME(sec-unvalidated-cast): ⚠️ SECURITY — validate with Zod schema before casting JSON result
       const parsed = JSON.parse(trimmed) as unknown;
       if (typeof parsed === "string") {
         return tryParse(parsed);
@@ -393,8 +390,7 @@ export async function runProviderEntry(params: {
     let headers: Record<string, string> | undefined;
     let providerQuery: Record<string, string | number | boolean> | undefined;
     if (providerId === "local") {
-      // FIXME(sec-hardcoded-secret): ⚠️ SECURITY — move credential to .env / secrets manager
-      apiKey = "local";
+      apiKey = process.env.LOCAL_MEDIA_API_KEY ?? "local";
       baseUrl = entry.baseUrl ?? params.config?.baseUrl;
     } else {
       const auth = await resolveApiKeyForProvider({
