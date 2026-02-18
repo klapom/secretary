@@ -1,0 +1,101 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-basic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type Check
+        run: pnpm tsc --noEmit
+
+      - name: Unit Tests
+        run: pnpm vitest run --config vitest.unit.config.ts
+
+  coverage-gate:
+    runs-on: ubuntu-latest
+    needs: test-basic
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Coverage gate
+        run: |
+          # Thresholds are defined in vitest.config.ts (80% lines gate).
+          pnpm vitest run --config vitest.unit.config.ts --coverage
+
+  security-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
+
+      - name: Security audit (high + critical)
+        run: pnpm audit --audit-level=high
+
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install detect-secrets
+        run: pip install detect-secrets==1.5.0
+
+      - name: Secret scan
+        run: |
+          if [ ! -f .secrets.baseline ]; then
+            echo "::warning::No .secrets.baseline found — skipping secret scan"
+            exit 0
+          fi
+          echo "Scanning for new secrets..."
+          # scan updates baseline in-place; diff detects new findings
+          cp .secrets.baseline .secrets.baseline.bak
+          detect-secrets scan --baseline .secrets.baseline
+          if ! diff -q .secrets.baseline.bak .secrets.baseline > /dev/null 2>&1; then
+            echo "::error::New secrets detected! Run 'detect-secrets scan --baseline .secrets.baseline' locally and audit."
+            diff .secrets.baseline.bak .secrets.baseline || true
+            exit 1
+          fi
+          echo "No new secrets found."

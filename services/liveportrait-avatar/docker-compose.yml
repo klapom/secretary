@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  liveportrait-avatar:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: secretary/liveportrait-avatar:latest
+    container_name: liveportrait-avatar
+    ports:
+      - "8001:8001"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - CUDA_VISIBLE_DEVICES=0
+    volumes:
+      # Cache models to avoid re-downloading
+      - ./models:/app/liveportrait/pretrained_weights
+      # Output directory for rendered images
+      - ./output:/tmp/liveportrait_output
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8001/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s

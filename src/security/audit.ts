@@ -186,7 +186,6 @@ async function collectFilesystemFindings(params: {
     exec: params.execIcacls,
   });
   if (configPerms.ok) {
-    const skipReadablePermWarnings = configPerms.isSymlink;
     if (configPerms.isSymlink) {
       findings.push({
         checkId: "fs.config.symlink",
@@ -209,7 +208,7 @@ async function collectFilesystemFindings(params: {
           env: params.env,
         }),
       });
-    } else if (!skipReadablePermWarnings && configPerms.worldReadable) {
+    } else if (configPerms.worldReadable) {
       findings.push({
         checkId: "fs.config.perms_world_readable",
         severity: "critical",
@@ -223,7 +222,7 @@ async function collectFilesystemFindings(params: {
           env: params.env,
         }),
       });
-    } else if (!skipReadablePermWarnings && configPerms.groupReadable) {
+    } else if (configPerms.groupReadable) {
       findings.push({
         checkId: "fs.config.perms_group_readable",
         severity: "warn",

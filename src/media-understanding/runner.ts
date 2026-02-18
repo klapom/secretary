@@ -332,6 +332,9 @@ async function resolveKeyEntry(params: {
     if (capability === "video" && !provider.describeVideo) {
       return null;
     }
+    if (providerId === "local") {
+      return { type: "provider" as const, provider: providerId, model };
+    }
     try {
       await resolveApiKeyForProvider({ provider: providerId, cfg, agentDir });
       return { type: "provider" as const, provider: providerId, model };
@@ -391,44 +394,6 @@ async function resolveKeyEntry(params: {
   return null;
 }
 
-function resolveImageModelFromAgentDefaults(cfg: OpenClawConfig): MediaUnderstandingModelConfig[] {
-  const imageModel = cfg.agents?.defaults?.imageModel as
-    | { primary?: string; fallbacks?: string[] }
-    | string
-    | undefined;
-  if (!imageModel) {
-    return [];
-  }
-  const refs: string[] = [];
-  if (typeof imageModel === "string") {
-    if (imageModel.trim()) {
-      refs.push(imageModel.trim());
-    }
-  } else {
-    if (imageModel.primary?.trim()) {
-      refs.push(imageModel.primary.trim());
-    }
-    for (const fb of imageModel.fallbacks ?? []) {
-      if (fb?.trim()) {
-        refs.push(fb.trim());
-      }
-    }
-  }
-  const entries: MediaUnderstandingModelConfig[] = [];
-  for (const ref of refs) {
-    const slashIdx = ref.indexOf("/");
-    if (slashIdx <= 0 || slashIdx >= ref.length - 1) {
-      continue;
-    }
-    entries.push({
-      type: "provider",
-      provider: ref.slice(0, slashIdx),
-      model: ref.slice(slashIdx + 1),
-    });
-  }
-  return entries;
-}
-
 async function resolveAutoEntries(params: {
   cfg: OpenClawConfig;
   agentDir?: string;
@@ -444,12 +409,6 @@ async function resolveAutoEntries(params: {
     const localAudio = await resolveLocalAudioEntry();
     if (localAudio) {
       return [localAudio];
-    }
-  }
-  if (params.capability === "image") {
-    const imageModelEntries = resolveImageModelFromAgentDefaults(params.cfg);
-    if (imageModelEntries.length > 0) {
-      return imageModelEntries;
     }
   }
   const gemini = await resolveGeminiCliEntry(params.capability);
@@ -532,14 +491,16 @@ async function resolveActiveModelEntry(params: {
   if (params.capability === "video" && !provider.describeVideo) {
     return null;
   }
-  try {
-    await resolveApiKeyForProvider({
-      provider: providerId,
-      cfg: params.cfg,
-      agentDir: params.agentDir,
-    });
-  } catch {
-    return null;
+  if (providerId !== "local") {
+    try {
+      await resolveApiKeyForProvider({
+        provider: providerId,
+        cfg: params.cfg,
+        agentDir: params.agentDir,
+      });
+    } catch {
+      return null;
+    }
   }
   return {
     type: "provider",

@@ -1,5 +1,4 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { withFetchPreconnect } from "../test-utils/fetch-mock.js";
 import { MediaAttachmentCache } from "./attachments.js";
 import { normalizeMediaUnderstandingChatType, resolveMediaUnderstandingScope } from "./scope.js";
 
@@ -13,7 +12,7 @@ describe("media understanding scope", () => {
   it("matches channel chatType explicitly", () => {
     const scope = {
       rules: [{ action: "deny", match: { chatType: "channel" } }],
-    } as Parameters<typeof resolveMediaUnderstandingScope>[0]["scope"];
+    } as const;
 
     expect(resolveMediaUnderstandingScope({ scope, chatType: "channel" })).toBe("deny");
   });
@@ -29,7 +28,7 @@ describe("media understanding attachments SSRF", () => {
 
   it("blocks private IP URLs before fetching", async () => {
     const fetchSpy = vi.fn();
-    globalThis.fetch = withFetchPreconnect(fetchSpy);
+    globalThis.fetch = fetchSpy as typeof fetch;
 
     const cache = new MediaAttachmentCache([{ index: 0, url: "http://127.0.0.1/secret.jpg" }]);
 

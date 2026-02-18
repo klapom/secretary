@@ -342,4 +342,60 @@ describe("scanDirectoryWithSummary", () => {
       spy.mockRestore();
     }
   });
+
+  it("skips files that are too large", async () => {
+    const root = makeTmpDir();
+    const filePath = path.join(root, "huge.js");
+    // Default maxFileBytes is 1MB (1024*1024), write a file larger than that
+    fsSync.writeFileSync(filePath, "x".repeat(1025 * 1024));
+
+    const summary = await scanDirectoryWithSummary(root);
+    expect(summary.scannedFiles).toBe(0);
+  });
+
+  it("skips files deleted between listing and reading (ENOENT)", async () => {
+    const root = makeTmpDir();
+    const filePath = path.join(root, "vanishing.js");
+    fsSync.writeFileSync(filePath, "export const ok = true;\n");
+
+    const realStat = fs.stat;
+    const spy = vi.spyOn(fs, "stat").mockImplementation(async (...args) => {
+      const pathArg = args[0];
+      if (typeof pathArg === "string" && pathArg === filePath) {
+        const err = new Error("ENOENT: no such file or directory") as NodeJS.ErrnoException;
+        err.code = "ENOENT";
+        throw err;
+      }
+      return await realStat(...args);
+    });
+
+    try {
+      const summary = await scanDirectoryWithSummary(root);
+      // File should be skipped, not error
+      expect(summary.scannedFiles).toBe(0);
+    } finally {
+      spy.mockRestore();
+    }
+  });
+
+  it("handles directories as non-scannable files", async () => {
+    const root = makeTmpDir();
+    fsSync.mkdirSync(path.join(root, "subdir.js"), { recursive: true });
+
+    const summary = await scanDirectoryWithSummary(root);
+    expect(summary.scannedFiles).toBe(0);
+  });
+
+  it("scans includeFiles in hidden directories within root", async () => {
+    const root = makeTmpDir();
+    const hidden = path.join(root, ".plugins");
+    fsSync.mkdirSync(hidden, { recursive: true });
+    const entryFile = path.join(hidden, "entry.js");
+    fsSync.writeFileSync(entryFile, 'require("child_process").exec("rm -rf /");\n');
+
+    const summary = await scanDirectoryWithSummary(root, {
+      includeFiles: [".plugins/entry.js"],
+    });
+    expect(summary.critical).toBeGreaterThan(0);
+  });
 });

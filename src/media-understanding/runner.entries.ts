@@ -1,10 +1,8 @@
+// FIXME(arch-unbounded-cache): Add cache size limit or LRU eviction — risk of memory exhaustion
+
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import {
-  collectProviderApiKeysForExecution,
-  executeWithApiKeyRotation,
-} from "../agents/api-key-rotation.js";
 import { requireApiKey, resolveApiKeyForProvider } from "../agents/model-auth.js";
 import type { MsgContext } from "../auto-reply/templating.js";
 import { applyTemplate } from "../auto-reply/templating.js";
@@ -57,6 +55,7 @@ function extractSherpaOnnxText(raw: string): string | null {
       return null;
     }
     try {
+      // FIXME(sec-unvalidated-cast): ⚠️ SECURITY — validate with Zod schema before casting JSON result
       const parsed = JSON.parse(trimmed) as unknown;
       if (typeof parsed === "string") {
         return tryParse(parsed);
@@ -275,51 +274,6 @@ export function buildModelDecision(params: {
   };
 }
 
-function resolveEntryRunOptions(params: {
-  capability: MediaUnderstandingCapability;
-  entry: MediaUnderstandingModelConfig;
-  cfg: OpenClawConfig;
-  config?: MediaUnderstandingConfig;
-}): { maxBytes: number; maxChars?: number; timeoutMs: number; prompt: string } {
-  const { capability, entry, cfg } = params;
-  const maxBytes = resolveMaxBytes({ capability, entry, cfg, config: params.config });
-  const maxChars = resolveMaxChars({ capability, entry, cfg, config: params.config });
-  const timeoutMs = resolveTimeoutMs(
-    entry.timeoutSeconds ??
-      params.config?.timeoutSeconds ??
-      cfg.tools?.media?.[capability]?.timeoutSeconds,
-    DEFAULT_TIMEOUT_SECONDS[capability],
-  );
-  const prompt = resolvePrompt(
-    capability,
-    entry.prompt ?? params.config?.prompt ?? cfg.tools?.media?.[capability]?.prompt,
-    maxChars,
-  );
-  return { maxBytes, maxChars, timeoutMs, prompt };
-}
-
-async function resolveProviderExecutionAuth(params: {
-  providerId: string;
-  cfg: OpenClawConfig;
-  entry: MediaUnderstandingModelConfig;
-  agentDir?: string;
-}) {
-  const auth = await resolveApiKeyForProvider({
-    provider: params.providerId,
-    cfg: params.cfg,
-    profileId: params.entry.profile,
-    preferredProfile: params.entry.preferredProfile,
-    agentDir: params.agentDir,
-  });
-  return {
-    apiKeys: collectProviderApiKeysForExecution({
-      provider: params.providerId,
-      primaryApiKey: requireApiKey(auth, params.providerId),
-    }),
-    providerConfig: params.cfg.models?.providers?.[params.providerId],
-  };
-}
-
 export function formatDecisionSummary(decision: MediaUnderstandingDecision): string {
   const total = decision.attachments.length;
   const success = decision.attachments.filter(
@@ -356,12 +310,19 @@ export async function runProviderEntry(params: {
     throw new Error(`Provider entry missing provider for ${capability}`);
   }
   const providerId = normalizeMediaProviderId(providerIdRaw);
-  const { maxBytes, maxChars, timeoutMs, prompt } = resolveEntryRunOptions({
+  const maxBytes = resolveMaxBytes({ capability, entry, cfg, config: params.config });
+  const maxChars = resolveMaxChars({ capability, entry, cfg, config: params.config });
+  const timeoutMs = resolveTimeoutMs(
+    entry.timeoutSeconds ??
+      params.config?.timeoutSeconds ??
+      cfg.tools?.media?.[capability]?.timeoutSeconds,
+    DEFAULT_TIMEOUT_SECONDS[capability],
+  );
+  const prompt = resolvePrompt(
     capability,
-    entry,
-    cfg,
-    config: params.config,
-  });
+    entry.prompt ?? params.config?.prompt ?? cfg.tools?.media?.[capability]?.prompt,
+    maxChars,
+  );
 
   if (capability === "image") {
     if (!params.agentDir) {
@@ -422,48 +383,55 @@ export async function runProviderEntry(params: {
     if (!provider.transcribeAudio) {
       throw new Error(`Audio transcription provider "${providerId}" not available.`);
     }
-    const transcribeAudio = provider.transcribeAudio;
     const media = await params.cache.getBuffer({
       attachmentIndex: params.attachmentIndex,
       maxBytes,
       timeoutMs,
     });
-    const { apiKeys, providerConfig } = await resolveProviderExecutionAuth({
-      providerId,
-      cfg,
-      entry,
-      agentDir: params.agentDir,
-    });
-    const baseUrl = entry.baseUrl ?? params.config?.baseUrl ?? providerConfig?.baseUrl;
-    const mergedHeaders = {
-      ...providerConfig?.headers,
-      ...params.config?.headers,
-      ...entry.headers,
-    };
-    const headers = Object.keys(mergedHeaders).length > 0 ? mergedHeaders : undefined;
-    const providerQuery = resolveProviderQuery({
-      providerId,
-      config: params.config,
-      entry,
-    });
+    let apiKey: string;
+    let baseUrl: string | undefined;
+    let headers: Record<string, string> | undefined;
+    let providerQuery: Record<string, string | number | boolean> | undefined;
+    if (providerId === "local") {
+      // FIXME(sec-hardcoded-secret): ⚠️ SECURITY — move credential to .env / secrets manager
+      apiKey = "local";
+      baseUrl = entry.baseUrl ?? params.config?.baseUrl;
+    } else {
+      const auth = await resolveApiKeyForProvider({
+        provider: providerId,
+        cfg,
+        profileId: entry.profile,
+        preferredProfile: entry.preferredProfile,
+        agentDir: params.agentDir,
+      });
+      apiKey = requireApiKey(auth, providerId);
+      const providerConfig = cfg.models?.providers?.[providerId];
+      baseUrl = entry.baseUrl ?? params.config?.baseUrl ?? providerConfig?.baseUrl;
+      const mergedHeaders = {
+        ...providerConfig?.headers,
+        ...params.config?.headers,
+        ...entry.headers,
+      };
+      headers = Object.keys(mergedHeaders).length > 0 ? mergedHeaders : undefined;
+      providerQuery = resolveProviderQuery({
+        providerId,
+        config: params.config,
+        entry,
+      });
+    }
     const model = entry.model?.trim() || DEFAULT_AUDIO_MODELS[providerId] || entry.model;
-    const result = await executeWithApiKeyRotation({
-      provider: providerId,
-      apiKeys,
-      execute: async (apiKey) =>
-        transcribeAudio({
-          buffer: media.buffer,
-          fileName: media.fileName,
-          mime: media.mime,
-          apiKey,
-          baseUrl,
-          headers,
-          model,
-          language: entry.language ?? params.config?.language ?? cfg.tools?.media?.audio?.language,
-          prompt,
-          query: providerQuery,
-          timeoutMs,
-        }),
+    const result = await provider.transcribeAudio({
+      buffer: media.buffer,
+      fileName: media.fileName,
+      mime: media.mime,
+      apiKey,
+      baseUrl,
+      headers,
+      model,
+      language: entry.language ?? params.config?.language ?? cfg.tools?.media?.audio?.language,
+      prompt,
+      query: providerQuery,
+      timeoutMs,
     });
     return {
       kind: "audio.transcription",
@@ -477,7 +445,6 @@ export async function runProviderEntry(params: {
   if (!provider.describeVideo) {
     throw new Error(`Video understanding provider "${providerId}" not available.`);
   }
-  const describeVideo = provider.describeVideo;
   const media = await params.cache.getBuffer({
     attachmentIndex: params.attachmentIndex,
     maxBytes,
@@ -491,27 +458,25 @@ export async function runProviderEntry(params: {
       `Video attachment ${params.attachmentIndex + 1} base64 payload ${estimatedBase64Bytes} exceeds ${maxBase64Bytes}`,
     );
   }
-  const { apiKeys, providerConfig } = await resolveProviderExecutionAuth({
-    providerId,
+  const auth = await resolveApiKeyForProvider({
+    provider: providerId,
     cfg,
-    entry,
+    profileId: entry.profile,
+    preferredProfile: entry.preferredProfile,
     agentDir: params.agentDir,
   });
-  const result = await executeWithApiKeyRotation({
-    provider: providerId,
-    apiKeys,
-    execute: (apiKey) =>
-      describeVideo({
-        buffer: media.buffer,
-        fileName: media.fileName,
-        mime: media.mime,
-        apiKey,
-        baseUrl: providerConfig?.baseUrl,
-        headers: providerConfig?.headers,
-        model: entry.model,
-        prompt,
-        timeoutMs,
-      }),
+  const apiKey = requireApiKey(auth, providerId);
+  const providerConfig = cfg.models?.providers?.[providerId];
+  const result = await provider.describeVideo({
+    buffer: media.buffer,
+    fileName: media.fileName,
+    mime: media.mime,
+    apiKey,
+    baseUrl: providerConfig?.baseUrl,
+    headers: providerConfig?.headers,
+    model: entry.model,
+    prompt,
+    timeoutMs,
   });
   return {
     kind: "video.description",
@@ -537,12 +502,19 @@ export async function runCliEntry(params: {
   if (!command) {
     throw new Error(`CLI entry missing command for ${capability}`);
   }
-  const { maxBytes, maxChars, timeoutMs, prompt } = resolveEntryRunOptions({
+  const maxBytes = resolveMaxBytes({ capability, entry, cfg, config: params.config });
+  const maxChars = resolveMaxChars({ capability, entry, cfg, config: params.config });
+  const timeoutMs = resolveTimeoutMs(
+    entry.timeoutSeconds ??
+      params.config?.timeoutSeconds ??
+      cfg.tools?.media?.[capability]?.timeoutSeconds,
+    DEFAULT_TIMEOUT_SECONDS[capability],
+  );
+  const prompt = resolvePrompt(
     capability,
-    entry,
-    cfg,
-    config: params.config,
-  });
+    entry.prompt ?? params.config?.prompt ?? cfg.tools?.media?.[capability]?.prompt,
+    maxChars,
+  );
   const pathResult = await params.cache.getPath({
     attachmentIndex: params.attachmentIndex,
     maxBytes,

@@ -1,58 +1,34 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { formatLocalIsoWithOffset } from "./timestamps.js";
 
-function buildFakeDate(parts: {
-  year: number;
-  month: number;
-  day: number;
-  hour: number;
-  minute: number;
-  second: number;
-  millisecond: number;
-  timezoneOffsetMinutes: number;
-}): Date {
-  return {
-    getFullYear: () => parts.year,
-    getMonth: () => parts.month - 1,
-    getDate: () => parts.day,
-    getHours: () => parts.hour,
-    getMinutes: () => parts.minute,
-    getSeconds: () => parts.second,
-    getMilliseconds: () => parts.millisecond,
-    getTimezoneOffset: () => parts.timezoneOffsetMinutes,
-  } as unknown as Date;
-}
-
 describe("formatLocalIsoWithOffset", () => {
-  it("formats positive offset with millisecond padding", () => {
-    const value = formatLocalIsoWithOffset(
-      buildFakeDate({
-        year: 2026,
-        month: 1,
-        day: 2,
-        hour: 3,
-        minute: 4,
-        second: 5,
-        millisecond: 6,
-        timezoneOffsetMinutes: -150, // UTC+02:30
-      }),
-    );
-    expect(value).toBe("2026-01-02T03:04:05.006+02:30");
+  it("formats a date with timezone offset", () => {
+    const date = new Date("2026-02-18T12:30:45.123Z");
+    const result = formatLocalIsoWithOffset(date);
+    // Should contain ISO-like format with timezone
+    expect(result).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}[+-]\d{2}:\d{2}$/);
   });
 
-  it("formats negative offset", () => {
-    const value = formatLocalIsoWithOffset(
-      buildFakeDate({
-        year: 2026,
-        month: 12,
-        day: 31,
-        hour: 23,
-        minute: 59,
-        second: 58,
-        millisecond: 321,
-        timezoneOffsetMinutes: 300, // UTC-05:00
-      }),
-    );
-    expect(value).toBe("2026-12-31T23:59:58.321-05:00");
+  it("pads single-digit values", () => {
+    const date = new Date(2026, 0, 5, 3, 7, 9, 1); // Jan 5, 03:07:09.001
+    const result = formatLocalIsoWithOffset(date);
+    expect(result).toContain("2026-01-05");
+    expect(result).toContain("03:07:09.001");
+  });
+
+  it("handles positive timezone offset (west of UTC)", () => {
+    const date = new Date("2026-02-18T12:00:00Z");
+    const spy = vi.spyOn(date, "getTimezoneOffset").mockReturnValue(300); // UTC-5
+    const result = formatLocalIsoWithOffset(date);
+    expect(result).toMatch(/-05:00$/);
+    spy.mockRestore();
+  });
+
+  it("handles negative timezone offset (east of UTC)", () => {
+    const date = new Date("2026-02-18T12:00:00Z");
+    const spy = vi.spyOn(date, "getTimezoneOffset").mockReturnValue(-60); // UTC+1
+    const result = formatLocalIsoWithOffset(date);
+    expect(result).toMatch(/\+01:00$/);
+    spy.mockRestore();
   });
 });

@@ -1,0 +1,104 @@
+# EchoMimic V3 Dockerfile for DGX Spark (ARM64 + GB10 GPU)
+# Generates lip-synced video from portrait image + audio (async, ~2-4min per clip)
+# Based on EchoMimicV3 flash-pro variant (8 steps, fastest)
+#
+# Base: pytorch:25.11-py3 — ships with CUDA 13.0 dev toolkit (nvcc 13.0) AND
+# flash_attn pre-compiled for sm_120/sm_121 (Blackwell). This is the key fix
+# for performance: without flash_attn, inference takes ~10 min; with it, ~2-4 min.
+#
+# ARM64 risk areas — handled below:
+#   - decord: no ARM64 wheel → fallback to imageio+ffmpeg for video I/O
+#   - tensorflow: retina-face dep → use insightface instead (no TF needed)
+#   - mmgp: memory optimization pkg → install from PyPI, skip if missing
+#   - bfloat16: GB10/sm_121 supports it natively ✅
+
+FROM nvcr.io/nvidia/pytorch:25.11-py3
+
+WORKDIR /app
+
+# System dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    wget \
+    curl \
+    ffmpeg \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    libgomp1 \
+    libglib2.0-0 \
+    libsndfile1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# pytorch:25.11-py3 already ships with:
+#   - torch 2.10.0 with CUDA 13.0 and sm_121 (Blackwell) support ✅
+#   - nvcc 13.0 (CUDA dev toolkit) ✅
+#   - flash_attn compiled for sm_121 ✅
+# NO torch re-install needed.
+
+# Remove NGC's broken cv2 before installing our pinned version
+# (The cv2 "DictValue" error exists in 25.11 base as well)
+RUN pip uninstall -y opencv-python opencv-python-headless opencv-contrib-python 2>/dev/null; \
+    PYTHON_VER=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')"); \
+    rm -rf /usr/local/lib/python${PYTHON_VER}/dist-packages/cv2* 2>/dev/null; true
+
+# Verify flash_attn is present and working; if not (e.g. ABI mismatch), build from source.
+# MAX_JOBS=4 keeps memory usage manageable during compilation.
+# TORCH_CUDA_ARCH_LIST covers sm_80 (A100), sm_90 (H100), sm_120 (GB10/Blackwell).
+RUN python3 -c "import flash_attn; print('flash_attn', flash_attn.__version__, 'OK')" 2>/dev/null || \
+    (echo "flash_attn not available, building from source..." && \
+     MAX_JOBS=4 TORCH_CUDA_ARCH_LIST='8.0;9.0;12.0' \
+     pip install --no-cache-dir flash-attn --no-build-isolation && \
+     python3 -c "import flash_attn; print('flash_attn built OK:', flash_attn.__version__)")
+
+# Core requirements (order matters — torch must already be installed)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# decord: try wheel, compile from source as fallback (video frame extraction)
+# If both fail we fall back to imageio in the service code — not a hard failure.
+RUN pip install --no-cache-dir decord 2>/dev/null || \
+    (apt-get update -qq && apt-get install -y -qq \
+        cmake build-essential libjpeg-dev libpng-dev \
+        libavcodec-dev libavformat-dev libswscale-dev && \
+     git clone --depth 1 https://github.com/dmlc/decord /tmp/decord && \
+     mkdir /tmp/decord/build && cd /tmp/decord/build && \
+     cmake .. -DUSE_CUDA=OFF -DCMAKE_BUILD_TYPE=Release && \
+     make -j$(nproc) && \
+     cd /tmp/decord/python && pip install --no-cache-dir -e . && \
+     rm -rf /tmp/decord) || \
+    echo "WARNING: decord unavailable — using imageio fallback"
+
+# mmgp: memory optimization for diffusion (optional, not critical)
+RUN pip install --no-cache-dir mmgp 2>/dev/null || echo "WARNING: mmgp unavailable — continuing without memory optimizations"
+
+# Clone EchoMimicV3 repository
+RUN git clone --depth 1 https://github.com/antgroup/echomimic_v3.git /app/EchoMimicV3
+
+# Patch: Multiple unresolved type annotations in pipeline class definition
+# (WanTransformer, AutoTokenizer etc. used in annotations but not imported)
+# Fix: add "from __future__ import annotations" → all annotations become lazy strings
+RUN sed -i '1s/^/from __future__ import annotations\n/' \
+    /app/EchoMimicV3/src/pipeline_wan_fun_inpaint_audio_2512.py
+
+# Create model cache directory (populated at runtime, cached in volume)
+RUN mkdir -p /app/models/flash-pro \
+             /app/models/preview
+
+# Copy service files
+COPY echomimic_service.py /app/
+COPY entrypoint.sh /app/
+RUN chmod +x /app/entrypoint.sh
+
+EXPOSE 8086
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=300s --retries=5 \
+    CMD curl -f http://localhost:8086/health || exit 1
+
+ENV PYTHONPATH=/app/EchoMimicV3:$PYTHONPATH
+ENV CUDA_VISIBLE_DEVICES=0
+ENV PYTHONUNBUFFERED=1
+# Use flash-pro by default (8 steps, fastest)
+ENV ECHOMIMIC_VARIANT=flash-pro
+
+CMD ["/app/entrypoint.sh"]
