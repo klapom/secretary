@@ -331,6 +331,86 @@ services:
     networks:
       - avatar-network
 
+  # ============================================================================
+  # Nemotron 3 Nano 30B — Local LLM via vLLM (OpenAI-compatible API)
+  # Model: nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4 (~18GB NVFP4 quantized)
+  # Profile: llm — start with: docker compose --profile avatar --profile llm up -d
+  # API: http://localhost:8087/v1 (OpenAI-compatible, model-name: nemotron-nano)
+  # Startup: ~2-3min (FlashInfer JIT kernel compile cached after first run)
+  #
+  # GPU Memory on DGX Spark GB10 (128GB unified):
+  #   Avatar services (XTTS+Whisper+LivePortrait+EchoMimic): ~11GB
+  #   vLLM (model 18GB + KV cache at 0.55*128=70GB):         ~88GB
+  #   Total:                                                  ~99GB / 128GB ✓
+  #
+  # DGX Spark SM121 critical flags (from Aegis production config):
+  #   VLLM_USE_FLASHINFER_MOE_FP4=1       — NVFP4 MoE kernel
+  #   VLLM_FLASHINFER_MOE_BACKEND=latency — MUST be 'latency', not 'throughput'!
+  #     ('throughput' uses SM120 CUTLASS kernels that crash on SM121)
+  #   VLLM_MOE_USE_DEEP_GEMM=0            — disable FP8 GEMM (not needed for NVFP4)
+  #   VLLM_FASTSAFETENSORS_NOGDS=1        — no GPU Direct Storage on DGX Spark
+  # ============================================================================
+  vllm:
+    image: nvcr.io/nvidia/vllm:26.01-py3
+    container_name: secretary-vllm
+    profiles: [llm]
+    ipc: host  # Required for NCCL/CUDA IPC shared memory
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    environment:
+      # DGX Spark SM121 (Blackwell) — critical vLLM flags
+      - VLLM_USE_FLASHINFER_MOE_FP4=1
+      - VLLM_FLASHINFER_MOE_BACKEND=latency
+      - VLLM_MOE_USE_DEEP_GEMM=0
+      - VLLM_FASTSAFETENSORS_NOGDS=1
+      # HuggingFace cache (model already downloaded — no re-download)
+      - HF_HOME=/root/.cache/huggingface
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      # Bind-mount host HF cache — model already downloaded, instant start
+      - ${HOME}/.cache/huggingface:/root/.cache/huggingface
+      # Persist FlashInfer JIT kernels — first compile ~15min, cached restarts: instant
+      - ${HOME}/.cache/flashinfer:/root/.cache/flashinfer
+      # Persist vLLM torch.compile cache (CUDA graphs)
+      - ${HOME}/.cache/vllm:/root/.cache/vllm
+    ports:
+      - "8087:8087"
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        # Download Nemotron reasoning parser plugin (tiny Python file, ~5KB)
+        wget -q https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4/resolve/main/nano_v3_reasoning_parser.py && \
+        exec vllm serve nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4 \
+          --host 0.0.0.0 \
+          --port 8087 \
+          --served-model-name nemotron-nano \
+          --gpu-memory-utilization 0.55 \
+          --trust-remote-code \
+          --enable-auto-tool-choice \
+          --tool-call-parser qwen3_coder \
+          --reasoning-parser-plugin nano_v3_reasoning_parser.py \
+          --reasoning-parser nano_v3 \
+          --kv-cache-dtype fp8 \
+          --max-model-len 131072
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8087/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 300s  # FlashInfer compile on first start
+    restart: unless-stopped
+    networks:
+      - avatar-network
+
   # WebRTC Signaling Server (Phase 3 - Not implemented yet)
   # webrtc-signaling:
   #   image: node:22-alpine

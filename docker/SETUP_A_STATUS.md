@@ -7,6 +7,58 @@
 
 ## 🟢 Working Services
 
+### 0. Nemotron 3 Nano 30B — vLLM (LLM Backend) - Port 8087
+
+**Status:** ✅ CONFIGURED (Image local, model cached, ready to start)
+
+**Features:**
+
+- Model: `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4` (~18GB NVFP4 quantized)
+- OpenAI-compatible API (`/v1/chat/completions`, `/v1/models`)
+- Served model name: `nemotron-nano`
+- Tool calling: `--enable-auto-tool-choice --tool-call-parser qwen3_coder`
+- Reasoning: `--reasoning-parser nano_v3` (chain-of-thought before answer)
+- Context: 131072 tokens (128K)
+
+**Start:**
+
+```bash
+cd docker/
+docker compose -f docker-compose.dgx.yml --profile llm up -d
+# Oder zusammen mit Avatar-Services:
+docker compose -f docker-compose.dgx.yml --profile avatar --profile llm up -d
+```
+
+**Startup Zeit:** ~2-3min (FlashInfer JIT Kernels — nach erstem Start gecacht → sofort)
+
+**API Test:**
+
+```bash
+curl http://localhost:8087/v1/models
+curl http://localhost:8087/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{"model":"nemotron-nano","messages":[{"role":"user","content":"Hallo!"}]}'
+```
+
+**GPU Memory (DGX Spark GB10, 128GB unified):**
+
+| Service                                            | GPU Memory        |
+| -------------------------------------------------- | ----------------- |
+| Avatar (XTTS + Whisper + LivePortrait + EchoMimic) | ~11GB             |
+| vLLM (model 18GB + KV cache @ 0.55×128GB=70GB)     | ~88GB             |
+| **Total**                                          | **~99GB / 128GB** |
+
+**Secretary Config (`~/.openclaw/openclaw.json`):**
+vLLM ist bereits als Default-Provider konfiguriert (`vllm/nemotron-nano`).
+
+**DGX Spark SM121 kritische Flags:**
+
+- `VLLM_FLASHINFER_MOE_BACKEND=latency` — MUSS 'latency' sein! ('throughput' crasht auf SM121)
+- `VLLM_USE_FLASHINFER_MOE_FP4=1` — NVFP4 MoE Kernel
+- `VLLM_MOE_USE_DEEP_GEMM=0` — kein FP8 GEMM für NVFP4
+
+---
+
 ### 1. XTTS v2 (Coqui TTS) - Port 8082
 
 **Status:** ✅ WORKING (GPU/CUDA, 17 languages)
