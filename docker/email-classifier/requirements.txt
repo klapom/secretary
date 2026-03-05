@@ -1,0 +1,26 @@
+# Email Classifier Dependencies
+# torch is installed separately (cu130 index) in Dockerfile before this file
+
+# Embeddings
+sentence-transformers>=3.0.0
+# Qwen3 architecture support requires transformers >= 4.50 (released 2025)
+# Note: The <4.43.0 limit is ONLY for the XTTS container, not needed here
+transformers>=4.50.0
+
+# ML classifier
+scikit-learn>=1.3.0
+numpy>=1.24.0
+
+# IMAP client
+imapclient>=3.0.0
+
+# Email parsing
+chardet>=5.0.0
+
+# Clustering (reorganize.py)
+# hdbscan has no ARM64 wheels — use sklearn DBSCAN (same algorithm family, no extra deps)
+# requests for LLM naming via local vLLM API
+requests>=2.31.0
+
+# PDF text extraction for LLM-based email classification (llm_classify.py)
+pypdf>=4.0.0
