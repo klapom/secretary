@@ -1,10 +1,15 @@
 # Docker Compose for DGX Spark - Avatar System
 # Hardware: NVIDIA GB10 (Blackwell sm_121), 128GB Unified Memory, CUDA 13.0
 # Usage:
-#   Normal Mode:  docker compose up -d
-#   Avatar Mode:  docker compose --profile avatar up -d
-
-version: "3.8"
+#   STT only + LLM (empfohlen):  docker compose --profile stt --profile llm up -d
+#   Full Avatar + LLM:           docker compose --profile avatar --profile llm up -d
+#   Nur LLM:                     docker compose --profile llm up -d
+#
+# Profile-Übersicht:
+#   stt    — Nur Whisper STT (Spracheingabe, ~3GB VRAM)
+#   avatar — Whisper + XTTS TTS + LivePortrait (~11GB VRAM)
+#   llm    — vLLM Nemotron/Qwen
+#   avatar-experimental — EchoMimic, Canary-NeMo
 
 services:
   # LivePortrait - Avatar rendering (primary GPU consumer)
@@ -131,7 +136,7 @@ services:
       context: ./distil-whisper
       dockerfile: Dockerfile
     container_name: secretary-distil-whisper
-    profiles: [avatar] # Only start when avatar is active
+    profiles: [avatar, stt] # 'stt' starts only Whisper without full avatar stack
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=0
@@ -332,26 +337,28 @@ services:
       - avatar-network
 
   # ============================================================================
-  # Nemotron 3 Nano 30B — Local LLM via vLLM (OpenAI-compatible API)
-  # Model: nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4 (~18GB NVFP4 quantized)
-  # Profile: llm — start with: docker compose --profile avatar --profile llm up -d
-  # API: http://localhost:8087/v1 (OpenAI-compatible, model-name: nemotron-nano)
-  # Startup: ~2-3min (FlashInfer JIT kernel compile cached after first run)
+  # Qwen3-30B-A3B-FP8 — Local LLM via vLLM (OpenAI-compatible API)
+  # Model: Qwen/Qwen3-30B-A3B-FP8 (~16GB FP8 quantized, 30B params, 3B active)
+  # Profile: llm — start with: docker compose --profile stt --profile llm up -d
+  # API: http://localhost:8087/v1 (OpenAI-compatible, model-name: qwen3-30b)
   #
-  # GPU Memory on DGX Spark GB10 (128GB unified):
-  #   Avatar services (XTTS+Whisper+LivePortrait+EchoMimic): ~11GB
-  #   vLLM (model 18GB + KV cache at 0.55*128=70GB):         ~88GB
-  #   Total:                                                  ~99GB / 128GB ✓
+  # Why Qwen3-30B instead of Qwen3.5-35B:
+  #   Qwen3.5 uses model_type "qwen3_5_moe" — only in transformers git-main (no stable release).
+  #   All vLLM images (NGC 26.01, community 0.16.0, nightly) have transformers 4.57.6 → not supported.
+  #   Qwen3-30B uses "qwen3_moe" — fully supported in 4.57.6. ✅
+  #   Upgrade path: wait for transformers stable release with qwen3_5_moe support.
   #
-  # DGX Spark SM121 critical flags (from Aegis production config):
-  #   VLLM_USE_FLASHINFER_MOE_FP4=1       — NVFP4 MoE kernel
-  #   VLLM_FLASHINFER_MOE_BACKEND=latency — MUST be 'latency', not 'throughput'!
-  #     ('throughput' uses SM120 CUTLASS kernels that crash on SM121)
-  #   VLLM_MOE_USE_DEEP_GEMM=0            — disable FP8 GEMM (not needed for NVFP4)
-  #   VLLM_FASTSAFETENSORS_NOGDS=1        — no GPU Direct Storage on DGX Spark
+  # GPU Memory on DGX Spark GB10 (128GB unified, STT-only config):
+  #   STT only (Whisper):                          ~3GB
+  #   vLLM (model 16GB + KV cache at 0.85*128):   ~109GB → ~93GB KV cache
+  #   Total:                                       ~112GB / 128GB ✓
+  #
+  # Why vllm/vllm-openai instead of NGC 26.01:
+  #   NGC 26.01 = vLLM 0.13.0, community image = vLLM 0.16.0 (Qwen3 support, bug fixes)
+  #   --attention-backend FLASH_ATTN: FlashInfer has degradation on Blackwell in 0.16+
   # ============================================================================
   vllm:
-    image: nvcr.io/nvidia/vllm:26.01-py3
+    image: vllm/vllm-openai:latest-aarch64-cu130
     container_name: secretary-vllm
     profiles: [llm]
     ipc: host  # Required for NCCL/CUDA IPC shared memory
@@ -359,11 +366,14 @@ services:
       memlock: -1
       stack: 67108864
     environment:
-      # DGX Spark SM121 (Blackwell) — critical vLLM flags
-      - VLLM_USE_FLASHINFER_MOE_FP4=1
-      - VLLM_FLASHINFER_MOE_BACKEND=latency
-      - VLLM_MOE_USE_DEEP_GEMM=0
+      # DGX Spark GB10 (Blackwell SM121) — vLLM 0.16.0, Qwen3 FP8
+      # NOTE: FlashInfer has degradation issues on Blackwell in vLLM 0.16+
+      #       → use --attention-backend FLASH_ATTN (see command below)
       - VLLM_FASTSAFETENSORS_NOGDS=1
+      # Required to allow YaRN context extension beyond model's max_position_embeddings
+      - VLLM_ALLOW_LONG_MAX_MODEL_LEN=1
+      # GB10 (sm_121a): Triton ptxas doesn't know sm_121a → force MARLIN FP8 MoE backend (no Triton compile)
+      - VLLM_TEST_FORCE_FP8_MARLIN=1
       # HuggingFace cache (model already downloaded — no re-download)
       - HF_HOME=/root/.cache/huggingface
       - PYTHONUNBUFFERED=1
@@ -383,24 +393,30 @@ services:
       - ${HOME}/.cache/vllm:/root/.cache/vllm
     ports:
       - "8087:8087"
-    entrypoint: /bin/bash
     command:
-      - -c
-      - |
-        # Download Nemotron reasoning parser plugin (tiny Python file, ~5KB)
-        wget -q https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4/resolve/main/nano_v3_reasoning_parser.py && \
-        exec vllm serve nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4 \
-          --host 0.0.0.0 \
-          --port 8087 \
-          --served-model-name nemotron-nano \
-          --gpu-memory-utilization 0.55 \
-          --trust-remote-code \
-          --enable-auto-tool-choice \
-          --tool-call-parser qwen3_coder \
-          --reasoning-parser-plugin nano_v3_reasoning_parser.py \
-          --reasoning-parser nano_v3 \
-          --kv-cache-dtype fp8 \
-          --max-model-len 131072
+      - --model
+      - Qwen/Qwen3-30B-A3B-FP8
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8087"
+      - --served-model-name
+      - qwen3-30b
+      - --gpu-memory-utilization
+      - "0.85"
+      - --trust-remote-code
+      - --enable-auto-tool-choice
+      - --tool-call-parser
+      - hermes
+      - --reasoning-parser
+      - qwen3
+      - --attention-backend
+      - FLASH_ATTN
+      - --no-enable-prefix-caching
+      - --hf-overrides
+      - '{"rope_scaling": {"rope_type": "yarn", "factor": 4.0, "original_max_position_embeddings": 32768}}'
+      - --max-model-len
+      - "131072"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8087/health"]
       interval: 30s
@@ -408,6 +424,213 @@ services:
       retries: 5
       start_period: 300s  # FlashInfer compile on first start
     restart: unless-stopped
+    networks:
+      - avatar-network
+
+  # ============================================================================
+  # Qwen3.5-35B-A3B-FP8 — Local LLM via vLLM (OpenAI-compatible API)
+  # Model: Qwen/Qwen3.5-35B-A3B-FP8 (~14GB FP8, 35B params, 3B active MoE)
+  # Profile: llm35 — start with: docker compose --profile stt --profile llm35 up -d
+  # API: http://localhost:8088/v1 (OpenAI-compatible, model-name: qwen35-35b)
+  #
+  # Source: https://docs.vllm.ai/projects/recipes/en/latest/Qwen/Qwen3.5.html
+  #         https://huggingface.co/Qwen/Qwen3.5-35B-A3B-FP8
+  #
+  # Why a separate service (not replacing vllm):
+  #   The base image ships transformers 4.57.6 — Qwen3.5 needs 5.x (qwen3_5_moe arch).
+  #   This service uses a custom Dockerfile with transformers>=5.2.0 on top of vLLM 0.16.0.
+  #   Port 8087 stays reserved for Qwen3-30B (production). Port 8088 = Qwen3.5 (experimental).
+  #
+  # Architecture (hybrid, unique vs Qwen3):
+  #   10x groups of: 3x DeltaNet/MoE (linear attention) + 1x Gated-Attention/MoE
+  #   MoE: 256 experts total, 8 routed + 1 shared active per token
+  #   DeltaNet = Mamba-style linear attention → lower KV-cache growth for long contexts
+  #   Native context window: 262,144 tokens (no YaRN extension needed!)
+  #
+  # GPU Memory on DGX Spark GB10 (128GB unified):
+  #   Qwen3.5-35B FP8 model weights:          ~14GB
+  #   KV cache at gpu-memory-utilization=0.45: ~18GB → 181K token capacity
+  #   Total:                                   ~54GB / 120GB ✓
+  #   With STT (Whisper ~3GB):                 ~57GB / 120GB ✓ (66GB frei für OS)
+  #
+  # Recipe flags applied (from vLLM recipes):
+  #   --tool-call-parser qwen3_coder  → Qwen3.5-specific tool call format
+  #   --reasoning-parser qwen3        → parses <think>...</think> blocks
+  #   --speculative-config mtp        → 1 speculative token reduces latency
+  #   max-model-len 262144            → native context, no rope_scaling override needed
+  #
+  # Thinking mode: by default ON (model generates <think>...</think>)
+  #   To disable per-request: pass "chat_template_kwargs": {"enable_thinking": false}
+  #
+  # Tool calling: --tool-call-parser qwen3_coder (Qwen3.5 uses <tool_call> JSON format)
+  #   Fallback if broken: try --tool-call-parser hermes (same format, confirmed for Qwen3)
+  # ============================================================================
+  vllm-qwen35:
+    build:
+      context: ./vllm-qwen35
+      dockerfile: Dockerfile
+    image: secretary-vllm-qwen35
+    container_name: secretary-vllm-qwen35
+    profiles: [llm35]
+    ipc: host
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    environment:
+      # DGX Spark GB10 (Blackwell SM121) — same SM121 workarounds as Qwen3-30B
+      - VLLM_FASTSAFETENSORS_NOGDS=1
+      # GB10 (sm_121a): force MARLIN FP8 MoE backend (Triton ptxas doesn't know sm_121a)
+      - VLLM_TEST_FORCE_FP8_MARLIN=1
+      # HuggingFace cache — model downloads on first start (~14GB, ~10 min)
+      - HF_HOME=/root/.cache/huggingface
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      # Shared HF cache with Qwen3-30B — if Qwen3.5 already downloaded, instant start
+      - ${HOME}/.cache/huggingface:/root/.cache/huggingface
+      # Separate FlashInfer/vLLM compile caches from Qwen3-30B to avoid conflicts
+      - ${HOME}/.cache/flashinfer:/root/.cache/flashinfer
+      - ${HOME}/.cache/vllm-qwen35:/root/.cache/vllm
+    ports:
+      - "8088:8088"
+    command:
+      - --model
+      - Qwen/Qwen3.5-35B-A3B-FP8
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8088"
+      - --served-model-name
+      - qwen35-35b
+      # Memory: 0.45 → 181K token KV-capacity, ~66GB frei für OS/Whisper/XTTS
+      # (0.80 war massiv überreserviert: 95GB reserviert, max 3.3% KV-Cache genutzt)
+      - --gpu-memory-utilization
+      - "0.45"
+      - --trust-remote-code
+      # Tool calling (Qwen3.5-specific parser — uses <tool_call> JSON format)
+      # If tool calls fail, try: --tool-call-parser hermes
+      - --enable-auto-tool-choice
+      - --tool-call-parser
+      - qwen3_coder
+      # Reasoning: parses <think>...</think> into response.reasoning field
+      - --reasoning-parser
+      - qwen3
+      # Attention: FLASH_ATTN avoids FlashInfer degradation on Blackwell (vLLM 0.16+)
+      - --attention-backend
+      - FLASH_ATTN
+      # Prefix caching: disabled (experimental, can cause issues on first run)
+      - --no-enable-prefix-caching
+      # Native context window — no YaRN rope_scaling override needed (unlike Qwen3-30B)
+      - --max-model-len
+      - "262144"
+      # Speculative decoding (MTP): 1 draft token reduces TTFT/latency (recipe recommendation)
+      # Disable if OOM or instability: remove the next two lines
+      - --speculative-config
+      - '{"method": "mtp", "num_speculative_tokens": 1}'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8088/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 600s  # First start: image build + model download (~14GB) + compile
+    restart: unless-stopped
+    networks:
+      - avatar-network
+
+  # ============================================================================
+  # Qwen3-VL-8B-Instruct — Vision Language Model (Port 8089)
+  # For image analysis before agent invocation (vision only, no tool-calling)
+  # gpu_memory_utilization=0.20 → ~25GB budget (16GB model + 9GB KV)
+  # Start with: docker compose -f docker-compose.dgx.yml --profile vlm up -d
+  # ============================================================================
+  vllm-qwen3vl:
+    image: secretary-vllm-qwen35  # same base image (vLLM nightly + transformers 5.x)
+    container_name: secretary-vllm-qwen3vl
+    profiles: [vlm]
+    ipc: host
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    environment:
+      - VLLM_FASTSAFETENSORS_NOGDS=1
+      - VLLM_TEST_FORCE_FP8_MARLIN=1
+      - HF_HOME=/root/.cache/huggingface
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - ${HOME}/.cache/huggingface:/root/.cache/huggingface
+      - ${HOME}/.cache/flashinfer:/root/.cache/flashinfer
+      - ${HOME}/.cache/vllm-qwen3vl:/root/.cache/vllm
+    ports:
+      - "8089:8089"
+    command:
+      - --model
+      - Qwen/Qwen3-VL-8B-Instruct
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "8089"
+      - --served-model-name
+      - qwen3-vl-8b
+      - --gpu-memory-utilization
+      - "0.20"
+      - --trust-remote-code
+      - --attention-backend
+      - FLASH_ATTN
+      - --no-enable-prefix-caching
+      - --max-model-len
+      - "16384"
+      - --enforce-eager
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8089/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 300s
+    restart: unless-stopped
+    networks:
+      - avatar-network
+
+  # ============================================================================
+  # Email Classifier — On-demand ML email sorting (Qwen3-Embedding-0.6B)
+  # Profile: email — build-only, run on-demand via docker run --rm
+  #
+  # Build: docker compose -f docker-compose.dgx.yml --profile email build email-classifier
+  # Run:
+  #   docker run --rm \
+  #     -v ~/.email-mcp:/root/.email-mcp:ro \
+  #     -v email-classifier-data:/data \
+  #     secretary-email-classifier learn --account gmx
+  #   docker run --rm \
+  #     -v ~/.email-mcp:/root/.email-mcp:ro \
+  #     -v email-classifier-data:/data \
+  #     secretary-email-classifier classify --account gmx [--dry-run]
+  # ============================================================================
+  email-classifier:
+    build:
+      context: ./email-classifier
+      dockerfile: Dockerfile
+    image: secretary-email-classifier
+    container_name: secretary-email-classifier
+    profiles: [email]
+    volumes:
+      - ${HOME}/.email-mcp:/root/.email-mcp:ro
+      - email-classifier-data:/data
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: "no"
     networks:
       - avatar-network
 
@@ -483,6 +706,10 @@ volumes:
     driver: local
   echomimic-cache:
     driver: local
+  email-classifier-data:
+    driver: local
+  # Note: vllm-qwen35 uses bind-mount ${HOME}/.cache/vllm-qwen35 (not a named volume)
+  # to avoid polluting the Qwen3-30B vLLM CUDA graph cache
   # Old volumes (deprecated)
   # canary-models:
   #   driver: local
