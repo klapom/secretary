@@ -26,13 +26,13 @@ FROM vllm/vllm-openai:cu130-nightly-aarch64
 # in the nightly registry — transformers is only needed for config loading.
 RUN pip install --no-cache-dir "transformers>=5.2.0" --upgrade
 
-# Fix vLLM Anthropic streaming bug: qwen3_xml parser sets tool_call.id on every
-# delta, causing the converter to create a new content_block per chunk instead
-# of appending to the existing one. Result: tool_use name=null, empty input.
-# See: nanoclaw/docs/DEBUG_CHECKLIST.md "Tool Calls Detected but command Parameter Missing"
-COPY patch-anthropic-streaming.py /tmp/patch-anthropic-streaming.py
-RUN python3 /tmp/patch-anthropic-streaming.py && rm /tmp/patch-anthropic-streaming.py
+# Formerly: patch-anthropic-streaming.py — fixed the qwen3_xml streaming bug
+# where tool_call.id set on every delta caused empty tool-call inputs. The
+# upstream nightly now has equivalent dedup logic inline (see state.tool_use_id
+# != tool_call.id check in entrypoints/anthropic/serving.py), so the patch is
+# no longer needed. The file is kept in-tree for historical reference.
 
-# Verify both: transformers version and vLLM registry entry
+# Verify: transformers version, vLLM registry entry, and that upstream dedup fix is present.
 RUN python3 -c "import transformers; print('transformers:', transformers.__version__)" && \
-    python3 -c "from vllm.model_executor.models import ModelRegistry; archs = ModelRegistry.get_supported_archs(); assert 'Qwen3_5MoeForConditionalGeneration' in archs, 'MISSING'; print('Qwen3_5MoeForConditionalGeneration: OK in vLLM registry')"
+    python3 -c "from vllm.model_executor.models import ModelRegistry; archs = ModelRegistry.get_supported_archs(); assert 'Qwen3_5MoeForConditionalGeneration' in archs, 'MISSING'; print('Qwen3_5MoeForConditionalGeneration: OK in vLLM registry')" && \
+    python3 -c "import pathlib; s = pathlib.Path('/usr/local/lib/python3.12/dist-packages/vllm/entrypoints/anthropic/serving.py').read_text(); assert 'state.tool_use_id != tool_call.id' in s, 'Upstream tool-call dedup fix missing — streaming bug may have regressed'; print('Anthropic streaming tool-call dedup: OK (upstream)')"
